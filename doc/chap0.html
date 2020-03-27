@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>GAP (BruhatDecomposition) - Contents</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="GAPDoc2HTML" />
+<link rel="stylesheet" type="text/css" href="manual.css" />
+<script src="manual.js" type="text/javascript"></script>
+<script type="text/javascript">overwriteStyle();</script>
+</head>
+<body class="chap0"  onload="jscontent()">
+
+
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chap5.html">5</a>  <a href="chapBib.html">Bib</a>  </div>
+
+<div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap1.html">[Next Chapter]</a>&nbsp;  </div>
+
+<p id="mathjaxlink" class="pcenter"><a href="chap0_mj.html">[MathJax on]</a></p>
+<p><a id="X7D2C85EC87DD46E5" name="X7D2C85EC87DD46E5"></a></p>
+<div class="pcenter">
+
+<h1>Bruhat Decomposition</h1>
+
+
+<h2>Straight-line programs with memory and matrix Bruhat decomposition</h2>
+
+<p>January 2019</p>
+
+</div>
+<p>
+  This implementation follows the ideas of "Straight-line programs with memory and
+  matrix Bruhat decomposition" by Alice Niemeyer, Tomasz Popiel and Cheryl Praeger.
+  </p>
+<p><b>Alice Niemeyer
+          
+  </b>
+<br />Email: <span class="URL"><a href="mailto:alice.niemeyer@mathb.rwth-aachen.de">alice.niemeyer@mathb.rwth-aachen.de</a></span>
+</p><p><b>Dominik Bernhardt
+          
+  </b>
+<br />Email: <span class="URL"><a href="mailto:bernhardt@mathb.rwth-aachen.de">bernhardt@mathb.rwth-aachen.de</a></span>
+</p><p><b>Daniel Rademacher
+          
+  </b>
+<br />Email: <span class="URL"><a href="mailto:daniel.rademacher@rwth-aachen.de">daniel.rademacher@rwth-aachen.de</a></span>
+</p><p><b> Christian Singendonk
+          
+  </b>
+<br />Email: <span class="URL"><a href="mailto:christian.singendonk@rwth-aachen.de">christian.singendonk@rwth-aachen.de</a></span>
+</p>
+
+<p><b>Address:</b><br />
+Lehrstuhl B für Mathematik<br /> Pontdriesch 14/16<br /> 52062 Aachen<br /> (Germany)</p>
+<p><a id="X81488B807F2A1CF1" name="X81488B807F2A1CF1"></a></p>
+<h3>Copyright</h3>
+<p>© 2019 by Alice Niemeyer, Dominik Bernhardt, Christian Singendonk and Daniel Rademacher</p>
+
+<p><a id="X8537FEB07AF2BEC8" name="X8537FEB07AF2BEC8"></a></p>
+
+<div class="contents">
+<h3>Contents<a id="contents" name="contents"></a></h3>
+
+<div class="ContChap"><a href="chap1.html#X8248CBC383A4431E">1 <span class="Heading">Foreword</span></a>
+</div>
+<div class="ContChap"><a href="chap2.html#X7ED5154B7CE8175E">2 <span class="Heading">Bruhat Decomposition for the special linear group (SL)</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X81E72B8282AC6ED6">2.1 <span class="Heading">Implemented Subfunctions (Part I)</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X83E0C06C7AB80DD4">2.2 <span class="Heading">UnipotentDecomposition (Part II - a)</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X8119AABE86F3606D">2.3 <span class="Heading">UnipotentDecomposition saving Transvections (Part II - b)</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X80C69E33879354C8">2.4 <span class="Heading">Decomposing the Monomial Matrix (Part III)</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X7D8EB03B8022F892">2.5 <span class="Heading">Main Function (Part IV)</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X864D6CAB7CE3BBF0">2.6 <span class="Heading">NC Version</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X86FA580F8055B274">2.7 <span class="Heading">Functions</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7AFC8C7D78152151">2.7-1 MakeSLP</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X81E533548403C575">2.7-2 MakeSLPNC</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X828EE9DF7B60A03E">2.7-3 CoefficientsPrimitiveElement</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7B138D977A8B7189">2.7-4 MyPermutationMat</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X8786DC8B80BDB30E">2.7-5 MyPermutationMatNC</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7C8ABD7D8634C91E">2.7-6 LGOStandardGens</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X855BEE5C7B364988">2.7-7 LGOStandardGensNC</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7E4A850D7AAC4293">2.7-8 HighestSlotOfSLP</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7D23BD4E79542F4B">2.7-9 MatToWreathProd</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7E91E7098456AFDD">2.7-10 MatToWreathProdNC</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X87F98DEC85E3FDAA">2.7-11 WreathProdToMat</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7F52B1487F587A1C">2.7-12 AEM</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7C7736A682A7A0D5">2.7-13 TestIfMonomial</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X82F86D858626598B">2.7-14 TestIfMonomialNC</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X85C18012862F6FAD">2.7-15 Transvections2</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X8779E9377C892EB9">2.7-16 UnipotentDecomposition</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X826BD2C9824513AC">2.7-17 UnipotentDecompositionNC</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7D30168E7F1DE65C">2.7-18 UnipotentDecompositionWithTi</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X819FFEC886196D19">2.7-19 UnipotentDecompositionWithTiNC</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7A75AB0D8104691A">2.7-20 PermutationMonomialMatrix</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X857AAC587E8A7891">2.7-21 PermutationMonomialMatrixNC</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X79A14A5D8507B0CD">2.7-22 PermSLP</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7D983C5E791154E9">2.7-23 PermSLPNC</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X85F12FD9859DE12D">2.7-24 DiagonalDecomposition</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X86767C5E7F9FD6C1">2.7-25 DiagonalDecompositionNC</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7D8C913E787C6BD5">2.7-26 BruhatDecomposition</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X79169D937C2B6C52">2.7-27 BruhatDecompositionNC</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X87DEB91D85E0D0A9">2.7-28 BruhatDecompositionWithTi</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7D31A8567A6EC122">2.7-29 BruhatDecompositionWithTiNC</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X843D36E780023AE6">2.8 <span class="Heading">Local functions for UnipotentDecomposition</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7B744A4D8139CA95">2.8-1 TransvectionAtAlpha</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X818C33017C168949">2.8-2 ShiftTransvections</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X81D2B8187A323AB1">2.8-3 FastShiftTransvecions</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7FBCCE387C74DDA8">2.8-4 BackShiftTransvections</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X8285DDDE7B527C71">2.8-5 FastBackShiftTransvections</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X7FFE0D2B8402676E">2.9 <span class="Heading">Local functions for UnipotentDecompositionWithTi</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X84EB3C7F7C987F42">2.9-1 TransvectionAtAlpha2</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X80EFD16E868DDD55">2.9-2 ComputeAllTransvections</a></span>
+</div></div>
+</div>
+<div class="ContChap"><a href="chap3.html#X81F906A77DFCFC36">3 <span class="Heading">Bruhat Decomposition for the special unitary group (SU)</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X86FA580F8055B274">3.1 <span class="Heading">Functions</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X85E063C87EC6CCA3">3.1-1 LGOStandardGensSU</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X7F6ECD7380D6D2A0">3.1-2 UnitriangularDecompositionSUEven</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X85795AD27BFECB19">3.1-3 UnitriangularDecompositionSUOdd</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X79E30D6E7DD8291D">3.1-4 UnitriangularDecompositionSU</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X793211108385A4F2">3.1-5 CoefficientsPrimitiveElementS</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X79AD1007829F87F8">3.1-6 BruhatDecompositionSU</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X7B8E470078522BF4">3.1-7 MonomialSLPSUOdd</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X82DB86F379904ADB">3.1-8 MonomialSLPSUEven</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X7A69AFAE8637E93F">3.1-9 CheckContinue</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X86D4EC5985EDD4FF">3.1-10 CycleFromPermutation</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X7A03D6777C11BB61">3.1-11 CycleFromListMine</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X7D83424581E15CB1">3.1-12 DiagSLPSUOdd</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X78315BFA86EC337A">3.1-13 DiagSLPSU</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X7A10BC39849272DC">3.1-14 DiagSLPSUEven</a></span>
+</div></div>
+</div>
+<div class="ContChap"><a href="chap4.html#X82E5676778771C49">4 <span class="Heading">Bruhat Decomposition for the symplectic group (Sp)</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap4.html#X86FA580F8055B274">4.1 <span class="Heading">Functions</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X82E6CC80818C226B">4.1-1 LGOStandardGensSp</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X7EE5A2267DAE098B">4.1-2 UnitriangularDecompositionSp</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X84615263789182BE">4.1-3 MonomialSLPSp</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X7F37F4B28245472E">4.1-4 DiagSLPSp</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X7EABBF4F7A4DBF8A">4.1-5 BruhatDecompositionSp</a></span>
+</div></div>
+</div>
+<div class="ContChap"><a href="chap5.html#X83DA57E3833A7C57">5 <span class="Heading">Bruhat Decomposition for the special orthogonal group (SO)</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap5.html#X86FA580F8055B274">5.1 <span class="Heading">Functions</span></a>
+</span>
+</div>
+</div>
+<div class="ContChap"><a href="chapBib.html"><span class="Heading">References</span></a></div>
+<br />
+</div>
+
+<div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap1.html">[Next Chapter]</a>&nbsp;  </div>
+
+
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chap5.html">5</a>  <a href="chapBib.html">Bib</a>  </div>
+
+<hr />
+<p class="foot">generated by <a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+</body>
+</html>

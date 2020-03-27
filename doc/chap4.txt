@@ -1,0 +1,58 @@
+  
+  [1X4 [33X[0;0YBruhat Decomposition for the symplectic group (Sp)[133X[101X
+  
+  [33X[0;0YIn progress.[133X
+  
+  
+  [1X4.1 [33X[0;0YFunctions[133X[101X
+  
+  [1X4.1-1 LGOStandardGensSp[101X
+  
+  [33X[1;0Y[29X[2XLGOStandardGensSp[102X( [3Xi[103X, [3Xalpha[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Ytrue[133X
+  
+  [33X[0;0YLet  [22Xα ∈ GF(p^f)[122X, [22Xα = ∑ a_l ω^l[122X, [22Xω[122X a primitive element. Suppose further that
+  Tipos  is  a list of transvections of the form [22Xt_i,i-1(ω^ell)[122X,[22X2 ≤ i ≤ d[122X, [22X0 ≤
+  ell ≤ ≠ f[122X. Then this function computes [22Xt_i,i-1( α )[122X by (Lemma 4.2) and saves
+  the result in tvpos.[133X
+  
+  [1X4.1-2 UnitriangularDecompositionSp[101X
+  
+  [33X[1;0Y[29X[2XUnitriangularDecompositionSp[102X( [3Xarg[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Ytrue[133X
+  
+  [33X[0;0YLet  [22Xα ∈ GF(p^f)[122X, [22Xα = ∑ a_l ω^l[122X, [22Xω[122X a primitive element. Suppose further that
+  Tipos  is  a list of transvections of the form [22Xt_i,i-1(ω^ell)[122X,[22X2 ≤ i ≤ d[122X, [22X0 ≤
+  ell ≤ ≠ f[122X. Then this function computes [22Xt_i,i-1( α )[122X by (Lemma 4.2) and saves
+  the result in tvpos.[133X
+  
+  [1X4.1-3 MonomialSLPSp[101X
+  
+  [33X[1;0Y[29X[2XMonomialSLPSp[102X( [3Xarg[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Ytrue[133X
+  
+  [33X[0;0YLet  [22Xα ∈ GF(p^f)[122X, [22Xα = ∑ a_l ω^l[122X, [22Xω[122X a primitive element. Suppose further that
+  Tipos  is  a list of transvections of the form [22Xt_i,i-1(ω^ell)[122X,[22X2 ≤ i ≤ d[122X, [22X0 ≤
+  ell ≤ ≠ f[122X. Then this function computes [22Xt_i,i-1( α )[122X by (Lemma 4.2) and saves
+  the result in tvpos.[133X
+  
+  [1X4.1-4 DiagSLPSp[101X
+  
+  [33X[1;0Y[29X[2XDiagSLPSp[102X( [3Xarg[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Ytrue[133X
+  
+  [33X[0;0YLet  [22Xα ∈ GF(p^f)[122X, [22Xα = ∑ a_l ω^l[122X, [22Xω[122X a primitive element. Suppose further that
+  Tipos  is  a list of transvections of the form [22Xt_i,i-1(ω^ell)[122X,[22X2 ≤ i ≤ d[122X, [22X0 ≤
+  ell ≤ ≠ f[122X. Then this function computes [22Xt_i,i-1( α )[122X by (Lemma 4.2) and saves
+  the result in tvpos.[133X
+  
+  [1X4.1-5 BruhatDecompositionSp[101X
+  
+  [33X[1;0Y[29X[2XBruhatDecompositionSp[102X( [3Xgens[103X, [3Xg[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Ytrue[133X
+  
+  [33X[0;0YLet  [22Xα ∈ GF(p^f)[122X, [22Xα = ∑ a_l ω^l[122X, [22Xω[122X a primitive element. Suppose further that
+  Tipos  is  a list of transvections of the form [22Xt_i,i-1(ω^ell)[122X,[22X2 ≤ i ≤ d[122X, [22X0 ≤
+  ell ≤ ≠ f[122X. Then this function computes [22Xt_i,i-1( α )[122X by (Lemma 4.2) and saves
+  the result in tvpos.[133X
+  

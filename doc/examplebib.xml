@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE file SYSTEM "bibxmlext.dtd">
+<file>
+<entry id="CR1"><book>
+  <author>
+    <name><first>A. C.</first><last>Niemeyer</last></name>
+    <name><first>T.</first><last>Popiel</last></name>
+    <name><first>C. E.</first><last>Praeger</last></name>
+  </author>  
+  <title>Straight-line programs with memory and matrix Bruhat decomposition.</title>
+</book></entry>
+
+<entry id="CR2"><book>
+  <author>
+    <name><first>C. R.</first><last>Leedham-Green</last></name>
+    <name><first>E. A.</first><last>O’Brien</last></name>
+  </author>
+  <title>Constructive Recognition of Classical Groups in odd characteristic.</title>
+</book></entry>
+</file>

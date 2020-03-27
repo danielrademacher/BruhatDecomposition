@@ -1,0 +1,18 @@
+\BOOKMARK [0][-]{chapter.1}{Foreword}{}% 1
+\BOOKMARK [0][-]{chapter.2}{Bruhat Decomposition for the special linear group \(SL\)}{}% 2
+\BOOKMARK [1][-]{section.2.1}{Implemented Subfunctions \(Part I\)}{chapter.2}% 3
+\BOOKMARK [1][-]{section.2.2}{UnipotentDecomposition \(Part II - a\)}{chapter.2}% 4
+\BOOKMARK [1][-]{section.2.3}{UnipotentDecomposition saving Transvections \(Part II - b\)}{chapter.2}% 5
+\BOOKMARK [1][-]{section.2.4}{Decomposing the Monomial Matrix \(Part III\)}{chapter.2}% 6
+\BOOKMARK [1][-]{section.2.5}{Main Function \(Part IV\)}{chapter.2}% 7
+\BOOKMARK [1][-]{section.2.6}{NC Version}{chapter.2}% 8
+\BOOKMARK [1][-]{section.2.7}{Functions}{chapter.2}% 9
+\BOOKMARK [1][-]{section.2.8}{Local functions for UnipotentDecomposition}{chapter.2}% 10
+\BOOKMARK [1][-]{section.2.9}{Local functions for UnipotentDecompositionWithTi}{chapter.2}% 11
+\BOOKMARK [0][-]{chapter.3}{Bruhat Decomposition for the special unitary group \(SU\)}{}% 12
+\BOOKMARK [1][-]{section.3.1}{Functions}{chapter.3}% 13
+\BOOKMARK [0][-]{chapter.4}{Bruhat Decomposition for the symplectic group \(Sp\)}{}% 14
+\BOOKMARK [1][-]{section.4.1}{Functions}{chapter.4}% 15
+\BOOKMARK [0][-]{chapter.5}{Bruhat Decomposition for the special orthogonal group \(SO\)}{}% 16
+\BOOKMARK [1][-]{section.5.1}{Functions}{chapter.5}% 17
+\BOOKMARK [0][-]{chapter*.3}{References}{}% 18

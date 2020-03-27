@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This is an automatically generated file. -->
+<TitlePage>
+  <Title>
+    BruhatDecomposition
+  </Title>
+  <Subtitle>
+    Computes the Bruhat Decomposition of matrices of the classical groups.
+  </Subtitle>
+  <Version>
+    0.1
+  </Version>
+  <Author>
+    Daniel Rademacher<Alt Only="LaTeX"><Br/></Alt>
+<Email>daniel.rademacher@rwth-aachen.de</Email>
+
+  </Author>
+  <Author>
+    Alice Niemeyer<Alt Only="LaTeX"><Br/></Alt>
+<Address>
+Alice Niemeyer<Br/>
+Lehrstuhl B für Mathematik<Br/>
+RWTH Aachen<Br/>
+Pontdriesch 10/16<Br/>
+52062 Aachen<Br/>
+GERMANY<Br/>
+</Address>
+<Email>Alice.Niemeyer@Mathb.RWTH-Aachen.De</Email>
+<Homepage>http://www.math.rwth-aachen.de/~Alice.Niemeyer/</Homepage>
+
+  </Author>
+  <Date>
+    27 March 2020
+  </Date>
+  </TitlePage>

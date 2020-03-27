@@ -1,0 +1,129 @@
+  
+  
+                              [1XBruhat Decomposition[101X
+  
+  
+       [1XStraight-line programs with memory and matrix Bruhat decomposition[101X
+  
+  
+                                  January 2019
+  
+  
+                                 Alice Niemeyer
+  
+                               Dominik Bernhardt
+  
+                               Daniel Rademacher
+  
+                              Christian Singendonk
+  
+  
+  
+            [33X[0;10YThis  implementation follows the ideas of "Straight-line
+            programs with memory and matrix Bruhat decomposition" by
+            Alice Niemeyer, Tomasz Popiel and Cheryl Praeger.[133X
+  
+  
+  
+  Alice Niemeyer
+      Email:    [7Xmailto:alice.niemeyer@mathb.rwth-aachen.de[107X
+  Dominik Bernhardt
+      Email:    [7Xmailto:bernhardt@mathb.rwth-aachen.de[107X
+  Daniel Rademacher
+      Email:    [7Xmailto:daniel.rademacher@rwth-aachen.de[107X
+  Christian Singendonk
+      Email:    [7Xmailto:christian.singendonk@rwth-aachen.de[107X
+  
+  
+  Address: [33X[0;9YLehrstuhl B für Mathematik[133X
+           [33X[0;9YPontdriesch 14/16[133X
+           [33X[0;9Y52062 Aachen[133X
+           [33X[0;9Y(Germany)[133X
+  
+  
+  -------------------------------------------------------
+  [1XCopyright[101X
+  [33X[0;0Y© 2019 by Alice Niemeyer, Dominik Bernhardt, Christian Singendonk and Daniel
+  Rademacher[133X
+  
+  
+  -------------------------------------------------------
+  
+  
+  [1XContents (BruhatDecomposition)[101X
+  
+  1 [33X[0;0YForeword[133X
+  2 [33X[0;0YBruhat Decomposition for the special linear group (SL)[133X
+    2.1 [33X[0;0YImplemented Subfunctions (Part I)[133X
+    2.2 [33X[0;0YUnipotentDecomposition (Part II - a)[133X
+    2.3 [33X[0;0YUnipotentDecomposition saving Transvections (Part II - b)[133X
+    2.4 [33X[0;0YDecomposing the Monomial Matrix (Part III)[133X
+    2.5 [33X[0;0YMain Function (Part IV)[133X
+    2.6 [33X[0;0YNC Version[133X
+    2.7 [33X[0;0YFunctions[133X
+      2.7-1 MakeSLP
+      2.7-2 MakeSLPNC
+      2.7-3 CoefficientsPrimitiveElement
+      2.7-4 MyPermutationMat
+      2.7-5 MyPermutationMatNC
+      2.7-6 LGOStandardGens
+      2.7-7 LGOStandardGensNC
+      2.7-8 HighestSlotOfSLP
+      2.7-9 MatToWreathProd
+      2.7-10 MatToWreathProdNC
+      2.7-11 WreathProdToMat
+      2.7-12 AEM
+      2.7-13 TestIfMonomial
+      2.7-14 TestIfMonomialNC
+      2.7-15 Transvections2
+      2.7-16 UnipotentDecomposition
+      2.7-17 UnipotentDecompositionNC
+      2.7-18 UnipotentDecompositionWithTi
+      2.7-19 UnipotentDecompositionWithTiNC
+      2.7-20 PermutationMonomialMatrix
+      2.7-21 PermutationMonomialMatrixNC
+      2.7-22 PermSLP
+      2.7-23 PermSLPNC
+      2.7-24 DiagonalDecomposition
+      2.7-25 DiagonalDecompositionNC
+      2.7-26 BruhatDecomposition
+      2.7-27 BruhatDecompositionNC
+      2.7-28 BruhatDecompositionWithTi
+      2.7-29 BruhatDecompositionWithTiNC
+    2.8 [33X[0;0YLocal functions for UnipotentDecomposition[133X
+      2.8-1 TransvectionAtAlpha
+      2.8-2 ShiftTransvections
+      2.8-3 FastShiftTransvecions
+      2.8-4 BackShiftTransvections
+      2.8-5 FastBackShiftTransvections
+    2.9 [33X[0;0YLocal functions for UnipotentDecompositionWithTi[133X
+      2.9-1 TransvectionAtAlpha2
+      2.9-2 ComputeAllTransvections
+  3 [33X[0;0YBruhat Decomposition for the special unitary group (SU)[133X
+    3.1 [33X[0;0YFunctions[133X
+      3.1-1 LGOStandardGensSU
+      3.1-2 UnitriangularDecompositionSUEven
+      3.1-3 UnitriangularDecompositionSUOdd
+      3.1-4 UnitriangularDecompositionSU
+      3.1-5 CoefficientsPrimitiveElementS
+      3.1-6 BruhatDecompositionSU
+      3.1-7 MonomialSLPSUOdd
+      3.1-8 MonomialSLPSUEven
+      3.1-9 CheckContinue
+      3.1-10 CycleFromPermutation
+      3.1-11 CycleFromListMine
+      3.1-12 DiagSLPSUOdd
+      3.1-13 DiagSLPSU
+      3.1-14 DiagSLPSUEven
+  4 [33X[0;0YBruhat Decomposition for the symplectic group (Sp)[133X
+    4.1 [33X[0;0YFunctions[133X
+      4.1-1 LGOStandardGensSp
+      4.1-2 UnitriangularDecompositionSp
+      4.1-3 MonomialSLPSp
+      4.1-4 DiagSLPSp
+      4.1-5 BruhatDecompositionSp
+  5 [33X[0;0YBruhat Decomposition for the special orthogonal group (SO)[133X
+    5.1 [33X[0;0YFunctions[133X
+  
+  
+  [32X
