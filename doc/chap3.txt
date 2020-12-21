@@ -1,148 +1,501 @@
   
-  [1X3 [33X[0;0YBruhat Decomposition for the special unitary group (SU)[133X[101X
+  [1X3 [33X[0;0YSpecial Linear Group[133X[101X
   
-  [33X[0;0YIn progress.[133X
+  [33X[0;0YThis chapter deals with the special linear group[133X
   
   
-  [1X3.1 [33X[0;0YFunctions[133X[101X
+  [1X3.1 [33X[0;0YIntroduction and Quick Start of functions for SL[133X[101X
   
-  [1X3.1-1 LGOStandardGensSU[101X
+  [33X[0;0YConcept:  This  implementation  follows the ideas of "Straight-line programs
+  with  memory  and  matrix  Bruhat  decomposition"  by Alice Niemeyer, Tomasz
+  Popiel  and  Cheryl  Praeger. In the following all references will mean this
+  paper  and  in  case  we  differ  from  this  paper  (due  to readability or
+  bug-fixing) this will also be remarked. [22Xsmallskip[122X[133X
   
-  [33X[1;0Y[29X[2XLGOStandardGensSU[102X( [3Xi[103X, [3Xalpha[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Ytrue[133X
+  [33X[0;0YLet [22Xg ∈[122X SL[22X(d,p^f)[122X Bruhat Decomposition computes [22Xg = u_1 ⋅ w ⋅ u_2[122X, where[133X
   
-  [33X[0;0YLet  [22Xα ∈ GF(p^f)[122X, [22Xα = ∑ a_l ω^l[122X, [22Xω[122X a primitive element. Suppose further that
-  Tipos  is  a list of transvections of the form [22Xt_i,i-1(ω^ell)[122X,[22X2 ≤ i ≤ d[122X, [22X0 ≤
-  ell ≤ ≠ f[122X. Then this function computes [22Xt_i,i-1( α )[122X by (Lemma 4.2) and saves
-  the result in tvpos.[133X
+  [30X    [33X[0;6Y[22Xu_1,u_2[122X are lower triangular matrices[133X
   
-  [1X3.1-2 UnitriangularDecompositionSUEven[101X
+  [30X    [33X[0;6Y[22Xw[122X is monomial matrix [22Xsmallskip[122X[133X
   
-  [33X[1;0Y[29X[2XUnitriangularDecompositionSUEven[102X( [3Xi[103X, [3Xalpha[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Ytrue[133X
+  [33X[0;0YIn  this algorithm we want to compute the Bruhat-Decomposition of [22Xg[122X and give
+  [22Xg[122X  (respectively  [22Xu_1,w[122X  and  [22Xu_2[122X)  as  word  in the so called "LGO standard
+  generators" (REF TODO). [22Xsmallskip[122X[133X
   
-  [33X[0;0YLet  [22Xα ∈ GF(p^f)[122X, [22Xα = ∑ a_l ω^l[122X, [22Xω[122X a primitive element. Suppose further that
-  Tipos  is  a list of transvections of the form [22Xt_i,i-1(ω^ell)[122X,[22X2 ≤ i ≤ d[122X, [22X0 ≤
-  ell ≤ ≠ f[122X. Then this function computes [22Xt_i,i-1( α )[122X by (Lemma 4.2) and saves
-  the result in tvpos.[133X
+  [33X[0;0Y1)  While  computing  [22Xu_1[122X  (resp  [22Xu_2[122X)  with some kind of Gauß-Algorithm, we
+  express the matrices as product of so called transvections[133X
   
-  [1X3.1-3 UnitriangularDecompositionSUOdd[101X
+  [30X    [33X[0;6YFor  [22X1  ≤  j  <  i  ≤  d[122X:  [22Xt_i,j(α)[122X  is the matrix T with 1-entries on
+        diagonal, [22XT_i,j = α[122X, 0 elsewhere [22Xnewline[122X Each [22Xt_i,j(α)[122X can be computed
+        from  [22Xt_2,1(α)[122X via recursion, where we have to distinguish the odd and
+        even  dimensons  (p12  Lemma  4.2).  This  again can be expressed as a
+        product  of [22Xt_2,1(ω^ℓ)[122X (where omega is a primitive element and [22X0 ≤ ℓ <
+        f[122X).  The  transvections  as  words  in  the  standard  generators  are
+        described  in  (p12 Lemma 4.2). [22Xnewline[122X This yields a decomposition of
+        [22Xu_1[122X and [22Xu_2[122X in standard generators. [22Xsmallskip[122X[133X
   
-  [33X[1;0Y[29X[2XUnitriangularDecompositionSUOdd[102X( [3Xi[103X, [3Xalpha[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Ytrue[133X
+  [33X[0;0Y2)  In  a  further  step we will decompose the monomial Matrix [22Xw[122X in a signed
+  permutation  matrix  p_sign  and  a diagonal Matrix diag. ( How to associate
+  p_sign  with  a product of generators is further described in (PART I b) and
+  (PART III) ) [22Xsmallskip[122X[133X
   
-  [33X[0;0YLet  [22Xα ∈ GF(p^f)[122X, [22Xα = ∑ a_l ω^l[122X, [22Xω[122X a primitive element. Suppose further that
-  Tipos  is  a list of transvections of the form [22Xt_i,i-1(ω^ell)[122X,[22X2 ≤ i ≤ d[122X, [22X0 ≤
-  ell ≤ ≠ f[122X. Then this function computes [22Xt_i,i-1( α )[122X by (Lemma 4.2) and saves
-  the result in tvpos.[133X
+  [33X[0;0Y3)  The  last step is the decomposition of the diagonal Matrix in 2) as word
+  in the standard generators. [22Xsmallskip[122X[133X
   
-  [1X3.1-4 UnitriangularDecompositionSU[101X
+  [33X[0;0YWe  won't  do this matrix multiplications directly, but write them in a list
+  to  evaluate  in  a  StraightLineProgram.  (Section  2)  Although  described
+  differently  in  the paper, we sometimes will allow instructions to multiply
+  more  than  two  elements  (eg  during conjugating). This doesn't affect the
+  optimality  of  an  slp  much,  but  higly  increases the readability of our
+  implementation. [22Xsmallskip[122X[133X
   
-  [33X[1;0Y[29X[2XUnitriangularDecompositionSU[102X( [3Xi[103X, [3Xalpha[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Ytrue[133X
   
-  [33X[0;0YLet  [22Xα ∈ GF(p^f)[122X, [22Xα = ∑ a_l ω^l[122X, [22Xω[122X a primitive element. Suppose further that
-  Tipos  is  a list of transvections of the form [22Xt_i,i-1(ω^ell)[122X,[22X2 ≤ i ≤ d[122X, [22X0 ≤
-  ell ≤ ≠ f[122X. Then this function computes [22Xt_i,i-1( α )[122X by (Lemma 4.2) and saves
-  the result in tvpos.[133X
+  [1X3.2 [33X[0;0YImplemented Subfunctions (Part I)[133X[101X
   
-  [1X3.1-5 CoefficientsPrimitiveElementS[101X
+  [33X[0;0YLater  we will need some additional functions. Why they are needed and where
+  they are needed is described here.[133X
   
-  [33X[1;0Y[29X[2XCoefficientsPrimitiveElementS[102X( [3Xi[103X, [3Xalpha[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Ytrue[133X
+  [30X    [33X[0;6Y[10XMakeSLP()[110X:   After  the  [10XBruhatDecompositionSL()[110X  we  get  a  list  of
+        instructions  to calculate the matrices we want using the LGO standard
+        generators. [10XMakeSLP()[110X is used to get a SLP out of these instructions.[133X
   
-  [33X[0;0YLet  [22Xα ∈ GF(p^f)[122X, [22Xα = ∑ a_l ω^l[122X, [22Xω[122X a primitive element. Suppose further that
-  Tipos  is  a list of transvections of the form [22Xt_i,i-1(ω^ell)[122X,[22X2 ≤ i ≤ d[122X, [22X0 ≤
-  ell ≤ ≠ f[122X. Then this function computes [22Xt_i,i-1( α )[122X by (Lemma 4.2) and saves
-  the result in tvpos.[133X
+  [30X    [33X[0;6Y[10XCoefficientsPrimitiveElement()[110X:  It  expresses an element w in a field
+        fld  as a linear combination of a Primitive Element. This is important
+        for the transvections. (TODO Add Reference!)[133X
   
-  [1X3.1-6 BruhatDecompositionSU[101X
+  [30X    [33X[0;6Y[10XMyPermutationMat()[110X:  Turns a permutation into a permutation matrix. We
+        need it to calculate the LGO standard generator.[133X
   
-  [33X[1;0Y[29X[2XBruhatDecompositionSU[102X( [3Xgens[103X, [3Xg[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Ytrue[133X
+  [30X    [33X[0;6Y[10XLGOStandardGensSL()[110X: This function computes the standard generators of
+        SL  as given by C. R. Leedham-Green and E. A. O'Brien in "Constructive
+        Recognition  of  Classical  Groups  in  odd characteristic". (TODO Add
+        Reference!)[133X
   
-  [33X[0;0YLet  [22Xα ∈ GF(p^f)[122X, [22Xα = ∑ a_l ω^l[122X, [22Xω[122X a primitive element. Suppose further that
-  Tipos  is  a list of transvections of the form [22Xt_i,i-1(ω^ell)[122X,[22X2 ≤ i ≤ d[122X, [22X0 ≤
-  ell ≤ ≠ f[122X. Then this function computes [22Xt_i,i-1( α )[122X by (Lemma 4.2) and saves
-  the result in tvpos.[133X
+  [30X    [33X[0;6Y[10XHighestSlotOfSLP()[110X: The following function determines the highest slot
+        of  a  SLP  constructed  from  the  list  slp  will  write in. This is
+        important to glue SLPs together.[133X
   
-  [1X3.1-7 MonomialSLPSUOdd[101X
+  [30X    [33X[0;6Y[10XMatToWreathProd()[110X and [10XWreathProdToMat()[110X: In [10XPermSLP()[110X [[14X3.8-14[114X] we want
+        to  transform  the monomial matrix [22Xw[122X given by [10XUnipotentDecomposition()[110X
+        into a diagonal matrix. (The exact procedure is described in [10XPermSLP()[110X
+        [[14X3.8-14[114X])[133X
   
-  [33X[1;0Y[29X[2XMonomialSLPSUOdd[102X( [3Xarg[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Ytrue[133X
+        [33X[0;6YSince  multiplying  the  LGO  standard-generators  [22Xs,v[122X  and [22Xx[122X not only
+        involves  permutations  but  we  also  have to consider which non-zero
+        entries  are  [22X+1[122X and which [22X-1[122X, we want to associate this matrices with
+        permutations on [22X2d[122X points. (cf. Wreath-Product)[133X
   
-  [33X[0;0YLet  [22Xα ∈ GF(p^f)[122X, [22Xα = ∑ a_l ω^l[122X, [22Xω[122X a primitive element. Suppose further that
-  Tipos  is  a list of transvections of the form [22Xt_i,i-1(ω^ell)[122X,[22X2 ≤ i ≤ d[122X, [22X0 ≤
-  ell ≤ ≠ f[122X. Then this function computes [22Xt_i,i-1( α )[122X by (Lemma 4.2) and saves
-  the result in tvpos.[133X
+        [33X[0;6Y[22X[s,v,x]  ->  Sym(2d),  M  ->[122X [10XMwr[110X where [22Xi^Mwr = j[122X and [22X(i+d)^Mwr= j+d[122X if
+        [22XM_i,j  =  1[122X and [22Xi^Mwr = j+d[122X and [22X(i+d)^Mwr= j[122X if [22XM_i,j = -1[122X for [22X1 ≤ i ≤
+        d[122X.[133X
   
-  [1X3.1-8 MonomialSLPSUEven[101X
+        [33X[0;6YDue  to  their  relation  to  wreath-products, we will call denote the
+        image of a matrix [10XM[110X[22X∈ [s,v,x][122X by [10XMwr[110X.[133X
   
-  [33X[1;0Y[29X[2XMonomialSLPSUEven[102X( [3Xarg[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Ytrue[133X
+        [33X[0;6YIn   fact   the  association  from  [10XMatToWreathProd()[110X  [[14X3.8-6[114X]  is  an
+        isomorphism and we can associate to each permutation we compute during
+        [10XPermSLP()[110X [[14X3.8-14[114X] a signed permutation matrix (a monomial matrix with
+        only [22X+1[122X and [22X-1[122X as non-zero entries).[133X
   
-  [33X[0;0YLet  [22Xα ∈ GF(p^f)[122X, [22Xα = ∑ a_l ω^l[122X, [22Xω[122X a primitive element. Suppose further that
-  Tipos  is  a list of transvections of the form [22Xt_i,i-1(ω^ell)[122X,[22X2 ≤ i ≤ d[122X, [22X0 ≤
-  ell ≤ ≠ f[122X. Then this function computes [22Xt_i,i-1( α )[122X by (Lemma 4.2) and saves
-  the result in tvpos.[133X
+        [33X[0;6Y[22XM_i,j = 1[122X if [22Xi^Mwr = j ≤ d[122X and [22XM_i,j = -1[122X if [22Xi^Mwr = j+d[122X[133X
   
-  [1X3.1-9 CheckContinue[101X
+  [30X    [33X[0;6Y[10XAEM()[110X:  Write instructions for Ancient Egyptian Multiplication in slp.
+        At  several  occasions  we  will  need to compute a high power of some
+        value saved in a memory slot.[133X
   
-  [33X[1;0Y[29X[2XCheckContinue[102X( [3Xi[103X, [3Xalpha[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Ytrue[133X
+  [30X    [33X[0;6Y[10XTestIfMonomial()[110X: Tests if a given matrix M is monomial matrix. We use
+        it    to    decide    whether    we    are    already    finished   in
+        [10XUnipotentDecomposition()[110X.[133X
   
-  [33X[0;0YLet  [22Xα ∈ GF(p^f)[122X, [22Xα = ∑ a_l ω^l[122X, [22Xω[122X a primitive element. Suppose further that
-  Tipos  is  a list of transvections of the form [22Xt_i,i-1(ω^ell)[122X,[22X2 ≤ i ≤ d[122X, [22X0 ≤
-  ell ≤ ≠ f[122X. Then this function computes [22Xt_i,i-1( α )[122X by (Lemma 4.2) and saves
-  the result in tvpos.[133X
+  [33X[0;0YFor some functions also exist a NC version. See [[14X3.7[114X].[133X
   
-  [1X3.1-10 CycleFromPermutation[101X
   
-  [33X[1;0Y[29X[2XCycleFromPermutation[102X( [3Xi[103X, [3Xalpha[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Ytrue[133X
+  [1X3.3 [33X[0;0YUnipotentDecomposition (Part II - a)[133X[101X
   
-  [33X[0;0YLet  [22Xα ∈ GF(p^f)[122X, [22Xα = ∑ a_l ω^l[122X, [22Xω[122X a primitive element. Suppose further that
-  Tipos  is  a list of transvections of the form [22Xt_i,i-1(ω^ell)[122X,[22X2 ≤ i ≤ d[122X, [22X0 ≤
-  ell ≤ ≠ f[122X. Then this function computes [22Xt_i,i-1( α )[122X by (Lemma 4.2) and saves
-  the result in tvpos.[133X
+  [33X[0;0YIn  this  section  is the [10XUnipotentDecomposition()[110X described. This method is
+  used to compute the Unitriangular decomposition of the matrix [22Xg[122X. [[14X3.8-11[114X][133X
   
-  [1X3.1-11 CycleFromListMine[101X
+  [33X[0;0YFor  this  we use five local functions in the [10XUnipotentDecomposition()[110X. They
+  are   [10XTransvecAtAlpha()[110X,   [10XShiftTransvections()[110X,   [10XFastShiftTransvections()[110X,
+  [10XBackShiftTransvections()[110X and [10XFastBackShiftTransvections()[110X.[133X
   
-  [33X[1;0Y[29X[2XCycleFromListMine[102X( [3Xi[103X, [3Xalpha[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Ytrue[133X
+  [33X[0;0YThe  difference to [10XUnipotentDecompositionWithTi()[110X [[14X3.4[114X] is that this version
+  won't  store  all  the  transvections  [22Xt_i,i-1(ω^l)[122X.  This will increase the
+  runtime  but  reduce  the  memory  usage  by  [22X(d-3)  ⋅  f[122X  compared  to  the
+  [10XUnipotentDecompositionWithTi()[110X.[133X
   
-  [33X[0;0YLet  [22Xα ∈ GF(p^f)[122X, [22Xα = ∑ a_l ω^l[122X, [22Xω[122X a primitive element. Suppose further that
-  Tipos  is  a list of transvections of the form [22Xt_i,i-1(ω^ell)[122X,[22X2 ≤ i ≤ d[122X, [22X0 ≤
-  ell ≤ ≠ f[122X. Then this function computes [22Xt_i,i-1( α )[122X by (Lemma 4.2) and saves
-  the result in tvpos.[133X
+  [33X[0;0YThe function can be called for example by[133X
   
-  [1X3.1-12 DiagSLPSUOdd[101X
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xd := 3;;[127X[104X
+    [4X[25Xgap>[125X [27Xq := 5;;[127X[104X
+    [4X[25Xgap>[125X [27XL := SL(d, q);;[127X[104X
+    [4X[25Xgap>[125X [27Xm := PseudoRandom(L);;[127X[104X
+    [4X[25Xgap>[125X [27Xstdgens := LGOStandardGensSL(d, q);;[127X[104X
+    [4X[25Xgap>[125X [27XUnipotentDecomposition( stdgens, g);;[127X[104X
+  [4X[32X[104X
   
-  [33X[1;0Y[29X[2XDiagSLPSUOdd[102X( [3Xi[103X, [3Xalpha[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Ytrue[133X
   
-  [33X[0;0YLet  [22Xα ∈ GF(p^f)[122X, [22Xα = ∑ a_l ω^l[122X, [22Xω[122X a primitive element. Suppose further that
-  Tipos  is  a list of transvections of the form [22Xt_i,i-1(ω^ell)[122X,[22X2 ≤ i ≤ d[122X, [22X0 ≤
-  ell ≤ ≠ f[122X. Then this function computes [22Xt_i,i-1( α )[122X by (Lemma 4.2) and saves
-  the result in tvpos.[133X
+  [1X3.4 [33X[0;0YUnipotentDecomposition saving Transvections (Part II - b)[133X[101X
   
-  [1X3.1-13 DiagSLPSU[101X
+  [33X[0;0YIn this section is the [10XUnipotentDecompositionWithTi()[110X described. This method
+  is used to compute the Unitriangular decomposition of the matrix [22Xg[122X. [[14X3.8-12[114X][133X
   
-  [33X[1;0Y[29X[2XDiagSLPSU[102X( [3Xi[103X, [3Xalpha[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Ytrue[133X
+  [33X[0;0YIn  this version we will store all the transvections [22Xt_i,i-1(ω^l)[122X. This will
+  increase the memory usage by [22X(d-3) ⋅ f[122X but reduce runtime.[133X
   
-  [33X[0;0YLet  [22Xα ∈ GF(p^f)[122X, [22Xα = ∑ a_l ω^l[122X, [22Xω[122X a primitive element. Suppose further that
-  Tipos  is  a list of transvections of the form [22Xt_i,i-1(ω^ell)[122X,[22X2 ≤ i ≤ d[122X, [22X0 ≤
-  ell ≤ ≠ f[122X. Then this function computes [22Xt_i,i-1( α )[122X by (Lemma 4.2) and saves
-  the result in tvpos.[133X
+  [33X[0;0YIn  [10XUnipotentDecompositionWithTi()[110X  we  use  two  local  functions. They are
+  [10XTransvectionAtAlpha()[110X and [10XComputeAllTransvections()[110X.[133X
   
-  [1X3.1-14 DiagSLPSUEven[101X
+  [33X[0;0YThe function can be called for example by[133X
   
-  [33X[1;0Y[29X[2XDiagSLPSUEven[102X( [3Xi[103X, [3Xalpha[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Ytrue[133X
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xd := 3;;[127X[104X
+    [4X[25Xgap>[125X [27Xq := 5;;[127X[104X
+    [4X[25Xgap>[125X [27XL := SL(d, q);;[127X[104X
+    [4X[25Xgap>[125X [27Xm := PseudoRandom(L);;[127X[104X
+    [4X[25Xgap>[125X [27Xstdgens := LGOStandardGensSL(d, q);;[127X[104X
+    [4X[25Xgap>[125X [27XUnipotentDecompositionWithTi( stdgens, g);;[127X[104X
+  [4X[32X[104X
   
-  [33X[0;0YLet  [22Xα ∈ GF(p^f)[122X, [22Xα = ∑ a_l ω^l[122X, [22Xω[122X a primitive element. Suppose further that
-  Tipos  is  a list of transvections of the form [22Xt_i,i-1(ω^ell)[122X,[22X2 ≤ i ≤ d[122X, [22X0 ≤
-  ell ≤ ≠ f[122X. Then this function computes [22Xt_i,i-1( α )[122X by (Lemma 4.2) and saves
-  the result in tvpos.[133X
+  
+  [1X3.5 [33X[0;0YDecomposing the Monomial Matrix (Part III)[133X[101X
+  
+  [33X[0;0YWe  use  three  functions  to  decompose  the  monomial matrix [22Xw[122X we get from
+  [10XUnipotentDecomposition()[110X. They are:[133X
+  
+  [30X    [33X[0;6Y[10XPermutationMonomialMatrix()[110X:   Find   the   permutation   (in   Sym(d)
+        corresponding  to  the  monomial matrix [22Xw[122X) and [22Xdiag[122X a diagonal matrix,
+        where [22Xdiag[i][122X is the non-zero entry of row [22Xi[122X. [[14X3.8-13[114X][133X
+  
+  [30X    [33X[0;6Y[10XPermSLP()[110X:  In  this  function  we  will transform a monomial matrix [22Xw
+        ∈[122XSL[22X(d,q)[122X    into    a   diagonal   matrix   [22Xdiag[122X.   Using   only   the
+        standard-generators  [22Xs,v,x[122X. This will lead to a monomial matrix [22Xp_sign[122X
+        with  only  [22X± 1[122X in non-zero entries and [22Xp_sign ⋅ diag = w[122X (i.e. [22Xdiag =
+        (p_sign)^-1 ⋅ w[122X ).[133X
+  
+        [33X[0;6YFurthermore  we  will return list [10Xslp[110X of instructions which will (when
+        evaluated at the LGO standard-generators) yield [22Xdiag[122X.[133X
+  
+        [33X[0;6YIt  is  sufficient  for  [22Xdiag[122X  to  be  diagonal,  if  the  permutation
+        associated  with [22Xw[122X (i.e. [22Xi^π_w = j[122X if [22XM_i,j ≠ 0[122X) is the inverse of the
+        permutation associated to [22Xp_sign[122X (again only to Sym([22Xd[122X) ).[133X
+  
+        [33X[0;6YIn [10XPermSLP()[110X we thus transform [22Xπ_w[122X to [22X()[122X using only [22X{ π_s, π_v, π_x }[122X.
+        In  order  to  know [22Xdiag[122X without computing all matrix multiplications,
+        (we  don't  know the signs of [22Xp_sign[122X), we compute a second permutation
+        simultaneously  (here  using their identification with permutations in
+        Sym[22X(2d)[122X and identifying [22X{ π_s, π_v, π_x }[122X with [22X{s,v,x}[122X ). [[14X3.8-14[114X][133X
+  
+  [30X    [33X[0;6Y[10XDiagonalDecomposition()[110X: Writes a list of instructions which evaluated
+        on  LGO  standard-generators  yield  the diagonal matrix of the input.
+        [[14X3.8-15[114X][133X
+  
+  [33X[0;0YTo these three functions is also a NC version implemented. See [[14X3.7[114X].[133X
+  
+  
+  [1X3.6 [33X[0;0YMain Function (Part IV)[133X[101X
+  
+  [33X[0;0YIn  [10XBruhatDecompositionSL()[110X  [[14X3.8-16[114X] we put everything together. We use the
+  three  functions  [10XUnipotentDecomposition()[110X  [[14X3.8-11[114X], [10XPermSLP()[110X [[14X3.8-14[114X] and
+  [10XDiagonalDecomposition()[110X  [[14X3.8-15[114X] to compute matrices with [22Xu_1^-1 ⋅ p_sign ⋅
+  diag  ⋅  u_2^-1  = g[122X and a SLP [10Xpgr[110X that computes these matrices with the LGO
+  standard generators.[133X
+  
+  [33X[0;0YHere is an exampel:[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xmat := [ [ Z(5)^2, Z(5)^0, Z(5)^2 ],[127X[104X
+    [4X[25X>[125X [27X            [ Z(5)^3, 0*Z(5), 0*Z(5) ],[127X[104X
+    [4X[25X>[125X [27X            [ 0*Z(5), Z(5)^2, Z(5)^2 ] ];;#![127X[104X
+    [4X[25Xgap>[125X [27XL := BruhatDecompositionSL(LGOStandardGensSL(3,5), mat);[127X[104X
+    [4X[25Xgap>[125X [27Xresult := ResultOfStraightLineProgram(L[1], LGOStandardGensSL(3,5));[127X[104X
+  [4X[32X[104X
+  
+  [33X[0;0Y[10XBruhatDecompositionSLWithTi()[110X  [[14X3.8-17[114X]  works  like [10XBruhatDecompositionSL()[110X
+  [[14X3.8-16[114X]   but   uses  [10XUnipotentDecompositionWithTi()[110X  [[14X3.8-12[114X]  instead  of
+  [10XUnipotentDecomposition()[110X [[14X3.8-11[114X].[133X
+  
+  [33X[0;0YYou can use it in the same way like [10XBruhatDecompositionSL()[110X:[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xmat := [ [ Z(5)^2, Z(5)^0, Z(5)^2 ],[127X[104X
+    [4X[25X>[125X [27X            [ Z(5)^3, 0*Z(5), 0*Z(5) ],[127X[104X
+    [4X[25X>[125X [27X            [ 0*Z(5), Z(5)^2, Z(5)^2 ] ];;[127X[104X
+    [4X[25Xgap>[125X [27XL := BruhatDecompositionSLWithTi(LGOStandardGensSL(3,5), mat);[127X[104X
+    [4X[25Xgap>[125X [27Xresult := ResultOfStraightLineProgram(L[1], LGOStandardGensSL(3,5));[127X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YTo both functions is also a NC version implemented. See [[14X3.7[114X].[133X
+  
+  
+  [1X3.7 [33X[0;0YNC Version[133X[101X
+  
+  [33X[0;0YHere  is  the  NC  version  of  the  Bruhat  Decomposition described. In all
+  implemented  functions  are  all  used  functions  replaced through their NC
+  version  (if  one  exists).  Moreover  are  all  checks  from  functions  of
+  MyBruhatDecomposition removed.[133X
+  
+  [33X[0;0YThese functions has been modified by this actions and got a NC Version:[133X
+  
+  [30X    [33X[0;6Y[10XMakeSLP()[110X[[14X3.8-1[114X]   [22X->[122X  [10XMakeSLPNC()[110X[[14X3.8-1[114X]  (uses  the  NC  version  of
+        [10XStraightLineProgram[110X)[133X
+  
+  [30X    [33X[0;6Y[10XMyPermutationMat()[110X  [[14X3.8-3[114X]  [22X->[122X [10XMyPermutationMatNC()[110X [[14X3.8-3[114X] (uses the
+        NC version of [10XConvertToMatrixRep[110X)[133X
+  
+  [30X    [33X[0;6Y[10XLGOStandardGensSL()[110X [[14X3.8-4[114X] [22X->[122X [10XLGOStandardGensSLNC()[110X [[14X3.8-4[114X] (uses the
+        NC version of [10XMyPermutationMat()[110X)[133X
+  
+  [30X    [33X[0;6Y[10XMatToWreathProd()[110X  [[14X3.8-6[114X]  [22X->[122X  [10XMatToWreathProdNC()[110X [[14X3.8-6[114X] (no checks
+        for user input)[133X
+  
+  [30X    [33X[0;6Y[10XTestIfMonomial()[110X  [[14X3.8-9[114X] [22X->[122X [10XTestIfMonomialNC()[110X [[14X3.8-9[114X] (no checks for
+        user input)[133X
+  
+  [30X    [33X[0;6Y[10XUnipotentDecomposition()[110X    [[14X3.8-11[114X]   [22X->[122X   [10XUnipotentDecompositionNC()[110X
+        [[14X3.8-11[114X] (no checks for user input)[133X
+  
+  [30X    [33X[0;6Y[10XUnipotentDecompositionWithTi()[110X               [[14X3.8-12[114X]               [22X->[122X
+        [10XUnipotentDecompositionWithTiNC()[110X [[14X3.8-12[114X] (no checks for user input)[133X
+  
+  [30X    [33X[0;6Y[10XPermutationMonomialMatrix()[110X  [[14X3.8-13[114X] [22X->[122X [10XPermutationMonomialMatrixNC()[110X
+        [[14X3.8-13[114X] (no checks for user input)[133X
+  
+  [30X    [33X[0;6Y[10XPermSLP()[110X  [[14X3.8-14[114X] [22X->[122X [10XPermSLPNC()[110X [[14X3.8-14[114X] (no checks for unser input
+        and uses [10XPermutationMonomialMatrixNC()[110X)[133X
+  
+  [30X    [33X[0;6Y[10XDiagonalDecomposition()[110X [[14X3.8-15[114X] [22X->[122X [10XDiagonalDecompositionNC()[110X [[14X3.8-15[114X]
+        (no checks for user input)[133X
+  
+  [30X    [33X[0;6Y[10XBruhatDecompositionSL()[110X [[14X3.8-16[114X] [22X->[122X [10XBruhatDecompositionSLNC()[110X [[14X3.8-16[114X]
+        (uses        [10XUnipotentDecompositionNC()[110X,        [10XPermSLPNC()[110X        and
+        [10XDiagonalDecompositionNC[110X)[133X
+  
+  [30X    [33X[0;6Y[10XBruhatDecompositionSLWithTi()[110X                [[14X3.8-17[114X]               [22X->[122X
+        [10XBruhatDecompositionSLWithTiNC()[110X             [[14X3.8-17[114X]             (uses
+        [10XUnipotentDecompositionWithTiNC()[110X,            [10XPermSLPNC()[110X           and
+        [10XDiagonalDecompositionNC()[110X)[133X
+  
+  
+  [1X3.8 [33X[0;0YFunctions for SL[133X[101X
+  
+  [1X3.8-1 MakeSLP[101X
+  
+  [33X[1;0Y[29X[2XMakeSLP[102X( [3Xslp[103X, [3Xgenlen[103X ) [32X function[133X
+  [33X[1;0Y[29X[2XMakeSLPNC[102X( [3Xarg[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10YAn SLP using the instructions of slp and genlen inputs[133X
+  
+  [33X[0;0Yslp: A list of instructions for a straight-line program, [22Xnewline[122X genlen: The
+  number  of  inputs  for  our  SLP  (ie the number of generators ) [22Xnewline[122X To
+  increase  readability,  the  lists  slp  as  defined  later (see Unipotent-,
+  Diagonal-,  BruhatDecompositionSL  and  PermSLP)  start  with [1,1],[2,1],..
+  [5,1]. However this represents the LGO standard- generators and is the input
+  of  our straight-line program. Defining and SLP we thus have to exclude this
+  instructions from our list.[133X
+  
+  [1X3.8-2 CoefficientsPrimitiveElement[101X
+  
+  [33X[1;0Y[29X[2XCoefficientsPrimitiveElement[102X( [3Xfld[103X, [3Xalpha[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10YCoefficients  (A  vector c sth for omega primitive element alpha =
+            sum c[i] omega^(i-1))[133X
+  
+  [33X[0;0Yfld:  A  field,  [22Xnewline[122X  alpha:  An  element  of  fld [22Xnewline[122X The following
+  function has been written by Thomas Breuer. It expresses an element alpha in
+  a field fld as a linear combination of a Primitive Element.[133X
+  
+  [1X3.8-3 MyPermutationMat[101X
+  
+  [33X[1;0Y[29X[2XMyPermutationMat[102X( [3Xperm[103X, [3Xdim[103X, [3Xfld[103X ) [32X function[133X
+  [33X[1;0Y[29X[2XMyPermutationMatNC[102X( [3Xarg[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10YThe  permutation  matrix  of  perm over [22XM_d x d(fld)[122X (ie [22Xres_i,j =
+            One(fld)[122X if [22Xi^perm = j[122X)[133X
+  
+  [33X[0;0Yperm:  A  permutation,  [22Xnewline[122X  dim: A natural number, [22Xnewline[122X fld: A field
+  [22Xnewline[122X  Given a permutation an integer [22Xd > 0[122X and a field fld, this function
+  computes the permutation matrix [22XP[122X in [22XM_d x d(fld)[122X.[133X
+  
+  [1X3.8-4 LGOStandardGensSL[101X
+  
+  [33X[1;0Y[29X[2XLGOStandardGensSL[102X( [3Xd[103X, [3Xq[103X ) [32X function[133X
+  [33X[1;0Y[29X[2XLGOStandardGensSLNC[102X( [3Xarg[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Ystdgens (the LGO standard-generators of SL[22X(d,q)[122X)[133X
+  
+  [33X[0;0Y[22Xd[122X:  the dimension of our matrix, [22Xnewline[122X [22Xq[122X: A prime power [22Xq = p^f[122X, where [22XF_q[122X
+  ist  the  field  whereover  the  matrices  are defined [22Xnewline[122X This function
+  computes  the  standard generators of SL as given by C. R. Leedham-Green and
+  E.  A.  O'Brien  in  "Constructive  Recognition  of  Classical Groups in odd
+  characteristic" (This matrices can also be found in the paper ch 3.1 ps 6-7)[133X
+  
+  [1X3.8-5 HighestSlotOfSLP[101X
+  
+  [33X[1;0Y[29X[2XHighestSlotOfSLP[102X( [3Xslp[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Yhighestslot (The number of slots this SLP will need if evaluated)[133X
+  
+  [33X[0;0Yslp: A list of instructions satisfying the properties for an SLP [22Xnewline[122X The
+  following  function  determines  the highest slot a SLP constructed from the
+  list slp will write in.[133X
+  
+  [1X3.8-6 MatToWreathProd[101X
+  
+  [33X[1;0Y[29X[2XMatToWreathProd[102X( [3XM[103X ) [32X function[133X
+  [33X[1;0Y[29X[2XMatToWreathProdNC[102X( [3Xarg[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Yperm (the permutation Mwr)[133X
+  
+  [33X[0;0YM:  A monomial matrix with only +1 and -1 entries [22Xnewline[122X In PermSLP we want
+  to  transform the monomial matrix w given by UnipotentDecomposition() into a
+  diagonal  matrix.  (The  exact  procedure  is  described  in  PermSLP) Since
+  multiplying  the  LGO  standard-generators  [22Xs,v[122X  and  [22Xx[122X  not  only  involves
+  permutations  but we also have to consider which non-zero entries are +1 and
+  which -1, we want to associate this matrices with permutations on [22X2d[122X points.
+  (cf  Wreath-Product)  [22X⟨  s,v,x  ⟩  →[122X  Sym[22X(2d),  M  → Mwr[122X where [22Xi^Mwr = j[122X and
+  [22X(i+d)^Mwr=  j+d[122X  if [22XM_i,j = 1[122X and [22Xi^Mwr = j+d[122X and [22X(i+d)^Mwr= j[122X if [22XM_i,j = -1[122X
+  for  [22X1≤  i≤  d[122X Due to their relation to wreath-products, we will call denote
+  the image of a matrix [22XM ∈ ⟨ s,v,x ⟩[122X by Mwr[133X
+  
+  [1X3.8-7 WreathProdToMat[101X
+  
+  [33X[1;0Y[29X[2XWreathProdToMat[102X( [3Xperm[103X, [3Xdim[103X, [3Xfld[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Yres (The Matrix M satisfying the below properties)[133X
+  
+  [33X[0;0Yperm: A permutation in Sym([22X2d[122X) sth. [22X{i,i+d}_1: 1 ≤ i ≤ d[122X are blocks, [22Xnewline[122X
+  dim:  The  dimension  of  the  matrix we want perm send to, [22Xnewline[122X fld: The
+  field whereover the matrix is defined. [22Xnewline[122X In fact the association above
+  is an isomorphism and we can associate to each permutation we compute during
+  PermSLP  a unique monomial matrix whose non-zero entries are +1 or -1. [22XM_i,j
+  = 1[122X if [22Xi^Mwr = j ≤ d[122X and [22XM_i,j = -1[122X if [22Xi^Mwr = j+d[122X[133X
+  
+  [1X3.8-8 AEM[101X
+  
+  [33X[1;0Y[29X[2XAEM[102X( [3Xspos[103X, [3Xrespos[103X, [3Xtmppos[103X, [3Xk[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Yinstr (Lines of an SLP that will (when evaluated) take the value b
+            saved in spos and write b^k in respos)[133X
+  
+  [33X[0;0YAEM  (Ancient Egytian Multiplication) [22Xnewline[122X spos: The memory slot, where a
+  value  b  is  saved  in,  [22Xnewline[122X  respos:  The  memory  slot  we  want  the
+  exponentation  to be written in, [22Xnewline[122X tmppos: A memory slot for temporary
+  results,  [22Xnewline[122X k: An integer [22Xnewline[122X At several occasions we will need to
+  compute  a high power of some value saved in a memory slot. For this purpose
+  there is a variaton of AEM implemented below. Remarks: tmpos and respos must
+  differ. If spos = respos or spos = tmpos it will be overwritten.[133X
+  
+  [1X3.8-9 TestIfMonomial[101X
+  
+  [33X[1;0Y[29X[2XTestIfMonomial[102X( [3XM[103X ) [32X function[133X
+  [33X[1;0Y[29X[2XTestIfMonomialNC[102X( [3Xarg[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10YTrue if [22XM[122X is a monomial matrix, otherwise false.[133X
+  
+  [33X[0;0Y[22XM[122X: A Matrix [22Xnewline[122X Tests if a given matrix [22XM[122X is a monomial matrix. There is
+  function in GAP, however it does not seem to work for SL[22X(d,q)[122X.[133X
+  
+  [1X3.8-10 Transvections2[101X
+  
+  [33X[1;0Y[29X[2XTransvections2[102X( [3Xstdgens[103X, [3Xomega[103X, [3Xslp[103X, [3Xpos[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Yslp:  The list of instruction with additional instructions writing
+            [22Xt_2,1(ω^ℓ)[122X in Slot pos[l+1] [22X0 ≤ ℓ ≤ f-1[122X.[133X
+  
+  [33X[0;0Ystdgens:  The  LGO standard-generators of SL[22X(d,q)[122X [22Xnewline[122X omega: A primitive
+  element  of GF([22Xq[122X) [22Xnewline[122X slp: A list of instructions [22Xnewline[122X pos: A list of
+  numbers, denoting where to save the transvections [22Xt_2,1(ω^ℓ)[122X for [22X0 ≤ ℓ ≤ f-1[122X
+  [22Xnewline[122X Let stdgens be the list of standard generators for SL[22X(d,p^f)[122X and let
+  omega  be  a  primitive  element  of G([22Xp^f[122X). This function computes [22XT_2 := {
+  t_2,1(ω^ℓ)  ∣ 0 ≤ ℓ ≤ f-1 }[122X Record what we do in slp This function coincides
+  with eq (6) p12.[133X
+  
+  [1X3.8-11 UnipotentDecomposition[101X
+  
+  [33X[1;0Y[29X[2XUnipotentDecomposition[102X( [3Xstdgens[103X, [3Xg[103X ) [32X function[133X
+  [33X[1;0Y[29X[2XUnipotentDecompositionNC[102X( [3Xarg[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Yslp (A list of instructions yielding [22Xu_1,u_2[122X if evaluated as SLP),
+            [22X[u_1,g,u_2][122X (The matrices of the Bruhat-Decomposition)[133X
+  
+  [33X[0;0Ystdgens:  The LGO standard-generators [22Xnewline[122X g: A matrix in SL([22Xd,q[122X) [22Xnewline[122X
+  Computes the Unitriangular decomposition of the matrix [22Xg[122X.[133X
+  
+  [1X3.8-12 UnipotentDecompositionWithTi[101X
+  
+  [33X[1;0Y[29X[2XUnipotentDecompositionWithTi[102X( [3Xstdgens[103X, [3Xg[103X ) [32X function[133X
+  [33X[1;0Y[29X[2XUnipotentDecompositionWithTiNC[102X( [3Xarg[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Yslp (A list of instructions yielding [22Xu_1,u_2[122X if evaluated as SLP),
+            [22X[u_1,g,u_2][122X (The matrices of the Bruhat-Decomposition)[133X
+  
+  [33X[0;0Ystdgens:  The LGO standard-generators [22Xnewline[122X g: A matrix in SL([22Xd,q[122X) [22Xnewline[122X
+  Computes  the  Bruhat  decomposition  of  the  matrix  [22Xg[122X, given the standard
+  generators   for   the  group.  In  this  version  we  will  store  all  the
+  transvections [22Xt_i,i-1(ω^ℓ)[122X. this will increase the memory usage by [22X(d-3) ⋅ f[122X
+  but reduce the runtime.[133X
+  
+  [1X3.8-13 PermutationMonomialMatrix[101X
+  
+  [33X[1;0Y[29X[2XPermutationMonomialMatrix[102X( [3XM[103X ) [32X function[133X
+  [33X[1;0Y[29X[2XPermutationMonomialMatrixNC[102X( [3Xarg[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Ydiag  (The  vector  of  non-zero  entries,  where  diag[22X[i][122X  is the
+            non-zero  entry of row [22Xi[122X.), perm (The permutation associated to [22XM[122X,
+            i.e. [22Xi^perm = j[122X if [22XM_i,j[122X is not 0)[133X
+  
+  [33X[0;0YM: A monomial matrix. [22Xnewline[122X Find the permutation (in Sym([22Xd[122X)) corresponding
+  to the input monomial matrix.[133X
+  
+  [1X3.8-14 PermSLP[101X
+  
+  [33X[1;0Y[29X[2XPermSLP[102X( [3Xstdgens[103X, [3Xmat[103X, [3Xslp[103X ) [32X function[133X
+  [33X[1;0Y[29X[2XPermSLPNC[102X( [3Xarg[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Yslp  (A  list  of instructions to evaluate p_sign if slp was Input
+            then  this  instructions  are  added  to  slp), p_sign (The signed
+            permutation matrix), mat (The diagonal matrix diag)[133X
+  
+  [33X[0;0Ystdgens:  The  LGO standard-generators [22Xnewline[122X mat: A monomial matrix (ie [22Xw[122X)
+  [22Xnewline[122X  slp:  An already existing list of instructions *optional [22Xnewline[122X In
+  this  function  we  will  transform  a  monomial  matrix  [22Xw ∈[122X SL[22X(d,q)[122X into a
+  diagonal  matrix  diag.  Using  only the standard-generators [22Xs,v,x[122X this will
+  lead  to  a  monomial  matrix  p_sign  with only +-1 in non-zero entries and
+  p_sign*diag  = [22Xw[122X (i.e. diag = p_sign^-1*w ). Furthermore we will return list
+  slp    of   instructions   which   will   (when   evaluated   at   the   LGO
+  standard-generators)  yield  diag.  [22Xnewline[122X  It is sufficient for diag to be
+  diagonal,  if the permutation associated with [22Xw[122X (i.e. [22Xi^π_w = j[122X if [22XM_i,j[122X not
+  0)  is  the  inverse  of the permutation associated to p_sign (again only to
+  Sym([22Xd[122X)  )  [22Xnewline[122X  In PermSLP we thus transform [22Xπ_w[122X to () using only [22X{ π_s,
+  π_v,   π_x   }[122X   In   order  to  know  diag  without  computing  all  matrix
+  multiplications,  (we  don't  know the signs of p_sign), we compute a second
+  permutation   simultaneously   (here   using   their   identification   with
+  permutations in Sym([22X2d[122X) and identifying [22X{ π_s, π_v, π_x }[122X with [22X{ s,v,x }[122X )[133X
+  
+  [1X3.8-15 DiagonalDecomposition[101X
+  
+  [33X[1;0Y[29X[2XDiagonalDecomposition[102X( [3Xstdgens[103X, [3Xdiag[103X, [3Xslp[103X ) [32X function[133X
+  [33X[1;0Y[29X[2XDiagonalDecompositionNC[102X( [3Xarg[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Yslp (A list of instructions to evaluate diag if slp was Input then
+            this  instructions  are  added  to  slp),  hres  (The the identity
+            matrix)[133X
+  
+  [33X[0;0Ystdgens:  The  LGO  standard-generators  [22Xnewline[122X diag: A diagonal matrix (eg
+  diag)  [22Xnewline[122X  slp:  An  already  existing  list  of instructions *optional
+  [22Xnewline[122X   Writes   a   list   of   instructions   which   evaluated  on  LGO
+  standard-generators yield the diagonal matrix of the input.[133X
+  
+  [1X3.8-16 BruhatDecompositionSL[101X
+  
+  [33X[1;0Y[29X[2XBruhatDecompositionSL[102X( [3Xstdgens[103X, [3Xg[103X ) [32X function[133X
+  [33X[1;0Y[29X[2XBruhatDecompositionSLNC[102X( [3Xarg[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Ypgr  (A  SLP  to  compute [22Xu_1,u_2,p_sign[122X and [22Xdiag[122X and the matrices
+            [22Xu_1, u_2, p_sign[122X and [22Xdiag[122X itself.)[133X
+  
+  [33X[0;0Ystdgens:  The LGO standard-generators [22Xnewline[122X g: A matrix in SL[22X(d,q)[122X [22Xnewline[122X
+  Uses  [10XUnipotentDecomposition()[110X,  [10XPermSLP()[110X  and  [10XDiagonalDecomposition()[110X  to
+  write  a  matrix  [22Xg  ∈[122X  SL[22X(d,q)[122X as [22Xg = u_1^-1 ⋅ p_sign ⋅ diag ⋅ u_2^-1[122X where
+  [22Xu_1,u_2[122X  are  lower unitriangular matrices, [22Xp_sign[122X is a monomial matrix with
+  only  +1  and  -1  as  non-zero  entries  and  [22Xdiag[122X  a  diagonal  matrix. It
+  furthermore  yields an SLP that returns the above matrices if evaluated with
+  the LGO standard-generators.[133X
+  
+  [1X3.8-17 BruhatDecompositionSLWithTi[101X
+  
+  [33X[1;0Y[29X[2XBruhatDecompositionSLWithTi[102X( [3Xstdgens[103X, [3Xg[103X ) [32X function[133X
+  [33X[1;0Y[29X[2XBruhatDecompositionSLWithTiNC[102X( [3Xarg[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Ypgr  (A  SLP  to  compute [22Xu_1,u_2,p_sign[122X and [22Xdiag[122X and the matrices
+            [22Xu_1, u_2, p_sign[122X and [22Xdiag[122X itself.)[133X
+  
+  [33X[0;0Ystdgens:  The LGO standard-generators [22Xnewline[122X g: A matrix in SL[22X(d,q)[122X [22Xnewline[122X
+  As   [10XBruhatDecompositionSL()[110X   but   replaces   [10XUnipotentDecomposition()[110X  by
+  [10XUnipotentDecompositionWithTi()[110X.[133X
   

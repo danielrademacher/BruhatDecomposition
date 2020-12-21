@@ -7,9 +7,8 @@
 # PackageInfo.g file.
 #
 SetPackageInfo( rec(
-
 PackageName := "BruhatDecomposition",
-Subtitle := "Computes the Bruhat Decomposition of matrices of the classical groups.",
+Subtitle := "Computes the Bruhat decomposition of matrices in classical groups.",
 Version := "0.1",
 Date := "27/03/2020", # dd/mm/yyyy format
 License := "GPL-2.0-or-later",
@@ -19,34 +18,40 @@ Persons := [
     FirstNames := "Daniel",
     LastName := "Rademacher",
     #WWWHome := TODO,
-    Email := "daniel.rademacher@rwth-aachen.de",
+    Email := "rademacher@art.rwth-aachen.de",
     IsAuthor := true,
     IsMaintainer := true,
-    #PostalAddress := TODO,
-    #Place := TODO,
-    #Institution := TODO,
+    PostalAddress := Concatenation(
+               "Daniel Rademacher\n",
+               "Chair of Algebra and Representation Theory\n",
+               "RWTH Aachen\n",
+               "Pontdriesch 10/16\n",
+               "52062 Aachen\n",
+               "Germany" ),
+    Place := "Aachen",
+    Institution := "Chair of Algebra and Representation Theory, RWTH Aachen",
   ),
   rec(
     FirstNames := "Alice",
     LastName := "Niemeyer",
     WWWHome := "http://www.math.rwth-aachen.de/~Alice.Niemeyer/",
-    Email := "Alice.Niemeyer@Mathb.RWTH-Aachen.De",
+    Email := "alice.niemeyer@mathb.rwth-aachen.de",
     IsAuthor := true,
     IsMaintainer := false,
     PostalAddress := Concatenation(
                "Alice Niemeyer\n",
-               "Lehrstuhl B für Mathematik\n",
+               "Chair of Algebra and Representation Theory\n",
                "RWTH Aachen\n",
                "Pontdriesch 10/16\n",
                "52062 Aachen\n",
-               "GERMANY" ),
+               "Germany" ),
     Place := "Aachen",
-    Institution := "Lehrstuhl B für Mathematik, RWTH Aachen",
+    Institution := "Chair of Algebra and Representation Theory, RWTH Aachen",
   ),
 ],
 
-#SourceRepository := rec( Type := "TODO", URL := "URL" ),
-#IssueTrackerURL := "TODO",
+SourceRepository := rec( Type := "git", URL := "https://github.com/User141/BruhatDecomposition2" ),
+IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
 PackageWWWHome := "https://github.com/User141/BruhatDecomposition2",
 PackageInfoURL := Concatenation( ~.PackageWWWHome, "PackageInfo.g" ),
 README_URL     := Concatenation( ~.PackageWWWHome, "README.md" ),
@@ -68,12 +73,12 @@ Status := "dev",
 AbstractHTML   :=  "",
 
 PackageDoc := rec(
-  BookName  := "BruhatDecomposition",
+  BookName  := ~.PackageName,
   ArchiveURLSubset := ["doc"],
   HTMLStart := "doc/chap0.html",
   PDFFile   := "doc/manual.pdf",
   SixFile   := "doc/manual.six",
-  LongTitle := "Computes the Bruhat Decomposition of matrices of the classical groups.",
+  LongTitle := ~.Subtitle,
 ),
 
 Dependencies := rec(
@@ -90,7 +95,3 @@ TestFile := "tst/testall.g",
 #Keywords := [ "TODO" ],
 
 ));
-
-##  <#GAPDoc Label="PKGVERSIONDATA">
-##  <!ENTITY VERSION "0.1">
-##  <#/GAPDoc>

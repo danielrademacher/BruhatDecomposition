@@ -1,829 +1,266 @@
   
-  [1X2 [33X[0;0YBruhat Decomposition for the special linear group (SL)[133X[101X
-  
-  [33X[0;0YThis implementation follows the ideas of "Straight-line programs with memory
-  and matrix Bruhat decomposition" by Alice Niemeyer, Tomasz Popiel and Cheryl
-  Praeger.[133X
+  [1X2 [33X[0;0YSpecial Orthogonal Group[133X[101X
   
-  [33X[0;0YLet  [22Xg  ∈  SL(d,p^f)[122X.  The  Bruhat Decomposition computes [22Xg = u_1 ⋅ w ⋅ u_2[122X,
-  where[133X
+  [33X[0;0YThis chapter deals with the special orthogonal group[133X
   
-  [30X    [33X[0;6Y[22Xu_1,u_2[122X are lower unitriangular matrices[133X
   
-  [30X    [33X[0;6Y[22Xw[122X is monomial matrix[133X
+  [1X2.1 [33X[0;0YIntroduction and Quick Start of functions for SO[133X[101X
   
-  [33X[0;0YIn  this algorithm we want to compute the Bruhat-Decomposition of [22Xg[122X and give
-  [22Xg[122X  (respectively  [22Xu_1,w[122X  and  [22Xu_2[122X) as word in the "LGO standard generators".
-  This  generators  can  be  found  in  "Constructive Recognition of Classical
-  Groups  in  odd  characteristic"  by  C. R. Leedham-Green and E. A. O’Brien.
-  [NPP, Chapter 3.1][133X
+  [33X[0;0YTODO[133X
   
-  [30X    [33X[0;6Y1) While computing [22Xu_1[122X (resp [22Xu_2[122X) with some kind of Gauß-Algorithm, we
-        express the matrices as product of transvections. For [22X1 ≤ j ≤ ≠ i ≤ d:
-        t_i,j(α)[122X  is  the  matrix  [22XT[122X  with 1-entries on diagonal, [22XT_i,j = α[122X, 0
-        elsewhere.  Each [22Xt_i,j(α)[122X can be computed from [22Xt_2,1(α)[122X via recursion,
-        where  we  have  to distinguish the odd and even dimensons [NPP, Lemma
-        4.2].  This again can be expressed as a product of [22Xt_2,1(ω^ell)[122X (where
-        [22Xω[122X  is  a  primitive  element  and [22X0 ≤ ell ≤ ≠ f[122X). The transvections as
-        words  in  the  standard generators are described in [NPP, Lemma 4.2].
-        This yields a decomposition of [22Xu_1[122X and [22Xu_2[122X in standard generators.[133X
   
-  [30X    [33X[0;6Y2)  In  a  further  step  we will decompose the monomial Matrix [22Xw[122X in a
-        "product  of  permutations"  and a diagonal Matrix. ( How to associate
-        this  product  of permutations with a product of generators is further
-        described   in   "Implemented   Subfunctions   (Part   I)"  [[14X2.1[114X]  and
-        "Decomposing the Monomial Matrix (Part III)" [[14X2.4[114X] ).[133X
+  [1X2.2 [33X[0;0YFunctions for SO[133X[101X
   
-  [30X    [33X[0;6Y3)  The last step is the decomposition of the diagonal Matrix in 2) as
-        a word in the standard generators.[133X
+  [1X2.2-1 FindPrimePowerDecomposition[101X
   
-  [33X[0;0YWe  won't  do this matrix multiplications directly, but write them in a list
-  to  evaluate  in  a StraightLineProgram. [NPP, Section 2] Although described
-  differently  in  the paper, we sometimes will allow instructions to multiply
-  more  than  two  elements  (eg  during conjugating). This doesn't affect the
-  optimality  of  an  SLP  much,  but  higly  increases the readability of our
-  implementation.[133X
+  [33X[1;0Y[29X[2XFindPrimePowerDecomposition[102X( [3Xn[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Y[22X[a,b][122X ([22Xa[122X and [22Xb[122X are natural numbers such that [22Xn-1= 2^a ⋅ b[122X)[133X
   
+  [33X[0;0Y[22Xn[122X:  Natural number Computes two natural numbers [22Xa[122X and [22Xb[122X such that [22Xn-1= 2^a ⋅
+  b[122X.[133X
   
-  [1X2.1 [33X[0;0YImplemented Subfunctions (Part I)[133X[101X
+  [1X2.2-2 LGOStandardGensSO[101X
   
-  [33X[0;0YLater  we will need some additional functions. Why they are needed and where
-  they are needed is described here.[133X
+  [33X[1;0Y[29X[2XLGOStandardGensSO[102X( [3Xd[103X, [3Xq[103X, [3Xe[103X ) [32X function[133X
+  [33X[1;0Y[29X[2X__LGOStandardGensSOPlus[102X( [3Xarg[103X ) [32X function[133X
+  [33X[1;0Y[29X[2X__LGOStandardGensSOCircle[102X( [3Xarg[103X ) [32X function[133X
+  [33X[1;0Y[29X[2X__LGOStandardGensSOMinus[102X( [3Xarg[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Ystdgens (the LGO standard-generators of SO[22X(e,d,q)[122X)[133X
   
-  [30X    [33X[0;6Y[10XMakeSLP()[110X:   After   the   [10XBruhatDecomposition()[110X  we  get  a  list  of
-        instructions  to calculate the matrices we want using the LGO standard
-        generators. [10XMakeSLP()[110X is used to get a SLP out of these instructions.[133X
+  [33X[0;0Y[22Xd[122X:  the  dimension  of our matrices, [22Xnewline[122X [22Xq[122X: A prime power [22Xq = p^f[122X, where
+  [22XF_q[122X  ist  the  field  whereover  the  matrices  are defined. [22Xq[122X has to be odd
+  [22Xnewline[122X [22Xe[122X: 1 for plus type, 0 for zero type, -1 for minus type This function
+  computes  the  standard generators of SO as given by C. R. Leedham-Green and
+  E.  A.  O'Brien  in  "Constructive  Recognition  of  Classical Groups in odd
+  characteristic"  Depending  on  [22Xe[122X  and  [22Xp[122X (notice [22Xq = p^f[122X with p prime), the
+  functions  __[10XLGOStandardGensSOPlus(d,q)[110X,  __[10XLGOStandardGensSOCircle(d,q)[110X  or
+  __[10XLGOStandardGensSOMinus(d,q)[110X are called.[133X
   
-  [30X    [33X[0;6Y[10XCoefficientsPrimitiveElement()[110X:  It  expresses an element w in a field
-        fld  as a linear combination of a Primitive Element. This is important
-        for the transvections. [NPP, Lemma 4.2][133X
+  [1X2.2-3 LGOStandardGensOmega[101X
   
-  [30X    [33X[0;6Y[10XMyPermutationMat()[110X:  Turns a permutation into a permutation matrix. We
-        need it to calculate the LGO standard generator.[133X
+  [33X[1;0Y[29X[2XLGOStandardGensOmega[102X( [3Xd[103X, [3Xq[103X, [3Xe[103X ) [32X function[133X
+  [33X[1;0Y[29X[2X__LGOStandardGensOmegaPlus[102X( [3Xarg[103X ) [32X function[133X
+  [33X[1;0Y[29X[2X__LGOStandardGensOmegaPlusEvenChar[102X( [3Xarg[103X ) [32X function[133X
+  [33X[1;0Y[29X[2X__LGOStandardGensOmegaCircle[102X( [3Xarg[103X ) [32X function[133X
+  [33X[1;0Y[29X[2X__LGOStandardGensOmegaCircleEvenChar[102X( [3Xarg[103X ) [32X function[133X
+  [33X[1;0Y[29X[2X__LGOStandardGensOmegaMinus[102X( [3Xarg[103X ) [32X function[133X
+  [33X[1;0Y[29X[2X__LGOStandardGensOmegaMinusEvenChar[102X( [3Xarg[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Ystdgens (the LGO standard-generators of [22XΩ(e,d,q)[122X)[133X
+  
+  [33X[0;0Y[22Xd[122X:  the  dimension  of our matrices, [22Xnewline[122X [22Xq[122X: A prime power [22Xq = p^f[122X, where
+  [22XF_q[122X  ist the field whereover the matrices are defined. [22Xnewline[122X [22Xe[122X: 1 for plus
+  type, 0 for zero type, -1 for minus type This function computes the standard
+  generators  of  [22XΩ[122X  as  given  by  C.  R.  Leedham-Green and E. A. O'Brien in
+  "Constructive  Recognition  of  Classical  Groups in odd characteristic" and
+  "Constructive  Recognition  of  Classical  Groups  in  even  characteristic"
+  Depending    on    [22Xe[122X,    the    functions   __[10XLGOStandardGensOmegaPlus(d,q)[110X,
+  __[10XLGOStandardGensOmegaPlusEvenChar(d,q)[110X,  __[10XLGOStandardGensOmegaCircle(d,q)[110X,
+  __[10XLGOStandardGensOmegaCircleEvenChar(d,q)[110X   __[10XLGOStandardGensOmegaMinus(d,q)[110X
+  or __[10XLGOStandardGensOmegaMinusEvenChar(d,q)[110X are called.[133X
+  
+  [1X2.2-4 MSO[101X
   
-  [30X    [33X[0;6Y[10XLGOStandardGens()[110X:  This  function computes the standard generators of
-        SL  as given by C. R. Leedham-Green and E. A. O'Brien in "Constructive
-        Recognition  of Classical Groups in odd characteristic". [NPP, Chapter
-        3.1][133X
+  [33X[1;0Y[29X[2XMSO[102X( [3Xd[103X, [3Xq[103X, [3Xe[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Y[22XG[122X (where [22XG =[122X SO[22X(e,d,q)[122X)[133X
   
-  [30X    [33X[0;6Y[10XHighestSlotOfSLP()[110X: The following function determines the highest slot
-        of  a  SLP  constructed  from  the  list  slp  will  write in. This is
-        important to glue SLPs together.[133X
+  [33X[0;0Y[22Xd[122X:  the  dimension  of our matrices, [22Xnewline[122X [22Xq[122X: A prime power [22Xq = p^f[122X, where
+  [22XF_q[122X  ist  the  field  whereover  the  matrices  are defined. [22Xq[122X has to be odd
+  [22Xnewline[122X  [22Xe[122X: 1 for plus type, 0 for zero type, -1 for minus type [22Xnewline[122X This
+  function  returns  the special orthogonal group of type e. The generators of
+  the  group  are  the  LGO  standard  generators and the size of the group is
+  already stored as an attribute.[133X
   
-  [30X    [33X[0;6Y[10XMatToWreathProd()[110X and [10XWreathProdToMat()[110X: In [10XPermSLP()[110X [[14X2.7-22[114X] we want
-        to  transform  the monomial matrix [22Xw[122X given by [10XUnipotentDecomposition()[110X
-        into a diagonal matrix. (The exact procedure is described in [10XPermSLP()[110X
-        [[14X2.7-22[114X])[133X
+  [1X2.2-5 UnitriangularDecompositionSOPlus[101X
   
-        [33X[0;6YSince  multiplying  the  LGO  standard-generators  [22Xs,v[122X  and [22Xx[122X not only
-        involves  permutations  but  we  also  have to consider which non-zero
-        entries  are  [22X+1[122X and which [22X-1[122X, we want to associate this matrices with
-        permutations on [22X2d[122X points. (cf. Wreath-Product)[133X
+  [33X[1;0Y[29X[2XUnitriangularDecompositionSOPlus[102X( [3Xstdgens[103X, [3Xg[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Yslp (A list of instructions yielding [22Xu_1,u_2[122X if evaluated as SLP),
+            [22X[u_1,g,u_2][122X (The matrices of the Bruhat-Decomposition)[133X
   
-        [33X[0;6Y[22X[s,v,x]  ->  Sym(2d),  M  ->[122X [10XMwr[110X where [22Xi^Mwr = j[122X and [22X(i+d)^Mwr= j+d[122X if
-        [22XM_i,j  =  1[122X and [22Xi^Mwr = j+d[122X and [22X(i+d)^Mwr= j[122X if [22XM_i,j = -1[122X for [22X1 ≤ i ≤
-        d[122X.[133X
+  [33X[0;0Ystdgens:  The  LGO  standard-generators  of SO[22X^+(d,q[122X) [22Xnewline[122X g: A matrix in
+  SO[22X^+(d,q[122X) [22Xnewline[122X Computes the Unitriangular decomposition of the matrix [22Xg[122X.[133X
   
-        [33X[0;6YDue  to  their  relation  to  wreath-products, we will call denote the
-        image of a matrix [10XM[110X[22X∈ [s,v,x][122X by [10XMwr[110X.[133X
+  [1X2.2-6 UnitriangularDecompositionSOCircle[101X
   
-        [33X[0;6YIn   fact   the  association  from  [10XMatToWreathProd()[110X  [[14X2.7-9[114X]  is  an
-        isomorphism and we can associate to each permutation we compute during
-        [10XPermSLP()[110X [[14X2.7-22[114X] a signed permutation matrix (a monomial matrix with
-        only [22X+1[122X and [22X-1[122X as non-zero entries).[133X
+  [33X[1;0Y[29X[2XUnitriangularDecompositionSOCircle[102X( [3Xstdgens[103X, [3Xg[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Yslp (A list of instructions yielding [22Xu_1,u_2[122X if evaluated as SLP),
+            [22X[u_1,g,u_2][122X (The matrices of the Bruhat-Decomposition)[133X
   
-        [33X[0;6Y[22XM_i,j = 1[122X if [22Xi^Mwr = j ≤ d[122X and [22XM_i,j = -1[122X if [22Xi^Mwr = j+d[122X[133X
+  [33X[0;0Ystdgens:  The  LGO  standard-generators  of SO[22X^∘(d,q[122X) [22Xnewline[122X g: A matrix in
+  SO[22X^∘(d,q[122X) [22Xnewline[122X Computes the Unitriangular decomposition of the matrix [22Xg[122X.[133X
   
-  [30X    [33X[0;6Y[10XAEM()[110X:  Write instructions for Ancient Egyptian Multiplication in slp.
-        At  several  occasions  we  will  need to compute a high power of some
-        value saved in a memory slot.[133X
+  [1X2.2-7 UnitriangularDecompositionSOMinus[101X
   
-  [30X    [33X[0;6Y[10XTestIfMonomial()[110X: Tests if a given matrix M is monomial matrix. We use
-        it    to    decide    whether    we    are    already    finished   in
-        [10XUnipotentDecomposition()[110X.[133X
+  [33X[1;0Y[29X[2XUnitriangularDecompositionSOMinus[102X( [3Xstdgens[103X, [3Xg[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Yslp (A list of instructions yielding [22Xu_1,u_2[122X if evaluated as SLP),
+            [22X[u_1,g,u_2][122X (The matrices of the Bruhat-Decomposition)[133X
   
-  [33X[0;0YFor some functions also exist a NC version. See [[14X2.6[114X].[133X
+  [33X[0;0Ystdgens:  The  LGO  standard-generators  of SO[22X^-(d,q[122X) [22Xnewline[122X g: A matrix in
+  SO[22X^-(d,q[122X) [22Xnewline[122X Computes the Unitriangular decomposition of the matrix [22Xg[122X.[133X
   
+  [1X2.2-8 MonomialSLPSOPlus[101X
   
-  [1X2.2 [33X[0;0YUnipotentDecomposition (Part II - a)[133X[101X
-  
-  [33X[0;0YIn  this  section  is the [10XUnipotentDecomposition()[110X described. This method is
-  used to compute the Unitriangular decomposition of the matrix [22Xg[122X. [[14X2.7-16[114X][133X
-  
-  [33X[0;0YFor  this  we use five local functions in the [10XUnipotentDecomposition()[110X. They
-  are   [10XTransvecAtAlpha()[110X,   [10XShiftTransvections()[110X,   [10XFastShiftTransvections()[110X,
-  [10XBackShiftTransvections()[110X   and   [10XFastBackShiftTransvections()[110X.  For  further
-  information to these functions look at [[14X2.8[114X].[133X
-  
-  [33X[0;0YThe  difference to [10XUnipotentDecompositionWithTi()[110X [[14X2.3[114X] is that this version
-  won't  store  all  the  transvections  [22Xt_i,i-1(ω^l)[122X.  This will increase the
-  runtime  but  reduce  the  memory  usage  by  [22X(d-3)  ⋅  f[122X  compared  to  the
-  [10XUnipotentDecompositionWithTi()[110X.[133X
-  
-  [33X[0;0YThe function can be called for example by[133X
-  
-  [4X[32X  Example  [32X[104X
-    [4X[25Xgap>[125X [27Xd := 3;;[127X[104X
-    [4X[25Xgap>[125X [27Xq := 5;;[127X[104X
-    [4X[25Xgap>[125X [27XL := SL(d, q);;[127X[104X
-    [4X[25Xgap>[125X [27Xm := PseudoRandom(L);;[127X[104X
-    [4X[25Xgap>[125X [27Xstdgens := LGOStandardGens(d, q);;[127X[104X
-    [4X[25Xgap>[125X [27XUnipotentDecomposition( stdgens, g);;[127X[104X
-  [4X[32X[104X
-  
-  
-  [1X2.3 [33X[0;0YUnipotentDecomposition saving Transvections (Part II - b)[133X[101X
-  
-  [33X[0;0YIn this section is the [10XUnipotentDecompositionWithTi()[110X described. This method
-  is used to compute the Unitriangular decomposition of the matrix [22Xg[122X. [[14X2.7-18[114X][133X
-  
-  [33X[0;0YIn  this version we will store all the transvections [22Xt_i,i-1(ω^l)[122X. This will
-  increase the memory usage by [22X(d-3) ⋅ f[122X but reduce runtime.[133X
-  
-  [33X[0;0YIn  [10XUnipotentDecompositionWithTi()[110X  we  use  two  local  functions. They are
-  [10XTransvectionAtAlpha()[110X and [10XComputeAllTransvections()[110X. For further information
-  to these functions look at [[14X2.9[114X].[133X
-  
-  [33X[0;0YThe function can be called for example by[133X
-  
-  [4X[32X  Example  [32X[104X
-    [4X[25Xgap>[125X [27Xd := 3;;[127X[104X
-    [4X[25Xgap>[125X [27Xq := 5;;[127X[104X
-    [4X[25Xgap>[125X [27XL := SL(d, q);;[127X[104X
-    [4X[25Xgap>[125X [27Xm := PseudoRandom(L);;[127X[104X
-    [4X[25Xgap>[125X [27Xstdgens := LGOStandardGens(d, q);;[127X[104X
-    [4X[25Xgap>[125X [27XUnipotentDecompositionWithTi( stdgens, g);;[127X[104X
-  [4X[32X[104X
-  
-  
-  [1X2.4 [33X[0;0YDecomposing the Monomial Matrix (Part III)[133X[101X
-  
-  [33X[0;0YWe  use  three  functions  to  decompose  the  monomial matrix [22Xw[122X we get from
-  [10XUnipotentDecomposition()[110X. They are:[133X
-  
-  [30X    [33X[0;6Y[10XPermutationMonomialMatrix()[110X:   Find   the   permutation   (in   Sym(d)
-        corresponding  to  the  monomial matrix [22Xw[122X) and [22Xdiag[122X a diagonal matrix,
-        where [22Xdiag[i][122X is the non-zero entry of row [22Xi[122X. [[14X2.7-20[114X][133X
-  
-  [30X    [33X[0;6Y[10XPermSLP()[110X:  In  this  function  we  will transform a monomial matrix [22Xw
-        ∈[122XSL[22X(d,q)[122X    into    a   diagonal   matrix   [22Xdiag[122X.   Using   only   the
-        standard-generators  [22Xs,v,x[122X. This will lead to a monomial matrix [22Xp_sign[122X
-        with  only  [22X± 1[122X in non-zero entries and [22Xp_sign ⋅ diag = w[122X (i.e. [22Xdiag =
-        (p_sign)^-1 ⋅ w[122X ).[133X
-  
-        [33X[0;6YFurthermore  we  will return list [10Xslp[110X of instructions which will (when
-        evaluated at the LGO standard-generators) yield [22Xdiag[122X. It is sufficient
-        for  [22Xdiag[122X  to  be diagonal, if the permutation associated with [22Xw[122X (i.e.
-        [22Xi^π_w  =  j[122X if [22XM_i,j ≠ 0[122X) is the inverse of the permutation associated
-        to [22Xp_sign[122X (again only to Sym([22Xd[122X) ).[133X
-  
-        [33X[0;6YIn [10XPermSLP()[110X we thus transform [22Xπ_w[122X to [22X()[122X using only [22X{ π_s, π_v, π_x }[122X.
-        In  order  to  know [22Xdiag[122X without computing all matrix multiplications,
-        (we  don't  know the signs of [22Xp_sign[122X), we compute a second permutation
-        simultaneously  (here  using their identification with permutations in
-        Sym[22X(2d)[122X and identifying [22X{ π_s, π_v, π_x }[122X with [22X{s,v,x}[122X ). [[14X2.7-22[114X][133X
-  
-  [30X    [33X[0;6Y[10XDiagonalDecomposition()[110X: Writes a list of instructions which evaluated
-        on  LGO  standard-generators  yield  the diagonal matrix of the input.
-        [[14X2.7-24[114X][133X
-  
-  [33X[0;0YTo these three functions is also a NC version implemented. See [[14X2.6[114X].[133X
-  
-  
-  [1X2.5 [33X[0;0YMain Function (Part IV)[133X[101X
-  
-  [33X[0;0YIn  [10XBruhatDecomposition()[110X  [[14X2.7-26[114X]  we  put everything together. We use the
-  three  functions  [10XUnipotentDecomposition()[110X  [[14X2.7-16[114X], [10XPermSLP()[110X [[14X2.7-22[114X] and
-  [10XDiagonalDecomposition()[110X  [[14X2.7-24[114X] to compute matrices with [22Xu_1^-1 ⋅ p_sign ⋅
-  diag  ⋅  u_2^-1  = g[122X and a SLP [10Xpgr[110X that computes these matrices with the LGO
-  standard generators.[133X
-  
-  [33X[0;0YHere is an exampel:[133X
-  
-  [4X[32X  Example  [32X[104X
-    [4X[25Xgap>[125X [27Xmat := [ [ Z(5)^2, Z(5)^0, Z(5)^2 ],[127X[104X
-    [4X[25X>[125X [27X            [ Z(5)^3, 0*Z(5), 0*Z(5) ],[127X[104X
-    [4X[25X>[125X [27X            [ 0*Z(5), Z(5)^2, Z(5)^2 ] ];;[127X[104X
-    [4X[25Xgap>[125X [27XL := BruhatDecomposition(LGOStandardGens(3,5), mat);[127X[104X
-    [4X[25Xgap>[125X [27Xresult := ResultOfStraightLineProgram(L[1], LGOStandardGens(3,5));[127X[104X
-  [4X[32X[104X
-  
-  [33X[0;0Y[10XBruhatDecompositionWithTi()[110X   [[14X2.7-28[114X]   works   like  [10XBruhatDecomposition()[110X
-  [[14X2.7-26[114X]   but   uses  [10XUnipotentDecompositionWithTi()[110X  [[14X2.7-18[114X]  instead  of
-  [10XUnipotentDecomposition()[110X [[14X2.7-16[114X].[133X
-  
-  [33X[0;0YYou can use it in the same way like [10XBruhatDecomposition()[110X:[133X
-  
-  [4X[32X  Example  [32X[104X
-    [4X[25Xgap>[125X [27Xmat := [ [ Z(5)^2, Z(5)^0, Z(5)^2 ],[127X[104X
-    [4X[25X>[125X [27X            [ Z(5)^3, 0*Z(5), 0*Z(5) ],[127X[104X
-    [4X[25X>[125X [27X            [ 0*Z(5), Z(5)^2, Z(5)^2 ] ];;[127X[104X
-    [4X[25Xgap>[125X [27XL := BruhatDecompositionWithTi(LGOStandardGens(3,5), mat);[127X[104X
-    [4X[25Xgap>[125X [27Xresult := ResultOfStraightLineProgram(L[1], LGOStandardGens(3,5));[127X[104X
-  [4X[32X[104X
-  
-  [33X[0;0YTo both functions is also a NC version implemented. See [[14X2.6[114X].[133X
-  
-  
-  [1X2.6 [33X[0;0YNC Version[133X[101X
-  
-  [33X[0;0YHere  is  the  NC  version  of  the  Bruhat  Decomposition described. In all
-  implemented  functions  are  all  used  functions  replaced through their NC
-  version  (if  one  exists).  Moreover  are  all  checks  from  functions  of
-  MyBruhatDecomposition removed.[133X
-  
-  [33X[0;0YThese functions has been modified by this actions and got a NC Version:[133X
-  
-  [30X    [33X[0;6Y[10XMakeSLP()[110X[[14X2.7-1[114X]   [22X->[122X  [10XMakeSLPNC()[110X[[14X2.7-2[114X]  (uses  the  NC  version  of
-        [10XStraightLineProgram[110X)[133X
-  
-  [30X    [33X[0;6Y[10XMyPermutationMat()[110X  [[14X2.7-4[114X]  [22X->[122X [10XMyPermutationMatNC()[110X [[14X2.7-5[114X] (uses the
-        NC version of [10XConvertToMatrixRep[110X)[133X
-  
-  [30X    [33X[0;6Y[10XLGOStandardGens()[110X  [[14X2.7-6[114X] [22X->[122X [10XLGOStandardGensNC()[110X [[14X2.7-7[114X] (uses the NC
-        version of [10XMyPermutationMat()[110X)[133X
-  
-  [30X    [33X[0;6Y[10XMatToWreathProd()[110X  [[14X2.7-9[114X]  [22X->[122X [10XMatToWreathProdNC()[110X [[14X2.7-10[114X] (no checks
-        for user input)[133X
-  
-  [30X    [33X[0;6Y[10XTestIfMonomial()[110X  [[14X2.7-13[114X]  [22X->[122X  [10XTestIfMonomialNC()[110X [[14X2.7-14[114X] (no checks
-        for user input)[133X
-  
-  [30X    [33X[0;6Y[10XUnipotentDecomposition()[110X    [[14X2.7-16[114X]   [22X->[122X   [10XUnipotentDecompositionNC()[110X
-        [[14X2.7-17[114X] (no checks for user input)[133X
-  
-  [30X    [33X[0;6Y[10XUnipotentDecompositionWithTi()[110X               [[14X2.7-18[114X]               [22X->[122X
-        [10XUnipotentDecompositionWithTiNC()[110X [[14X2.7-19[114X] (no checks for user input)[133X
-  
-  [30X    [33X[0;6Y[10XPermutationMonomialMatrix()[110X  [[14X2.7-20[114X] [22X->[122X [10XPermutationMonomialMatrixNC()[110X
-        [[14X2.7-21[114X] (no checks for user input)[133X
-  
-  [30X    [33X[0;6Y[10XPermSLP()[110X  [[14X2.7-22[114X] [22X->[122X [10XPermSLPNC()[110X [[14X2.7-23[114X] (no checks for unser input
-        and uses [10XPermutationMonomialMatrixNC()[110X)[133X
-  
-  [30X    [33X[0;6Y[10XDiagonalDecomposition()[110X [[14X2.7-24[114X] [22X->[122X [10XDiagonalDecompositionNC()[110X [[14X2.7-25[114X]
-        (no checks for user input)[133X
-  
-  [30X    [33X[0;6Y[10XBruhatDecomposition()[110X  [[14X2.7-26[114X]  [22X->[122X  [10XBruhatDecompositionNC()[110X  [[14X2.7-27[114X]
-        (uses        [10XUnipotentDecompositionNC()[110X,        [10XPermSLPNC()[110X        and
-        [10XDiagonalDecompositionNC[110X)[133X
-  
-  [30X    [33X[0;6Y[10XBruhatDecompositionWithTi()[110X  [[14X2.7-28[114X] [22X->[122X [10XBruhatDecompositionWithTiNC()[110X
-        [[14X2.7-29[114X]   (uses   [10XUnipotentDecompositionWithTiNC()[110X,  [10XPermSLPNC()[110X  and
-        [10XDiagonalDecompositionNC()[110X)[133X
-  
-  
-  [1X2.7 [33X[0;0YFunctions[133X[101X
-  
-  [1X2.7-1 MakeSLP[101X
-  
-  [33X[1;0Y[29X[2XMakeSLP[102X( [3Xslp[103X, [3Xgenlen[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10YAn SLP using the instructions of slp and genlen inputs[133X
-  
-  [33X[0;0YInput:[133X
-  
-  [30X    [33X[0;6Y[10Xslp[110X: A list of instructions for a straight-line program[133X
-  
-  [30X    [33X[0;6Y[10Xgenlen[110X:  The number of inputs for our SLP (ie the number of generators
-        )[133X
-  
-  [33X[0;0YUses [10XStraightLineProgram[110X to make an SLP out of the instructions from slp and
-  dependent on genlen.[133X
-  
-  [1X2.7-2 MakeSLPNC[101X
-  
-  [33X[1;0Y[29X[2XMakeSLPNC[102X( [3Xslp[103X, [3Xgenlen[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10YAn SLP using the instructions of slp and genlen inputs[133X
-  
-  [33X[0;0YThis  function  works  like [10XMakeSLP()[110X [[14X2.7-1[114X] but uses [10XStraightLineProgramNC[110X
-  instead of [10XStraightLineProgram[110X.[133X
-  
-  [1X2.7-3 CoefficientsPrimitiveElement[101X
-  
-  [33X[1;0Y[29X[2XCoefficientsPrimitiveElement[102X( [3Xfld[103X, [3Xalpha[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10YA  vector  [22Xc[122X  such  that  for [22Xω[122X primitive element in [10Xfld[110X is [22X∑ c[i]
-            ω^(i-1) =[122X[10Xalpha[110X[133X
-  
-  [33X[0;0YInput:[133X
-  
-  [30X    [33X[0;6Y[10Xfld[110X: A field[133X
-  
-  [30X    [33X[0;6Y[10Xalpha[110X : An element of [10Xfld[110X[133X
-  
-  [33X[0;0YThe function has been written by Thomas Breuer. It expresses an element w in
-  a field fld as a linear combination of a Primitive Element.[133X
-  
-  [1X2.7-4 MyPermutationMat[101X
-  
-  [33X[1;0Y[29X[2XMyPermutationMat[102X( [3Xperm[103X, [3Xdim[103X, [3Xfld[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10YThe permutation matrix [22Xres ∈ fld^dim × dim[122X of [10Xperm[110X (i.e. [22Xres_i,j =
-            1_fld[122X if [22Xi^perm = j[122X).[133X
-  
-  [33X[0;0YInput:[133X
-  
-  [30X    [33X[0;6Y[10Xperm[110X: A permutation[133X
-  
-  [30X    [33X[0;6Y[10Xdim[110X : A natural number[133X
-  
-  [30X    [33X[0;6Y[10Xfld[110X : A field[133X
-  
-  [33X[0;0YGiven  a  permutation [10Xperm[110X, an integer [10Xdim[110X[22X> 0[122X and a field [10Xfld[110X, this function
-  computes the permutation matrix [22Xres ∈ fld^dim × dim[122X.[133X
-  
-  [1X2.7-5 MyPermutationMatNC[101X
-  
-  [33X[1;0Y[29X[2XMyPermutationMatNC[102X( [3Xperm[103X, [3Xdim[103X, [3Xfld[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10YThe permutation matrix [22Xres ∈ fld^dim × dim[122X of [10Xperm[110X (i.e. [22Xres_i,j =
-            1_fld[122X if [22Xi^perm = j[122X).[133X
-  
-  [33X[0;0YThis    function    works   like   [10XMyPermutationMat()[110X   [[14X2.7-4[114X]   but   uses
-  [10XConvertToMatrixRepNC[110X instead of [10XConvertToMatrixRep[110X.[133X
-  
-  [1X2.7-6 LGOStandardGens[101X
-  
-  [33X[1;0Y[29X[2XLGOStandardGens[102X( [3Xd[103X, [3Xq[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Y[10Xstdgens[110X the LGO standard-generators of [22XSL(d,q)[122X.[133X
-  
-  [33X[0;0YInput:[133X
-  
-  [30X    [33X[0;6Y[10Xd[110X: the dimension of our matrix[133X
-  
-  [30X    [33X[0;6Y[10Xq[110X:  A  prime  power  [22Xq  =  p^f[122X,  where [22XF_q[122X ist the field whereover the
-        matrices are defined[133X
-  
-  [33X[0;0YThis  function  computes  the  standard  generators  of SL as given by C. R.
-  Leedham-Green  and  E.  A. O'Brien in "Constructive Recognition of Classical
-  Groups in odd characteristic". [LGO] [NPP, Chapter 3.1][133X
-  
-  [1X2.7-7 LGOStandardGensNC[101X
-  
-  [33X[1;0Y[29X[2XLGOStandardGensNC[102X( [3Xd[103X, [3Xq[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Y[10Xstdgens[110X the LGO standard-generators of [22XSL(d,q)[122X.[133X
-  
-  [33X[0;0YInput:[133X
-  
-  [30X    [33X[0;6Y[10Xd[110X: the dimension of our matrix[133X
-  
-  [30X    [33X[0;6Y[10Xq[110X:  A  prime  power  [22Xq  =  p^f[122X,  where [22XF_q[122X ist the field whereover the
-        matrices are defined[133X
-  
-  [33X[0;0YThis    function    works    like   [10XLGOStandardGens()[110X   [[14X2.7-6[114X]   but   uses
-  [10XMyPermutationMatNC()[110X instead of [10XMyPermutationMat()[110X.[133X
-  
-  [1X2.7-8 HighestSlotOfSLP[101X
-  
-  [33X[1;0Y[29X[2XHighestSlotOfSLP[102X( [3Xslp[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Y[10Xhighestslot[110X  the  number  of  slots  the  SLP  [10Xslp[110X  will  need  if
-            evaluated.[133X
-  
-  [33X[0;0YInput:[133X
-  
-  [30X    [33X[0;6Y[10Xslp[110X: A list of instructions satisfying the properties for an SLP[133X
-  
-  [33X[0;0YThe function determines the highest slot a SLP constructed from the list slp
-  will write in.[133X
-  
-  [1X2.7-9 MatToWreathProd[101X
-  
-  [33X[1;0Y[29X[2XMatToWreathProd[102X( [3XM[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Y[10Xperm[110X: the permutation [10XMwr[110X (see Describtion)[133X
-  
-  [33X[0;0YInput:[133X
-  
-  [30X    [33X[0;6Y[10XM[110X: A signed permutation matrix.[133X
-  
-  [33X[0;0YIn  [10XPermSLP()[110X  [[14X2.7-22[114X]  we want to transform the monomial matrix [22Xw[122X given by
-  [10XUnipotentDecomposition()[110X  into  a  diagonal  matrix. (The exact procedure is
-  described in [10XPermSLP()[110X [[14X2.7-22[114X])[133X
-  
-  [33X[0;0YSince  multiplying  the  LGO standard-generators [22Xs,v[122X and [22Xx[122X not only involves
-  permutations  but we also have to consider which non-zero entries are [22X+1[122X and
-  which [22X-1[122X, we want to associate this matrices with permutations on [22X2d[122X points.
-  (cf. Wreath-Product)[133X
-  
-  [33X[0;0Y[22X[s,v,x] -> Sym(2d), M ->[122X [10XMwr[110X where [22Xi^Mwr = j[122X and [22X(i+d)^Mwr= j+d[122X if [22XM_i,j = 1[122X
-  and [22Xi^Mwr = j+d[122X and [22X(i+d)^Mwr= j[122X if [22XM_i,j = -1[122X for [22X1 ≤ i ≤ d[122X.[133X
-  
-  [33X[0;0YDue to their relation to wreath-products, we will call denote the image of a
-  matrix [10XM[110X[22X∈ [s,v,x][122X by [10XMwr[110X.[133X
-  
-  [1X2.7-10 MatToWreathProdNC[101X
-  
-  [33X[1;0Y[29X[2XMatToWreathProdNC[102X( [3XM[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Y[10Xperm[110X: the permutation [10XMwr[110X (see Describtion)[133X
-  
-  [33X[0;0YInput:[133X
-  
-  [30X    [33X[0;6Y[10XM[110X: signed permutation matrix.[133X
-  
-  [33X[0;0YThis  function  works  like  [10XMatToWreathProd()[110X [[14X2.7-9[114X] but doesn't check the
-  user input.[133X
-  
-  [1X2.7-11 WreathProdToMat[101X
-  
-  [33X[1;0Y[29X[2XWreathProdToMat[102X( [3Xperm[103X, [3Xdim[103X, [3Xfld[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Y[10Xres[110X: The Matrix [10XM[110X satisfying the properties from the description.[133X
-  
-  [33X[0;0YInput:[133X
-  
-  [30X    [33X[0;6Y[10Xperm[110X: A permutation in Sym[22X(2d)[122X sth. [22X{ {i,i+d }}: 1 ≤ i ≤ d[122X are blocks[133X
-  
-  [30X    [33X[0;6Y[10Xdim[110X: The dimension of the matrix we want perm send to[133X
-  
-  [30X    [33X[0;6Y[10Xfld[110X: The field whereover the matrix is defined[133X
-  
-  [33X[0;0YIn fact the association from [10XMatToWreathProd()[110X [[14X2.7-9[114X] is an isomorphism and
-  we  can associate to each permutation we compute during [10XPermSLP()[110X [[14X2.7-22[114X] a
-  signed  permutation  matrix.  [22XM_i,j  =  1[122X if [22Xi^Mwr = j ≤ d[122X and [22XM_i,j = -1[122X if
-  [22Xi^Mwr = j+d[122X[133X
-  
-  [1X2.7-12 AEM[101X
-  
-  [33X[1;0Y[29X[2XAEM[102X( [3Xspos[103X, [3Xrespos[103X, [3Xtmppos[103X, [3Xk[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Y[10Xinstr[110X: Lines of an SLP that will (when evaluated) take the value [22Xb[122X
-            saved in [10Xspos[110X and write [22Xb^k[122X in [10Xrespos[110X[133X
-  
-  [33X[0;0YInput:[133X
-  
-  [30X    [33X[0;6Y[10Xspos[110X: The memory slot, where a value b is saved in.[133X
-  
-  [30X    [33X[0;6Y[10Xrespos[110X: The memory slot we want the exponentation to be written in.[133X
-  
-  [30X    [33X[0;6Y[10Xtmppos[110X: A memory slot for temporary results.[133X
-  
-  [30X    [33X[0;6Y[10Xk[110X: An integer.[133X
-  
-  [33X[0;0YAt  several  occasions  we  will  need to compute a high power of some value
-  saved  in a memory slot. For this purpose this function is a variaton of AEM
-  (Ancient Egytian Multiplication).[133X
-  
-  [33X[0;0YRemark:  [10Xtmpos[110X  and  [10Xrespos[110X must differ. If [10Xspos[110X = [10Xrespos[110X or [10Xspos[110X = [10Xtmpos[110X it
-  will be overwritten.[133X
-  
-  [1X2.7-13 TestIfMonomial[101X
-  
-  [33X[1;0Y[29X[2XTestIfMonomial[102X( [3XM[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Ytrue if [10XM[110X is Monomial, false else.[133X
-  
-  [33X[0;0YInput:[133X
-  
-  [30X    [33X[0;6Y[10XM[110X: A matrix.[133X
-  
-  [33X[0;0YTests  if a given matrix [10XM[110X is a monomial matrix. There is a function in GAP,
-  however it does not seem to work for SL[22X(d,q)[122X.[133X
-  
-  [1X2.7-14 TestIfMonomialNC[101X
-  
-  [33X[1;0Y[29X[2XTestIfMonomialNC[102X( [3XM[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Ytrue if [10XM[110X is Monomial, false else.[133X
-  
-  [33X[0;0YInput:[133X
-  
-  [30X    [33X[0;6Y[10XM[110X: A matrix.[133X
-  
-  [33X[0;0YThis  function  works  like  [10XTestIfMonomial()[110X [[14X2.7-13[114X] but doesn't check the
-  user input.[133X
-  
-  [1X2.7-15 Transvections2[101X
-  
-  [33X[1;0Y[29X[2XTransvections2[102X( [3Xstdgens[103X, [3Xomega[103X, [3Xslp[103X, [3Xpos[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Yslp:  The list of instruction with additional instructions writing
-            [22Xt_2,1(ω^ell)[122X in Slot [22Xpos[ell+1][122X für [22X0 ≤ ell ≤ ≠ f[122X.[133X
-  
-  [33X[0;0YInput:[133X
-  
-  [30X    [33X[0;6Y[10Xstdgens[110X: The LGO standard-generators of SL[22X(d,q)[122X.[133X
-  
-  [30X    [33X[0;6Y[10Xomega[110X: A primitive element of [22XGF(q)[122X.[133X
-  
-  [30X    [33X[0;6Y[10Xslp[110X: A list of instructions.[133X
-  
-  [30X    [33X[0;6Y[10Xpos[110X:  A  list  of  numbers,  denoting  where to save the transvections
-        [22Xt_2,1(ω^ell)[122X für [22X0 ≤ ell ≤ ≠ f[122X.[133X
-  
-  [33X[0;0YLet  [10Xstdgens[110X be the list of standard generators for SL[22X(d,p^f)[122X and let [22Xω[122X be a
-  primitive  element  of [22XG(p^f)[122X. This function computes [22XT_2[122X and record what we
-  do in [10Xslp[110X.[133X
-  
-  [33X[0;0YThis function coincides with [NPP, Equation (6), p12].[133X
-  
-  [1X2.7-16 UnipotentDecomposition[101X
-  
-  [33X[1;0Y[29X[2XUnipotentDecomposition[102X( [3Xarg[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Y[10Xslp[110X:  A list of instructions yielding [22Xu_1,u_2[122X if evaluated as SLP,
-            [22X[u_1,g,u_2][122X (the matrices of the Bruhat-Decomposition).[133X
-  
-  [33X[0;0YInput:[133X
-  
-  [30X    [33X[0;6Y[10Xstdgens[110X: The LGO standard-generators.[133X
-  
-  [30X    [33X[0;6Y[10Xg[110X: A matrix in SL[22X(d,q)[122X.[133X
-  
-  [33X[0;0YComputes the Unitriangular decomposition of the matrix [22Xg[122X.[133X
-  
-  [1X2.7-17 UnipotentDecompositionNC[101X
-  
-  [33X[1;0Y[29X[2XUnipotentDecompositionNC[102X( [3Xarg[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Y[10Xslp[110X:  A list of instructions yielding [22Xu_1,u_2[122X if evaluated as SLP,
-            [22X[u_1,g,u_2][122X (the matrices of the Bruhat-Decomposition).[133X
-  
-  [33X[0;0YThis function works like [10XUnipotentDecomposition()[110X [[14X2.7-16[114X] but doesn't check
-  the user input.[133X
-  
-  [1X2.7-18 UnipotentDecompositionWithTi[101X
-  
-  [33X[1;0Y[29X[2XUnipotentDecompositionWithTi[102X( [3Xarg[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Y[10Xslp[110X:  A list of instructions yielding [22Xu_1,u_2[122X if evaluated as SLP,
-            [22X[u_1,g,u_2][122X (the matrices of the Bruhat-Decomposition).[133X
-  
-  [33X[0;0YInput:[133X
-  
-  [30X    [33X[0;6Y[10Xstdgens[110X: The LGO standard-generators.[133X
-  
-  [30X    [33X[0;6Y[10Xg[110X: A matrix in SL[22X(d,q)[122X.[133X
-  
-  [33X[0;0YCompute  the  Bruhat  decomposition  of  the  matrix  [10Xg[110X,  given the standard
-  generators for the group.[133X
-  
-  [33X[0;0YIn  this version we will store all the transvections [22XT_i,i-1(ω^l)[122X. This will
-  increase the memory usage by [22X(d-3) ⋅ f[122X but reduce runtime.[133X
-  
-  [1X2.7-19 UnipotentDecompositionWithTiNC[101X
-  
-  [33X[1;0Y[29X[2XUnipotentDecompositionWithTiNC[102X( [3Xarg[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Y[10Xslp[110X:  A list of instructions yielding [22Xu_1,u_2[122X if evaluated as SLP,
-            [22X[u_1,g,u_2][122X (the matrices of the Bruhat-Decomposition).[133X
-  
-  [33X[0;0YInput:[133X
-  
-  [30X    [33X[0;6Y[10Xstdgens[110X: The LGO standard-generators.[133X
-  
-  [30X    [33X[0;6Y[10Xg[110X: A matrix in SL[22X(d,q)[122X.[133X
-  
-  [33X[0;0YThis function works like [10XUnipotentDecompositionWithTi()[110X [[14X2.7-18[114X] but doesn't
-  check the user input.[133X
-  
-  [1X2.7-20 PermutationMonomialMatrix[101X
-  
-  [33X[1;0Y[29X[2XPermutationMonomialMatrix[102X( [3XM[103X ) [32X function[133X
-  [6XReturns:[106X  [30X    [33X[0;16Y[10Xdiag[110X:  The  vector  of non-zero entries where diag[i] is the
-                  non-zero entry of row i.[133X
-  
-            [30X    [33X[0;16Y[10Xperm[110X:  The  permutation  associated  to  [10XM[110X (ie [22Xi^perm = j[122X if
-                  [22XM_i,j ≠ 0[122X).[133X
-  
-  [33X[0;0YInput:[133X
-  
-  [30X    [33X[0;6Y[10XM[110X: A monomial Matrix[133X
-  
-  [33X[0;0YFind the permutation (in Sym[22X(d)[122X corresponding to the monomial matrix [10XM[110X).[133X
-  
-  [1X2.7-21 PermutationMonomialMatrixNC[101X
-  
-  [33X[1;0Y[29X[2XPermutationMonomialMatrixNC[102X( [3XM[103X ) [32X function[133X
-  [6XReturns:[106X  [30X    [33X[0;16Y[10Xdiag[110X:  The  vector  of non-zero entries where diag[i] is the
-                  non-zero entry of row i.[133X
-  
-            [30X    [33X[0;16Y[10Xperm[110X:  The  permutation  associated  to  [10XM[110X (ie [22Xi^perm = j[122X if
-                  [22XM_i,j ≠ 0[122X).[133X
-  
-  [33X[0;0YInput:[133X
-  
-  [30X    [33X[0;6Y[10XM[110X: A monomial Matrix[133X
-  
-  [33X[0;0YThis  function  works  like [10XPermutationMonomialMatrix()[110X [[14X2.7-20[114X] but doesn't
-  check the user input.[133X
-  
-  [1X2.7-22 PermSLP[101X
-  
-  [33X[1;0Y[29X[2XPermSLP[102X( [3Xstdgens[103X, [3Xmat[103X[, [3Xslp[103X] ) [32X function[133X
-  [6XReturns:[106X  [30X    [33X[0;16Y[10Xslp[110X:  A  list of instructions to evaluate [10Xp_sign[110X (if [10Xslp[110X was
-                  Input then this instructions are added to [10Xslp[110X).[133X
-  
-            [30X    [33X[0;16Y[10Xp_sign[110X: The signed permutation matrix.[133X
-  
-            [30X    [33X[0;16Y[10Xmat[110X: The diagonal matrix [10Xdiag[110X.[133X
-  
-  [33X[0;0YInput:[133X
-  
-  [30X    [33X[0;6Y[10Xstdgens[110X: The LGO standard-generators.[133X
-  
-  [30X    [33X[0;6Y[10Xmat[110X: A monomial matrix (i.e. [22Xw[122X).[133X
-  
-  [30X    [33X[0;6Y[10Xslp[110X: An already existing list of instructions. [optional][133X
-  
-  [33X[0;0YIn  this  function  we  will  transform  a monomial matrix [22Xw ∈[122XSL[22X(d,q)[122X into a
-  diagonal  matrix  [22Xdiag[122X.  Using only the standard-generators [22Xs,v,x[122X. This will
-  lead  to  a  monomial  matrix  [22Xp_sign[122X  with only [22X± 1[122X in non-zero entries and
-  [22Xp_sign ⋅ diag = w[122X (i.e. [22Xdiag = (p_sign)^-1 ⋅ w[122X ).[133X
-  
-  [33X[0;0YFurthermore  we  will  return  list  [10Xslp[110X  of  instructions  which will (when
-  evaluated  at  the LGO standard-generators) yield [22Xdiag[122X. It is sufficient for
-  [22Xdiag[122X to be diagonal, if the permutation associated with [22Xw[122X (i.e. [22Xi^π_w = j[122X if
-  [22XM_i,j  ≠  0[122X)  is  the inverse of the permutation associated to [22Xp_sign[122X (again
-  only to Sym([22Xd[122X) ).[133X
-  
-  [33X[0;0YIn  [10XPermSLP()[110X  we  thus transform [22Xπ_w[122X to [22X()[122X using only [22X{ π_s, π_v, π_x }[122X. In
-  order  to  know [22Xdiag[122X without computing all matrix multiplications, (we don't
-  know  the  signs  of [22Xp_sign[122X), we compute a second permutation simultaneously
-  (here   using   their   identification  with  permutations  in  Sym[22X(2d)[122X  and
-  identifying [22X{ π_s, π_v, π_x }[122X with [22X{s,v,x}[122X ).[133X
-  
-  [1X2.7-23 PermSLPNC[101X
-  
-  [33X[1;0Y[29X[2XPermSLPNC[102X( [3Xstdgens[103X, [3Xmat[103X[, [3Xslp[103X] ) [32X function[133X
-  [6XReturns:[106X  [30X    [33X[0;16Y[10Xslp[110X:  A  list of instructions to evaluate [10Xp_sign[110X (if [10Xslp[110X was
-                  Input then this instructions are added to [10Xslp[110X).[133X
-  
-            [30X    [33X[0;16Y[10Xp_sign[110X: The signed permutation matrix.[133X
-  
-            [30X    [33X[0;16Y[10Xmat[110X: The diagonal matrix [10Xdiag[110X.[133X
-  
-  [33X[0;0YInput:[133X
-  
-  [30X    [33X[0;6Y[10Xstdgens[110X: The LGO standard-generators.[133X
-  
-  [30X    [33X[0;6Y[10Xmat[110X: A monomial matrix (i.e. [22Xw[122X).[133X
-  
-  [30X    [33X[0;6Y[10Xslp[110X: An already existing list of instructions. [optional][133X
-  
-  [33X[0;0YThis  function  works  like  [10XPermSLP()[110X  [[14X2.7-22[114X]  but doesn't check the user
-  input.[133X
-  
-  [1X2.7-24 DiagonalDecomposition[101X
-  
-  [33X[1;0Y[29X[2XDiagonalDecomposition[102X( [3Xstdgens[103X, [3Xdiam[103X[, [3Xslp[103X] ) [32X function[133X
-  [6XReturns:[106X  [30X    [33X[0;16Y[10Xslp[110X:  A  list  of  instructions to evaluate diag (if slp was
-                  Input then this instructions are added to slp).[133X
-  
-            [30X    [33X[0;16Y[10Xhres[110X: The the identity matrix.[133X
-  
-  [33X[0;0YInput:[133X
-  
-  [30X    [33X[0;6Y[10Xstdgens[110X: The LGO standard-generators.[133X
-  
-  [30X    [33X[0;6Y[10Xdiam[110X: A diagonal matrix (e.g. [22Xdiag[122X).[133X
-  
-  [30X    [33X[0;6Y[10Xslp[110X: An already existing list of instructions. [optional][133X
-  
-  [33X[0;0YWrites  a  list  of  instructions which evaluated on LGO standard-generators
-  yield the diagonal matrix of the input.[133X
-  
-  [1X2.7-25 DiagonalDecompositionNC[101X
-  
-  [33X[1;0Y[29X[2XDiagonalDecompositionNC[102X( [3Xstdgens[103X, [3Xdiam[103X[, [3Xslp[103X] ) [32X function[133X
-  [6XReturns:[106X  [30X    [33X[0;16Y[10Xslp[110X:  A  list  of  instructions to evaluate diag (if slp was
-                  Input then this instructions are added to slp).[133X
-  
-            [30X    [33X[0;16Y[10Xhres[110X: The the identity matrix.[133X
-  
-  [33X[0;0YWrites  a  list  of  instructions which evaluated on LGO standard-generators
-  yield the diagonal matrix of the input.[133X
-  
-  [33X[0;0YThis  function works like [10XDiagonalDecomposition()[110X [[14X2.7-24[114X] but doesn't check
-  the user input.[133X
-  
-  [1X2.7-26 BruhatDecomposition[101X
-  
-  [33X[1;0Y[29X[2XBruhatDecomposition[102X( [3Xstdgens[103X, [3Xg[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Y[10Xpgr[110X:  A  SLP (to compute [22Xu_1,u_2,p_sign[122X and [22Xdiag[122X) and the matrices
-            [22Xu_1, u_2, p_sign[122X and [22Xdiag[122X itself.[133X
-  
-  [33X[0;0YInput:[133X
-  
-  [30X    [33X[0;6Y[10Xstdgens[110X: The LGO standard-generators.[133X
-  
-  [30X    [33X[0;6Y[10Xg[110X: A matrix in SL[22X(d,q)[122X.[133X
-  
-  [33X[0;0YUses  [10XUnipotentDecomposition()[110X,  [10XPermSLP()[110X  and  [10XDiagonalDecomposition()[110X  to
-  write  a matrix [22Xg ∈ SL(d,q)[122X as [22Xg = (u_1)^-1 ⋅ p_sign ⋅ diag ⋅ (u_2)^-1[122X where
-  [22Xu_1,u_2[122X are lower unitriangular matrices, [22Xp_sign[122X a monomial matrix with only
-  [22X+1[122X and [22X-1[122X as non-zero entries and [22Xdiag[122X a diagonal matrix.[133X
-  
-  [33X[0;0YIt  furthermore yields a SLP that returns the above matrices if evaluated at
+  [33X[1;0Y[29X[2XMonomialSLPSOPlus[102X( [3Xstdgens[103X, [3Xmat[103X, [3Xslp[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Yslp  (A  list of instructions to evaluate tmpvalue. If slp is also
+            given   as  input  then  this  instructions  are  added  to  slp),
+            [tmpvalue,diag]   (tmpvalue   is   a   monomial  matix  such  that
+            tmpvalue*mat = diag where diag is a diagonal matrix)[133X
+  
+  [33X[0;0Ystdgens:  The  LGO  standard-generators of SO[22X^+(d,q)[122X [22Xnewline[122X mat: A monomial
+  matrix  (ie  [22Xw[122X)  in  SO[22X^+(d,q)[122X  [22Xnewline[122X  slp:  An  already  existing list of
+  instructions *optional [22Xnewline[122X In this function we will transform a monomial
+  matrix  [22Xmat  ∈[122X  SO[22X^+(d,q)[122X  into  a  diagonal  matrix  diag.  Using  only the
+  standard-generators  [22Xs,u,v[122X  this will lead to a monomial matrix tmpvalue and
+  [22Xtmpvalue^-1  ⋅  diag  = mat[122X (i.e. diag = tmpvalue*mat ). Furthermore we will
+  return  list  slp  of  instructions  which  will  (when evaluated at the LGO
+  standard-generators) yields diag.[133X
+  
+  [1X2.2-9 MonomialSLPSOCircle[101X
+  
+  [33X[1;0Y[29X[2XMonomialSLPSOCircle[102X( [3Xstdgens[103X, [3Xmat[103X, [3Xslp[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Yslp  (A  list of instructions to evaluate tmpvalue. If slp is also
+            given   as  input  then  this  instructions  are  added  to  slp),
+            [tmpvalue,diag]   (tmpvalue   is   a   monomial  matix  such  that
+            tmpvalue*mat = diag where diag is a diagonal matrix)[133X
+  
+  [33X[0;0Ystdgens:  The  LGO  standard-generators of SO[22X^∘(d,q)[122X [22Xnewline[122X mat: A monomial
+  matrix  (ie  [22Xw[122X)  in  SO[22X^∘(d,q)[122X  [22Xnewline[122X  slp:  An  already  existing list of
+  instructions *optional [22Xnewline[122X In this function we will transform a monomial
+  matrix  [22Xmat  ∈[122X  SO[22X^∘(d,q)[122X  into  a  diagonal  matrix  diag.  Using  only the
+  standard-generators  [22Xs,u,v[122X  this will lead to a monomial matrix tmpvalue and
+  [22Xtmpvalue^-1  ⋅  diag  = mat[122X (i.e. diag = tmpvalue*mat ). Furthermore we will
+  return  list  slp  of  instructions  which  will  (when evaluated at the LGO
+  standard-generators) yields diag.[133X
+  
+  [1X2.2-10 MonomialSLPSOMinus[101X
+  
+  [33X[1;0Y[29X[2XMonomialSLPSOMinus[102X( [3Xstdgens[103X, [3Xmat[103X, [3Xslp[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Yslp  (A  list of instructions to evaluate tmpvalue. If slp is also
+            given   as  input  then  this  instructions  are  added  to  slp),
+            [tmpvalue,diag]   (tmpvalue   is   a   monomial  matix  such  that
+            tmpvalue*mat = diag where diag is a diagonal matrix)[133X
+  
+  [33X[0;0Ystdgens:  The  LGO  standard-generators of SO[22X^-(d,q)[122X [22Xnewline[122X mat: A monomial
+  matrix  (ie  [22Xw[122X)  in  SO[22X^-(d,q)[122X  [22Xnewline[122X  slp:  An  already  existing list of
+  instructions *optional [22Xnewline[122X In this function we will transform a monomial
+  matrix  [22Xmat  ∈[122X  SO[22X^-(d,q)[122X  into  a  diagonal  matrix  diag.  Using  only the
+  standard-generators  [22Xs,u,v[122X  this will lead to a monomial matrix tmpvalue and
+  [22Xtmpvalue^-1  ⋅  diag  = mat[122X (i.e. diag = tmpvalue*mat ). Furthermore we will
+  return  list  slp  of  instructions  which  will  (when evaluated at the LGO
+  standard-generators) yields diag.[133X
+  
+  [1X2.2-11 FindCorrectCycel[101X
+  
+  [33X[1;0Y[29X[2XFindCorrectCycel[102X( [3Xperm[103X, [3Xj[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10YA permutation[133X
+  
+  [33X[0;0Yperm:  A  list  of cycles [22Xnewline[122X j: A natural number [22Xnewline[122X This is a help
+  function  for  [10XMonomialSLPSOPlus[110X.  Checks whether there is a cycle [22Xc[122X in perm
+  such  that  [22Xj^c  ≠  j[122X.  If  there  is  such an cycle, the cycle is returned.
+  Otherwise the identity permutation is returned.[133X
+  
+  [1X2.2-12 TestPermutationProd[101X
+  
+  [33X[1;0Y[29X[2XTestPermutationProd[102X( [3Xop[103X, [3Xnp[103X, [3Xl[103X, [3Xn[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Ytrue or false[133X
+  
+  [33X[0;0Y[22Xop[122X: A list of cycle [22Xnewline[122X [22Xnp[122X: A list of cycle [22Xnewline[122X [22Xl[122X: A list of natural
+  numbers  [22Xnewline[122X  [22Xn[122X:  A  natural  number [22Xnewline[122X This is a help function for
+  [10XMonomialSLPSOPlus[110X.  This  function  checks  whether  the  new permutation [22Xnp[122X
+  destorys  an  already  considered  element  of  [22Xop[122X.  The  already considered
+  elements are stored in [22Xl[122X.[133X
+  
+  [1X2.2-13 TestPermutationProd2[101X
+  
+  [33X[1;0Y[29X[2XTestPermutationProd2[102X( [3Xop[103X, [3Xnp[103X, [3Xtn[103X, [3Xl[103X, [3Xn[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Ytrue or false[133X
+  
+  [33X[0;0Y[22Xop[122X: A list of cycle [22Xnewline[122X [22Xnp[122X: A list of cycle [22Xnewline[122X [22Xtn[122X: A natural number
+  [22Xnewline[122X  [22Xl[122X:  A  list  of natural numbers [22Xnewline[122X [22Xn[122X: A natural number [22Xnewline[122X
+  This  is a help function for [10XMonomialSLPSOPlus[110X. This function checks whether
+  the  probability to continue with [22Xnp[122X is higher than with [22Xop[122X depending on the
+  element [22Xtn[122X.[133X
+  
+  [1X2.2-14 MonomialMatrixToEasyForm[101X
+  
+  [33X[1;0Y[29X[2XMonomialMatrixToEasyForm[102X( [3XM[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Y[list,perm]  (list  is  a  list  of  the non-zero elements of each
+            column of [22XM[122X, perm is the permutation corresponding to [22XM[122X)[133X
+  
+  [33X[0;0Y[22XM[122X:  A  monomial matrix [22Xnewline[122X This is a help function for [10XMonomialSLPSOPlus[110X
+  and [10XMonomialSLPSOCircle[110X. This function calcultes a list of size 2. The first
+  entry  is  a  list  of the non-zero elements of each column of [22XM[122X. The second
+  entry is a permutation which corresponds to [22XM[122X as a permutation matrix.[133X
+  
+  [1X2.2-15 EasyFormToMonomialMatrix[101X
+  
+  [33X[1;0Y[29X[2XEasyFormToMonomialMatrix[102X( [3Xtupel[103X, [3Xn[103X, [3Xfld[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Y[22XM[122X (A monomial matrix)[133X
+  
+  [33X[0;0Y[22Xtupel[122X:  A 2-tupel as in [10XMonomialMatrixToEasyForm[110X [22Xnewline[122X [22Xn[122X: A natural number
+  [22Xnewline[122X   [22Xfld[122X:   A  finite  field  [22Xnewline[122X  This  is  a  help  function  for
+  [10XMonomialSLPSOPlus[110X and [10XMonomialSLPSOCircle[110X. This function computes a monomial
+  matrix [22XM[122X of size [22Xn[122X over [22Xfld[122X such that [10XMonomialMatrixToEasyForm[110X[22X(M) = tupel[122X.[133X
+  
+  [1X2.2-16 MultiplicationOfEasyForm[101X
+  
+  [33X[1;0Y[29X[2XMultiplicationOfEasyForm[102X( [3Xtupel1[103X, [3Xtupel2[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Y[list,perm]  (list  is  a  list  of  the non-zero elements of each
+            column of [22XM[122X, perm is the permutation corresponding to [22XM[122X)[133X
+  
+  [33X[0;0Y[22Xtupel1[122X:  A  2-tupel as in [10XMonomialMatrixToEasyForm[110X [22Xnewline[122X [22Xtupel2[122X: A 2-tupel
+  as   in  [10XMonomialMatrixToEasyForm[110X  [22Xnewline[122X  This  is  a  help  function  for
+  [10XMonomialSLPSOPlus[110X  and  [10XMonomialSLPSOCircle[110X.  Let  [22XM_1[122X  be a monomial matrix
+  which  corresponds  to [22Xtupel1[122X and [22XM_2[122X be a monomial matrix which corresponds
+  to  [22Xtupel2[122X.  This  function  computes  a tupel [list,perm] such that for the
+  corresponding monomial matrix [22XM[122X holds [22XM = M_1 ⋅ M_2[122X.[133X
+  
+  [1X2.2-17 DiagSLPSOPlus[101X
+  
+  [33X[1;0Y[29X[2XDiagSLPSOPlus[102X( [3Xstdgens[103X, [3Xdiag[103X, [3Xslp[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Yslp (A list of instructions to evaluate diag if slp was Input then
+            this instructions are added to slp)[133X
+  
+  [33X[0;0Ystdgens:  The  LGO standard-generators of SO[22X^+(d,q)[122X [22Xnewline[122X diag: A diagonal
+  matrix  (eg  diag)  in  SO[22X^+(d,q)[122X  [22Xnewline[122X  slp: An already existing list of
+  instructions *optional [22Xnewline[122X Writes a list of instructions which evaluated
+  with LGO standard-generators yield the diagonal matrix of the input.[133X
+  
+  [1X2.2-18 DiagSLPSOCircle[101X
+  
+  [33X[1;0Y[29X[2XDiagSLPSOCircle[102X( [3Xstdgens[103X, [3Xdiag[103X, [3Xslp[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Yslp (A list of instructions to evaluate diag if slp was Input then
+            this instructions are added to slp)[133X
+  
+  [33X[0;0Ystdgens:  The  LGO standard-generators of SO[22X^∘(d,q)[122X [22Xnewline[122X diag: A diagonal
+  matrix  (eg  diag)  in  SO[22X^∘(d,q)[122X  [22Xnewline[122X  slp: An already existing list of
+  instructions *optional [22Xnewline[122X Writes a list of instructions which evaluated
+  with LGO standard-generators yield the diagonal matrix of the input.[133X
+  
+  [1X2.2-19 DiagSLPSOMinus[101X
+  
+  [33X[1;0Y[29X[2XDiagSLPSOMinus[102X( [3Xstdgens[103X, [3Xdiag[103X, [3Xslp[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Yslp (A list of instructions to evaluate diag if slp was Input then
+            this instructions are added to slp)[133X
+  
+  [33X[0;0Ystdgens:  The  LGO standard-generators of SO[22X^-(d,q)[122X [22Xnewline[122X diag: A diagonal
+  matrix  (eg  diag)  in  SO[22X^-(d,q)[122X  [22Xnewline[122X  slp: An already existing list of
+  instructions *optional [22Xnewline[122X Writes a list of instructions which evaluated
+  with LGO standard-generators yield the diagonal matrix of the input.[133X
+  
+  [1X2.2-20 BruhatDecompositionSO[101X
+  
+  [33X[1;0Y[29X[2XBruhatDecompositionSO[102X( [3Xstdgens[103X, [3Xg[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Ypgr  (A  SLP  to  compute [22Xu_1,u_2,p_sign[122X and [22Xdiag[122X and the matrices
+            [22Xu_1, u_2, p_sign[122X and [22Xdiag[122X itself.)[133X
+  
+  [33X[0;0Ystdgens:  The  LGO  standard-generators  [22Xnewline[122X  g:  A  matrix in SO[22X(e,d,q)[122X
+  [22Xnewline[122X  Uses  [10XUnitriangularDecompositionSOPlus()[110X,  [10XMonomialSLPSOPlus()[110X  and
+  [10XDiagSLPSOPlus()[110X  for  the  plus  type, [10XUnitriangularDecompositionSOCircle()[110X,
+  [10XMonomialSLPSOCircle()[110X   and   [10XDiagSLPSOCircle()[110X   for  the  circle  type  or
+  [10XUnitriangularDecompositionSOMinus()[110X,         [10XMonomialSLPSOMinus()[110X        and
+  [10XDiagSLPSOMinus()[110X  for  the minus type to write a matrix [22Xg ∈[122X SO[22X(e,d,q)[122X as [22Xg =
+  u_1^-1  ⋅  p_sign  ⋅  diag  ⋅  u_2^-1[122X  where [22Xu_1,u_2[122X are lower unitriangular
+  matrices,  [22Xp_sign[122X  is  a  monomial  matrix  and  [22Xdiag[122X  a diagonal matrix. It
+  furthermore  yields an SLP that returns the above matrices if evaluated with
   the LGO standard-generators.[133X
-  
-  [1X2.7-27 BruhatDecompositionNC[101X
-  
-  [33X[1;0Y[29X[2XBruhatDecompositionNC[102X( [3Xstdgens[103X, [3Xg[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Y[10Xpgr[110X:  A  SLP (to compute [22Xu_1,u_2,p_sign[122X and [22Xdiag[122X) and the matrices
-            [22Xu_1, u_2, p_sign[122X and [22Xdiag[122X itself.[133X
-  
-  [33X[0;0YInput:[133X
-  
-  [30X    [33X[0;6Y[10Xstdgens[110X: The LGO standard-generators.[133X
-  
-  [30X    [33X[0;6Y[10Xg[110X: A matrix in SL[22X(d,q)[122X.[133X
-  
-  [33X[0;0YThis   function   works   like   [10XBruhatDecomposition()[110X   [[14X2.7-26[114X]  but  uses
-  [10XUnipotentDecompositionNC()[110X,    [10XPermSLPNC()[110X   and   [10XDiagonalDecompositionNC()[110X
-  instead of [10XUnipotentDecomposition()[110X, [10XPermSLP()[110X and [10XDiagonalDecomposition()[110X.[133X
-  
-  [1X2.7-28 BruhatDecompositionWithTi[101X
-  
-  [33X[1;0Y[29X[2XBruhatDecompositionWithTi[102X( [3Xstdgens[103X, [3Xg[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Y[10Xpgr[110X:  A SLP (to compute [22Xu_1,u_2,p_sign[122X, [22Xdiag[122X and all transvections
-            [22Xt_i,i-1(ω^ell)[122X) and the matrices [22Xu_1, u_2, p_sign[122X and [22Xdiag[122X itself.[133X
-  
-  [33X[0;0YInput:[133X
-  
-  [30X    [33X[0;6Y[10Xstdgens[110X: The LGO standard-generators.[133X
-  
-  [30X    [33X[0;6Y[10Xg[110X: A matrix in SL[22X(d,q)[122X.[133X
-  
-  [33X[0;0YWorks      as      [10XBruhatDecomposition()[110X      [[14X2.7-26[114X]      but     replaces
-  [10XUnipotentDecomposition()[110X by [10XUnipotentDecompositionWithTi()[110X.[133X
-  
-  [1X2.7-29 BruhatDecompositionWithTiNC[101X
-  
-  [33X[1;0Y[29X[2XBruhatDecompositionWithTiNC[102X( [3Xstdgens[103X, [3Xg[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Yslp: A list of instructions to compute [22Xu1,u2,p_sign[122X and [22Xdiag[122X.[133X
-  
-  [33X[0;0YInput:[133X
-  
-  [30X    [33X[0;6Y[10Xstdgens[110X: The LGO standard-generators.[133X
-  
-  [30X    [33X[0;6Y[10Xg[110X: A matrix in SL[22X(d,q)[122X.[133X
-  
-  [33X[0;0YThis  function  works  like  [10XBruhatDecompositionWithTi()[110X  [[14X2.7-28[114X]  but uses
-  [10XUnipotentDecompositionWithTiNC()[110X,  [10XPermSLPNC()[110X and [10XDiagonalDecompositionNC()[110X
-  instead      of      [10XUnipotentDecompositionWithTi()[110X,      [10XPermSLP()[110X      and
-  [10XDiagonalDecomposition()[110X.[133X
-  
-  
-  [1X2.8 [33X[0;0YLocal functions for UnipotentDecomposition[133X[101X
-  
-  [1X2.8-1 TransvectionAtAlpha[101X
-  
-  [33X[1;0Y[29X[2XTransvectionAtAlpha[102X( [3Xalpha[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10YA  list  of  instructions  to evaluate diam (if slp was Input then
-            this instructions are added to slp), the identity matrix[133X
-  
-  [33X[0;0YLet  [22Xα  ∈ GF(p^f)[122X, [22Xα = ∑ a_l ω^l[122X, [22Xω[122X a primitive element. Let slp be the list
-  of  instructions  in UnipotentDecomposition and Tipos denote the slots where
-  transvections  [22Xt_i,j(ω^ell)[122X  for  [22X0  ≤  ell  ≤  ≠ f[122X are saved. This function
-  computes  [22Xt_i,j(α)  =  ∏  t_i,j(ω^ell)^a_ell}[122X [NPP, 4.2] where the exponents
-  [22Xa_ell[122X are given by [10XCoefficientsPrimitiveElement()[110X. [[14X2.7-3[114X] [NPP, p11][133X
-  
-  [1X2.8-2 ShiftTransvections[101X
-  
-  [33X[1;0Y[29X[2XShiftTransvections[102X( [3Xi[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10YNo output[133X
-  
-  [33X[0;0YLet  Ti  be  the  set  of  transvections  [22Xt_i,i-1(ω^ell)[122X and Ti_1 the set of
-  transvections [22Xt_i-1,i-2(ω^ell)[122X.[133X
-  
-  [33X[0;0YShiftTransvections computes [22Xt_i+1,i(ω^ell)[122X for given Ti and Ti_1 [NPP, p12],
-  stores  them  in the variable Ti and stores the transvections [22Xt_i,i-1(ω^ell)[122X
-  in the variable Ti_1.[133X
-  
-  [33X[0;0YThis corresponds to [NPP, eq (7+8) p12 ].[133X
-  
-  [1X2.8-3 FastShiftTransvecions[101X
-  
-  [33X[1;0Y[29X[2XFastShiftTransvecions[102X( [3Xi[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10YNo output[133X
-  
-  [33X[0;0YGiven [22Xt_2,1[122X we compute [22Xt_i,i-1[122X using fast exponentation. This algorithm will
-  be  called  in each step of the main loop and is more efficient than calling
-  ShiftTransvections [[14X2.8-2[114X] (r-2) times.[133X
-  
-  [1X2.8-4 BackShiftTransvections[101X
-  
-  [33X[1;0Y[29X[2XBackShiftTransvections[102X( [3Xi[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10YNo output[133X
-  
-  [33X[0;0YThis function is very similar to ShiftTransvections [[14X2.8-2[114X], except it works
-  in  the  reverse order, namely BackShiftTransvections computes [22Xt_i+1,i[122X given
-  [22Xt_i+2,i[122X and [22Xt_i+3,i+2[122X.[133X
-  
-  [1X2.8-5 FastBackShiftTransvections[101X
-  
-  [33X[1;0Y[29X[2XFastBackShiftTransvections[102X( [3Xi[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10YNo output[133X
-  
-  [33X[0;0YAs  for  ShiftTransvections  [[14X2.8-2[114X]  ,  we need an efficient way to compute
-  BackShiftTransvections [[14X2.8-4[114X] multiple times in a row.[133X
-  
-  
-  [1X2.9 [33X[0;0YLocal functions for UnipotentDecompositionWithTi[133X[101X
-  
-  [1X2.9-1 TransvectionAtAlpha2[101X
-  
-  [33X[1;0Y[29X[2XTransvectionAtAlpha2[102X( [3Xi[103X, [3Xalpha[103X ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10Ytrue[133X
-  
-  [33X[0;0YLet  [22Xα ∈ GF(p^f)[122X, [22Xα = ∑ a_l ω^l[122X, [22Xω[122X a primitive element. Suppose further that
-  Tipos  is  a list of transvections of the form [22Xt_i,i-1(ω^ell)[122X,[22X2 ≤ i ≤ d[122X, [22X0 ≤
-  ell ≤ ≠ f[122X. Then this function computes [22Xt_i,i-1( α )[122X by (Lemma 4.2) and saves
-  the result in tvpos.[133X
-  
-  [1X2.9-2 ComputeAllTransvections[101X
-  
-  [33X[1;0Y[29X[2XComputeAllTransvections[102X(  ) [32X function[133X
-  [6XReturns:[106X  [33X[0;10YNo output.[133X
-  
-  [33X[0;0YWe  first  compute all the Ti for [22Xi ≥ 3[122X and add them to the SLP. This are eq
-  (7)  and (8) p12 in References [NPP, eq (7+8) p12 ]. used instead of Schift-
-  and BackshiftTransvections [[14X2.8-2[114X and [14X2.8-4[114X].[133X
   

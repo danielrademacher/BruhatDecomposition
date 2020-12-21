@@ -2,10 +2,6 @@
 # BruhatDecompositionSU.gi
 ######################################
 
-
-
-
-
 ####################
 # PART I - a)
 #    Originally implemented subfunctions
@@ -14,21 +10,9 @@
 InfoBruhat := NewInfoClass("InfoBruhat");;
 SetInfoLevel( InfoBruhat, 2 );
 
-
 #####
 # UnitriangularDecompositionSp
 #####
-
-# This function computes the standard generators of SL
-# as given by C. R. Leedham-Green and E. A. O'Brien in
-# "Constructive Recognition of Classical Groups  in odd characteristic"
-
-# Input:
-#    d: the dimension of our matrix
-#    q: A prime power q = p^f, where F_q ist the field whereover the matrices
-#        are defined
-
-# Output: stdgens the LGO standard-generators of SU(d,q)
 
 InstallGlobalFunction(  UnitriangularDecompositionSp,
 function( arg )
@@ -759,26 +743,20 @@ function( arg )
 end
 );
 
+
+
 #####
 # LGOStandardGensSp
 #####
-
-# This function computes the standard generators of SL
-# as given by C. R. Leedham-Green and E. A. O'Brien in
-# "Constructive Recognition of Classical Groups  in odd characteristic"
-# (This matrices can also be found in the paper ch 3.1 ps 6-7)
-
-# Input:
-#    d: the dimension of our matrix
-#    q: A prime power q = p^f, where F_q ist the field whereover the matrices
-#        are defined
-
-# Output: stdgens the LGO standard-generators of SL(d,q)
 
 InstallGlobalFunction(  LGOStandardGensSp,
 function( d, q )
 
     local w,s, t, delta, u, v, x, J, fld;
+    
+    if (q mod 2 = 0) then
+        return LGOStandardGensSpEvenChar(d,q);
+    fi;
 
     fld := GF(q);
     w := PrimitiveElement(fld);
@@ -819,20 +797,55 @@ end
 
 
 #####
-#   MonomialSLPSp
+# LGOStandardGensSpEvenChar
 #####
 
-# This function computes the standard generators of SL
-# as given by C. R. Leedham-Green and E. A. O'Brien in
-# "Constructive Recognition of Classical Groups  in odd characteristic"
-# (This matrices can also be found in the paper ch 3.1 ps 6-7)
+InstallGlobalFunction(  LGOStandardGensSpEvenChar,
+function( d, q )
 
-# Input:
-#    d: the dimension of our matrix
-#    q: A prime power q = p^f, where F_q ist the field whereover the matrices
-#        are defined
+    local w,s, t, delta, u, v, x, J, fld;
 
-# Output: stdgens the LGO standard-generators of SL(d,q)
+    fld := GF(q);
+    w := PrimitiveElement(fld);
+
+    s := IdentityMat( d, fld );
+    s[1][1] := Zero(fld);
+    s[d][d] := Zero(fld);
+    s[1][d] := One(fld);
+    s[d][1] := One(fld);
+
+    t := IdentityMat( d, fld );
+    t[1][d] := One(fld);
+
+    delta := IdentityMat( d, fld );
+    delta[1][1] := w;
+    delta[d][d] := w^(-1);
+
+    v := 0 * IdentityMat( d, fld );
+    v[d/2][1] := One(fld);
+    v{[1..(d/2)-1]}{[2..d/2]} := IdentityMat((d/2)-1, fld);
+    v[d/2+1][d] := One(fld);
+    v{[(d/2)+2..d]}{[(d/2)+1..d-1]} := IdentityMat((d/2)-1, fld);
+
+    u := IdentityMat( d, fld );
+    J := [[Zero(fld),One(fld)],[One(fld),Zero(fld)]];
+    u{[1,2]}{[1,2]} := J;
+    u{[d-1,d]}{[d-1,d]} := J;
+
+    x := IdentityMat( d, fld );
+    x[d-1][1] := One(fld);
+    x[d][2] := One(fld);
+
+    return [s,t,delta,v,u,x];
+    
+end
+);
+
+
+
+#####
+#   MonomialSLPSp
+#####
 
 InstallGlobalFunction(  MonomialSLPSp,
 function( arg )
@@ -1034,29 +1047,15 @@ function( arg )
     mat := tmpvalue*mat;
 
     return [slp, [ tmpvalue, mat ] ];
-
-
+    
 end
 );
-
 
 
 
 #####
 #   DiagSLPSp
 #####
-
-# This function computes the standard generators of SL
-# as given by C. R. Leedham-Green and E. A. O'Brien in
-# "Constructive Recognition of Classical Groups  in odd characteristic"
-# (This matrices can also be found in the paper ch 3.1 ps 6-7)
-
-# Input:
-#    d: the dimension of our matrix
-#    q: A prime power q = p^f, where F_q ist the field whereover the matrices
-#        are defined
-
-# Output: stdgens the LGO standard-generators of SL(d,q)
 
 InstallGlobalFunction(  DiagSLPSp,
 function( arg )
@@ -1109,7 +1108,7 @@ function( arg )
                     [1, 0], [1, 0] ];
 
         cnt := 14;
-        Info( InfoBruhat, 2, "Memory Usage is: ",3," memory slots ",
+        Info( InfoBruhat, 2, "Memory Usage is: ",4," memory slots ",
                             "in DiagonalDecomposition()\n");
     fi;
 
@@ -1160,22 +1159,9 @@ end
 
 
 
-
 #####
 #   BruhatDecompositionSp
 #####
-
-# This function computes the standard generators of SL
-# as given by C. R. Leedham-Green and E. A. O'Brien in
-# "Constructive Recognition of Classical Groups  in odd characteristic"
-# (This matrices can also be found in the paper ch 3.1 ps 6-7)
-
-# Input:
-#    d: the dimension of our matrix
-#    q: A prime power q = p^f, where F_q ist the field whereover the matrices
-#        are defined
-
-# Output: stdgens the LGO standard-generators of SL(d,q)
 
 InstallGlobalFunction(  BruhatDecompositionSp,
 function( stdgens, g )
@@ -1242,4 +1228,3 @@ function( stdgens, g )
 
 end
 );
-

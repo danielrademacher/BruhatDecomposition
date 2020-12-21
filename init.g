@@ -6,6 +6,6 @@
 
 ReadPackage( "BruhatDecomposition", "gap/BruhatDecomposition.gd");
 ReadPackage("BruhatDecomposition", "gap/BruhatDecompositionSL.gd");
-ReadPackage("BruhatDecomposition", "gap/BruhatDecompositionSLNC.gd");
 ReadPackage("BruhatDecomposition", "gap/BruhatDecompositionSU.gd");
 ReadPackage("BruhatDecomposition", "gap/BruhatDecompositionSp.gd");
+ReadPackage("BruhatDecomposition", "gap/BruhatDecompositionO.gd");

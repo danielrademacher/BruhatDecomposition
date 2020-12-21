@@ -1,73 +1,84 @@
-\contentsline {chapter}{\numberline {1}\leavevmode {\color {Chapter }Foreword}}{4}{chapter.1}
-\contentsline {chapter}{\numberline {2}\leavevmode {\color {Chapter }Bruhat Decomposition for the special linear group (SL)}}{5}{chapter.2}
-\contentsline {section}{\numberline {2.1}\leavevmode {\color {Chapter }Implemented Subfunctions (Part I)}}{6}{section.2.1}
-\contentsline {section}{\numberline {2.2}\leavevmode {\color {Chapter }UnipotentDecomposition (Part II - a)}}{7}{section.2.2}
-\contentsline {section}{\numberline {2.3}\leavevmode {\color {Chapter }UnipotentDecomposition saving Transvections (Part II - b)}}{7}{section.2.3}
-\contentsline {section}{\numberline {2.4}\leavevmode {\color {Chapter }Decomposing the Monomial Matrix (Part III)}}{7}{section.2.4}
-\contentsline {section}{\numberline {2.5}\leavevmode {\color {Chapter }Main Function (Part IV)}}{8}{section.2.5}
-\contentsline {section}{\numberline {2.6}\leavevmode {\color {Chapter }NC Version}}{8}{section.2.6}
-\contentsline {section}{\numberline {2.7}\leavevmode {\color {Chapter }Functions}}{9}{section.2.7}
-\contentsline {subsection}{\numberline {2.7.1}\leavevmode {\color {Chapter }MakeSLP}}{9}{subsection.2.7.1}
-\contentsline {subsection}{\numberline {2.7.2}\leavevmode {\color {Chapter }MakeSLPNC}}{10}{subsection.2.7.2}
-\contentsline {subsection}{\numberline {2.7.3}\leavevmode {\color {Chapter }CoefficientsPrimitiveElement}}{10}{subsection.2.7.3}
-\contentsline {subsection}{\numberline {2.7.4}\leavevmode {\color {Chapter }MyPermutationMat}}{10}{subsection.2.7.4}
-\contentsline {subsection}{\numberline {2.7.5}\leavevmode {\color {Chapter }MyPermutationMatNC}}{10}{subsection.2.7.5}
-\contentsline {subsection}{\numberline {2.7.6}\leavevmode {\color {Chapter }LGOStandardGens}}{10}{subsection.2.7.6}
-\contentsline {subsection}{\numberline {2.7.7}\leavevmode {\color {Chapter }LGOStandardGensNC}}{11}{subsection.2.7.7}
-\contentsline {subsection}{\numberline {2.7.8}\leavevmode {\color {Chapter }HighestSlotOfSLP}}{11}{subsection.2.7.8}
-\contentsline {subsection}{\numberline {2.7.9}\leavevmode {\color {Chapter }MatToWreathProd}}{11}{subsection.2.7.9}
-\contentsline {subsection}{\numberline {2.7.10}\leavevmode {\color {Chapter }MatToWreathProdNC}}{12}{subsection.2.7.10}
-\contentsline {subsection}{\numberline {2.7.11}\leavevmode {\color {Chapter }WreathProdToMat}}{12}{subsection.2.7.11}
-\contentsline {subsection}{\numberline {2.7.12}\leavevmode {\color {Chapter }AEM}}{12}{subsection.2.7.12}
-\contentsline {subsection}{\numberline {2.7.13}\leavevmode {\color {Chapter }TestIfMonomial}}{12}{subsection.2.7.13}
-\contentsline {subsection}{\numberline {2.7.14}\leavevmode {\color {Chapter }TestIfMonomialNC}}{13}{subsection.2.7.14}
-\contentsline {subsection}{\numberline {2.7.15}\leavevmode {\color {Chapter }Transvections2}}{13}{subsection.2.7.15}
-\contentsline {subsection}{\numberline {2.7.16}\leavevmode {\color {Chapter }UnipotentDecomposition}}{13}{subsection.2.7.16}
-\contentsline {subsection}{\numberline {2.7.17}\leavevmode {\color {Chapter }UnipotentDecompositionNC}}{13}{subsection.2.7.17}
-\contentsline {subsection}{\numberline {2.7.18}\leavevmode {\color {Chapter }UnipotentDecompositionWithTi}}{14}{subsection.2.7.18}
-\contentsline {subsection}{\numberline {2.7.19}\leavevmode {\color {Chapter }UnipotentDecompositionWithTiNC}}{14}{subsection.2.7.19}
-\contentsline {subsection}{\numberline {2.7.20}\leavevmode {\color {Chapter }PermutationMonomialMatrix}}{14}{subsection.2.7.20}
-\contentsline {subsection}{\numberline {2.7.21}\leavevmode {\color {Chapter }PermutationMonomialMatrixNC}}{14}{subsection.2.7.21}
-\contentsline {subsection}{\numberline {2.7.22}\leavevmode {\color {Chapter }PermSLP}}{15}{subsection.2.7.22}
-\contentsline {subsection}{\numberline {2.7.23}\leavevmode {\color {Chapter }PermSLPNC}}{15}{subsection.2.7.23}
-\contentsline {subsection}{\numberline {2.7.24}\leavevmode {\color {Chapter }DiagonalDecomposition}}{16}{subsection.2.7.24}
-\contentsline {subsection}{\numberline {2.7.25}\leavevmode {\color {Chapter }DiagonalDecompositionNC}}{16}{subsection.2.7.25}
-\contentsline {subsection}{\numberline {2.7.26}\leavevmode {\color {Chapter }BruhatDecomposition}}{16}{subsection.2.7.26}
-\contentsline {subsection}{\numberline {2.7.27}\leavevmode {\color {Chapter }BruhatDecompositionNC}}{17}{subsection.2.7.27}
-\contentsline {subsection}{\numberline {2.7.28}\leavevmode {\color {Chapter }BruhatDecompositionWithTi}}{17}{subsection.2.7.28}
-\contentsline {subsection}{\numberline {2.7.29}\leavevmode {\color {Chapter }BruhatDecompositionWithTiNC}}{17}{subsection.2.7.29}
-\contentsline {section}{\numberline {2.8}\leavevmode {\color {Chapter }Local functions for UnipotentDecomposition}}{17}{section.2.8}
-\contentsline {subsection}{\numberline {2.8.1}\leavevmode {\color {Chapter }TransvectionAtAlpha}}{17}{subsection.2.8.1}
-\contentsline {subsection}{\numberline {2.8.2}\leavevmode {\color {Chapter }ShiftTransvections}}{18}{subsection.2.8.2}
-\contentsline {subsection}{\numberline {2.8.3}\leavevmode {\color {Chapter }FastShiftTransvecions}}{18}{subsection.2.8.3}
-\contentsline {subsection}{\numberline {2.8.4}\leavevmode {\color {Chapter }BackShiftTransvections}}{18}{subsection.2.8.4}
-\contentsline {subsection}{\numberline {2.8.5}\leavevmode {\color {Chapter }FastBackShiftTransvections}}{18}{subsection.2.8.5}
-\contentsline {section}{\numberline {2.9}\leavevmode {\color {Chapter }Local functions for UnipotentDecompositionWithTi}}{18}{section.2.9}
-\contentsline {subsection}{\numberline {2.9.1}\leavevmode {\color {Chapter }TransvectionAtAlpha2}}{18}{subsection.2.9.1}
-\contentsline {subsection}{\numberline {2.9.2}\leavevmode {\color {Chapter }ComputeAllTransvections}}{19}{subsection.2.9.2}
-\contentsline {chapter}{\numberline {3}\leavevmode {\color {Chapter }Bruhat Decomposition for the special unitary group (SU)}}{20}{chapter.3}
-\contentsline {section}{\numberline {3.1}\leavevmode {\color {Chapter }Functions}}{20}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}\leavevmode {\color {Chapter }LGOStandardGensSU}}{20}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}\leavevmode {\color {Chapter }UnitriangularDecompositionSUEven}}{20}{subsection.3.1.2}
-\contentsline {subsection}{\numberline {3.1.3}\leavevmode {\color {Chapter }UnitriangularDecompositionSUOdd}}{20}{subsection.3.1.3}
-\contentsline {subsection}{\numberline {3.1.4}\leavevmode {\color {Chapter }UnitriangularDecompositionSU}}{20}{subsection.3.1.4}
-\contentsline {subsection}{\numberline {3.1.5}\leavevmode {\color {Chapter }CoefficientsPrimitiveElementS}}{21}{subsection.3.1.5}
-\contentsline {subsection}{\numberline {3.1.6}\leavevmode {\color {Chapter }BruhatDecompositionSU}}{21}{subsection.3.1.6}
-\contentsline {subsection}{\numberline {3.1.7}\leavevmode {\color {Chapter }MonomialSLPSUOdd}}{21}{subsection.3.1.7}
-\contentsline {subsection}{\numberline {3.1.8}\leavevmode {\color {Chapter }MonomialSLPSUEven}}{21}{subsection.3.1.8}
-\contentsline {subsection}{\numberline {3.1.9}\leavevmode {\color {Chapter }CheckContinue}}{21}{subsection.3.1.9}
-\contentsline {subsection}{\numberline {3.1.10}\leavevmode {\color {Chapter }CycleFromPermutation}}{21}{subsection.3.1.10}
-\contentsline {subsection}{\numberline {3.1.11}\leavevmode {\color {Chapter }CycleFromListMine}}{22}{subsection.3.1.11}
-\contentsline {subsection}{\numberline {3.1.12}\leavevmode {\color {Chapter }DiagSLPSUOdd}}{22}{subsection.3.1.12}
-\contentsline {subsection}{\numberline {3.1.13}\leavevmode {\color {Chapter }DiagSLPSU}}{22}{subsection.3.1.13}
-\contentsline {subsection}{\numberline {3.1.14}\leavevmode {\color {Chapter }DiagSLPSUEven}}{22}{subsection.3.1.14}
-\contentsline {chapter}{\numberline {4}\leavevmode {\color {Chapter }Bruhat Decomposition for the symplectic group (Sp)}}{23}{chapter.4}
-\contentsline {section}{\numberline {4.1}\leavevmode {\color {Chapter }Functions}}{23}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}\leavevmode {\color {Chapter }LGOStandardGensSp}}{23}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}\leavevmode {\color {Chapter }UnitriangularDecompositionSp}}{23}{subsection.4.1.2}
-\contentsline {subsection}{\numberline {4.1.3}\leavevmode {\color {Chapter }MonomialSLPSp}}{23}{subsection.4.1.3}
-\contentsline {subsection}{\numberline {4.1.4}\leavevmode {\color {Chapter }DiagSLPSp}}{23}{subsection.4.1.4}
-\contentsline {subsection}{\numberline {4.1.5}\leavevmode {\color {Chapter }BruhatDecompositionSp}}{24}{subsection.4.1.5}
-\contentsline {chapter}{\numberline {5}\leavevmode {\color {Chapter }Bruhat Decomposition for the special orthogonal group (SO)}}{25}{chapter.5}
-\contentsline {section}{\numberline {5.1}\leavevmode {\color {Chapter }Functions}}{25}{section.5.1}
-\contentsline {chapter}{References}{26}{chapter*.3}
+\contentsline {chapter}{\numberline {1}\textcolor {Chapter }{Foreword}}{3}{chapter.1}%
+\contentsline {section}{\numberline {1.1}\textcolor {Chapter }{Main Function}}{3}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}\textcolor {Chapter }{BruhatDecomposition}}{3}{subsection.1.1.1}%
+\contentsline {chapter}{\numberline {2}\textcolor {Chapter }{Special Orthogonal Group}}{4}{chapter.2}%
+\contentsline {section}{\numberline {2.1}\textcolor {Chapter }{Introduction and Quick Start of functions for SO}}{4}{section.2.1}%
+\contentsline {section}{\numberline {2.2}\textcolor {Chapter }{Functions for SO}}{4}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}\textcolor {Chapter }{FindPrimePowerDecomposition}}{4}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}\textcolor {Chapter }{LGOStandardGensSO}}{4}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}\textcolor {Chapter }{LGOStandardGensOmega}}{4}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}\textcolor {Chapter }{MSO}}{5}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.5}\textcolor {Chapter }{UnitriangularDecompositionSOPlus}}{5}{subsection.2.2.5}%
+\contentsline {subsection}{\numberline {2.2.6}\textcolor {Chapter }{UnitriangularDecompositionSOCircle}}{5}{subsection.2.2.6}%
+\contentsline {subsection}{\numberline {2.2.7}\textcolor {Chapter }{UnitriangularDecompositionSOMinus}}{5}{subsection.2.2.7}%
+\contentsline {subsection}{\numberline {2.2.8}\textcolor {Chapter }{MonomialSLPSOPlus}}{6}{subsection.2.2.8}%
+\contentsline {subsection}{\numberline {2.2.9}\textcolor {Chapter }{MonomialSLPSOCircle}}{6}{subsection.2.2.9}%
+\contentsline {subsection}{\numberline {2.2.10}\textcolor {Chapter }{MonomialSLPSOMinus}}{6}{subsection.2.2.10}%
+\contentsline {subsection}{\numberline {2.2.11}\textcolor {Chapter }{FindCorrectCycel}}{7}{subsection.2.2.11}%
+\contentsline {subsection}{\numberline {2.2.12}\textcolor {Chapter }{TestPermutationProd}}{7}{subsection.2.2.12}%
+\contentsline {subsection}{\numberline {2.2.13}\textcolor {Chapter }{TestPermutationProd2}}{7}{subsection.2.2.13}%
+\contentsline {subsection}{\numberline {2.2.14}\textcolor {Chapter }{MonomialMatrixToEasyForm}}{7}{subsection.2.2.14}%
+\contentsline {subsection}{\numberline {2.2.15}\textcolor {Chapter }{EasyFormToMonomialMatrix}}{7}{subsection.2.2.15}%
+\contentsline {subsection}{\numberline {2.2.16}\textcolor {Chapter }{MultiplicationOfEasyForm}}{8}{subsection.2.2.16}%
+\contentsline {subsection}{\numberline {2.2.17}\textcolor {Chapter }{DiagSLPSOPlus}}{8}{subsection.2.2.17}%
+\contentsline {subsection}{\numberline {2.2.18}\textcolor {Chapter }{DiagSLPSOCircle}}{8}{subsection.2.2.18}%
+\contentsline {subsection}{\numberline {2.2.19}\textcolor {Chapter }{DiagSLPSOMinus}}{8}{subsection.2.2.19}%
+\contentsline {subsection}{\numberline {2.2.20}\textcolor {Chapter }{BruhatDecompositionSO}}{9}{subsection.2.2.20}%
+\contentsline {chapter}{\numberline {3}\textcolor {Chapter }{Special Linear Group}}{10}{chapter.3}%
+\contentsline {section}{\numberline {3.1}\textcolor {Chapter }{Introduction and Quick Start of functions for SL}}{10}{section.3.1}%
+\contentsline {section}{\numberline {3.2}\textcolor {Chapter }{Implemented Subfunctions (Part I)}}{11}{section.3.2}%
+\contentsline {section}{\numberline {3.3}\textcolor {Chapter }{UnipotentDecomposition (Part II - a)}}{12}{section.3.3}%
+\contentsline {section}{\numberline {3.4}\textcolor {Chapter }{UnipotentDecomposition saving Transvections (Part II - b)}}{12}{section.3.4}%
+\contentsline {section}{\numberline {3.5}\textcolor {Chapter }{Decomposing the Monomial Matrix (Part III)}}{12}{section.3.5}%
+\contentsline {section}{\numberline {3.6}\textcolor {Chapter }{Main Function (Part IV)}}{13}{section.3.6}%
+\contentsline {section}{\numberline {3.7}\textcolor {Chapter }{NC Version}}{13}{section.3.7}%
+\contentsline {section}{\numberline {3.8}\textcolor {Chapter }{Functions for SL}}{14}{section.3.8}%
+\contentsline {subsection}{\numberline {3.8.1}\textcolor {Chapter }{MakeSLP}}{14}{subsection.3.8.1}%
+\contentsline {subsection}{\numberline {3.8.2}\textcolor {Chapter }{CoefficientsPrimitiveElement}}{15}{subsection.3.8.2}%
+\contentsline {subsection}{\numberline {3.8.3}\textcolor {Chapter }{MyPermutationMat}}{15}{subsection.3.8.3}%
+\contentsline {subsection}{\numberline {3.8.4}\textcolor {Chapter }{LGOStandardGensSL}}{15}{subsection.3.8.4}%
+\contentsline {subsection}{\numberline {3.8.5}\textcolor {Chapter }{HighestSlotOfSLP}}{15}{subsection.3.8.5}%
+\contentsline {subsection}{\numberline {3.8.6}\textcolor {Chapter }{MatToWreathProd}}{15}{subsection.3.8.6}%
+\contentsline {subsection}{\numberline {3.8.7}\textcolor {Chapter }{WreathProdToMat}}{16}{subsection.3.8.7}%
+\contentsline {subsection}{\numberline {3.8.8}\textcolor {Chapter }{AEM}}{16}{subsection.3.8.8}%
+\contentsline {subsection}{\numberline {3.8.9}\textcolor {Chapter }{TestIfMonomial}}{16}{subsection.3.8.9}%
+\contentsline {subsection}{\numberline {3.8.10}\textcolor {Chapter }{Transvections2}}{16}{subsection.3.8.10}%
+\contentsline {subsection}{\numberline {3.8.11}\textcolor {Chapter }{UnipotentDecomposition}}{17}{subsection.3.8.11}%
+\contentsline {subsection}{\numberline {3.8.12}\textcolor {Chapter }{UnipotentDecompositionWithTi}}{17}{subsection.3.8.12}%
+\contentsline {subsection}{\numberline {3.8.13}\textcolor {Chapter }{PermutationMonomialMatrix}}{17}{subsection.3.8.13}%
+\contentsline {subsection}{\numberline {3.8.14}\textcolor {Chapter }{PermSLP}}{17}{subsection.3.8.14}%
+\contentsline {subsection}{\numberline {3.8.15}\textcolor {Chapter }{DiagonalDecomposition}}{18}{subsection.3.8.15}%
+\contentsline {subsection}{\numberline {3.8.16}\textcolor {Chapter }{BruhatDecompositionSL}}{18}{subsection.3.8.16}%
+\contentsline {subsection}{\numberline {3.8.17}\textcolor {Chapter }{BruhatDecompositionSLWithTi}}{18}{subsection.3.8.17}%
+\contentsline {chapter}{\numberline {4}\textcolor {Chapter }{Special Unitary Group}}{19}{chapter.4}%
+\contentsline {section}{\numberline {4.1}\textcolor {Chapter }{Introduction and Quick Start of functions for SU}}{19}{section.4.1}%
+\contentsline {section}{\numberline {4.2}\textcolor {Chapter }{Functions for SU}}{19}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}\textcolor {Chapter }{MakePermutationMat}}{19}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}\textcolor {Chapter }{LGOStandardGensSU}}{19}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}\textcolor {Chapter }{LGOStandardGensSUEvenChar}}{19}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.4}\textcolor {Chapter }{CoefficientsPrimitiveElementS}}{20}{subsection.4.2.4}%
+\contentsline {subsection}{\numberline {4.2.5}\textcolor {Chapter }{UnitriangularDecompositionSUEven}}{20}{subsection.4.2.5}%
+\contentsline {subsection}{\numberline {4.2.6}\textcolor {Chapter }{UnitriangularDecompositionSUEvenAndEvenChar}}{20}{subsection.4.2.6}%
+\contentsline {subsection}{\numberline {4.2.7}\textcolor {Chapter }{UnitriangularDecompositionSUOdd}}{20}{subsection.4.2.7}%
+\contentsline {subsection}{\numberline {4.2.8}\textcolor {Chapter }{UnitriangularDecompositionSU}}{20}{subsection.4.2.8}%
+\contentsline {subsection}{\numberline {4.2.9}\textcolor {Chapter }{MonomialSLPSUOdd}}{21}{subsection.4.2.9}%
+\contentsline {subsection}{\numberline {4.2.10}\textcolor {Chapter }{MonomialSLPSUEvenAndEvenChar}}{21}{subsection.4.2.10}%
+\contentsline {subsection}{\numberline {4.2.11}\textcolor {Chapter }{MonomialSLPSUEven}}{21}{subsection.4.2.11}%
+\contentsline {subsection}{\numberline {4.2.12}\textcolor {Chapter }{CheckContinue}}{22}{subsection.4.2.12}%
+\contentsline {subsection}{\numberline {4.2.13}\textcolor {Chapter }{CycleFromPermutation}}{22}{subsection.4.2.13}%
+\contentsline {subsection}{\numberline {4.2.14}\textcolor {Chapter }{CycleFromListMine}}{22}{subsection.4.2.14}%
+\contentsline {subsection}{\numberline {4.2.15}\textcolor {Chapter }{DiagSLPSUOdd}}{22}{subsection.4.2.15}%
+\contentsline {subsection}{\numberline {4.2.16}\textcolor {Chapter }{DiagSLPSU}}{22}{subsection.4.2.16}%
+\contentsline {subsection}{\numberline {4.2.17}\textcolor {Chapter }{DiagSLPSUEven}}{23}{subsection.4.2.17}%
+\contentsline {subsection}{\numberline {4.2.18}\textcolor {Chapter }{DiagSLPSUEvenAndEvenChar}}{23}{subsection.4.2.18}%
+\contentsline {subsection}{\numberline {4.2.19}\textcolor {Chapter }{BruhatDecompositionSU}}{23}{subsection.4.2.19}%
+\contentsline {chapter}{\numberline {5}\textcolor {Chapter }{Symplectic Group}}{24}{chapter.5}%
+\contentsline {section}{\numberline {5.1}\textcolor {Chapter }{Introduction and Quick Start of functions for Sp}}{24}{section.5.1}%
+\contentsline {section}{\numberline {5.2}\textcolor {Chapter }{Functions for Sp}}{24}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}\textcolor {Chapter }{LGOStandardGensSp}}{24}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}\textcolor {Chapter }{LGOStandardGensSpEvenChar}}{24}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}\textcolor {Chapter }{UnitriangularDecompositionSp}}{24}{subsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.2.4}\textcolor {Chapter }{MonomialSLPSp}}{25}{subsection.5.2.4}%
+\contentsline {subsection}{\numberline {5.2.5}\textcolor {Chapter }{DiagSLPSp}}{25}{subsection.5.2.5}%
+\contentsline {subsection}{\numberline {5.2.6}\textcolor {Chapter }{BruhatDecompositionSp}}{25}{subsection.5.2.6}%
+\contentsline {chapter}{Index}{26}{section*.2}%

@@ -8,7 +8,7 @@
 <script type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-<title>GAP (BruhatDecomposition) - Chapter 3: Bruhat Decomposition for the special unitary group (SU)</title>
+<title>GAP (BruhatDecomposition) - Chapter 3: Special Linear Group</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <meta name="generator" content="GAPDoc2HTML" />
 <link rel="stylesheet" type="text/css" href="manual.css" />
@@ -18,172 +18,462 @@
 <body class="chap3"  onload="jscontent()">
 
 
-<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0_mj.html">Top</a>  <a href="chap1_mj.html">1</a>  <a href="chap2_mj.html">2</a>  <a href="chap3_mj.html">3</a>  <a href="chap4_mj.html">4</a>  <a href="chap5_mj.html">5</a>  <a href="chapBib_mj.html">Bib</a>  </div>
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0_mj.html">Top</a>  <a href="chap1_mj.html">1</a>  <a href="chap2_mj.html">2</a>  <a href="chap3_mj.html">3</a>  <a href="chap4_mj.html">4</a>  <a href="chap5_mj.html">5</a>  <a href="chapInd_mj.html">Ind</a>  </div>
 
 <div class="chlinkprevnexttop">&nbsp;<a href="chap0_mj.html">[Top of Book]</a>&nbsp;  <a href="chap0_mj.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap2_mj.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap4_mj.html">[Next Chapter]</a>&nbsp;  </div>
 
 <p id="mathjaxlink" class="pcenter"><a href="chap3.html">[MathJax off]</a></p>
-<p><a id="X81F906A77DFCFC36" name="X81F906A77DFCFC36"></a></p>
-<div class="ChapSects"><a href="chap3_mj.html#X81F906A77DFCFC36">3 <span class="Heading">Bruhat Decomposition for the special unitary group (SU)</span></a>
-<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3_mj.html#X86FA580F8055B274">3.1 <span class="Heading">Functions</span></a>
+<p><a id="X80F0E9FA7D0AC6F3" name="X80F0E9FA7D0AC6F3"></a></p>
+<div class="ChapSects"><a href="chap3_mj.html#X80F0E9FA7D0AC6F3">3 <span class="Heading">Special Linear Group</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3_mj.html#X7AB754468477692C">3.1 <span class="Heading">Introduction and Quick Start of functions for SL</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3_mj.html#X81E72B8282AC6ED6">3.2 <span class="Heading">Implemented Subfunctions (Part I)</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3_mj.html#X83E0C06C7AB80DD4">3.3 <span class="Heading">UnipotentDecomposition (Part II - a)</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3_mj.html#X8119AABE86F3606D">3.4 <span class="Heading">UnipotentDecomposition saving Transvections (Part II - b)</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3_mj.html#X80C69E33879354C8">3.5 <span class="Heading">Decomposing the Monomial Matrix (Part III)</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3_mj.html#X7D8EB03B8022F892">3.6 <span class="Heading">Main Function (Part IV)</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3_mj.html#X864D6CAB7CE3BBF0">3.7 <span class="Heading">NC Version</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3_mj.html#X7E41BB5A79A18A9E">3.8 <span class="Heading">Functions for SL</span></a>
 </span>
 <div class="ContSSBlock">
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X85E063C87EC6CCA3">3.1-1 LGOStandardGensSU</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X7F6ECD7380D6D2A0">3.1-2 UnitriangularDecompositionSUEven</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X85795AD27BFECB19">3.1-3 UnitriangularDecompositionSUOdd</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X79E30D6E7DD8291D">3.1-4 UnitriangularDecompositionSU</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X793211108385A4F2">3.1-5 CoefficientsPrimitiveElementS</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X79AD1007829F87F8">3.1-6 BruhatDecompositionSU</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X7B8E470078522BF4">3.1-7 MonomialSLPSUOdd</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X82DB86F379904ADB">3.1-8 MonomialSLPSUEven</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X7A69AFAE8637E93F">3.1-9 CheckContinue</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X86D4EC5985EDD4FF">3.1-10 CycleFromPermutation</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X7A03D6777C11BB61">3.1-11 CycleFromListMine</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X7D83424581E15CB1">3.1-12 DiagSLPSUOdd</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X78315BFA86EC337A">3.1-13 DiagSLPSU</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X7A10BC39849272DC">3.1-14 DiagSLPSUEven</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X7AFC8C7D78152151">3.8-1 MakeSLP</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X828EE9DF7B60A03E">3.8-2 CoefficientsPrimitiveElement</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X7B138D977A8B7189">3.8-3 MyPermutationMat</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X83A6D94479A8BD79">3.8-4 LGOStandardGensSL</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X7E4A850D7AAC4293">3.8-5 HighestSlotOfSLP</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X7D23BD4E79542F4B">3.8-6 MatToWreathProd</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X87F98DEC85E3FDAA">3.8-7 WreathProdToMat</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X7F52B1487F587A1C">3.8-8 AEM</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X7C7736A682A7A0D5">3.8-9 TestIfMonomial</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X85C18012862F6FAD">3.8-10 Transvections2</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X8779E9377C892EB9">3.8-11 UnipotentDecomposition</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X7D30168E7F1DE65C">3.8-12 UnipotentDecompositionWithTi</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X7A75AB0D8104691A">3.8-13 PermutationMonomialMatrix</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X79A14A5D8507B0CD">3.8-14 PermSLP</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X85F12FD9859DE12D">3.8-15 DiagonalDecomposition</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X7FEBAA8B7D834E78">3.8-16 BruhatDecompositionSL</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X7EFA686D79709746">3.8-17 BruhatDecompositionSLWithTi</a></span>
 </div></div>
 </div>
 
-<h3>3 <span class="Heading">Bruhat Decomposition for the special unitary group (SU)</span></h3>
+<h3>3 <span class="Heading">Special Linear Group</span></h3>
 
-<p>In progress.</p>
+<p>This chapter deals with the special linear group</p>
 
-<p><a id="X86FA580F8055B274" name="X86FA580F8055B274"></a></p>
+<p><a id="X7AB754468477692C" name="X7AB754468477692C"></a></p>
 
-<h4>3.1 <span class="Heading">Functions</span></h4>
+<h4>3.1 <span class="Heading">Introduction and Quick Start of functions for SL</span></h4>
 
-<p><a id="X85E063C87EC6CCA3" name="X85E063C87EC6CCA3"></a></p>
+<p>Concept: This implementation follows the ideas of "Straight-line programs with memory and matrix Bruhat decomposition" by Alice Niemeyer, Tomasz Popiel and Cheryl Praeger. In the following all references will mean this paper and in case we differ from this paper (due to readability or bug-fixing) this will also be remarked. <span class="SimpleMath">\(\smallskip\)</span></p>
 
-<h5>3.1-1 LGOStandardGensSU</h5>
+<p>Let <span class="SimpleMath">\(g \in\)</span> SL<span class="SimpleMath">\((d,p^f)\)</span> Bruhat Decomposition computes <span class="SimpleMath">\(g = u_1 \cdot w \cdot u_2\)</span>, where</p>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LGOStandardGensSU</code>( <var class="Arg">i</var>, <var class="Arg">alpha</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
-<p>Returns: true</p>
 
-<p>Let <span class="SimpleMath">\(\alpha \in GF(p^f)\)</span>, <span class="SimpleMath">\(\alpha = \sum a_l \omega^l\)</span>, <span class="SimpleMath">\(\omega\)</span> a primitive element. Suppose further that Tipos is a list of transvections of the form <span class="SimpleMath">\({ t_{i,i-1}(\omega^{ell}) }\)</span>,<span class="SimpleMath">\( 2 \leq i \leq d\)</span>, <span class="SimpleMath">\(0 \leq ell \leq \neq f\)</span>. Then this function computes <span class="SimpleMath">\(t_{i,i-1}( \alpha )\)</span> by (Lemma 4.2) and saves the result in tvpos.</p>
+<ul>
+<li><p><span class="SimpleMath">\(u_1,u_2\)</span> are lower triangular matrices</p>
 
-<p><a id="X7F6ECD7380D6D2A0" name="X7F6ECD7380D6D2A0"></a></p>
+</li>
+<li><p><span class="SimpleMath">\(w\)</span> is monomial matrix <span class="SimpleMath">\(\smallskip\)</span></p>
 
-<h5>3.1-2 UnitriangularDecompositionSUEven</h5>
+</li>
+</ul>
+<p>In this algorithm we want to compute the Bruhat-Decomposition of <span class="SimpleMath">\(g\)</span> and give <span class="SimpleMath">\(g\)</span> (respectively <span class="SimpleMath">\(u_1,w\)</span> and <span class="SimpleMath">\(u_2\)</span>) as word in the so called "LGO standard generators" (REF TODO). <span class="SimpleMath">\(\smallskip\)</span></p>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; UnitriangularDecompositionSUEven</code>( <var class="Arg">i</var>, <var class="Arg">alpha</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
-<p>Returns: true</p>
+<p>1) While computing <span class="SimpleMath">\(u_1\)</span> (resp <span class="SimpleMath">\(u_2\)</span>) with some kind of Gauß-Algorithm, we express the matrices as product of so called transvections</p>
 
-<p>Let <span class="SimpleMath">\(\alpha \in GF(p^f)\)</span>, <span class="SimpleMath">\(\alpha = \sum a_l \omega^l\)</span>, <span class="SimpleMath">\(\omega\)</span> a primitive element. Suppose further that Tipos is a list of transvections of the form <span class="SimpleMath">\({ t_{i,i-1}(\omega^{ell}) }\)</span>,<span class="SimpleMath">\( 2 \leq i \leq d\)</span>, <span class="SimpleMath">\(0 \leq ell \leq \neq f\)</span>. Then this function computes <span class="SimpleMath">\(t_{i,i-1}( \alpha )\)</span> by (Lemma 4.2) and saves the result in tvpos.</p>
 
-<p><a id="X85795AD27BFECB19" name="X85795AD27BFECB19"></a></p>
+<ul>
+<li><p>For <span class="SimpleMath">\(1 \leq j &lt; i \leq d\)</span>: <span class="SimpleMath">\(t_{i,j}(\alpha)\)</span> is the matrix T with 1-entries on diagonal, <span class="SimpleMath">\(T_{i,j} = \alpha\)</span>, 0 elsewhere <span class="SimpleMath">\(\newline\)</span> Each <span class="SimpleMath">\(t_{i,j}(\alpha)\)</span> can be computed from <span class="SimpleMath">\(t_{2,1}(\alpha)\)</span> via recursion, where we have to distinguish the odd and even dimensons (p12 Lemma 4.2). This again can be expressed as a product of <span class="SimpleMath">\(t_{2,1}(\omega^\ell)\)</span> (where omega is a primitive element and <span class="SimpleMath">\(0 \leq \ell &lt; f\)</span>). The transvections as words in the standard generators are described in (p12 Lemma 4.2). <span class="SimpleMath">\(\newline\)</span> This yields a decomposition of <span class="SimpleMath">\(u_1\)</span> and <span class="SimpleMath">\(u_2\)</span> in standard generators. <span class="SimpleMath">\(\smallskip\)</span></p>
 
-<h5>3.1-3 UnitriangularDecompositionSUOdd</h5>
+</li>
+</ul>
+<p>2) In a further step we will decompose the monomial Matrix <span class="SimpleMath">\(w\)</span> in a signed permutation matrix p_sign and a diagonal Matrix diag. ( How to associate p_sign with a product of generators is further described in (PART I b) and (PART III) ) <span class="SimpleMath">\(\smallskip\)</span></p>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; UnitriangularDecompositionSUOdd</code>( <var class="Arg">i</var>, <var class="Arg">alpha</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
-<p>Returns: true</p>
+<p>3) The last step is the decomposition of the diagonal Matrix in 2) as word in the standard generators. <span class="SimpleMath">\(\smallskip\)</span></p>
 
-<p>Let <span class="SimpleMath">\(\alpha \in GF(p^f)\)</span>, <span class="SimpleMath">\(\alpha = \sum a_l \omega^l\)</span>, <span class="SimpleMath">\(\omega\)</span> a primitive element. Suppose further that Tipos is a list of transvections of the form <span class="SimpleMath">\({ t_{i,i-1}(\omega^{ell}) }\)</span>,<span class="SimpleMath">\( 2 \leq i \leq d\)</span>, <span class="SimpleMath">\(0 \leq ell \leq \neq f\)</span>. Then this function computes <span class="SimpleMath">\(t_{i,i-1}( \alpha )\)</span> by (Lemma 4.2) and saves the result in tvpos.</p>
+<p>We won't do this matrix multiplications directly, but write them in a list to evaluate in a StraightLineProgram. (Section 2) Although described differently in the paper, we sometimes will allow instructions to multiply more than two elements (eg during conjugating). This doesn't affect the optimality of an slp much, but higly increases the readability of our implementation. <span class="SimpleMath">\(\smallskip\)</span></p>
 
-<p><a id="X79E30D6E7DD8291D" name="X79E30D6E7DD8291D"></a></p>
+<p><a id="X81E72B8282AC6ED6" name="X81E72B8282AC6ED6"></a></p>
 
-<h5>3.1-4 UnitriangularDecompositionSU</h5>
+<h4>3.2 <span class="Heading">Implemented Subfunctions (Part I)</span></h4>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; UnitriangularDecompositionSU</code>( <var class="Arg">i</var>, <var class="Arg">alpha</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
-<p>Returns: true</p>
+<p>Later we will need some additional functions. Why they are needed and where they are needed is described here.</p>
 
-<p>Let <span class="SimpleMath">\(\alpha \in GF(p^f)\)</span>, <span class="SimpleMath">\(\alpha = \sum a_l \omega^l\)</span>, <span class="SimpleMath">\(\omega\)</span> a primitive element. Suppose further that Tipos is a list of transvections of the form <span class="SimpleMath">\({ t_{i,i-1}(\omega^{ell}) }\)</span>,<span class="SimpleMath">\( 2 \leq i \leq d\)</span>, <span class="SimpleMath">\(0 \leq ell \leq \neq f\)</span>. Then this function computes <span class="SimpleMath">\(t_{i,i-1}( \alpha )\)</span> by (Lemma 4.2) and saves the result in tvpos.</p>
 
-<p><a id="X793211108385A4F2" name="X793211108385A4F2"></a></p>
+<ul>
+<li><p><code class="code">MakeSLP()</code>: After the <code class="code">BruhatDecompositionSL()</code> we get a list of instructions to calculate the matrices we want using the LGO standard generators. <code class="code">MakeSLP()</code> is used to get a SLP out of these instructions.</p>
 
-<h5>3.1-5 CoefficientsPrimitiveElementS</h5>
+</li>
+<li><p><code class="code">CoefficientsPrimitiveElement()</code>: It expresses an element w in a field fld as a linear combination of a Primitive Element. This is important for the transvections. (TODO Add Reference!)</p>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CoefficientsPrimitiveElementS</code>( <var class="Arg">i</var>, <var class="Arg">alpha</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
-<p>Returns: true</p>
+</li>
+<li><p><code class="code">MyPermutationMat()</code>: Turns a permutation into a permutation matrix. We need it to calculate the LGO standard generator.</p>
 
-<p>Let <span class="SimpleMath">\(\alpha \in GF(p^f)\)</span>, <span class="SimpleMath">\(\alpha = \sum a_l \omega^l\)</span>, <span class="SimpleMath">\(\omega\)</span> a primitive element. Suppose further that Tipos is a list of transvections of the form <span class="SimpleMath">\({ t_{i,i-1}(\omega^{ell}) }\)</span>,<span class="SimpleMath">\( 2 \leq i \leq d\)</span>, <span class="SimpleMath">\(0 \leq ell \leq \neq f\)</span>. Then this function computes <span class="SimpleMath">\(t_{i,i-1}( \alpha )\)</span> by (Lemma 4.2) and saves the result in tvpos.</p>
+</li>
+<li><p><code class="code">LGOStandardGensSL()</code>: This function computes the standard generators of SL as given by C. R. Leedham-Green and E. A. O'Brien in "Constructive Recognition of Classical Groups in odd characteristic". (TODO Add Reference!)</p>
 
-<p><a id="X79AD1007829F87F8" name="X79AD1007829F87F8"></a></p>
+</li>
+<li><p><code class="code">HighestSlotOfSLP()</code>: The following function determines the highest slot of a SLP constructed from the list slp will write in. This is important to glue SLPs together.</p>
 
-<h5>3.1-6 BruhatDecompositionSU</h5>
+</li>
+<li><p><code class="code">MatToWreathProd()</code> and <code class="code">WreathProdToMat()</code>: In <code class="code">PermSLP()</code> [<a href="chap3_mj.html#X79A14A5D8507B0CD"><span class="RefLink">3.8-14</span></a>] we want to transform the monomial matrix <span class="SimpleMath">\(w\)</span> given by <code class="code">UnipotentDecomposition()</code> into a diagonal matrix. (The exact procedure is described in <code class="code">PermSLP()</code> [<a href="chap3_mj.html#X79A14A5D8507B0CD"><span class="RefLink">3.8-14</span></a>])</p>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; BruhatDecompositionSU</code>( <var class="Arg">gens</var>, <var class="Arg">g</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
-<p>Returns: true</p>
+<p>Since multiplying the LGO standard-generators <span class="SimpleMath">\(s,v\)</span> and <span class="SimpleMath">\(x\)</span> not only involves permutations but we also have to consider which non-zero entries are <span class="SimpleMath">\(+1\)</span> and which <span class="SimpleMath">\(-1\)</span>, we want to associate this matrices with permutations on <span class="SimpleMath">\(2d\)</span> points. (cf. Wreath-Product)</p>
 
-<p>Let <span class="SimpleMath">\(\alpha \in GF(p^f)\)</span>, <span class="SimpleMath">\(\alpha = \sum a_l \omega^l\)</span>, <span class="SimpleMath">\(\omega\)</span> a primitive element. Suppose further that Tipos is a list of transvections of the form <span class="SimpleMath">\({ t_{i,i-1}(\omega^{ell}) }\)</span>,<span class="SimpleMath">\( 2 \leq i \leq d\)</span>, <span class="SimpleMath">\(0 \leq ell \leq \neq f\)</span>. Then this function computes <span class="SimpleMath">\(t_{i,i-1}( \alpha )\)</span> by (Lemma 4.2) and saves the result in tvpos.</p>
+<p><span class="SimpleMath">\([s,v,x] \to Sym(2d), M \to \)</span> <code class="code">Mwr</code> where <span class="SimpleMath">\(i^{Mwr} = j\)</span> and <span class="SimpleMath">\((i+d)^{Mwr}= j+d\)</span> if <span class="SimpleMath">\( M_{i,j} = 1\)</span> and <span class="SimpleMath">\(i^{Mwr} = j+d\)</span> and <span class="SimpleMath">\((i+d)^{Mwr}= j\)</span> if <span class="SimpleMath">\(M_{i,j} = -1\)</span> for <span class="SimpleMath">\(1 \leq i \leq d\)</span>.</p>
 
-<p><a id="X7B8E470078522BF4" name="X7B8E470078522BF4"></a></p>
+<p>Due to their relation to wreath-products, we will call denote the image of a matrix <code class="code">M</code><span class="SimpleMath">\( \in [s,v,x] \)</span> by <code class="code">Mwr</code>.</p>
 
-<h5>3.1-7 MonomialSLPSUOdd</h5>
+<p>In fact the association from <code class="code">MatToWreathProd()</code> [<a href="chap3_mj.html#X7D23BD4E79542F4B"><span class="RefLink">3.8-6</span></a>] is an isomorphism and we can associate to each permutation we compute during <code class="code">PermSLP()</code> [<a href="chap3_mj.html#X79A14A5D8507B0CD"><span class="RefLink">3.8-14</span></a>] a signed permutation matrix (a monomial matrix with only <span class="SimpleMath">\(+1\)</span> and <span class="SimpleMath">\(-1\)</span> as non-zero entries).</p>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MonomialSLPSUOdd</code>( <var class="Arg">arg</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
-<p>Returns: true</p>
+<p><span class="SimpleMath">\(M_{i,j} = 1\)</span> if <span class="SimpleMath">\(i^{Mwr} = j \leq d\)</span> and <span class="SimpleMath">\(M_{i,j} = -1\)</span> if <span class="SimpleMath">\(i^{Mwr} = j+d\)</span></p>
 
-<p>Let <span class="SimpleMath">\(\alpha \in GF(p^f)\)</span>, <span class="SimpleMath">\(\alpha = \sum a_l \omega^l\)</span>, <span class="SimpleMath">\(\omega\)</span> a primitive element. Suppose further that Tipos is a list of transvections of the form <span class="SimpleMath">\({ t_{i,i-1}(\omega^{ell}) }\)</span>,<span class="SimpleMath">\( 2 \leq i \leq d\)</span>, <span class="SimpleMath">\(0 \leq ell \leq \neq f\)</span>. Then this function computes <span class="SimpleMath">\(t_{i,i-1}( \alpha )\)</span> by (Lemma 4.2) and saves the result in tvpos.</p>
+</li>
+<li><p><code class="code">AEM()</code>: Write instructions for Ancient Egyptian Multiplication in slp. At several occasions we will need to compute a high power of some value saved in a memory slot.</p>
 
-<p><a id="X82DB86F379904ADB" name="X82DB86F379904ADB"></a></p>
+</li>
+<li><p><code class="code">TestIfMonomial()</code>: Tests if a given matrix M is monomial matrix. We use it to decide whether we are already finished in <code class="code">UnipotentDecomposition()</code>.</p>
 
-<h5>3.1-8 MonomialSLPSUEven</h5>
+</li>
+</ul>
+<p>For some functions also exist a NC version. See [<a href="chap3_mj.html#X864D6CAB7CE3BBF0"><span class="RefLink">3.7</span></a>].</p>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MonomialSLPSUEven</code>( <var class="Arg">arg</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
-<p>Returns: true</p>
+<p><a id="X83E0C06C7AB80DD4" name="X83E0C06C7AB80DD4"></a></p>
 
-<p>Let <span class="SimpleMath">\(\alpha \in GF(p^f)\)</span>, <span class="SimpleMath">\(\alpha = \sum a_l \omega^l\)</span>, <span class="SimpleMath">\(\omega\)</span> a primitive element. Suppose further that Tipos is a list of transvections of the form <span class="SimpleMath">\({ t_{i,i-1}(\omega^{ell}) }\)</span>,<span class="SimpleMath">\( 2 \leq i \leq d\)</span>, <span class="SimpleMath">\(0 \leq ell \leq \neq f\)</span>. Then this function computes <span class="SimpleMath">\(t_{i,i-1}( \alpha )\)</span> by (Lemma 4.2) and saves the result in tvpos.</p>
+<h4>3.3 <span class="Heading">UnipotentDecomposition (Part II - a)</span></h4>
 
-<p><a id="X7A69AFAE8637E93F" name="X7A69AFAE8637E93F"></a></p>
+<p>In this section is the <code class="code">UnipotentDecomposition()</code> described. This method is used to compute the Unitriangular decomposition of the matrix <span class="SimpleMath">\(g\)</span>. [<a href="chap3_mj.html#X8779E9377C892EB9"><span class="RefLink">3.8-11</span></a>]</p>
 
-<h5>3.1-9 CheckContinue</h5>
+<p>For this we use five local functions in the <code class="code">UnipotentDecomposition()</code>. They are <code class="code">TransvecAtAlpha()</code>, <code class="code">ShiftTransvections()</code>, <code class="code">FastShiftTransvections()</code>, <code class="code">BackShiftTransvections()</code> and <code class="code">FastBackShiftTransvections()</code>.</p>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CheckContinue</code>( <var class="Arg">i</var>, <var class="Arg">alpha</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
-<p>Returns: true</p>
+<p>The difference to <code class="code">UnipotentDecompositionWithTi()</code> [<a href="chap3_mj.html#X8119AABE86F3606D"><span class="RefLink">3.4</span></a>] is that this version won't store all the transvections <span class="SimpleMath">\(t_{i,i-1}(\omega^l)\)</span>. This will increase the runtime but reduce the memory usage by <span class="SimpleMath">\((d-3) \cdot f\)</span> compared to the <code class="code">UnipotentDecompositionWithTi()</code>.</p>
 
-<p>Let <span class="SimpleMath">\(\alpha \in GF(p^f)\)</span>, <span class="SimpleMath">\(\alpha = \sum a_l \omega^l\)</span>, <span class="SimpleMath">\(\omega\)</span> a primitive element. Suppose further that Tipos is a list of transvections of the form <span class="SimpleMath">\({ t_{i,i-1}(\omega^{ell}) }\)</span>,<span class="SimpleMath">\( 2 \leq i \leq d\)</span>, <span class="SimpleMath">\(0 \leq ell \leq \neq f\)</span>. Then this function computes <span class="SimpleMath">\(t_{i,i-1}( \alpha )\)</span> by (Lemma 4.2) and saves the result in tvpos.</p>
+<p>The function can be called for example by</p>
 
-<p><a id="X86D4EC5985EDD4FF" name="X86D4EC5985EDD4FF"></a></p>
 
-<h5>3.1-10 CycleFromPermutation</h5>
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">d := 3;;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">q := 5;;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L := SL(d, q);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">m := PseudoRandom(L);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">stdgens := LGOStandardGensSL(d, q);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">UnipotentDecomposition( stdgens, g);;</span>
+</pre></div>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CycleFromPermutation</code>( <var class="Arg">i</var>, <var class="Arg">alpha</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
-<p>Returns: true</p>
+<p><a id="X8119AABE86F3606D" name="X8119AABE86F3606D"></a></p>
 
-<p>Let <span class="SimpleMath">\(\alpha \in GF(p^f)\)</span>, <span class="SimpleMath">\(\alpha = \sum a_l \omega^l\)</span>, <span class="SimpleMath">\(\omega\)</span> a primitive element. Suppose further that Tipos is a list of transvections of the form <span class="SimpleMath">\({ t_{i,i-1}(\omega^{ell}) }\)</span>,<span class="SimpleMath">\( 2 \leq i \leq d\)</span>, <span class="SimpleMath">\(0 \leq ell \leq \neq f\)</span>. Then this function computes <span class="SimpleMath">\(t_{i,i-1}( \alpha )\)</span> by (Lemma 4.2) and saves the result in tvpos.</p>
+<h4>3.4 <span class="Heading">UnipotentDecomposition saving Transvections (Part II - b)</span></h4>
 
-<p><a id="X7A03D6777C11BB61" name="X7A03D6777C11BB61"></a></p>
+<p>In this section is the <code class="code">UnipotentDecompositionWithTi()</code> described. This method is used to compute the Unitriangular decomposition of the matrix <span class="SimpleMath">\(g\)</span>. [<a href="chap3_mj.html#X7D30168E7F1DE65C"><span class="RefLink">3.8-12</span></a>]</p>
 
-<h5>3.1-11 CycleFromListMine</h5>
+<p>In this version we will store all the transvections <span class="SimpleMath">\(t_{i,i-1}(\omega^l)\)</span>. This will increase the memory usage by <span class="SimpleMath">\((d-3) \cdot f\)</span> but reduce runtime.</p>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CycleFromListMine</code>( <var class="Arg">i</var>, <var class="Arg">alpha</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
-<p>Returns: true</p>
+<p>In <code class="code">UnipotentDecompositionWithTi()</code> we use two local functions. They are <code class="code">TransvectionAtAlpha()</code> and <code class="code">ComputeAllTransvections()</code>.</p>
 
-<p>Let <span class="SimpleMath">\(\alpha \in GF(p^f)\)</span>, <span class="SimpleMath">\(\alpha = \sum a_l \omega^l\)</span>, <span class="SimpleMath">\(\omega\)</span> a primitive element. Suppose further that Tipos is a list of transvections of the form <span class="SimpleMath">\({ t_{i,i-1}(\omega^{ell}) }\)</span>,<span class="SimpleMath">\( 2 \leq i \leq d\)</span>, <span class="SimpleMath">\(0 \leq ell \leq \neq f\)</span>. Then this function computes <span class="SimpleMath">\(t_{i,i-1}( \alpha )\)</span> by (Lemma 4.2) and saves the result in tvpos.</p>
+<p>The function can be called for example by</p>
 
-<p><a id="X7D83424581E15CB1" name="X7D83424581E15CB1"></a></p>
 
-<h5>3.1-12 DiagSLPSUOdd</h5>
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">d := 3;;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">q := 5;;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L := SL(d, q);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">m := PseudoRandom(L);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">stdgens := LGOStandardGensSL(d, q);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">UnipotentDecompositionWithTi( stdgens, g);;</span>
+</pre></div>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DiagSLPSUOdd</code>( <var class="Arg">i</var>, <var class="Arg">alpha</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
-<p>Returns: true</p>
+<p><a id="X80C69E33879354C8" name="X80C69E33879354C8"></a></p>
 
-<p>Let <span class="SimpleMath">\(\alpha \in GF(p^f)\)</span>, <span class="SimpleMath">\(\alpha = \sum a_l \omega^l\)</span>, <span class="SimpleMath">\(\omega\)</span> a primitive element. Suppose further that Tipos is a list of transvections of the form <span class="SimpleMath">\({ t_{i,i-1}(\omega^{ell}) }\)</span>,<span class="SimpleMath">\( 2 \leq i \leq d\)</span>, <span class="SimpleMath">\(0 \leq ell \leq \neq f\)</span>. Then this function computes <span class="SimpleMath">\(t_{i,i-1}( \alpha )\)</span> by (Lemma 4.2) and saves the result in tvpos.</p>
+<h4>3.5 <span class="Heading">Decomposing the Monomial Matrix (Part III)</span></h4>
 
-<p><a id="X78315BFA86EC337A" name="X78315BFA86EC337A"></a></p>
+<p>We use three functions to decompose the monomial matrix <span class="SimpleMath">\(w\)</span> we get from <code class="code">UnipotentDecomposition()</code>. They are:</p>
 
-<h5>3.1-13 DiagSLPSU</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DiagSLPSU</code>( <var class="Arg">i</var>, <var class="Arg">alpha</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
-<p>Returns: true</p>
+<ul>
+<li><p><code class="code">PermutationMonomialMatrix()</code>: Find the permutation (in Sym(d) corresponding to the monomial matrix <span class="SimpleMath">\(w\)</span>) and <span class="SimpleMath">\(diag\)</span> a diagonal matrix, where <span class="SimpleMath">\(diag[i]\)</span> is the non-zero entry of row <span class="SimpleMath">\(i\)</span>. [<a href="chap3_mj.html#X7A75AB0D8104691A"><span class="RefLink">3.8-13</span></a>]</p>
 
-<p>Let <span class="SimpleMath">\(\alpha \in GF(p^f)\)</span>, <span class="SimpleMath">\(\alpha = \sum a_l \omega^l\)</span>, <span class="SimpleMath">\(\omega\)</span> a primitive element. Suppose further that Tipos is a list of transvections of the form <span class="SimpleMath">\({ t_{i,i-1}(\omega^{ell}) }\)</span>,<span class="SimpleMath">\( 2 \leq i \leq d\)</span>, <span class="SimpleMath">\(0 \leq ell \leq \neq f\)</span>. Then this function computes <span class="SimpleMath">\(t_{i,i-1}( \alpha )\)</span> by (Lemma 4.2) and saves the result in tvpos.</p>
+</li>
+<li><p><code class="code">PermSLP()</code>: In this function we will transform a monomial matrix <span class="SimpleMath">\(w \in \)</span>SL<span class="SimpleMath">\((d,q)\)</span> into a diagonal matrix <span class="SimpleMath">\(diag\)</span>. Using only the standard-generators <span class="SimpleMath">\(s,v,x\)</span>. This will lead to a monomial matrix <span class="SimpleMath">\(p_{sign}\)</span> with only <span class="SimpleMath">\(\pm 1\)</span> in non-zero entries and <span class="SimpleMath">\(p_{sign} \cdot diag = w\)</span> (i.e. <span class="SimpleMath">\(diag = (p_{sign})^{-1} \cdot w\)</span> ).</p>
 
-<p><a id="X7A10BC39849272DC" name="X7A10BC39849272DC"></a></p>
+<p>Furthermore we will return list <code class="code">slp</code> of instructions which will (when evaluated at the LGO standard-generators) yield <span class="SimpleMath">\(diag\)</span>.</p>
 
-<h5>3.1-14 DiagSLPSUEven</h5>
+<p>It is sufficient for <span class="SimpleMath">\(diag\)</span> to be diagonal, if the permutation associated with <span class="SimpleMath">\(w\)</span> (i.e. <span class="SimpleMath">\(i^{\pi_w} = j\)</span> if <span class="SimpleMath">\(M_{i,j} \neq 0\)</span>) is the inverse of the permutation associated to <span class="SimpleMath">\(p_{sign}\)</span> (again only to Sym(<span class="SimpleMath">\(d\)</span>) ).</p>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DiagSLPSUEven</code>( <var class="Arg">i</var>, <var class="Arg">alpha</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
-<p>Returns: true</p>
+<p>In <code class="code">PermSLP()</code> we thus transform <span class="SimpleMath">\(\pi_w\)</span> to <span class="SimpleMath">\(()\)</span> using only <span class="SimpleMath">\(\{ \pi_s, \pi_v, \pi_x \}\)</span>. In order to know <span class="SimpleMath">\(diag\)</span> without computing all matrix multiplications, (we don't know the signs of <span class="SimpleMath">\(p_{sign}\)</span>), we compute a second permutation simultaneously (here using their identification with permutations in Sym<span class="SimpleMath">\((2d)\)</span> and identifying <span class="SimpleMath">\(\{ \pi_s, \pi_v, \pi_x \}\)</span> with <span class="SimpleMath">\(\{s,v,x\}\)</span> ). [<a href="chap3_mj.html#X79A14A5D8507B0CD"><span class="RefLink">3.8-14</span></a>]</p>
 
-<p>Let <span class="SimpleMath">\(\alpha \in GF(p^f)\)</span>, <span class="SimpleMath">\(\alpha = \sum a_l \omega^l\)</span>, <span class="SimpleMath">\(\omega\)</span> a primitive element. Suppose further that Tipos is a list of transvections of the form <span class="SimpleMath">\({ t_{i,i-1}(\omega^{ell}) }\)</span>,<span class="SimpleMath">\( 2 \leq i \leq d\)</span>, <span class="SimpleMath">\(0 \leq ell \leq \neq f\)</span>. Then this function computes <span class="SimpleMath">\(t_{i,i-1}( \alpha )\)</span> by (Lemma 4.2) and saves the result in tvpos.</p>
+</li>
+<li><p><code class="code">DiagonalDecomposition()</code>: Writes a list of instructions which evaluated on LGO standard-generators yield the diagonal matrix of the input. [<a href="chap3_mj.html#X85F12FD9859DE12D"><span class="RefLink">3.8-15</span></a>]</p>
+
+</li>
+</ul>
+<p>To these three functions is also a NC version implemented. See [<a href="chap3_mj.html#X864D6CAB7CE3BBF0"><span class="RefLink">3.7</span></a>].</p>
+
+<p><a id="X7D8EB03B8022F892" name="X7D8EB03B8022F892"></a></p>
+
+<h4>3.6 <span class="Heading">Main Function (Part IV)</span></h4>
+
+<p>In <code class="code">BruhatDecompositionSL()</code> [<a href="chap3_mj.html#X7FEBAA8B7D834E78"><span class="RefLink">3.8-16</span></a>] we put everything together. We use the three functions <code class="code">UnipotentDecomposition()</code> [<a href="chap3_mj.html#X8779E9377C892EB9"><span class="RefLink">3.8-11</span></a>], <code class="code">PermSLP()</code> [<a href="chap3_mj.html#X79A14A5D8507B0CD"><span class="RefLink">3.8-14</span></a>] and <code class="code">DiagonalDecomposition()</code> [<a href="chap3_mj.html#X85F12FD9859DE12D"><span class="RefLink">3.8-15</span></a>] to compute matrices with <span class="SimpleMath">\(u_1^{-1} \cdot p_{sign} \cdot diag \cdot u_2^{-1} = g\)</span> and a SLP <code class="code">pgr</code> that computes these matrices with the LGO standard generators.</p>
+
+<p>Here is an exampel:</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">mat := [ [ Z(5)^2, Z(5)^0, Z(5)^2 ],</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">            [ Z(5)^3, 0*Z(5), 0*Z(5) ],</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">            [ 0*Z(5), Z(5)^2, Z(5)^2 ] ];;#!</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L := BruhatDecompositionSL(LGOStandardGensSL(3,5), mat);</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">result := ResultOfStraightLineProgram(L[1], LGOStandardGensSL(3,5));</span>
+</pre></div>
+
+<p><code class="code">BruhatDecompositionSLWithTi()</code> [<a href="chap3_mj.html#X7EFA686D79709746"><span class="RefLink">3.8-17</span></a>] works like <code class="code">BruhatDecompositionSL()</code> [<a href="chap3_mj.html#X7FEBAA8B7D834E78"><span class="RefLink">3.8-16</span></a>] but uses <code class="code">UnipotentDecompositionWithTi()</code> [<a href="chap3_mj.html#X7D30168E7F1DE65C"><span class="RefLink">3.8-12</span></a>] instead of <code class="code">UnipotentDecomposition()</code> [<a href="chap3_mj.html#X8779E9377C892EB9"><span class="RefLink">3.8-11</span></a>].</p>
+
+<p>You can use it in the same way like <code class="code">BruhatDecompositionSL()</code>:</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">mat := [ [ Z(5)^2, Z(5)^0, Z(5)^2 ],</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">            [ Z(5)^3, 0*Z(5), 0*Z(5) ],</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">            [ 0*Z(5), Z(5)^2, Z(5)^2 ] ];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L := BruhatDecompositionSLWithTi(LGOStandardGensSL(3,5), mat);</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">result := ResultOfStraightLineProgram(L[1], LGOStandardGensSL(3,5));</span>
+</pre></div>
+
+<p>To both functions is also a NC version implemented. See [<a href="chap3_mj.html#X864D6CAB7CE3BBF0"><span class="RefLink">3.7</span></a>].</p>
+
+<p><a id="X864D6CAB7CE3BBF0" name="X864D6CAB7CE3BBF0"></a></p>
+
+<h4>3.7 <span class="Heading">NC Version</span></h4>
+
+<p>Here is the NC version of the Bruhat Decomposition described. In all implemented functions are all used functions replaced through their NC version (if one exists). Moreover are all checks from functions of MyBruhatDecomposition removed.</p>
+
+<p>These functions has been modified by this actions and got a NC Version:</p>
+
+
+<ul>
+<li><p><code class="code">MakeSLP()</code>[<a href="chap3_mj.html#X7AFC8C7D78152151"><span class="RefLink">3.8-1</span></a>] <span class="SimpleMath">\(\to\)</span> <code class="code">MakeSLPNC()</code>[<a href="chap3_mj.html#X7AFC8C7D78152151"><span class="RefLink">3.8-1</span></a>] (uses the NC version of <code class="code">StraightLineProgram</code>)</p>
+
+</li>
+<li><p><code class="code">MyPermutationMat()</code> [<a href="chap3_mj.html#X7B138D977A8B7189"><span class="RefLink">3.8-3</span></a>] <span class="SimpleMath">\(\to\)</span> <code class="code">MyPermutationMatNC()</code> [<a href="chap3_mj.html#X7B138D977A8B7189"><span class="RefLink">3.8-3</span></a>] (uses the NC version of <code class="code">ConvertToMatrixRep</code>)</p>
+
+</li>
+<li><p><code class="code">LGOStandardGensSL()</code> [<a href="chap3_mj.html#X83A6D94479A8BD79"><span class="RefLink">3.8-4</span></a>] <span class="SimpleMath">\(\to\)</span> <code class="code">LGOStandardGensSLNC()</code> [<a href="chap3_mj.html#X83A6D94479A8BD79"><span class="RefLink">3.8-4</span></a>] (uses the NC version of <code class="code">MyPermutationMat()</code>)</p>
+
+</li>
+<li><p><code class="code">MatToWreathProd()</code> [<a href="chap3_mj.html#X7D23BD4E79542F4B"><span class="RefLink">3.8-6</span></a>] <span class="SimpleMath">\(\to\)</span> <code class="code">MatToWreathProdNC()</code> [<a href="chap3_mj.html#X7D23BD4E79542F4B"><span class="RefLink">3.8-6</span></a>] (no checks for user input)</p>
+
+</li>
+<li><p><code class="code">TestIfMonomial()</code> [<a href="chap3_mj.html#X7C7736A682A7A0D5"><span class="RefLink">3.8-9</span></a>] <span class="SimpleMath">\(\to\)</span> <code class="code">TestIfMonomialNC()</code> [<a href="chap3_mj.html#X7C7736A682A7A0D5"><span class="RefLink">3.8-9</span></a>] (no checks for user input)</p>
+
+</li>
+<li><p><code class="code">UnipotentDecomposition()</code> [<a href="chap3_mj.html#X8779E9377C892EB9"><span class="RefLink">3.8-11</span></a>] <span class="SimpleMath">\(\to\)</span> <code class="code">UnipotentDecompositionNC()</code> [<a href="chap3_mj.html#X8779E9377C892EB9"><span class="RefLink">3.8-11</span></a>] (no checks for user input)</p>
+
+</li>
+<li><p><code class="code">UnipotentDecompositionWithTi()</code> [<a href="chap3_mj.html#X7D30168E7F1DE65C"><span class="RefLink">3.8-12</span></a>] <span class="SimpleMath">\(\to\)</span> <code class="code">UnipotentDecompositionWithTiNC()</code> [<a href="chap3_mj.html#X7D30168E7F1DE65C"><span class="RefLink">3.8-12</span></a>] (no checks for user input)</p>
+
+</li>
+<li><p><code class="code">PermutationMonomialMatrix()</code> [<a href="chap3_mj.html#X7A75AB0D8104691A"><span class="RefLink">3.8-13</span></a>] <span class="SimpleMath">\(\to\)</span> <code class="code">PermutationMonomialMatrixNC()</code> [<a href="chap3_mj.html#X7A75AB0D8104691A"><span class="RefLink">3.8-13</span></a>] (no checks for user input)</p>
+
+</li>
+<li><p><code class="code">PermSLP()</code> [<a href="chap3_mj.html#X79A14A5D8507B0CD"><span class="RefLink">3.8-14</span></a>] <span class="SimpleMath">\(\to\)</span> <code class="code">PermSLPNC()</code> [<a href="chap3_mj.html#X79A14A5D8507B0CD"><span class="RefLink">3.8-14</span></a>] (no checks for unser input and uses <code class="code">PermutationMonomialMatrixNC()</code>)</p>
+
+</li>
+<li><p><code class="code">DiagonalDecomposition()</code> [<a href="chap3_mj.html#X85F12FD9859DE12D"><span class="RefLink">3.8-15</span></a>] <span class="SimpleMath">\(\to\)</span> <code class="code">DiagonalDecompositionNC()</code> [<a href="chap3_mj.html#X85F12FD9859DE12D"><span class="RefLink">3.8-15</span></a>] (no checks for user input)</p>
+
+</li>
+<li><p><code class="code">BruhatDecompositionSL()</code> [<a href="chap3_mj.html#X7FEBAA8B7D834E78"><span class="RefLink">3.8-16</span></a>] <span class="SimpleMath">\(\to\)</span> <code class="code">BruhatDecompositionSLNC()</code> [<a href="chap3_mj.html#X7FEBAA8B7D834E78"><span class="RefLink">3.8-16</span></a>] (uses <code class="code">UnipotentDecompositionNC()</code>, <code class="code">PermSLPNC()</code> and <code class="code">DiagonalDecompositionNC</code>)</p>
+
+</li>
+<li><p><code class="code">BruhatDecompositionSLWithTi()</code> [<a href="chap3_mj.html#X7EFA686D79709746"><span class="RefLink">3.8-17</span></a>] <span class="SimpleMath">\(\to\)</span> <code class="code">BruhatDecompositionSLWithTiNC()</code> [<a href="chap3_mj.html#X7EFA686D79709746"><span class="RefLink">3.8-17</span></a>] (uses <code class="code">UnipotentDecompositionWithTiNC()</code>, <code class="code">PermSLPNC()</code> and <code class="code">DiagonalDecompositionNC()</code>)</p>
+
+</li>
+</ul>
+<p><a id="X7E41BB5A79A18A9E" name="X7E41BB5A79A18A9E"></a></p>
+
+<h4>3.8 <span class="Heading">Functions for SL</span></h4>
+
+<p><a id="X7AFC8C7D78152151" name="X7AFC8C7D78152151"></a></p>
+
+<h5>3.8-1 MakeSLP</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MakeSLP</code>( <var class="Arg">slp</var>, <var class="Arg">genlen</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MakeSLPNC</code>( <var class="Arg">arg</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns: An SLP using the instructions of slp and genlen inputs</p>
+
+<p>slp: A list of instructions for a straight-line program, <span class="SimpleMath">\(\newline\)</span> genlen: The number of inputs for our SLP (ie the number of generators ) <span class="SimpleMath">\(\newline\)</span> To increase readability, the lists slp as defined later (see Unipotent-, Diagonal-, BruhatDecompositionSL and PermSLP) start with [1,1],[2,1],.. [5,1]. However this represents the LGO standard- generators and is the input of our straight-line program. Defining and SLP we thus have to exclude this instructions from our list.</p>
+
+<p><a id="X828EE9DF7B60A03E" name="X828EE9DF7B60A03E"></a></p>
+
+<h5>3.8-2 CoefficientsPrimitiveElement</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CoefficientsPrimitiveElement</code>( <var class="Arg">fld</var>, <var class="Arg">alpha</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns: Coefficients (A vector c sth for omega primitive element alpha = sum c[i] omega^(i-1))</p>
+
+<p>fld: A field, <span class="SimpleMath">\(\newline\)</span> alpha: An element of fld <span class="SimpleMath">\(\newline\)</span> The following function has been written by Thomas Breuer. It expresses an element alpha in a field fld as a linear combination of a Primitive Element.</p>
+
+<p><a id="X7B138D977A8B7189" name="X7B138D977A8B7189"></a></p>
+
+<h5>3.8-3 MyPermutationMat</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MyPermutationMat</code>( <var class="Arg">perm</var>, <var class="Arg">dim</var>, <var class="Arg">fld</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MyPermutationMatNC</code>( <var class="Arg">arg</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns: The permutation matrix of perm over <span class="SimpleMath">\(M_{d x d}(fld)\)</span> (ie <span class="SimpleMath">\(res_{i,j} = One(fld)\)</span> if <span class="SimpleMath">\(i^{perm} = j\)</span>)</p>
+
+<p>perm: A permutation, <span class="SimpleMath">\(\newline\)</span> dim: A natural number, <span class="SimpleMath">\(\newline\)</span> fld: A field <span class="SimpleMath">\(\newline\)</span> Given a permutation an integer <span class="SimpleMath">\(d &gt; 0\)</span> and a field fld, this function computes the permutation matrix <span class="SimpleMath">\(P\)</span> in <span class="SimpleMath">\(M_{d x d}(fld)\)</span>.</p>
+
+<p><a id="X83A6D94479A8BD79" name="X83A6D94479A8BD79"></a></p>
+
+<h5>3.8-4 LGOStandardGensSL</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LGOStandardGensSL</code>( <var class="Arg">d</var>, <var class="Arg">q</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LGOStandardGensSLNC</code>( <var class="Arg">arg</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns: stdgens (the LGO standard-generators of SL<span class="SimpleMath">\((d,q)\)</span>)</p>
+
+<p><span class="SimpleMath">\(d\)</span>: the dimension of our matrix, <span class="SimpleMath">\(\newline\)</span> <span class="SimpleMath">\(q\)</span>: A prime power <span class="SimpleMath">\(q = p^f\)</span>, where <span class="SimpleMath">\(F_q\)</span> ist the field whereover the matrices are defined <span class="SimpleMath">\(\newline\)</span> This function computes the standard generators of SL as given by C. R. Leedham-Green and E. A. O'Brien in "Constructive Recognition of Classical Groups in odd characteristic" (This matrices can also be found in the paper ch 3.1 ps 6-7)</p>
+
+<p><a id="X7E4A850D7AAC4293" name="X7E4A850D7AAC4293"></a></p>
+
+<h5>3.8-5 HighestSlotOfSLP</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; HighestSlotOfSLP</code>( <var class="Arg">slp</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns: highestslot (The number of slots this SLP will need if evaluated)</p>
+
+<p>slp: A list of instructions satisfying the properties for an SLP <span class="SimpleMath">\(\newline\)</span> The following function determines the highest slot a SLP constructed from the list slp will write in.</p>
+
+<p><a id="X7D23BD4E79542F4B" name="X7D23BD4E79542F4B"></a></p>
+
+<h5>3.8-6 MatToWreathProd</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MatToWreathProd</code>( <var class="Arg">M</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MatToWreathProdNC</code>( <var class="Arg">arg</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns: perm (the permutation Mwr)</p>
+
+<p>M: A monomial matrix with only +1 and -1 entries <span class="SimpleMath">\(\newline\)</span> In PermSLP we want to transform the monomial matrix w given by UnipotentDecomposition() into a diagonal matrix. (The exact procedure is described in PermSLP) Since multiplying the LGO standard-generators <span class="SimpleMath">\(s,v\)</span> and <span class="SimpleMath">\(x\)</span> not only involves permutations but we also have to consider which non-zero entries are +1 and which -1, we want to associate this matrices with permutations on <span class="SimpleMath">\(2d\)</span> points. (cf Wreath-Product) <span class="SimpleMath">\( \langle s,v,x \rangle \rightarrow\)</span> Sym<span class="SimpleMath">\((2d), M \rightarrow Mwr\)</span> where <span class="SimpleMath">\(i^{Mwr} = j \)</span> and <span class="SimpleMath">\((i+d)^{Mwr}= j+d\)</span> if <span class="SimpleMath">\(M_{i,j} = 1\)</span> and <span class="SimpleMath">\(i^{Mwr} = j+d\)</span> and <span class="SimpleMath">\((i+d)^{Mwr}= j\)</span> if <span class="SimpleMath">\(M_{i,j} = -1\)</span> for <span class="SimpleMath">\(1\leq i\leq d\)</span> Due to their relation to wreath-products, we will call denote the image of a matrix <span class="SimpleMath">\(M \in \langle s,v,x \rangle \)</span> by Mwr</p>
+
+<p><a id="X87F98DEC85E3FDAA" name="X87F98DEC85E3FDAA"></a></p>
+
+<h5>3.8-7 WreathProdToMat</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; WreathProdToMat</code>( <var class="Arg">perm</var>, <var class="Arg">dim</var>, <var class="Arg">fld</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns: res (The Matrix M satisfying the below properties)</p>
+
+<p>perm: A permutation in Sym(<span class="SimpleMath">\(2d\)</span>) sth. <span class="SimpleMath">\({{i,i+d}}_1: 1 \leq i \leq d \)</span> are blocks, <span class="SimpleMath">\(\newline\)</span> dim: The dimension of the matrix we want perm send to, <span class="SimpleMath">\(\newline\)</span> fld: The field whereover the matrix is defined. <span class="SimpleMath">\(\newline\)</span> In fact the association above is an isomorphism and we can associate to each permutation we compute during PermSLP a unique monomial matrix whose non-zero entries are +1 or -1. <span class="SimpleMath">\(M_{i,j} = 1\)</span> if <span class="SimpleMath">\(i^{Mwr} = j \leq d \)</span> and <span class="SimpleMath">\(M_{i,j} = -1\)</span> if <span class="SimpleMath">\(i^{Mwr} = j+d\)</span></p>
+
+<p><a id="X7F52B1487F587A1C" name="X7F52B1487F587A1C"></a></p>
+
+<h5>3.8-8 AEM</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; AEM</code>( <var class="Arg">spos</var>, <var class="Arg">respos</var>, <var class="Arg">tmppos</var>, <var class="Arg">k</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns: instr (Lines of an SLP that will (when evaluated) take the value b saved in spos and write b^k in respos)</p>
+
+<p>AEM (Ancient Egytian Multiplication) <span class="SimpleMath">\(\newline\)</span> spos: The memory slot, where a value b is saved in, <span class="SimpleMath">\(\newline\)</span> respos: The memory slot we want the exponentation to be written in, <span class="SimpleMath">\(\newline\)</span> tmppos: A memory slot for temporary results, <span class="SimpleMath">\(\newline\)</span> k: An integer <span class="SimpleMath">\(\newline\)</span> At several occasions we will need to compute a high power of some value saved in a memory slot. For this purpose there is a variaton of AEM implemented below. Remarks: tmpos and respos must differ. If spos = respos or spos = tmpos it will be overwritten.</p>
+
+<p><a id="X7C7736A682A7A0D5" name="X7C7736A682A7A0D5"></a></p>
+
+<h5>3.8-9 TestIfMonomial</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; TestIfMonomial</code>( <var class="Arg">M</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; TestIfMonomialNC</code>( <var class="Arg">arg</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns: True if <span class="SimpleMath">\(M\)</span> is a monomial matrix, otherwise false.</p>
+
+<p><span class="SimpleMath">\(M\)</span>: A Matrix <span class="SimpleMath">\(\newline\)</span> Tests if a given matrix <span class="SimpleMath">\(M\)</span> is a monomial matrix. There is function in GAP, however it does not seem to work for SL<span class="SimpleMath">\((d,q)\)</span>.</p>
+
+<p><a id="X85C18012862F6FAD" name="X85C18012862F6FAD"></a></p>
+
+<h5>3.8-10 Transvections2</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; Transvections2</code>( <var class="Arg">stdgens</var>, <var class="Arg">omega</var>, <var class="Arg">slp</var>, <var class="Arg">pos</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns: slp: The list of instruction with additional instructions writing <span class="SimpleMath">\(t_{2,1}(\omega^\ell)\)</span> in Slot pos[l+1] <span class="SimpleMath">\(0 \leq \ell \leq f-1\)</span>.</p>
+
+<p>stdgens: The LGO standard-generators of SL<span class="SimpleMath">\((d,q)\)</span> <span class="SimpleMath">\(\newline\)</span> omega: A primitive element of GF(<span class="SimpleMath">\(q\)</span>) <span class="SimpleMath">\(\newline\)</span> slp: A list of instructions <span class="SimpleMath">\(\newline\)</span> pos: A list of numbers, denoting where to save the transvections <span class="SimpleMath">\(t_{2,1}(\omega^\ell)\)</span> for <span class="SimpleMath">\(0 \leq \ell \leq f-1\)</span> <span class="SimpleMath">\(\newline\)</span> Let stdgens be the list of standard generators for SL<span class="SimpleMath">\((d,p^f)\)</span> and let omega be a primitive element of G(<span class="SimpleMath">\(p^f\)</span>). This function computes <span class="SimpleMath">\(T_2 := \{ t_{2,1}(\omega^\ell) \mid 0 \leq \ell \leq f-1 \}\)</span> Record what we do in slp This function coincides with eq (6) p12.</p>
+
+<p><a id="X8779E9377C892EB9" name="X8779E9377C892EB9"></a></p>
+
+<h5>3.8-11 UnipotentDecomposition</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; UnipotentDecomposition</code>( <var class="Arg">stdgens</var>, <var class="Arg">g</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; UnipotentDecompositionNC</code>( <var class="Arg">arg</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns: slp (A list of instructions yielding <span class="SimpleMath">\(u_1,u_2\)</span> if evaluated as SLP), <span class="SimpleMath">\([u_1,g,u_2]\)</span> (The matrices of the Bruhat-Decomposition)</p>
+
+<p>stdgens: The LGO standard-generators <span class="SimpleMath">\(\newline\)</span> g: A matrix in SL(<span class="SimpleMath">\(d,q\)</span>) <span class="SimpleMath">\(\newline\)</span> Computes the Unitriangular decomposition of the matrix <span class="SimpleMath">\(g\)</span>.</p>
+
+<p><a id="X7D30168E7F1DE65C" name="X7D30168E7F1DE65C"></a></p>
+
+<h5>3.8-12 UnipotentDecompositionWithTi</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; UnipotentDecompositionWithTi</code>( <var class="Arg">stdgens</var>, <var class="Arg">g</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; UnipotentDecompositionWithTiNC</code>( <var class="Arg">arg</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns: slp (A list of instructions yielding <span class="SimpleMath">\(u_1,u_2\)</span> if evaluated as SLP), <span class="SimpleMath">\([u_1,g,u_2]\)</span> (The matrices of the Bruhat-Decomposition)</p>
+
+<p>stdgens: The LGO standard-generators <span class="SimpleMath">\(\newline\)</span> g: A matrix in SL(<span class="SimpleMath">\(d,q\)</span>) <span class="SimpleMath">\(\newline\)</span> Computes the Bruhat decomposition of the matrix <span class="SimpleMath">\(g\)</span>, given the standard generators for the group. In this version we will store all the transvections <span class="SimpleMath">\(t_{i,i-1}(\omega^\ell)\)</span>. this will increase the memory usage by <span class="SimpleMath">\((d-3) \cdot f\)</span> but reduce the runtime.</p>
+
+<p><a id="X7A75AB0D8104691A" name="X7A75AB0D8104691A"></a></p>
+
+<h5>3.8-13 PermutationMonomialMatrix</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; PermutationMonomialMatrix</code>( <var class="Arg">M</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; PermutationMonomialMatrixNC</code>( <var class="Arg">arg</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns: diag (The vector of non-zero entries, where diag<span class="SimpleMath">\([i]\)</span> is the non-zero entry of row <span class="SimpleMath">\(i\)</span>.), perm (The permutation associated to <span class="SimpleMath">\(M\)</span>, i.e. <span class="SimpleMath">\(i^{perm} = j\)</span> if <span class="SimpleMath">\(M_{i,j}\)</span> is not 0)</p>
+
+<p>M: A monomial matrix. <span class="SimpleMath">\(\newline\)</span> Find the permutation (in Sym(<span class="SimpleMath">\(d\)</span>)) corresponding to the input monomial matrix.</p>
+
+<p><a id="X79A14A5D8507B0CD" name="X79A14A5D8507B0CD"></a></p>
+
+<h5>3.8-14 PermSLP</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; PermSLP</code>( <var class="Arg">stdgens</var>, <var class="Arg">mat</var>, <var class="Arg">slp</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; PermSLPNC</code>( <var class="Arg">arg</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns: slp (A list of instructions to evaluate p_sign if slp was Input then this instructions are added to slp), p_sign (The signed permutation matrix), mat (The diagonal matrix diag)</p>
+
+<p>stdgens: The LGO standard-generators <span class="SimpleMath">\(\newline\)</span> mat: A monomial matrix (ie <span class="SimpleMath">\(w\)</span>) <span class="SimpleMath">\(\newline\)</span> slp: An already existing list of instructions *optional <span class="SimpleMath">\(\newline\)</span> In this function we will transform a monomial matrix <span class="SimpleMath">\(w \in\)</span> SL<span class="SimpleMath">\((d,q)\)</span> into a diagonal matrix diag. Using only the standard-generators <span class="SimpleMath">\(s,v,x\)</span> this will lead to a monomial matrix p_sign with only +-1 in non-zero entries and p_sign*diag = <span class="SimpleMath">\(w\)</span> (i.e. diag = p_sign^-1*w ). Furthermore we will return list slp of instructions which will (when evaluated at the LGO standard-generators) yield diag. <span class="SimpleMath">\(\newline\)</span> It is sufficient for diag to be diagonal, if the permutation associated with <span class="SimpleMath">\(w\)</span> (i.e. <span class="SimpleMath">\( i^\pi_w = j \)</span> if <span class="SimpleMath">\( M_{i,j} \)</span> not 0) is the inverse of the permutation associated to p_sign (again only to Sym(<span class="SimpleMath">\( d \)</span>) ) <span class="SimpleMath">\(\newline\)</span> In PermSLP we thus transform <span class="SimpleMath">\(\pi_w\)</span> to () using only <span class="SimpleMath">\(\{ \pi_s, \pi_v, \pi_x \}\)</span> In order to know diag without computing all matrix multiplications, (we don't know the signs of p_sign), we compute a second permutation simultaneously (here using their identification with permutations in Sym(<span class="SimpleMath">\(2d\)</span>) and identifying <span class="SimpleMath">\(\{ \pi_s, \pi_v, \pi_x \}\)</span> with <span class="SimpleMath">\(\{ s,v,x \}\)</span> )</p>
+
+<p><a id="X85F12FD9859DE12D" name="X85F12FD9859DE12D"></a></p>
+
+<h5>3.8-15 DiagonalDecomposition</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DiagonalDecomposition</code>( <var class="Arg">stdgens</var>, <var class="Arg">diag</var>, <var class="Arg">slp</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DiagonalDecompositionNC</code>( <var class="Arg">arg</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns: slp (A list of instructions to evaluate diag if slp was Input then this instructions are added to slp), hres (The the identity matrix)</p>
+
+<p>stdgens: The LGO standard-generators <span class="SimpleMath">\(\newline\)</span> diag: A diagonal matrix (eg diag) <span class="SimpleMath">\(\newline\)</span> slp: An already existing list of instructions *optional <span class="SimpleMath">\(\newline\)</span> Writes a list of instructions which evaluated on LGO standard-generators yield the diagonal matrix of the input.</p>
+
+<p><a id="X7FEBAA8B7D834E78" name="X7FEBAA8B7D834E78"></a></p>
+
+<h5>3.8-16 BruhatDecompositionSL</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; BruhatDecompositionSL</code>( <var class="Arg">stdgens</var>, <var class="Arg">g</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; BruhatDecompositionSLNC</code>( <var class="Arg">arg</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns: pgr (A SLP to compute <span class="SimpleMath">\(u_1,u_2,p_{sign}\)</span> and <span class="SimpleMath">\(diag\)</span> and the matrices <span class="SimpleMath">\(u_1, u_2, p_{sign}\)</span> and <span class="SimpleMath">\(diag\)</span> itself.)</p>
+
+<p>stdgens: The LGO standard-generators <span class="SimpleMath">\(\newline\)</span> g: A matrix in SL<span class="SimpleMath">\((d,q)\)</span> <span class="SimpleMath">\(\newline\)</span> Uses <code class="code">UnipotentDecomposition()</code>, <code class="code">PermSLP()</code> and <code class="code">DiagonalDecomposition()</code> to write a matrix <span class="SimpleMath">\(g \in\)</span> SL<span class="SimpleMath">\((d,q)\)</span> as <span class="SimpleMath">\(g = u_1^{-1} \cdot p_{sign} \cdot diag \cdot u_2^{-1}\)</span> where <span class="SimpleMath">\(u_1,u_2\)</span> are lower unitriangular matrices, <span class="SimpleMath">\(p_{sign}\)</span> is a monomial matrix with only +1 and -1 as non-zero entries and <span class="SimpleMath">\(diag\)</span> a diagonal matrix. It furthermore yields an SLP that returns the above matrices if evaluated with the LGO standard-generators.</p>
+
+<p><a id="X7EFA686D79709746" name="X7EFA686D79709746"></a></p>
+
+<h5>3.8-17 BruhatDecompositionSLWithTi</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; BruhatDecompositionSLWithTi</code>( <var class="Arg">stdgens</var>, <var class="Arg">g</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; BruhatDecompositionSLWithTiNC</code>( <var class="Arg">arg</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns: pgr (A SLP to compute <span class="SimpleMath">\(u_1,u_2,p_{sign}\)</span> and <span class="SimpleMath">\(diag\)</span> and the matrices <span class="SimpleMath">\(u_1, u_2, p_{sign}\)</span> and <span class="SimpleMath">\(diag\)</span> itself.)</p>
+
+<p>stdgens: The LGO standard-generators <span class="SimpleMath">\(\newline\)</span> g: A matrix in SL<span class="SimpleMath">\((d,q)\)</span> <span class="SimpleMath">\(\newline\)</span> As <code class="code">BruhatDecompositionSL()</code> but replaces <code class="code">UnipotentDecomposition()</code> by <code class="code">UnipotentDecompositionWithTi()</code>.</p>
 
 
 <div class="chlinkprevnextbot">&nbsp;<a href="chap0_mj.html">[Top of Book]</a>&nbsp;  <a href="chap0_mj.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap2_mj.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap4_mj.html">[Next Chapter]</a>&nbsp;  </div>
 
 
-<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0_mj.html">Top</a>  <a href="chap1_mj.html">1</a>  <a href="chap2_mj.html">2</a>  <a href="chap3_mj.html">3</a>  <a href="chap4_mj.html">4</a>  <a href="chap5_mj.html">5</a>  <a href="chapBib_mj.html">Bib</a>  </div>
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0_mj.html">Top</a>  <a href="chap1_mj.html">1</a>  <a href="chap2_mj.html">2</a>  <a href="chap3_mj.html">3</a>  <a href="chap4_mj.html">4</a>  <a href="chap5_mj.html">5</a>  <a href="chapInd_mj.html">Ind</a>  </div>
 
 <hr />
 <p class="foot">generated by <a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>

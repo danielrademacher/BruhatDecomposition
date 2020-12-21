@@ -1,78 +1,108 @@
 \GAPDocLabFile{bruhatdecomposition}
 \makelabel{bruhatdecomposition:Title page}{}{X7D2C85EC87DD46E5}
-\makelabel{bruhatdecomposition:Copyright}{}{X81488B807F2A1CF1}
 \makelabel{bruhatdecomposition:Table of Contents}{}{X8537FEB07AF2BEC8}
 \makelabel{bruhatdecomposition:Foreword}{1}{X8248CBC383A4431E}
-\makelabel{bruhatdecomposition:Bruhat Decomposition for the special linear group (SL)}{2}{X7ED5154B7CE8175E}
-\makelabel{bruhatdecomposition:Implemented Subfunctions (Part I)}{2.1}{X81E72B8282AC6ED6}
-\makelabel{bruhatdecomposition:UnipotentDecomposition (Part II - a)}{2.2}{X83E0C06C7AB80DD4}
-\makelabel{bruhatdecomposition:UnipotentDecomposition saving Transvections (Part II - b)}{2.3}{X8119AABE86F3606D}
-\makelabel{bruhatdecomposition:Decomposing the Monomial Matrix (Part III)}{2.4}{X80C69E33879354C8}
-\makelabel{bruhatdecomposition:Main Function (Part IV)}{2.5}{X7D8EB03B8022F892}
-\makelabel{bruhatdecomposition:NC Version}{2.6}{X864D6CAB7CE3BBF0}
-\makelabel{bruhatdecomposition:Functions}{2.7}{X86FA580F8055B274}
-\makelabel{bruhatdecomposition:Local functions for UnipotentDecomposition}{2.8}{X843D36E780023AE6}
-\makelabel{bruhatdecomposition:Local functions for UnipotentDecompositionWithTi}{2.9}{X7FFE0D2B8402676E}
-\makelabel{bruhatdecomposition:Bruhat Decomposition for the special unitary group (SU)}{3}{X81F906A77DFCFC36}
-\makelabel{bruhatdecomposition:Functions}{3.1}{X86FA580F8055B274}
-\makelabel{bruhatdecomposition:Bruhat Decomposition for the symplectic group (Sp)}{4}{X82E5676778771C49}
-\makelabel{bruhatdecomposition:Functions}{4.1}{X86FA580F8055B274}
-\makelabel{bruhatdecomposition:Bruhat Decomposition for the special orthogonal group (SO)}{5}{X83DA57E3833A7C57}
-\makelabel{bruhatdecomposition:Functions}{5.1}{X86FA580F8055B274}
-\makelabel{bruhatdecomposition:Bibliography}{Bib}{X7A6F98FD85F02BFE}
-\makelabel{bruhatdecomposition:References}{Bib}{X7A6F98FD85F02BFE}
-\makelabel{bruhatdecomposition:MakeSLP}{2.7.1}{X7AFC8C7D78152151}
-\makelabel{bruhatdecomposition:MakeSLPNC}{2.7.2}{X81E533548403C575}
-\makelabel{bruhatdecomposition:CoefficientsPrimitiveElement}{2.7.3}{X828EE9DF7B60A03E}
-\makelabel{bruhatdecomposition:MyPermutationMat}{2.7.4}{X7B138D977A8B7189}
-\makelabel{bruhatdecomposition:MyPermutationMatNC}{2.7.5}{X8786DC8B80BDB30E}
-\makelabel{bruhatdecomposition:LGOStandardGens}{2.7.6}{X7C8ABD7D8634C91E}
-\makelabel{bruhatdecomposition:LGOStandardGensNC}{2.7.7}{X855BEE5C7B364988}
-\makelabel{bruhatdecomposition:HighestSlotOfSLP}{2.7.8}{X7E4A850D7AAC4293}
-\makelabel{bruhatdecomposition:MatToWreathProd}{2.7.9}{X7D23BD4E79542F4B}
-\makelabel{bruhatdecomposition:MatToWreathProdNC}{2.7.10}{X7E91E7098456AFDD}
-\makelabel{bruhatdecomposition:WreathProdToMat}{2.7.11}{X87F98DEC85E3FDAA}
-\makelabel{bruhatdecomposition:AEM}{2.7.12}{X7F52B1487F587A1C}
-\makelabel{bruhatdecomposition:TestIfMonomial}{2.7.13}{X7C7736A682A7A0D5}
-\makelabel{bruhatdecomposition:TestIfMonomialNC}{2.7.14}{X82F86D858626598B}
-\makelabel{bruhatdecomposition:Transvections2}{2.7.15}{X85C18012862F6FAD}
-\makelabel{bruhatdecomposition:UnipotentDecomposition}{2.7.16}{X8779E9377C892EB9}
-\makelabel{bruhatdecomposition:UnipotentDecompositionNC}{2.7.17}{X826BD2C9824513AC}
-\makelabel{bruhatdecomposition:UnipotentDecompositionWithTi}{2.7.18}{X7D30168E7F1DE65C}
-\makelabel{bruhatdecomposition:UnipotentDecompositionWithTiNC}{2.7.19}{X819FFEC886196D19}
-\makelabel{bruhatdecomposition:PermutationMonomialMatrix}{2.7.20}{X7A75AB0D8104691A}
-\makelabel{bruhatdecomposition:PermutationMonomialMatrixNC}{2.7.21}{X857AAC587E8A7891}
-\makelabel{bruhatdecomposition:PermSLP}{2.7.22}{X79A14A5D8507B0CD}
-\makelabel{bruhatdecomposition:PermSLPNC}{2.7.23}{X7D983C5E791154E9}
-\makelabel{bruhatdecomposition:DiagonalDecomposition}{2.7.24}{X85F12FD9859DE12D}
-\makelabel{bruhatdecomposition:DiagonalDecompositionNC}{2.7.25}{X86767C5E7F9FD6C1}
-\makelabel{bruhatdecomposition:BruhatDecomposition}{2.7.26}{X7D8C913E787C6BD5}
-\makelabel{bruhatdecomposition:BruhatDecompositionNC}{2.7.27}{X79169D937C2B6C52}
-\makelabel{bruhatdecomposition:BruhatDecompositionWithTi}{2.7.28}{X87DEB91D85E0D0A9}
-\makelabel{bruhatdecomposition:BruhatDecompositionWithTiNC}{2.7.29}{X7D31A8567A6EC122}
-\makelabel{bruhatdecomposition:TransvectionAtAlpha}{2.8.1}{X7B744A4D8139CA95}
-\makelabel{bruhatdecomposition:ShiftTransvections}{2.8.2}{X818C33017C168949}
-\makelabel{bruhatdecomposition:FastShiftTransvecions}{2.8.3}{X81D2B8187A323AB1}
-\makelabel{bruhatdecomposition:BackShiftTransvections}{2.8.4}{X7FBCCE387C74DDA8}
-\makelabel{bruhatdecomposition:FastBackShiftTransvections}{2.8.5}{X8285DDDE7B527C71}
-\makelabel{bruhatdecomposition:TransvectionAtAlpha2}{2.9.1}{X84EB3C7F7C987F42}
-\makelabel{bruhatdecomposition:ComputeAllTransvections}{2.9.2}{X80EFD16E868DDD55}
-\makelabel{bruhatdecomposition:LGOStandardGensSU}{3.1.1}{X85E063C87EC6CCA3}
-\makelabel{bruhatdecomposition:UnitriangularDecompositionSUEven}{3.1.2}{X7F6ECD7380D6D2A0}
-\makelabel{bruhatdecomposition:UnitriangularDecompositionSUOdd}{3.1.3}{X85795AD27BFECB19}
-\makelabel{bruhatdecomposition:UnitriangularDecompositionSU}{3.1.4}{X79E30D6E7DD8291D}
-\makelabel{bruhatdecomposition:CoefficientsPrimitiveElementS}{3.1.5}{X793211108385A4F2}
-\makelabel{bruhatdecomposition:BruhatDecompositionSU}{3.1.6}{X79AD1007829F87F8}
-\makelabel{bruhatdecomposition:MonomialSLPSUOdd}{3.1.7}{X7B8E470078522BF4}
-\makelabel{bruhatdecomposition:MonomialSLPSUEven}{3.1.8}{X82DB86F379904ADB}
-\makelabel{bruhatdecomposition:CheckContinue}{3.1.9}{X7A69AFAE8637E93F}
-\makelabel{bruhatdecomposition:CycleFromPermutation}{3.1.10}{X86D4EC5985EDD4FF}
-\makelabel{bruhatdecomposition:CycleFromListMine}{3.1.11}{X7A03D6777C11BB61}
-\makelabel{bruhatdecomposition:DiagSLPSUOdd}{3.1.12}{X7D83424581E15CB1}
-\makelabel{bruhatdecomposition:DiagSLPSU}{3.1.13}{X78315BFA86EC337A}
-\makelabel{bruhatdecomposition:DiagSLPSUEven}{3.1.14}{X7A10BC39849272DC}
-\makelabel{bruhatdecomposition:LGOStandardGensSp}{4.1.1}{X82E6CC80818C226B}
-\makelabel{bruhatdecomposition:UnitriangularDecompositionSp}{4.1.2}{X7EE5A2267DAE098B}
-\makelabel{bruhatdecomposition:MonomialSLPSp}{4.1.3}{X84615263789182BE}
-\makelabel{bruhatdecomposition:DiagSLPSp}{4.1.4}{X7F37F4B28245472E}
-\makelabel{bruhatdecomposition:BruhatDecompositionSp}{4.1.5}{X7EABBF4F7A4DBF8A}
+\makelabel{bruhatdecomposition:Main Function}{1.1}{X7BBBB74882018953}
+\makelabel{bruhatdecomposition:Special Orthogonal Group}{2}{X7CDC26AF87C60FCA}
+\makelabel{bruhatdecomposition:Introduction and Quick Start of functions for SO}{2.1}{X8327C15D801A4A7A}
+\makelabel{bruhatdecomposition:Functions for SO}{2.2}{X87D12E417B3D01D1}
+\makelabel{bruhatdecomposition:Special Linear Group}{3}{X80F0E9FA7D0AC6F3}
+\makelabel{bruhatdecomposition:Introduction and Quick Start of functions for SL}{3.1}{X7AB754468477692C}
+\makelabel{bruhatdecomposition:Implemented Subfunctions (Part I)}{3.2}{X81E72B8282AC6ED6}
+\makelabel{bruhatdecomposition:UnipotentDecomposition (Part II - a)}{3.3}{X83E0C06C7AB80DD4}
+\makelabel{bruhatdecomposition:UnipotentDecomposition saving Transvections (Part II - b)}{3.4}{X8119AABE86F3606D}
+\makelabel{bruhatdecomposition:Decomposing the Monomial Matrix (Part III)}{3.5}{X80C69E33879354C8}
+\makelabel{bruhatdecomposition:Main Function (Part IV)}{3.6}{X7D8EB03B8022F892}
+\makelabel{bruhatdecomposition:NC Version}{3.7}{X864D6CAB7CE3BBF0}
+\makelabel{bruhatdecomposition:Functions for SL}{3.8}{X7E41BB5A79A18A9E}
+\makelabel{bruhatdecomposition:Special Unitary Group}{4}{X7E224B548754A5C1}
+\makelabel{bruhatdecomposition:Introduction and Quick Start of functions for SU}{4.1}{X7CF1EECA821C5DFF}
+\makelabel{bruhatdecomposition:Functions for SU}{4.2}{X780701D67A14499A}
+\makelabel{bruhatdecomposition:Symplectic Group}{5}{X82394E0281653B43}
+\makelabel{bruhatdecomposition:Introduction and Quick Start of functions for Sp}{5.1}{X7BF741827EAB3805}
+\makelabel{bruhatdecomposition:Functions for Sp}{5.2}{X7F01AE9E7DB1D44B}
+\makelabel{bruhatdecomposition:Index}{Ind}{X83A0356F839C696F}
+\makelabel{bruhatdecomposition:BruhatDecomposition}{1.1.1}{X7D8C913E787C6BD5}
+\makelabel{bruhatdecomposition:FindPrimePowerDecomposition}{2.2.1}{X82BDB7147A3584E0}
+\makelabel{bruhatdecomposition:LGOStandardGensSO}{2.2.2}{X7A364C5F7C9118C1}
+\makelabel{bruhatdecomposition:LGOStandardGensSOPlus}{2.2.2}{X7A364C5F7C9118C1}
+\makelabel{bruhatdecomposition:LGOStandardGensSOCircle}{2.2.2}{X7A364C5F7C9118C1}
+\makelabel{bruhatdecomposition:LGOStandardGensSOMinus}{2.2.2}{X7A364C5F7C9118C1}
+\makelabel{bruhatdecomposition:LGOStandardGensOmega}{2.2.3}{X81F934A87C60CF52}
+\makelabel{bruhatdecomposition:LGOStandardGensOmegaPlus}{2.2.3}{X81F934A87C60CF52}
+\makelabel{bruhatdecomposition:LGOStandardGensOmegaPlusEvenChar}{2.2.3}{X81F934A87C60CF52}
+\makelabel{bruhatdecomposition:LGOStandardGensOmegaCircle}{2.2.3}{X81F934A87C60CF52}
+\makelabel{bruhatdecomposition:LGOStandardGensOmegaCircleEvenChar}{2.2.3}{X81F934A87C60CF52}
+\makelabel{bruhatdecomposition:LGOStandardGensOmegaMinus}{2.2.3}{X81F934A87C60CF52}
+\makelabel{bruhatdecomposition:LGOStandardGensOmegaMinusEvenChar}{2.2.3}{X81F934A87C60CF52}
+\makelabel{bruhatdecomposition:MSO}{2.2.4}{X80EA73917E32D8C5}
+\makelabel{bruhatdecomposition:UnitriangularDecompositionSOPlus}{2.2.5}{X7830EA7980A6FF3C}
+\makelabel{bruhatdecomposition:UnitriangularDecompositionSOCircle}{2.2.6}{X82A1DB967FEDC567}
+\makelabel{bruhatdecomposition:UnitriangularDecompositionSOMinus}{2.2.7}{X8490EA4C782CABC6}
+\makelabel{bruhatdecomposition:MonomialSLPSOPlus}{2.2.8}{X8585A1F9835E8D9E}
+\makelabel{bruhatdecomposition:MonomialSLPSOCircle}{2.2.9}{X80C538048400B1EE}
+\makelabel{bruhatdecomposition:MonomialSLPSOMinus}{2.2.10}{X7DE0729F7CDBD8A3}
+\makelabel{bruhatdecomposition:FindCorrectCycel}{2.2.11}{X86DF2E8C82D722C0}
+\makelabel{bruhatdecomposition:TestPermutationProd}{2.2.12}{X84A7229F85FE68A0}
+\makelabel{bruhatdecomposition:TestPermutationProd2}{2.2.13}{X87520D1B785FDD77}
+\makelabel{bruhatdecomposition:MonomialMatrixToEasyForm}{2.2.14}{X869E879B8459D8AB}
+\makelabel{bruhatdecomposition:EasyFormToMonomialMatrix}{2.2.15}{X84C9FB4A7A78DA87}
+\makelabel{bruhatdecomposition:MultiplicationOfEasyForm}{2.2.16}{X793DBD9D84572E3A}
+\makelabel{bruhatdecomposition:DiagSLPSOPlus}{2.2.17}{X7D4E9B3380224189}
+\makelabel{bruhatdecomposition:DiagSLPSOCircle}{2.2.18}{X83275C91811427F9}
+\makelabel{bruhatdecomposition:DiagSLPSOMinus}{2.2.19}{X79639AC17F3F7B2D}
+\makelabel{bruhatdecomposition:BruhatDecompositionSO}{2.2.20}{X867B3F907A32A656}
+\makelabel{bruhatdecomposition:MakeSLP}{3.8.1}{X7AFC8C7D78152151}
+\makelabel{bruhatdecomposition:MakeSLPNC}{3.8.1}{X7AFC8C7D78152151}
+\makelabel{bruhatdecomposition:CoefficientsPrimitiveElement}{3.8.2}{X828EE9DF7B60A03E}
+\makelabel{bruhatdecomposition:MyPermutationMat}{3.8.3}{X7B138D977A8B7189}
+\makelabel{bruhatdecomposition:MyPermutationMatNC}{3.8.3}{X7B138D977A8B7189}
+\makelabel{bruhatdecomposition:LGOStandardGensSL}{3.8.4}{X83A6D94479A8BD79}
+\makelabel{bruhatdecomposition:LGOStandardGensSLNC}{3.8.4}{X83A6D94479A8BD79}
+\makelabel{bruhatdecomposition:HighestSlotOfSLP}{3.8.5}{X7E4A850D7AAC4293}
+\makelabel{bruhatdecomposition:MatToWreathProd}{3.8.6}{X7D23BD4E79542F4B}
+\makelabel{bruhatdecomposition:MatToWreathProdNC}{3.8.6}{X7D23BD4E79542F4B}
+\makelabel{bruhatdecomposition:WreathProdToMat}{3.8.7}{X87F98DEC85E3FDAA}
+\makelabel{bruhatdecomposition:AEM}{3.8.8}{X7F52B1487F587A1C}
+\makelabel{bruhatdecomposition:TestIfMonomial}{3.8.9}{X7C7736A682A7A0D5}
+\makelabel{bruhatdecomposition:TestIfMonomialNC}{3.8.9}{X7C7736A682A7A0D5}
+\makelabel{bruhatdecomposition:Transvections2}{3.8.10}{X85C18012862F6FAD}
+\makelabel{bruhatdecomposition:UnipotentDecomposition}{3.8.11}{X8779E9377C892EB9}
+\makelabel{bruhatdecomposition:UnipotentDecompositionNC}{3.8.11}{X8779E9377C892EB9}
+\makelabel{bruhatdecomposition:UnipotentDecompositionWithTi}{3.8.12}{X7D30168E7F1DE65C}
+\makelabel{bruhatdecomposition:UnipotentDecompositionWithTiNC}{3.8.12}{X7D30168E7F1DE65C}
+\makelabel{bruhatdecomposition:PermutationMonomialMatrix}{3.8.13}{X7A75AB0D8104691A}
+\makelabel{bruhatdecomposition:PermutationMonomialMatrixNC}{3.8.13}{X7A75AB0D8104691A}
+\makelabel{bruhatdecomposition:PermSLP}{3.8.14}{X79A14A5D8507B0CD}
+\makelabel{bruhatdecomposition:PermSLPNC}{3.8.14}{X79A14A5D8507B0CD}
+\makelabel{bruhatdecomposition:DiagonalDecomposition}{3.8.15}{X85F12FD9859DE12D}
+\makelabel{bruhatdecomposition:DiagonalDecompositionNC}{3.8.15}{X85F12FD9859DE12D}
+\makelabel{bruhatdecomposition:BruhatDecompositionSL}{3.8.16}{X7FEBAA8B7D834E78}
+\makelabel{bruhatdecomposition:BruhatDecompositionSLNC}{3.8.16}{X7FEBAA8B7D834E78}
+\makelabel{bruhatdecomposition:BruhatDecompositionSLWithTi}{3.8.17}{X7EFA686D79709746}
+\makelabel{bruhatdecomposition:BruhatDecompositionSLWithTiNC}{3.8.17}{X7EFA686D79709746}
+\makelabel{bruhatdecomposition:MakePermutationMat}{4.2.1}{X79FFD8F1865D0CEE}
+\makelabel{bruhatdecomposition:LGOStandardGensSU}{4.2.2}{X85E063C87EC6CCA3}
+\makelabel{bruhatdecomposition:LGOStandardGensSUEvenChar}{4.2.3}{X7BC3A5EF792D770B}
+\makelabel{bruhatdecomposition:CoefficientsPrimitiveElementS}{4.2.4}{X793211108385A4F2}
+\makelabel{bruhatdecomposition:UnitriangularDecompositionSUEven}{4.2.5}{X7F6ECD7380D6D2A0}
+\makelabel{bruhatdecomposition:UnitriangularDecompositionSUEvenAndEvenChar}{4.2.6}{X8728AEF07EBF62A7}
+\makelabel{bruhatdecomposition:UnitriangularDecompositionSUOdd}{4.2.7}{X85795AD27BFECB19}
+\makelabel{bruhatdecomposition:UnitriangularDecompositionSU}{4.2.8}{X79E30D6E7DD8291D}
+\makelabel{bruhatdecomposition:MonomialSLPSUOdd}{4.2.9}{X7B8E470078522BF4}
+\makelabel{bruhatdecomposition:MonomialSLPSUEvenAndEvenChar}{4.2.10}{X7B843D9B85F2F6E2}
+\makelabel{bruhatdecomposition:MonomialSLPSUEven}{4.2.11}{X82DB86F379904ADB}
+\makelabel{bruhatdecomposition:CheckContinue}{4.2.12}{X7A69AFAE8637E93F}
+\makelabel{bruhatdecomposition:CycleFromPermutation}{4.2.13}{X86D4EC5985EDD4FF}
+\makelabel{bruhatdecomposition:CycleFromListMine}{4.2.14}{X7A03D6777C11BB61}
+\makelabel{bruhatdecomposition:DiagSLPSUOdd}{4.2.15}{X7D83424581E15CB1}
+\makelabel{bruhatdecomposition:DiagSLPSU}{4.2.16}{X78315BFA86EC337A}
+\makelabel{bruhatdecomposition:DiagSLPSUEven}{4.2.17}{X7A10BC39849272DC}
+\makelabel{bruhatdecomposition:DiagSLPSUEvenAndEvenChar}{4.2.18}{X7A61CF0E7FE601EE}
+\makelabel{bruhatdecomposition:BruhatDecompositionSU}{4.2.19}{X79AD1007829F87F8}
+\makelabel{bruhatdecomposition:LGOStandardGensSp}{5.2.1}{X82E6CC80818C226B}
+\makelabel{bruhatdecomposition:LGOStandardGensSpEvenChar}{5.2.2}{X7F6AD1BB866799C3}
+\makelabel{bruhatdecomposition:UnitriangularDecompositionSp}{5.2.3}{X7EE5A2267DAE098B}
+\makelabel{bruhatdecomposition:MonomialSLPSp}{5.2.4}{X84615263789182BE}
+\makelabel{bruhatdecomposition:DiagSLPSp}{5.2.5}{X7F37F4B28245472E}
+\makelabel{bruhatdecomposition:BruhatDecompositionSp}{5.2.6}{X7EABBF4F7A4DBF8A}

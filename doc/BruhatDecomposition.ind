@@ -1,95 +1,134 @@
 \begin{theindex}
 
-  \item \texttt  {AEM}, \hyperpage{12}
+  \item \texttt  {AEM}, \hyperpage{16}
 
   \indexspace
 
-  \item \texttt  {BackShiftTransvections}, \hyperpage{18}
-  \item \texttt  {BruhatDecomposition}, \hyperpage{16}
-  \item \texttt  {BruhatDecompositionNC}, \hyperpage{17}
-  \item \texttt  {BruhatDecompositionSp}, \hyperpage{24}
-  \item \texttt  {BruhatDecompositionSU}, \hyperpage{21}
-  \item \texttt  {BruhatDecompositionWithTi}, \hyperpage{17}
-  \item \texttt  {BruhatDecompositionWithTiNC}, \hyperpage{17}
+  \item \texttt  {BruhatDecomposition}, \hyperpage{3}
+  \item \texttt  {BruhatDecompositionSL}, \hyperpage{18}
+  \item \texttt  {BruhatDecompositionSLNC}, \hyperpage{18}
+  \item \texttt  {BruhatDecompositionSLWithTi}, \hyperpage{18}
+  \item \texttt  {BruhatDecompositionSLWithTiNC}, \hyperpage{18}
+  \item \texttt  {BruhatDecompositionSO}, \hyperpage{9}
+  \item \texttt  {BruhatDecompositionSp}, \hyperpage{25}
+  \item \texttt  {BruhatDecompositionSU}, \hyperpage{23}
 
   \indexspace
 
-  \item \texttt  {CheckContinue}, \hyperpage{21}
-  \item \texttt  {CoefficientsPrimitiveElement}, \hyperpage{10}
-  \item \texttt  {CoefficientsPrimitiveElementS}, \hyperpage{21}
-  \item \texttt  {ComputeAllTransvections}, \hyperpage{19}
+  \item \texttt  {CheckContinue}, \hyperpage{22}
+  \item \texttt  {CoefficientsPrimitiveElement}, \hyperpage{15}
+  \item \texttt  {CoefficientsPrimitiveElementS}, \hyperpage{20}
   \item \texttt  {CycleFromListMine}, \hyperpage{22}
-  \item \texttt  {CycleFromPermutation}, \hyperpage{21}
+  \item \texttt  {CycleFromPermutation}, \hyperpage{22}
 
   \indexspace
 
-  \item \texttt  {DiagonalDecomposition}, \hyperpage{16}
-  \item \texttt  {DiagonalDecompositionNC}, \hyperpage{16}
-  \item \texttt  {DiagSLPSp}, \hyperpage{23}
+  \item \texttt  {DiagonalDecomposition}, \hyperpage{18}
+  \item \texttt  {DiagonalDecompositionNC}, \hyperpage{18}
+  \item \texttt  {DiagSLPSOCircle}, \hyperpage{8}
+  \item \texttt  {DiagSLPSOMinus}, \hyperpage{8}
+  \item \texttt  {DiagSLPSOPlus}, \hyperpage{8}
+  \item \texttt  {DiagSLPSp}, \hyperpage{25}
   \item \texttt  {DiagSLPSU}, \hyperpage{22}
-  \item \texttt  {DiagSLPSUEven}, \hyperpage{22}
+  \item \texttt  {DiagSLPSUEven}, \hyperpage{23}
+  \item \texttt  {DiagSLPSUEvenAndEvenChar}, \hyperpage{23}
   \item \texttt  {DiagSLPSUOdd}, \hyperpage{22}
 
   \indexspace
 
-  \item \texttt  {FastBackShiftTransvections}, \hyperpage{18}
-  \item \texttt  {FastShiftTransvecions}, \hyperpage{18}
+  \item \texttt  {EasyFormToMonomialMatrix}, \hyperpage{7}
 
   \indexspace
 
-  \item \texttt  {HighestSlotOfSLP}, \hyperpage{11}
+  \item \texttt  {FindCorrectCycel}, \hyperpage{7}
+  \item \texttt  {FindPrimePowerDecomposition}, \hyperpage{4}
 
   \indexspace
 
-  \item \texttt  {LGOStandardGens}, \hyperpage{10}
-  \item \texttt  {LGOStandardGensNC}, \hyperpage{11}
-  \item \texttt  {LGOStandardGensSp}, \hyperpage{23}
-  \item \texttt  {LGOStandardGensSU}, \hyperpage{20}
+  \item \texttt  {HighestSlotOfSLP}, \hyperpage{15}
 
   \indexspace
 
-  \item \texttt  {MakeSLP}, \hyperpage{9}
-  \item \texttt  {MakeSLPNC}, \hyperpage{10}
-  \item \texttt  {MatToWreathProd}, \hyperpage{11}
-  \item \texttt  {MatToWreathProdNC}, \hyperpage{12}
-  \item \texttt  {MonomialSLPSp}, \hyperpage{23}
+  \item \texttt  {LGOStandardGensOmega}, \hyperpage{4}
+  \item \texttt  {LGOStandardGensSL}, \hyperpage{15}
+  \item \texttt  {LGOStandardGensSLNC}, \hyperpage{15}
+  \item \texttt  {LGOStandardGensSO}, \hyperpage{4}
+  \item \texttt  {LGOStandardGensSp}, \hyperpage{24}
+  \item \texttt  {LGOStandardGensSpEvenChar}, \hyperpage{24}
+  \item \texttt  {LGOStandardGensSU}, \hyperpage{19}
+  \item \texttt  {LGOStandardGensSUEvenChar}, \hyperpage{19}
+
+  \indexspace
+
+  \item \texttt  {MakePermutationMat}, \hyperpage{19}
+  \item \texttt  {MakeSLP}, \hyperpage{14}
+  \item \texttt  {MakeSLPNC}, \hyperpage{14}
+  \item \texttt  {MatToWreathProd}, \hyperpage{15}
+  \item \texttt  {MatToWreathProdNC}, \hyperpage{15}
+  \item \texttt  {MonomialMatrixToEasyForm}, \hyperpage{7}
+  \item \texttt  {MonomialSLPSOCircle}, \hyperpage{6}
+  \item \texttt  {MonomialSLPSOMinus}, \hyperpage{6}
+  \item \texttt  {MonomialSLPSOPlus}, \hyperpage{6}
+  \item \texttt  {MonomialSLPSp}, \hyperpage{25}
   \item \texttt  {MonomialSLPSUEven}, \hyperpage{21}
+  \item \texttt  {MonomialSLPSUEvenAndEvenChar}, \hyperpage{21}
   \item \texttt  {MonomialSLPSUOdd}, \hyperpage{21}
-  \item \texttt  {MyPermutationMat}, \hyperpage{10}
-  \item \texttt  {MyPermutationMatNC}, \hyperpage{10}
+  \item \texttt  {MSO}, \hyperpage{5}
+  \item \texttt  {MultiplicationOfEasyForm}, \hyperpage{8}
+  \item \texttt  {MyPermutationMat}, \hyperpage{15}
+  \item \texttt  {MyPermutationMatNC}, \hyperpage{15}
 
   \indexspace
 
-  \item \texttt  {PermSLP}, \hyperpage{15}
-  \item \texttt  {PermSLPNC}, \hyperpage{15}
-  \item \texttt  {PermutationMonomialMatrix}, \hyperpage{14}
-  \item \texttt  {PermutationMonomialMatrixNC}, \hyperpage{14}
+  \item \texttt  {PermSLP}, \hyperpage{17}
+  \item \texttt  {PermSLPNC}, \hyperpage{17}
+  \item \texttt  {PermutationMonomialMatrix}, \hyperpage{17}
+  \item \texttt  {PermutationMonomialMatrixNC}, \hyperpage{17}
 
   \indexspace
 
-  \item \texttt  {ShiftTransvections}, \hyperpage{18}
+  \item \texttt  {TestIfMonomial}, \hyperpage{16}
+  \item \texttt  {TestIfMonomialNC}, \hyperpage{16}
+  \item \texttt  {TestPermutationProd}, \hyperpage{7}
+  \item \texttt  {TestPermutationProd2}, \hyperpage{7}
+  \item \texttt  {Transvections2}, \hyperpage{16}
 
   \indexspace
 
-  \item \texttt  {TestIfMonomial}, \hyperpage{12}
-  \item \texttt  {TestIfMonomialNC}, \hyperpage{13}
-  \item \texttt  {TransvectionAtAlpha}, \hyperpage{17}
-  \item \texttt  {TransvectionAtAlpha2}, \hyperpage{18}
-  \item \texttt  {Transvections2}, \hyperpage{13}
-
-  \indexspace
-
-  \item \texttt  {UnipotentDecomposition}, \hyperpage{13}
-  \item \texttt  {UnipotentDecompositionNC}, \hyperpage{13}
-  \item \texttt  {UnipotentDecompositionWithTi}, \hyperpage{14}
-  \item \texttt  {UnipotentDecompositionWithTiNC}, \hyperpage{14}
-  \item \texttt  {UnitriangularDecompositionSp}, \hyperpage{23}
+  \item \texttt  {UnipotentDecomposition}, \hyperpage{17}
+  \item \texttt  {UnipotentDecompositionNC}, \hyperpage{17}
+  \item \texttt  {UnipotentDecompositionWithTi}, \hyperpage{17}
+  \item \texttt  {UnipotentDecompositionWithTiNC}, \hyperpage{17}
+  \item \texttt  {UnitriangularDecompositionSOCircle}, \hyperpage{5}
+  \item \texttt  {UnitriangularDecompositionSOMinus}, \hyperpage{5}
+  \item \texttt  {UnitriangularDecompositionSOPlus}, \hyperpage{5}
+  \item \texttt  {UnitriangularDecompositionSp}, \hyperpage{24}
   \item \texttt  {UnitriangularDecompositionSU}, \hyperpage{20}
   \item \texttt  {UnitriangularDecompositionSUEven}, \hyperpage{20}
+  \item \texttt  {Unitriangular}\-\texttt  {Decomposition}\-\texttt  {S}\-\texttt  {U}\-\texttt  {Even}\-\texttt  {And}\-\texttt  {Even}\-\texttt  {Char}, 
+		\hyperpage{20}
   \item \texttt  {UnitriangularDecompositionSUOdd}, \hyperpage{20}
+  \item \texttt  {{\textunderscore }{\textunderscore }}\-\texttt  {L}\-\texttt  {G}\-\texttt  {O}\-\texttt  {Standard}\-\texttt  {Gens}\-\texttt  {Omega}\-\texttt  {Circle}, 
+		\hyperpage{5}
+  \item \texttt  {{\textunderscore }{\textunderscore }}\-\texttt  {L}\-\texttt  {G}\-\texttt  {O}\-\texttt  {Standard}\-\texttt  {Gens}\-\texttt  {Omega}\-\texttt  {Circle}\-\texttt  {Even}\-\texttt  {Char}, 
+		\hyperpage{5}
+  \item \texttt  {{\textunderscore }{\textunderscore }}\-\texttt  {L}\-\texttt  {G}\-\texttt  {O}\-\texttt  {Standard}\-\texttt  {Gens}\-\texttt  {Omega}\-\texttt  {Minus}, 
+		\hyperpage{5}
+  \item \texttt  {{\textunderscore }{\textunderscore }}\-\texttt  {L}\-\texttt  {G}\-\texttt  {O}\-\texttt  {Standard}\-\texttt  {Gens}\-\texttt  {Omega}\-\texttt  {Minus}\-\texttt  {Even}\-\texttt  {Char}, 
+		\hyperpage{5}
+  \item \texttt  {{\textunderscore }{\textunderscore }}\-\texttt  {L}\-\texttt  {G}\-\texttt  {O}\-\texttt  {Standard}\-\texttt  {Gens}\-\texttt  {Omega}\-\texttt  {Plus}, 
+		\hyperpage{4}
+  \item \texttt  {{\textunderscore }{\textunderscore }}\-\texttt  {L}\-\texttt  {G}\-\texttt  {O}\-\texttt  {Standard}\-\texttt  {Gens}\-\texttt  {Omega}\-\texttt  {Plus}\-\texttt  {Even}\-\texttt  {Char}, 
+		\hyperpage{5}
+  \item \texttt  {{\textunderscore }{\textunderscore }}\-\texttt  {L}\-\texttt  {G}\-\texttt  {O}\-\texttt  {Standard}\-\texttt  {Gens}\-\texttt  {S}\-\texttt  {O}\-\texttt  {Circle}, 
+		\hyperpage{4}
+  \item \texttt  {{\textunderscore }{\textunderscore }}\-\texttt  {L}\-\texttt  {G}\-\texttt  {O}\-\texttt  {Standard}\-\texttt  {Gens}\-\texttt  {S}\-\texttt  {O}\-\texttt  {Minus}, 
+		\hyperpage{4}
+  \item \texttt  {{\textunderscore }{\textunderscore }}\-\texttt  {L}\-\texttt  {G}\-\texttt  {O}\-\texttt  {Standard}\-\texttt  {Gens}\-\texttt  {S}\-\texttt  {O}\-\texttt  {Plus}, 
+		\hyperpage{4}
 
   \indexspace
 
-  \item \texttt  {WreathProdToMat}, \hyperpage{12}
+  \item \texttt  {WreathProdToMat}, \hyperpage{16}
 
 \end{theindex}

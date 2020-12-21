@@ -5,19 +5,38 @@
 <Heading>Foreword</Heading>
 
 <P/>
- Let <M>G</M> be the SL, SU, Sp or SO. Let g be an element in G.
+ Let <M>G</M> be one of the classical groups SL, Sp, SU or SO over a finite field of size <M>q</M> and dimension <M>d</M>. Let g be an element in G.
  We want to write <M>g = u_1 \cdot w \cdot u_2</M> with <M>u_1</M> and <M>u_2</M> lower unitriangular matrices and <M>w</M> a monomial matrix. <P/>
  This is already implemented for:
  <List>
      <Item>
-     Special linear group (SL) [<Ref Sect="BDSL"/>]
+     Special linear group (SL) (see Chapter <Ref Sect="Chapter_SpecialLinearGroup"/>)
      </Item>
      <Item>
-     Special unitary group (SU) [<Ref Sect="BDSU"/>]
+     Symplectic group (Sp) (see Chapter <Ref Sect="Chapter_SymplecticGroup"/>)
      </Item>
      <Item>
-     Symplectic group (Sp) [<Ref Sect="BDSp"/>]
+     Special unitary group (SU) (see Chapter <Ref Sect="Chapter_SpecialUnitaryGroup"/>)
+     </Item>
+     <Item>
+     Special orthogonal group (SO) (see Chapter <Ref Sect="Chapter_SpecialOrthogonalGroup"/>)
      </Item>
  </List>
+<Section Label="Section_MainFunction">
+<Heading>Main Function</Heading>
+
+<ManSection>
+  <Func Arg="g" Name="BruhatDecomposition" />
+ <Returns>pgr (A SLP to compute <M>u_1,u_2,p_{sign}</M> and <M>diag</M> and the matrices <M>u_1, u_2, p_{sign}</M> and <M>diag</M> itself.)
+</Returns>
+ <Description>
+ Checks whether <M>g</M> is an element of one of the classical groups in their natural representation. If yes, the corresponding Bruhat decomposition of the group and the element <M>g</M> is calculated. Otherwise the function prints a warning.
+ </Description>
+</ManSection>
+
+
+</Section>
+
+
 </Chapter>
 

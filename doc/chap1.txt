@@ -1,15 +1,32 @@
   
   [1X1 [33X[0;0YForeword[133X[101X
   
-  [33X[0;0YLet  [22XG[122X be the SL, SU, Sp or SO. Let g be an element in G. We want to write [22Xg
-  =  u_1  ⋅  w  ⋅  u_2[122X  with  [22Xu_1[122X and [22Xu_2[122X lower unitriangular matrices and [22Xw[122X a
-  monomial matrix.[133X
+  [33X[0;0YLet [22XG[122X be one of the classical groups SL, Sp, SU or SO over a finite field of
+  size [22Xq[122X and dimension [22Xd[122X. Let g be an element in G. We want to write [22Xg = u_1 ⋅
+  w  ⋅  u_2[122X  with  [22Xu_1[122X  and  [22Xu_2[122X lower unitriangular matrices and [22Xw[122X a monomial
+  matrix.[133X
   
   [33X[0;0YThis is already implemented for:[133X
   
-  [30X    [33X[0;6YSpecial linear group (SL) [[14X2[114X][133X
+  [30X    [33X[0;6YSpecial linear group (SL) (see Chapter [14X3[114X)[133X
   
-  [30X    [33X[0;6YSpecial unitary group (SU) [[14X3[114X][133X
+  [30X    [33X[0;6YSymplectic group (Sp) (see Chapter [14X5[114X)[133X
   
-  [30X    [33X[0;6YSymplectic group (Sp) [[14X4[114X][133X
+  [30X    [33X[0;6YSpecial unitary group (SU) (see Chapter [14X4[114X)[133X
+  
+  [30X    [33X[0;6YSpecial orthogonal group (SO) (see Chapter [14X2[114X)[133X
+  
+  
+  [1X1.1 [33X[0;0YMain Function[133X[101X
+  
+  [1X1.1-1 BruhatDecomposition[101X
+  
+  [33X[1;0Y[29X[2XBruhatDecomposition[102X( [3Xg[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Ypgr  (A  SLP  to  compute [22Xu_1,u_2,p_sign[122X and [22Xdiag[122X and the matrices
+            [22Xu_1, u_2, p_sign[122X and [22Xdiag[122X itself.)[133X
+  
+  [33X[0;0YChecks  whether  [22Xg[122X  is  an  element  of one of the classical groups in their
+  natural  representation.  If  yes, the corresponding Bruhat decomposition of
+  the  group  and the element [22Xg[122X is calculated. Otherwise the function prints a
+  warning.[133X
   

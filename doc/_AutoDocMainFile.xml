@@ -2,4 +2,7 @@
 
 <!-- This is an automatically generated file. -->
 <#Include SYSTEM "_Chapter_Foreword.xml">
-<#Include SYSTEM "_Chapter_BruhatDecomposition_automatic_generated_documentation.xml">
+<#Include SYSTEM "_Chapter_SpecialOrthogonalGroup.xml">
+<#Include SYSTEM "_Chapter_SpecialLinearGroup.xml">
+<#Include SYSTEM "_Chapter_SpecialUnitaryGroup.xml">
+<#Include SYSTEM "_Chapter_SymplecticGroup.xml">
