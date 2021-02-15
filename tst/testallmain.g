@@ -339,6 +339,7 @@ end;
 TestBruhatDecompositionSLPSL();
 TestBruhatDecompositionSLPSp();
 TestBruhatDecompositionSLPSU();
+TestBruhatDecompositionSLPSO();
 # TestBruhatDecompositionSLPOmega();
 Print("Everything worked! Congrats!\n");
 
