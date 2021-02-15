@@ -60,25 +60,29 @@
 \contentsline {subsection}{\numberline {4.2.5}\textcolor {Chapter }{UnitriangularDecompositionSUEven}}{20}{subsection.4.2.5}%
 \contentsline {subsection}{\numberline {4.2.6}\textcolor {Chapter }{UnitriangularDecompositionSUEvenAndEvenChar}}{20}{subsection.4.2.6}%
 \contentsline {subsection}{\numberline {4.2.7}\textcolor {Chapter }{UnitriangularDecompositionSUOdd}}{20}{subsection.4.2.7}%
-\contentsline {subsection}{\numberline {4.2.8}\textcolor {Chapter }{UnitriangularDecompositionSU}}{20}{subsection.4.2.8}%
-\contentsline {subsection}{\numberline {4.2.9}\textcolor {Chapter }{MonomialSLPSUOdd}}{21}{subsection.4.2.9}%
-\contentsline {subsection}{\numberline {4.2.10}\textcolor {Chapter }{MonomialSLPSUEvenAndEvenChar}}{21}{subsection.4.2.10}%
-\contentsline {subsection}{\numberline {4.2.11}\textcolor {Chapter }{MonomialSLPSUEven}}{21}{subsection.4.2.11}%
-\contentsline {subsection}{\numberline {4.2.12}\textcolor {Chapter }{CheckContinue}}{22}{subsection.4.2.12}%
-\contentsline {subsection}{\numberline {4.2.13}\textcolor {Chapter }{CycleFromPermutation}}{22}{subsection.4.2.13}%
-\contentsline {subsection}{\numberline {4.2.14}\textcolor {Chapter }{CycleFromListMine}}{22}{subsection.4.2.14}%
-\contentsline {subsection}{\numberline {4.2.15}\textcolor {Chapter }{DiagSLPSUOdd}}{22}{subsection.4.2.15}%
-\contentsline {subsection}{\numberline {4.2.16}\textcolor {Chapter }{DiagSLPSU}}{22}{subsection.4.2.16}%
-\contentsline {subsection}{\numberline {4.2.17}\textcolor {Chapter }{DiagSLPSUEven}}{23}{subsection.4.2.17}%
-\contentsline {subsection}{\numberline {4.2.18}\textcolor {Chapter }{DiagSLPSUEvenAndEvenChar}}{23}{subsection.4.2.18}%
-\contentsline {subsection}{\numberline {4.2.19}\textcolor {Chapter }{BruhatDecompositionSU}}{23}{subsection.4.2.19}%
-\contentsline {chapter}{\numberline {5}\textcolor {Chapter }{Symplectic Group}}{24}{chapter.5}%
-\contentsline {section}{\numberline {5.1}\textcolor {Chapter }{Introduction and Quick Start of functions for Sp}}{24}{section.5.1}%
-\contentsline {section}{\numberline {5.2}\textcolor {Chapter }{Functions for Sp}}{24}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}\textcolor {Chapter }{LGOStandardGensSp}}{24}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}\textcolor {Chapter }{LGOStandardGensSpEvenChar}}{24}{subsection.5.2.2}%
-\contentsline {subsection}{\numberline {5.2.3}\textcolor {Chapter }{UnitriangularDecompositionSp}}{24}{subsection.5.2.3}%
-\contentsline {subsection}{\numberline {5.2.4}\textcolor {Chapter }{MonomialSLPSp}}{25}{subsection.5.2.4}%
-\contentsline {subsection}{\numberline {5.2.5}\textcolor {Chapter }{DiagSLPSp}}{25}{subsection.5.2.5}%
-\contentsline {subsection}{\numberline {5.2.6}\textcolor {Chapter }{BruhatDecompositionSp}}{25}{subsection.5.2.6}%
-\contentsline {chapter}{Index}{26}{section*.2}%
+\contentsline {subsection}{\numberline {4.2.8}\textcolor {Chapter }{UnitriangularDecompositionSUOddAndEvenChar}}{20}{subsection.4.2.8}%
+\contentsline {subsection}{\numberline {4.2.9}\textcolor {Chapter }{UnitriangularDecompositionSU}}{21}{subsection.4.2.9}%
+\contentsline {subsection}{\numberline {4.2.10}\textcolor {Chapter }{MonomialSLPSUOdd}}{21}{subsection.4.2.10}%
+\contentsline {subsection}{\numberline {4.2.11}\textcolor {Chapter }{MonomialSLPSUOddAndEvenChar}}{21}{subsection.4.2.11}%
+\contentsline {subsection}{\numberline {4.2.12}\textcolor {Chapter }{MonomialSLPSUEvenAndEvenChar}}{21}{subsection.4.2.12}%
+\contentsline {subsection}{\numberline {4.2.13}\textcolor {Chapter }{MonomialSLPSUEven}}{22}{subsection.4.2.13}%
+\contentsline {subsection}{\numberline {4.2.14}\textcolor {Chapter }{CheckContinue}}{22}{subsection.4.2.14}%
+\contentsline {subsection}{\numberline {4.2.15}\textcolor {Chapter }{CycleFromPermutation}}{22}{subsection.4.2.15}%
+\contentsline {subsection}{\numberline {4.2.16}\textcolor {Chapter }{CycleFromListMine}}{22}{subsection.4.2.16}%
+\contentsline {subsection}{\numberline {4.2.17}\textcolor {Chapter }{DiagSLPSUOdd}}{23}{subsection.4.2.17}%
+\contentsline {subsection}{\numberline {4.2.18}\textcolor {Chapter }{DiagSLPSUOddAndEvenChar}}{23}{subsection.4.2.18}%
+\contentsline {subsection}{\numberline {4.2.19}\textcolor {Chapter }{DiagSLPSU}}{23}{subsection.4.2.19}%
+\contentsline {subsection}{\numberline {4.2.20}\textcolor {Chapter }{DiagSLPSUEven}}{23}{subsection.4.2.20}%
+\contentsline {subsection}{\numberline {4.2.21}\textcolor {Chapter }{DiagSLPSUEvenAndEvenChar}}{24}{subsection.4.2.21}%
+\contentsline {subsection}{\numberline {4.2.22}\textcolor {Chapter }{BruhatDecompositionSU}}{24}{subsection.4.2.22}%
+\contentsline {chapter}{\numberline {5}\textcolor {Chapter }{Symplectic Group}}{25}{chapter.5}%
+\contentsline {section}{\numberline {5.1}\textcolor {Chapter }{Introduction and Quick Start of functions for Sp}}{25}{section.5.1}%
+\contentsline {section}{\numberline {5.2}\textcolor {Chapter }{Functions for Sp}}{25}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}\textcolor {Chapter }{LGOStandardGensSp}}{25}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}\textcolor {Chapter }{LGOStandardGensSpEvenChar}}{25}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}\textcolor {Chapter }{UnitriangularDecompositionSp}}{25}{subsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.2.4}\textcolor {Chapter }{UnitriangularDecompositionSpEvenChar}}{26}{subsection.5.2.4}%
+\contentsline {subsection}{\numberline {5.2.5}\textcolor {Chapter }{MonomialSLPSp}}{26}{subsection.5.2.5}%
+\contentsline {subsection}{\numberline {5.2.6}\textcolor {Chapter }{DiagSLPSp}}{26}{subsection.5.2.6}%
+\contentsline {subsection}{\numberline {5.2.7}\textcolor {Chapter }{BruhatDecompositionSp}}{26}{subsection.5.2.7}%
+\contentsline {chapter}{Index}{27}{section*.2}%

@@ -39,10 +39,19 @@
   [6XReturns:[106X  [33X[0;10Yslp (A list of instructions yielding [22Xu_1,u_2[122X if evaluated as SLP),
             [22X[u_1,g,u_2][122X (The matrices of the Bruhat-Decomposition)[133X
   
-  [33X[0;0Ystdgens:  The LGO standard-generators [22Xnewline[122X g: A matrix in Sp([22Xd,q[122X) [22Xnewline[122X
-  Computes the Unitriangular decomposition of the matrix [22Xg[122X.[133X
+  [33X[0;0Ystdgens:  The  LGO  standard-generators [22Xnewline[122X g: A matrix in Sp([22Xd,q[122X) and q
+  odd [22Xnewline[122X Computes the Unitriangular decomposition of the matrix [22Xg[122X.[133X
   
-  [1X5.2-4 MonomialSLPSp[101X
+  [1X5.2-4 UnitriangularDecompositionSpEvenChar[101X
+  
+  [33X[1;0Y[29X[2XUnitriangularDecompositionSpEvenChar[102X( [3Xstdgens[103X, [3Xg[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Yslp (A list of instructions yielding [22Xu_1,u_2[122X if evaluated as SLP),
+            [22X[u_1,g,u_2][122X (The matrices of the Bruhat-Decomposition)[133X
+  
+  [33X[0;0Ystdgens:  The  LGO  standard-generators [22Xnewline[122X g: A matrix in Sp([22Xd,q[122X) and q
+  even [22Xnewline[122X Computes the Unitriangular decomposition of the matrix [22Xg[122X.[133X
+  
+  [1X5.2-5 MonomialSLPSp[101X
   
   [33X[1;0Y[29X[2XMonomialSLPSp[102X( [3Xstdgens[103X, [3Xmat[103X, [3Xslp[103X ) [32X function[133X
   [6XReturns:[106X  [33X[0;10Yslp  (A  list of instructions to evaluate tmpvalue. If slp is also
@@ -58,7 +67,7 @@
   tmpvalue*mat  ).  Furthermore  we will return list slp of instructions which
   will (when evaluated at the LGO standard-generators) yields diag.[133X
   
-  [1X5.2-5 DiagSLPSp[101X
+  [1X5.2-6 DiagSLPSp[101X
   
   [33X[1;0Y[29X[2XDiagSLPSp[102X( [3Xstdgens[103X, [3Xdiag[103X, [3Xslp[103X ) [32X function[133X
   [6XReturns:[106X  [33X[0;10Yslp (A list of instructions to evaluate diag if slp was Input then
@@ -69,7 +78,7 @@
   [22Xnewline[122X   Writes   a   list   of   instructions  which  evaluated  with  LGO
   standard-generators yield the diagonal matrix of the input.[133X
   
-  [1X5.2-6 BruhatDecompositionSp[101X
+  [1X5.2-7 BruhatDecompositionSp[101X
   
   [33X[1;0Y[29X[2XBruhatDecompositionSp[102X( [3Xstdgens[103X, [3Xg[103X ) [32X function[133X
   [6XReturns:[106X  [33X[0;10Ypgr  (A  SLP  to  compute [22Xu_1,u_2,p_sign[122X and [22Xdiag[122X and the matrices

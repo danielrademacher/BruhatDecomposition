@@ -18,23 +18,24 @@
   [2XBruhatDecompositionSLWithTi[102X 3.8-17 
   [2XBruhatDecompositionSLWithTiNC[102X 3.8-17 
   [2XBruhatDecompositionSO[102X 2.2-20 
-  [2XBruhatDecompositionSp[102X 5.2-6 
-  [2XBruhatDecompositionSU[102X 4.2-19 
-  [2XCheckContinue[102X 4.2-12 
+  [2XBruhatDecompositionSp[102X 5.2-7 
+  [2XBruhatDecompositionSU[102X 4.2-22 
+  [2XCheckContinue[102X 4.2-14 
   [2XCoefficientsPrimitiveElement[102X 3.8-2 
   [2XCoefficientsPrimitiveElementS[102X 4.2-4 
-  [2XCycleFromListMine[102X 4.2-14 
-  [2XCycleFromPermutation[102X 4.2-13 
+  [2XCycleFromListMine[102X 4.2-16 
+  [2XCycleFromPermutation[102X 4.2-15 
   [2XDiagonalDecomposition[102X 3.8-15 
   [2XDiagonalDecompositionNC[102X 3.8-15 
   [2XDiagSLPSOCircle[102X 2.2-18 
   [2XDiagSLPSOMinus[102X 2.2-19 
   [2XDiagSLPSOPlus[102X 2.2-17 
-  [2XDiagSLPSp[102X 5.2-5 
-  [2XDiagSLPSU[102X 4.2-16 
-  [2XDiagSLPSUEven[102X 4.2-17 
-  [2XDiagSLPSUEvenAndEvenChar[102X 4.2-18 
-  [2XDiagSLPSUOdd[102X 4.2-15 
+  [2XDiagSLPSp[102X 5.2-6 
+  [2XDiagSLPSU[102X 4.2-19 
+  [2XDiagSLPSUEven[102X 4.2-20 
+  [2XDiagSLPSUEvenAndEvenChar[102X 4.2-21 
+  [2XDiagSLPSUOdd[102X 4.2-17 
+  [2XDiagSLPSUOddAndEvenChar[102X 4.2-18 
   [2XEasyFormToMonomialMatrix[102X 2.2-15 
   [2XFindCorrectCycel[102X 2.2-11 
   [2XFindPrimePowerDecomposition[102X 2.2-1 
@@ -56,10 +57,11 @@
   [2XMonomialSLPSOCircle[102X 2.2-9 
   [2XMonomialSLPSOMinus[102X 2.2-10 
   [2XMonomialSLPSOPlus[102X 2.2-8 
-  [2XMonomialSLPSp[102X 5.2-4 
-  [2XMonomialSLPSUEven[102X 4.2-11 
-  [2XMonomialSLPSUEvenAndEvenChar[102X 4.2-10 
-  [2XMonomialSLPSUOdd[102X 4.2-9 
+  [2XMonomialSLPSp[102X 5.2-5 
+  [2XMonomialSLPSUEven[102X 4.2-13 
+  [2XMonomialSLPSUEvenAndEvenChar[102X 4.2-12 
+  [2XMonomialSLPSUOdd[102X 4.2-10 
+  [2XMonomialSLPSUOddAndEvenChar[102X 4.2-11 
   [2XMSO[102X 2.2-4 
   [2XMultiplicationOfEasyForm[102X 2.2-16 
   [2XMyPermutationMat[102X 3.8-3 
@@ -81,10 +83,12 @@
   [2XUnitriangularDecompositionSOMinus[102X 2.2-7 
   [2XUnitriangularDecompositionSOPlus[102X 2.2-5 
   [2XUnitriangularDecompositionSp[102X 5.2-3 
-  [2XUnitriangularDecompositionSU[102X 4.2-8 
+  [2XUnitriangularDecompositionSpEvenChar[102X 5.2-4 
+  [2XUnitriangularDecompositionSU[102X 4.2-9 
   [2XUnitriangularDecompositionSUEven[102X 4.2-5 
   [2XUnitriangularDecompositionSUEvenAndEvenChar[102X 4.2-6 
   [2XUnitriangularDecompositionSUOdd[102X 4.2-7 
+  [2XUnitriangularDecompositionSUOddAndEvenChar[102X 4.2-8 
   [2XWreathProdToMat[102X 3.8-7 
   
   

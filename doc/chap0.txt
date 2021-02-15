@@ -107,27 +107,31 @@
       4.2-5 UnitriangularDecompositionSUEven
       4.2-6 UnitriangularDecompositionSUEvenAndEvenChar
       4.2-7 UnitriangularDecompositionSUOdd
-      4.2-8 UnitriangularDecompositionSU
-      4.2-9 MonomialSLPSUOdd
-      4.2-10 MonomialSLPSUEvenAndEvenChar
-      4.2-11 MonomialSLPSUEven
-      4.2-12 CheckContinue
-      4.2-13 CycleFromPermutation
-      4.2-14 CycleFromListMine
-      4.2-15 DiagSLPSUOdd
-      4.2-16 DiagSLPSU
-      4.2-17 DiagSLPSUEven
-      4.2-18 DiagSLPSUEvenAndEvenChar
-      4.2-19 BruhatDecompositionSU
+      4.2-8 UnitriangularDecompositionSUOddAndEvenChar
+      4.2-9 UnitriangularDecompositionSU
+      4.2-10 MonomialSLPSUOdd
+      4.2-11 MonomialSLPSUOddAndEvenChar
+      4.2-12 MonomialSLPSUEvenAndEvenChar
+      4.2-13 MonomialSLPSUEven
+      4.2-14 CheckContinue
+      4.2-15 CycleFromPermutation
+      4.2-16 CycleFromListMine
+      4.2-17 DiagSLPSUOdd
+      4.2-18 DiagSLPSUOddAndEvenChar
+      4.2-19 DiagSLPSU
+      4.2-20 DiagSLPSUEven
+      4.2-21 DiagSLPSUEvenAndEvenChar
+      4.2-22 BruhatDecompositionSU
   5 [33X[0;0YSymplectic Group[133X
     5.1 [33X[0;0YIntroduction and Quick Start of functions for Sp[133X
     5.2 [33X[0;0YFunctions for Sp[133X
       5.2-1 LGOStandardGensSp
       5.2-2 LGOStandardGensSpEvenChar
       5.2-3 UnitriangularDecompositionSp
-      5.2-4 MonomialSLPSp
-      5.2-5 DiagSLPSp
-      5.2-6 BruhatDecompositionSp
+      5.2-4 UnitriangularDecompositionSpEvenChar
+      5.2-5 MonomialSLPSp
+      5.2-6 DiagSLPSp
+      5.2-7 BruhatDecompositionSp
   
   
   [32X

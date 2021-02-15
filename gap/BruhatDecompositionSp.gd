@@ -83,9 +83,23 @@ DeclareGlobalFunction( "LGOStandardGensSpEvenChar" );
 #! @Returns slp (A list of instructions yielding <M>u_1,u_2</M> if evaluated as SLP), <M>[u_1,g,u_2]</M> (The matrices of the Bruhat-Decomposition)
 #! @Description
 #! stdgens: The LGO standard-generators <M>\newline</M>
-#! g: A matrix in Sp(<M>d,q</M>) <M>\newline</M>
+#! g: A matrix in Sp(<M>d,q</M>) and q odd <M>\newline</M>
 #! Computes the Unitriangular decomposition of the matrix <M>g</M>.
 DeclareGlobalFunction( "UnitriangularDecompositionSp" );
+
+
+
+#####
+#   UnitriangularDecompositionSpEvenChar
+#####
+
+#! @Arguments stdgens g
+#! @Returns slp (A list of instructions yielding <M>u_1,u_2</M> if evaluated as SLP), <M>[u_1,g,u_2]</M> (The matrices of the Bruhat-Decomposition)
+#! @Description
+#! stdgens: The LGO standard-generators <M>\newline</M>
+#! g: A matrix in Sp(<M>d,q</M>) and q even <M>\newline</M>
+#! Computes the Unitriangular decomposition of the matrix <M>g</M>.
+DeclareGlobalFunction( "UnitriangularDecompositionSpEvenChar" );
 
 
 

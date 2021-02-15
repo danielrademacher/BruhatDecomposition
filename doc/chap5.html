@@ -31,9 +31,10 @@
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X82E6CC80818C226B">5.2-1 LGOStandardGensSp</a></span>
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X7F6AD1BB866799C3">5.2-2 LGOStandardGensSpEvenChar</a></span>
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X7EE5A2267DAE098B">5.2-3 UnitriangularDecompositionSp</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X84615263789182BE">5.2-4 MonomialSLPSp</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X7F37F4B28245472E">5.2-5 DiagSLPSp</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X7EABBF4F7A4DBF8A">5.2-6 BruhatDecompositionSp</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X82B6052F786B0B4F">5.2-4 UnitriangularDecompositionSpEvenChar</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X84615263789182BE">5.2-5 MonomialSLPSp</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X7F37F4B28245472E">5.2-6 DiagSLPSp</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X7EABBF4F7A4DBF8A">5.2-7 BruhatDecompositionSp</a></span>
 </div></div>
 </div>
 
@@ -76,11 +77,20 @@
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; UnitriangularDecompositionSp</code>( <var class="Arg">stdgens</var>, <var class="Arg">g</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Returns: slp (A list of instructions yielding <span class="SimpleMath">u_1,u_2</span> if evaluated as SLP), <span class="SimpleMath">[u_1,g,u_2]</span> (The matrices of the Bruhat-Decomposition)</p>
 
-<p>stdgens: The LGO standard-generators <span class="SimpleMath">newline</span> g: A matrix in Sp(<span class="SimpleMath">d,q</span>) <span class="SimpleMath">newline</span> Computes the Unitriangular decomposition of the matrix <span class="SimpleMath">g</span>.</p>
+<p>stdgens: The LGO standard-generators <span class="SimpleMath">newline</span> g: A matrix in Sp(<span class="SimpleMath">d,q</span>) and q odd <span class="SimpleMath">newline</span> Computes the Unitriangular decomposition of the matrix <span class="SimpleMath">g</span>.</p>
+
+<p><a id="X82B6052F786B0B4F" name="X82B6052F786B0B4F"></a></p>
+
+<h5>5.2-4 UnitriangularDecompositionSpEvenChar</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; UnitriangularDecompositionSpEvenChar</code>( <var class="Arg">stdgens</var>, <var class="Arg">g</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns: slp (A list of instructions yielding <span class="SimpleMath">u_1,u_2</span> if evaluated as SLP), <span class="SimpleMath">[u_1,g,u_2]</span> (The matrices of the Bruhat-Decomposition)</p>
+
+<p>stdgens: The LGO standard-generators <span class="SimpleMath">newline</span> g: A matrix in Sp(<span class="SimpleMath">d,q</span>) and q even <span class="SimpleMath">newline</span> Computes the Unitriangular decomposition of the matrix <span class="SimpleMath">g</span>.</p>
 
 <p><a id="X84615263789182BE" name="X84615263789182BE"></a></p>
 
-<h5>5.2-4 MonomialSLPSp</h5>
+<h5>5.2-5 MonomialSLPSp</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MonomialSLPSp</code>( <var class="Arg">stdgens</var>, <var class="Arg">mat</var>, <var class="Arg">slp</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Returns: slp (A list of instructions to evaluate tmpvalue. If slp is also given as input then this instructions are added to slp), [tmpvalue,diag] (tmpvalue is a monomial matix such that tmpvalue*mat = diag where diag is a diagonal matrix)</p>
@@ -89,7 +99,7 @@
 
 <p><a id="X7F37F4B28245472E" name="X7F37F4B28245472E"></a></p>
 
-<h5>5.2-5 DiagSLPSp</h5>
+<h5>5.2-6 DiagSLPSp</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DiagSLPSp</code>( <var class="Arg">stdgens</var>, <var class="Arg">diag</var>, <var class="Arg">slp</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Returns: slp (A list of instructions to evaluate diag if slp was Input then this instructions are added to slp)</p>
@@ -98,7 +108,7 @@
 
 <p><a id="X7EABBF4F7A4DBF8A" name="X7EABBF4F7A4DBF8A"></a></p>
 
-<h5>5.2-6 BruhatDecompositionSp</h5>
+<h5>5.2-7 BruhatDecompositionSp</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; BruhatDecompositionSp</code>( <var class="Arg">stdgens</var>, <var class="Arg">g</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Returns: pgr (A SLP to compute <span class="SimpleMath">u_1,u_2,p_sign</span> and <span class="SimpleMath">diag</span> and the matrices <span class="SimpleMath">u_1, u_2, p_sign</span> and <span class="SimpleMath">diag</span> itself.)</p>

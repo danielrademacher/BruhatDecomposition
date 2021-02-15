@@ -3552,7 +3552,6 @@ function(stdgens, g)
     Info( InfoBruhat, 2, "The Total Memory Usage is: "
                         , HighestSlotOfSLP(slp), " memory slots\n" );
 
-
     pgr := MakeSLP(slp,5);
 
     # The result R of pgr satisfies:

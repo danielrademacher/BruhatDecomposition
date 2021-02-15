@@ -149,6 +149,20 @@ DeclareGlobalFunction( "UnitriangularDecompositionSUOdd" );
 
 
 #####
+# UnitriangularDecompositionSUOddAndEvenChar
+#####
+
+#! @Arguments stdgens g
+#! @Returns slp (A list of instructions yielding <M>u_1,u_2</M> if evaluated as SLP), <M>[u_1,g,u_2]</M> (The matrices of the Bruhat-Decomposition)
+#! @Description
+#! stdgens: The LGO standard-generators <M>\newline</M>
+#! g: A matrix in SU(<M>d,q</M>) where d is odd and q is even <M>\newline</M>
+#! Computes the Unitriangular decomposition of the matrix <M>g</M>.
+DeclareGlobalFunction( "UnitriangularDecompositionSUOddAndEvenChar" );
+
+
+
+#####
 # UnitriangularDecompositionSU
 #####
 
@@ -175,7 +189,7 @@ DeclareGlobalFunction( "UnitriangularDecompositionSU" );
 #! @Returns slp (A list of instructions to evaluate tmpvalue. If slp is also given as input then this instructions are added to slp), [tmpvalue,diag] (tmpvalue is a monomial matix such that tmpvalue*mat = diag where diag is a diagonal matrix)
 #! @Description
 #! stdgens: The LGO standard-generators <M>\newline</M>
-#! mat: A monomial matrix (ie <M>w</M>) in SU<M>(d,q)</M> with <M>d</M> even and <M>q</M> odd <M>\newline</M>
+#! mat: A monomial matrix (ie <M>w</M>) in SU<M>(d,q)</M> with <M>d</M> odd and <M>q</M> odd <M>\newline</M>
 #! slp: An already existing list of instructions *optional <M>\newline</M>
 #! In this function we will transform a monomial matrix <M>mat \in</M> SU<M>(d,q)</M> with <M>d</M> even and <M>q</M> odd into
 #! a diagonal matrix diag. Using only the standard-generators <M>s,u,v</M> this
@@ -184,6 +198,26 @@ DeclareGlobalFunction( "UnitriangularDecompositionSU" );
 #! Furthermore we will return list slp of instructions which will
 #! (when evaluated at the LGO standard-generators) yields diag.
 DeclareGlobalFunction( "MonomialSLPSUOdd" );
+
+
+
+#####
+#   MonomialSLPSUOddAndEvenChar
+#####
+
+#! @Arguments stdgens mat slp
+#! @Returns slp (A list of instructions to evaluate tmpvalue. If slp is also given as input then this instructions are added to slp), [tmpvalue,diag] (tmpvalue is a monomial matix such that tmpvalue*mat = diag where diag is a diagonal matrix)
+#! @Description
+#! stdgens: The LGO standard-generators <M>\newline</M>
+#! mat: A monomial matrix (ie <M>w</M>) in SU<M>(d,q)</M> with <M>d</M> odd and <M>q</M> even <M>\newline</M>
+#! slp: An already existing list of instructions *optional <M>\newline</M>
+#! In this function we will transform a monomial matrix <M>mat \in</M> SU<M>(d,q)</M> with <M>d</M> even and <M>q</M> odd into
+#! a diagonal matrix diag. Using only the standard-generators <M>s,u,v</M> this
+#! will lead to a monomial matrix tmpvalue
+#! and <M>tmpvalue^{-1} \cdot diag = mat</M> (i.e. diag = tmpvalue*mat ).
+#! Furthermore we will return list slp of instructions which will
+#! (when evaluated at the LGO standard-generators) yields diag.
+DeclareGlobalFunction( "MonomialSLPSUOddAndEvenChar" );
 
 
 
@@ -215,7 +249,7 @@ DeclareGlobalFunction( "MonomialSLPSUEvenAndEvenChar" );
 #! @Returns slp (A list of instructions to evaluate tmpvalue. If slp is also given as input then this instructions are added to slp), [tmpvalue,diag] (tmpvalue is a monomial matix such that tmpvalue*mat = diag where diag is a diagonal matrix)
 #! @Description
 #! stdgens: The LGO standard-generators <M>\newline</M>
-#! mat: A monomial matrix (ie <M>w</M>) in SU<M>(d,q)</M> with <M>d</M> odd and <M>q</M> odd <M>\newline</M>
+#! mat: A monomial matrix (ie <M>w</M>) in SU<M>(d,q)</M> with <M>d</M> even and <M>q</M> odd <M>\newline</M>
 #! slp: An already existing list of instructions *optional <M>\newline</M>
 #! In this function we will transform a monomial matrix <M>mat \in</M> SU<M>(d,q)</M> with <M>d</M> odd and <M>q</M> odd into
 #! a diagonal matrix diag. Using only the standard-generators <M>s,u,v</M> this
@@ -282,6 +316,22 @@ DeclareGlobalFunction( "CycleFromListMine" );
 #! Writes a list of instructions which evaluated with LGO standard-generators
 #! yield the diagonal matrix of the input.
 DeclareGlobalFunction( "DiagSLPSUOdd" );
+
+
+
+#####
+#   DiagSLPSUOddAndEvenChar
+#####
+
+#! @Arguments stdgens diag slp
+#! @Returns slp (A list of instructions to evaluate diag if slp was Input then this instructions are added to slp)
+#! @Description
+#! stdgens: The LGO standard-generators <M>\newline</M>
+#! diag: A diagonal matrix (eg diag) in SU<M>(d,q)</M> with <M>d</M> odd and <M>q</M> even <M>\newline</M>
+#! slp: An already existing list of instructions *optional <M>\newline</M>
+#! Writes a list of instructions which evaluated with LGO standard-generators
+#! yield the diagonal matrix of the input.
+DeclareGlobalFunction( "DiagSLPSUOddAndEvenChar" );
 
 
 

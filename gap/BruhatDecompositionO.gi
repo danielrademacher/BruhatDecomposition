@@ -602,7 +602,7 @@ end
 InstallGlobalFunction(  __LGOStandardGensOmegaCircleEvenChar,
 function(d,q)
     
-    # TODO Where are the generators?
+    return LGOStandardGensSpEvenChar(d-1,q);
 
 end
 );
@@ -615,26 +615,62 @@ end
 
 InstallGlobalFunction(  __LGOStandardGensOmegaMinusEvenChar,
 function(d,q)
-    local s, t, delta, u, v, sigma, fld, w, n, S1, lambda, A, B, C, gamma, alpha,perm, inv, gamma2, J;
+    local s, t, delta, u, v, sigma, fld, w, n, S1, lambda, A, B, C, gamma,perm, inv, gamma2, nu;
     
     fld := GF(q);
     gamma := PrimitiveElement(GF(q^2));
     gamma2 := PrimitiveElement(GF(q));
-    alpha := gamma^((q+1)/2);
-    w := alpha^2;
-    
-    # TODO s, t and delta
+    w := gamma^(q+1);
 
+    nu := gamma + gamma^q;
+    if nu <> Zero(fld) then
+        nu := gamma2^LogFFE(nu,gamma2);
+    else
+        nu := Zero(fld);
+    fi;
     s := IdentityMat( d, fld );
+    s[1][1] := Zero(fld);
+    s[d][d] := Zero(fld);
+    s[1][d] := One(fld);
+    s[d][1] := One(fld);
+    s[(d/2)+1][d/2] := nu * One(fld);
 
     t := IdentityMat( d, fld );
+    t[1][d] := One(fld);
+    t[1][(d/2) ] := One(fld);
+    t[(d/2) + 1][d] := nu;
     
+    A :=((gamma^(-1))+(gamma^(-q)));
+    if A <> Zero(fld) then
+        A := gamma2^LogFFE(A,gamma2);
+    else
+        A := Zero(fld);
+    fi;
+    B := ((gamma^(1)) + (gamma^(q)));
+    if B <> Zero(fld) then
+        B := gamma2^LogFFE(B,gamma2);
+    else
+        B := Zero(fld);
+    fi;
+    C := ((gamma^(-q+1)) + (gamma^(q-1))+1);
+    if C <> Zero(fld) then
+        C := gamma2^LogFFE(C,gamma2);
+    else
+        C := Zero(fld);
+    fi;
+    w := gamma2^LogFFE(w,gamma2);
     delta := IdentityMat( d, fld );
+    delta[1][1] := w;
+    delta[d][d] := w^(-1);
+    delta[(d/2)][(d/2)] := One(fld);
+    delta[(d/2)+1][(d/2)+1] := C;
+    delta[(d/2)][(d/2)+1] := A;
+    delta[(d/2)+1][(d/2)] := B;
     
     u := IdentityMat( d, fld );
-    J := [[Zero(fld),One(fld)],[One(fld),Zero(fld)]];
-    u{[1,2]}{[1,2]} := J;
-    u{[d-1,d]}{[d-1,d]} := J;
+    u{[1..2]}{[1..2]} := [[0,1],[1,0]];
+    u{[d-1,d]}{[d-1,d]} := [[0,1],[1,0]];
+    u := u * One(fld);
     
     n := Int(d * 0.5)-1;
     v := 0 * IdentityMat( d, fld );
@@ -1891,22 +1927,455 @@ end
 InstallGlobalFunction(  UnitriangularDecompositionSOMinus,
 function(arg)
 
-    local g, u1, u2, j, r ,c, z, fld, f, i, a, d, w, A, B, C, k, mat, A2, B2, C2, A3, B3, C3;
+    local g, u1, u2, j, r ,c, z, fld, f, i, a, d, w, A, B, C, k, mat, A2, B2, C2, A3, B3, C3, StartValue, slp, TransvecAtAlpha2, TransvecAtAlpha3, TransvecAtAlpha5, TransvecAtAlpha6, ShiftTransvection2ByI, ShiftTransvection3ByI, ShiftTransvection2ByJ, ShiftTransvection3ByJ, ShiftTransvection5, ShiftTransvection6, tvpos, T2pos, T3pos, T5pos, T6pos, uipos, tmppos, tmppos2, hs, ell, StartValueForFirstCentreRow, stdgens, AEMrespos, u1pos, u2pos, jjj, MakeEntry1, test;
+    
+    #####
+    # TransvectionAtAlpha2()
+    #####
 
-    g := arg[1];
-    g := MutableCopyMat( g );
+    TransvecAtAlpha2 := function( alpha )
+
+        local cc, ell, instr;
+
+        # if omega = 1 then we overwrite the position for tv with Ti(1)
+        if IsOne( alpha ) then
+            Add(slp, [ [ T2pos[1], 1 ], tvpos ] );
+            return;
+        fi;
+
+        cc := CoefficientsPrimitiveElement( fld, alpha );
+        instr := [];
+
+        for ell in [ 1..Length(cc) ] do
+
+            if not IsZero( cc[ell] ) then
+                Append( instr, [ T2pos[ell], Int(cc[ell]) ] );
+            fi;
+        od;
+
+        if Length( instr ) = 0 then
+            Error("TransvecAtAlpha2: this should not happen");
+        fi;
+
+        Add( slp, [ instr,tvpos ] );
+
+        return;
+
+    end;
+
+    #####
+    # ShiftTransvection2ByI()
+    #####
+
+    ShiftTransvection2ByI := function(i)
+
+        local instr;
+
+        i := i-1;
+
+        instr := AEM( 5, AEMrespos, tmppos, i-1 );
+        Append( slp, instr );
+        Add( slp, [ [ AEMrespos, -1, tvpos , 1, AEMrespos, 1 ], tvpos ] );
+
+    end;
+
+    #####
+    # ShiftTransvection2ByJ()
+    #####
+
+    ShiftTransvection2ByJ := function(i, abnr)
+
+        local ui;
+
+        ui := (d/2)-2;
+
+        while ui-i+1-(d/2-abnr) > 0 do
+            Add(slp, [[uipos[ui-(d/2-abnr)],1,tvpos,1,uipos[ui-(d/2-abnr)],-1],tvpos]);
+            ui := ui-1;
+        od;
+
+    end;
+
+    #####
+    # TransvectionAtAlpha3()
+    #####
+
+    TransvecAtAlpha3 := function( alpha )
+
+        local cc, ell, instr;
+
+        # if omega = 1 then we overwrite the position for tv with Ti(1)
+        if IsOne( alpha ) then
+            Add(slp, [ [ T3pos[1], 1 ], tvpos ] );
+            return;
+        fi;
+
+        cc := CoefficientsPrimitiveElement( fld, alpha );
+        instr := [];
+
+        for ell in [ 1..Length(cc) ] do
+
+            if not IsZero( cc[ell] ) then
+                Append( instr, [ T3pos[ell], Int(cc[ell]) ] );
+            fi;
+        od;
+
+        if Length( instr ) = 0 then
+            Error("TransvecAtAlpha3: this should not happen");
+        fi;
+
+        Add( slp, [ instr,tvpos ] );
+
+        return;
+
+    end;
+
+    #####
+    # ShiftTransvection3ByI()
+    #####
+
+    ShiftTransvection3ByI := function(i)
+
+        local ui;
+
+        i := d-i+1;
+        ui := 1;
+
+        while ui < i do
+            Add(slp, [[uipos[ui],-1,tvpos,1,uipos[ui],1],tvpos]);
+            ui := ui+1;
+        od;
+
+    end;
+
+    #####
+    # ShiftTransvection3ByJ()
+    #####
+
+    ShiftTransvection3ByJ := function(i)
+
+        local instr;
+
+        i := i-1;
+
+        Add(slp,[[5,1,4,-1],tmppos2]);
+        instr := AEM( tmppos2, AEMrespos, tmppos, i-1 );
+        Append( slp, instr );
+        Add( slp, [ [ AEMrespos, -1, tvpos , 1, AEMrespos, 1 ], tvpos ] );
+
+    end;
+    
+    #####
+    # TransvectionAtAlpha5()
+    #####
+
+    TransvecAtAlpha5 := function( alpha )
+
+        local cc, ell, instr;
+
+        # if omega = 1 then we overwrite the position for tv with Ti(1)
+        if IsOne( alpha ) then
+            Add(slp, [ [ T5pos[1], 1 ], tvpos ] );
+            return;
+        fi;
+
+        cc := CoefficientsPrimitiveElement( fld, alpha );
+        instr := [];
+
+        for ell in [ 1..Length(cc) ] do
+
+            if not IsZero( cc[ell] ) then
+                Append( instr, [ T5pos[ell], Int(cc[ell]) ] );
+            fi;
+        od;
+
+        if Length( instr ) = 0 then
+            Error("TransvecAtAlpha5: this should not happen");
+        fi;
+
+        Add( slp, [ instr,tvpos ] );
+
+    end;
+
+    #####
+    # ShiftTransvection5()
+    #####
+
+    ShiftTransvection5 := function(i)
+        local instr;
+
+        i := d-i+1;
+
+        if (i<d+1 ) then
+            instr := AEM( 5, AEMrespos, tmppos, i-1 );
+            Append( slp, instr );
+            Add( slp, [ [ AEMrespos, -1, tvpos , 1, AEMrespos, 1 ], tvpos ] );
+        fi;
+
+    end;
+    
+    #####
+    # TransvectionAtAlpha6()
+    #####
+
+    TransvecAtAlpha6 := function( alpha )
+
+        local cc, ell, instr;
+
+        # if omega = 1 then we overwrite the position for tv with Ti(1)
+        if IsOne( alpha ) then
+            Add(slp, [ [ T6pos[1], 1 ], tvpos ] );
+            return;
+        fi;
+
+        cc := CoefficientsPrimitiveElement( fld, alpha );
+        instr := [];
+
+        for ell in [ 1..Length(cc) ] do
+
+            if not IsZero( cc[ell] ) then
+                Append( instr, [ T6pos[ell], Int(cc[ell]) ] );
+            fi;
+        od;
+
+        if Length( instr ) = 0 then
+            Error("TransvecAtAlpha5: this should not happen");
+        fi;
+
+        Add( slp, [ instr,tvpos ] );
+
+    end;
+
+    #####
+    # ShiftTransvection6()
+    #####
+
+    ShiftTransvection6 := function(i)
+        local instr;
+
+        i := d-i+1;
+
+        if (i<d+1 ) then
+            instr := AEM( 5, AEMrespos, tmppos, i-1 );
+            Append( slp, instr );
+            Add( slp, [ [ AEMrespos, -1, tvpos , 1, AEMrespos, 1 ], tvpos ] );
+        fi;
+
+    end;
+    
+    #####
+    # StartValueForFirstCentreRow()
+    #####
+    
+    StartValueForFirstCentreRow := function(q)
+        local i, j, gamma, omega, alpha, delta, t, gens;
+    
+        w := PrimitiveElement(GF(q));
+        gamma := PrimitiveElement(GF(q^2));
+        alpha := gamma^((q+1)/2);
+        
+        for j in [1..q] do
+            if ( (2^(-1)*alpha^(-1)*(gamma^(-2*j)-gamma^(-2*j*q))) in GF(Characteristic(GF(q)))) and ((2^(-1)*alpha^(-1)*(gamma^(-2*j)-gamma^(-2*j*q))) <> Zero(GF(q))) then
+                return [j,Int((2^(-1)*alpha^(-1)*(gamma^(-2*j)-gamma^(-2*j*q)))), (gamma^(2*-j)+gamma^(2*-j*q)-2^(-1)*(gamma^(-2*j)+gamma^(-2*j*q)) + 2)];
+            fi;
+        od;
+        
+    end;
+
+
+    #    ############
+    #    Back to Function
+    #    ############
+    
+    if Length( arg ) >= 2 and IsList( arg[1] ) and IsMatrix( arg[2] ) then
+
+        stdgens := arg[1];  # the LGO standard generators
+        g := arg[2];
+
+        if Length( stdgens ) < 1 or not IsMatrix( stdgens[1] ) then
+
+            Error("first argument must be the LGO standard generators");
+            return;
+        fi;
+
+        if not IsMatrix( g ) then
+            Error("second argument must be a matrix"); return;
+        fi;
+    else
+        Error("input: LGO standard generators and a matrix");
+        return;
+    fi;
+
+    if Length(arg) = 3 then
+
+        # The first 10 entries are the stdgens and their inverses
+        slp := arg[3];
+
+        if not IsList(slp) then
+            Error("third argument must be a list");
+            return;
+        fi;
+    else
+        # We write an SLP into the variable slp
+        # The first 12 entries are the stdgens and the inverses
+        # s, t, del, v, x, s^-1, t^-1, del^-1, v^-1, x^-1
+        slp := [    [1,1], [2,1], [3,1], [4,1], [5,1], [6,1],
+                    [1,-1],[2,-1],[3,-1],[4,-1],[5,-1], [6,-1]  ];
+    fi;
+
     d := Length( g );
-    fld := FieldOfMatrixList( [g] );
+    fld := FieldOfMatrixList( stdgens );
+    
     mat := GeneratorsOfGroup(MSO(-1,d,Size(fld)))[3];
     w := mat[1][1];   #TODO Choose primitiveElement from LGO Standard generator, such that the generator are the same
     A := mat[d/2][d/2];
     B := mat[d/2][(d/2)+1];
     C := mat[(d/2)+1][d/2];
+
+    # To create an MSLP, we allocate all the memory needed at the beginning.
+    Add( slp, [1,0] );        tmppos       := Length(slp);    #13
+    Add( slp, [1,0] );        AEMrespos    := Length(slp);    #14
+    Add( slp, [1,0] );        u1pos        := Length(slp);    #15
+    Add( slp, [1,0] );        u2pos        := Length(slp);    #16
+    Add( slp, [1,0] );        tvpos        := Length(slp);    #17
+    Add( slp, [1,0] );        tmppos2      := Length(slp);    #18
+
+    u1 := MutableCopyMat( One(g) );
+    u2 := MutableCopyMat( One(g) );
+
+    # If g is already a monomial matrix return u_1 = u_2 = I_d
+    if TestIfMonomial( g ) then
+        Add( slp, [ [1,0],[1,0] ] );
+        return [ slp, [u1,g,u2] ];
+    fi;
+
+    f := LogInt(Size(fld), Characteristic(fld)); #ie q=p^f
+
+    hs := HighestSlotOfSLP(slp);
+            
+    jjj := Int(2^(-1) * One(fld));
+    Add(slp, [ [5, -1, 2, -1, 5, 1, 2 , jjj, 5, -1, 2, 1, 5, 1, 2, -jjj ], tmppos2 ] );
+
+    # We create the help variables for the block top left or bottom right
+    T2pos := [ hs + 1 .. hs + f ];
+
+    hs := hs + f;
+
+    for ell in [ 1..f ] do
+        Add(slp, [1,0] );
+    od;
+
+    for ell in [0..f-1] do
+
+        Add(slp, [ [3, -ell, 5, -2, 3, ell, 5 ,2 ], tmppos ] );
+        Add(slp, [ [tmppos, 1, 1, -1, 4, -1, tmppos2, -1, 4, 1, 1, 1, tmppos, -1], T2pos[ell+1] ] );
+
+    od;
+
+    # We create the help variables for the block in the bottom left
+    T3pos := [ hs + 1 .. hs + f ];
+
+    hs := hs + f;
+
+    for ell in [ 1..f ] do
+        Add(slp, [1,0] );
+    od;
+
+    for ell in [0..f-1] do
+
+        Add(slp, [ [3, -ell, 5, -2, 3, ell, 5 ,2 ], tmppos ] );
+        Add(slp, [ [tmppos, 1, 1, -1, 4, -1, 1, -1, 4, -1, tmppos2, 1, 4, 1, 1, 1, 4, 1, 1, 1, tmppos, -1], T3pos[ell+1] ] );
+
+    od;
     
-    u1 := IdentityMat(d,fld);
-    u2 := IdentityMat(d,fld);
+    # We create the help variables for the sencond centre row and column
+    T5pos := [ hs + 1 .. hs + f ];
+
+    hs := hs + f;
+
+    for ell in [ 1..f ] do
+        Add(slp, [1,0] );
+    od;
+
+    for ell in [0..f-1] do
+
+        Add(slp, [ [3, -ell, 5, -2, 3, ell, 5 ,2 ], tmppos ] );
+        Add(slp, [ [tmppos, 1, 1, -1, 2, 1, 1, 1, tmppos, -1], T5pos[ell+1] ] );
+
+    od;
     
-    f := LogInt(Size(fld), Characteristic(fld));
+    # We create the help variables for the first centre row and column
+    T6pos := [ hs + 1 .. hs + f ];
+
+    hs := hs + f;
+
+    for ell in [ 1..f ] do
+        Add(slp, [1,0] );
+    od;
+    
+    StartValue := StartValueForFirstCentreRow(Size(fld));
+    MakeEntry1 := StartValue[2];
+    z := -StartValue[3];
+    StartValue := StartValue[1];
+    Add(slp, [ [3,-StartValue, 2, 2, 3, StartValue, 3, -StartValue, 2, -1, 3, StartValue, 2, 2 ], tmppos2 ] );
+    if z <> Zero(fld) then
+        TransvecAtAlpha5(z);
+        Add(slp,[[tmppos2,1,1,-1,tvpos,1,1,1],tmppos2]);
+    fi;
+    MakeEntry1 := Int((-1)*MakeEntry1^(-1) * One(fld));
+    Add(slp, [ [tmppos2,MakeEntry1 ], tmppos2 ] );
+
+    for ell in [0..f-1] do
+
+        Add(slp, [ [3, -ell, 5, -2, 3, ell, 5 ,2 ], tmppos ] );
+        Add(slp, [ [tmppos, 1, 1, -1, tmppos2, 1, 1, 1, tmppos, -1], T6pos[ell+1] ] );
+
+    od;
+
+    # We create the help variables for the shift
+    uipos := [ hs + 1 .. (hs + (d/2)-2) ];
+
+    hs := hs + ((d/2)-2) ;
+
+    for ell in [ 1 .. ((d/2)-2)  ] do
+        Add(slp, [1,0] );
+    od;
+
+    Add( slp, [[4,1],uipos[1]]);
+
+    for ell in [2..((d/2)-2) ] do
+            Add( slp, [ [ 5, -1, uipos[ell-1] , 1, 5, 1 ], uipos[ell] ] );
+    od;
+
+    ############
+    # Tests
+    ############
+
+    #test :=PseudoRandom(fld);
+    #Display(test);
+    
+    #Add(slp, [[T5pos[2],1],tvpos]);
+
+    #TransvecAtAlpha2(test);
+    #ShiftTransvection2ByI(4);
+    #ShiftTransvection2ByJ(1, 4);
+
+    #TransvecAtAlpha3(test);
+    #ShiftTransvection3ByJ(5);
+    #ShiftTransvection3ByI(8);
+    
+    #TransvecAtAlpha5(test);
+    #ShiftTransvection5(9);
+
+    #Add(slp, [[T5pos[2],1],tvpos]);
+
+    #return MakeSLP(slp,6);
+
+    ############
+    # Main
+    ############;
+
+    g := MutableCopyMat( g );
 
     for c in [ d, d-1..(d/2)+2 ] do
 
@@ -1937,6 +2406,10 @@ function(arg)
                 z := -g[i][c] * a;
 
                 if (i+r <> d+1) then
+                
+                    TransvecAtAlpha6(-z/(2*w));
+                    ShiftTransvection6(d-r+1);
+                    Add(slp,[[tvpos,1,u1pos,1],u1pos]);
 
                     g[d-r+1] := g[d-r+1] + -(z^2)/(4*w) * g[r];
                     u1[d-r+1] := u1[d-r+1] + -(z^2)/(4*w) * u1[r];
@@ -1956,6 +2429,10 @@ function(arg)
                 z := -g[i][c] * a;
 
                 if (i+r <> d+1) then
+                
+                    TransvecAtAlpha5(2^(-1)*z);
+                    ShiftTransvection5(d-r+1);
+                    Add(slp,[[tvpos,1,u1pos,1],u1pos]);
 
                     g[d-r+1] := g[d-r+1] + z^2/4 * g[r];
                     u1[d-r+1] := u1[d-r+1] + z^2/4 * u1[r];
@@ -1984,6 +2461,24 @@ function(arg)
                     #Mul := List( One(SU(d,Size(fld))), ShallowCopy );
 
                     if (i+r <> d+1) then
+                        
+                        if i in [1..d/2] and r in [1..d/2] then
+                            TransvecAtAlpha2(z);
+                            ShiftTransvection2ByI(i);
+                            ShiftTransvection2ByJ(r, i);
+                        elif i in [((d/2)+1)..d] and r in [((d/2)+1)..d] then
+                            TransvecAtAlpha2(-z);
+                            ShiftTransvection2ByI(d-r+1);
+                            ShiftTransvection2ByJ(d-i+1,d-r+1);
+                        elif i+r < d+1 then
+                            TransvecAtAlpha3(-z);
+                            ShiftTransvection3ByJ(d-i+1);
+                            ShiftTransvection3ByI(d-r+1);
+                        else
+                            TransvecAtAlpha3(z);
+                            ShiftTransvection3ByJ(r);
+                            ShiftTransvection3ByI(i);
+                        fi;
 
                         #Mul[i][r] := z;
                         g[i] := g[i] + z*g[r];
@@ -1992,6 +2487,8 @@ function(arg)
                         #Mul[d-r+1][d-i+1] := -z;
                         g[d-r+1] := g[d-r+1] + (-z)*g[d-i+1];
                         u1[d-r+1] := u1[d-r+1] + (-z)*u1[d-i+1];
+                        
+                        Add(slp,[[tvpos,1,u1pos,1],u1pos]);
                     
                     fi;
                 fi;
@@ -2008,6 +2505,10 @@ function(arg)
                 z := -g[r][j] * a;
 
                 if (c+j <> d+1) then
+                
+                    TransvecAtAlpha5(z);
+                    ShiftTransvection5(c);
+                    Add(slp,[[u2pos,1,tvpos,1],u2pos]);
 
                     g{[1..d]}[d-c+1] :=  g{[1..d]}[d-c+1] + z^2 *  g{[1..d]}[c];
                     u2{[1..d]}[d-c+1] := u2{[1..d]}[d-c+1] + z^2 * u2{[1..d]}[c];
@@ -2017,7 +2518,6 @@ function(arg)
 
                     g{[1..d]}[j] :=  g{[1..d]}[j] + z *  g{[1..d]}[c];
                     u2{[1..d]}[j] := u2{[1..d]}[j] + z * u2{[1..d]}[c];
-                    
                 fi;
             fi;
             
@@ -2027,6 +2527,10 @@ function(arg)
                 z := -g[r][j] * a;
 
                 if (c+j <> d+1) then
+            
+                    TransvecAtAlpha6(z);
+                    ShiftTransvection6(c);
+                    Add(slp,[[u2pos,1,tvpos,1],u2pos]);
 
                     g{[1..d]}[d-c+1] :=  g{[1..d]}[d-c+1] + -w*z^2 *  g{[1..d]}[c];
                     u2{[1..d]}[d-c+1] := u2{[1..d]}[d-c+1] + -w*z^2 * u2{[1..d]}[c];
@@ -2036,7 +2540,6 @@ function(arg)
 
                     g{[1..d]}[j] :=  g{[1..d]}[j] + z *  g{[1..d]}[c];
                     u2{[1..d]}[j] := u2{[1..d]}[j] + z * u2{[1..d]}[c];
-                    
                 fi;
             fi;
             
@@ -2049,6 +2552,24 @@ function(arg)
                     z := - g[r][j] * a;
 
                     if (c+j <>  d+1) then
+                    
+                        if c in [1..d/2] and j in [1..d/2] then
+                            TransvecAtAlpha2(z);
+                            ShiftTransvection2ByI(c);
+                            ShiftTransvection2ByJ(j, c);
+                        elif c in [((d/2)+1)..d] and j in [((d/2)+1)..d] then
+                            TransvecAtAlpha2(-z);
+                            ShiftTransvection2ByI(d-j+1);
+                            ShiftTransvection2ByJ(d-c+1,d-j+1);
+                        elif c+j < d+1 then
+                            TransvecAtAlpha3(z);
+                            ShiftTransvection3ByJ(d-c+1);
+                            ShiftTransvection3ByI(d-j+1);
+                        else
+                            TransvecAtAlpha3(z);
+                            ShiftTransvection3ByJ(j);
+                            ShiftTransvection3ByI(c);
+                        fi;
 
                         #Mul[c][j] := z;
                         g{[1..d]}[j] :=  g{[1..d]}[j] + z *  g{[1..d]}[c];
@@ -2057,6 +2578,8 @@ function(arg)
                         #Mul[d-j+1][d-c+1] := -z;
                         g{[1..d]}[d-c+1] :=  g{[1..d]}[d-c+1] + (-z) *  g{[1..d]}[d-j+1];
                         u2{[1..d]}[d-c+1] := u2{[1..d]}[d-c+1] + (-z) * u2{[1..d]}[d-j+1];
+                        
+                        Add(slp,[[u2pos,1,tvpos,1],u2pos]);
                       
                     fi;
                 fi;
@@ -2081,6 +2604,7 @@ function(arg)
                 mat[(d/2)+1][(d/2)+1] := A;
                 g := mat*g;
                 u1 := mat*u1;
+                Add(slp,[[3,k,u1pos,1],u1pos]);
                 break;
             fi;
             k := k+1;
@@ -2092,9 +2616,22 @@ function(arg)
             C := C3;
         od;
     fi;
+    
+    #test := MakeSLP(slp,6);
+    #if (ResultOfStraightLineProgram(test,stdgens) <> u1) then
+    #    Error("u1");
+    #fi;
+    #test := slp;
+    #Add(test,[[u2pos,1],u2pos]);
+    #test := MakeSLP(test,6);
+    #if (ResultOfStraightLineProgram(test,stdgens) <> u2) then
+    #    Error("u2");
+    #fi;
+    
+    Add( slp, [ [u1pos,1], [u2pos,1] ]);
 
     # Now u1^-1 * g * u2^-1 is the input matrix
-    return [g,u1,u2];
+    return [slp,[g, u1, u2], hs];
 
 end
 );
@@ -2686,7 +3223,7 @@ end
 InstallGlobalFunction(  MonomialSLPSOMinus,
 function( arg )
 
-    local slp, c, n, m, result, i, k, u1, u2, result2, test, g, stdgens, mat, perm, fld, p_signpos, vpos, vipos, spos, upos, unpos, tpos, left, right, cnt, v, vf, s, pot, p_signwr, instr, p_sign, leftma, rightma, L, R, diag, w, alpha, tmpvalue, rowlist, L2, R2, tmpSave, perm2, perm3, delta, A, B, C, A2, B2, C2, A3, B3, C3;
+    local slp, c, n, m, result, i, k, u1, u2, result2, test, g, stdgens, mat, perm, fld, p_signpos, vpos, vipos, spos, upos, unpos, tpos, left, right, cnt, v, vf, s, pot, p_signwr, instr, p_sign, leftma, rightma, L, R, diag, w, alpha, tmpvalue, rowlist, L2, R2, tmpSave, perm2, perm3, delta, A, B, C, A2, B2, C2, A3, B3, C3, Es, Ev, Evf, EvfMinus, j;
 
     # Check for correct Input
     if Length(arg) >= 2 and IsList(arg[1]) and IsMatrix(arg[2]) then
@@ -2724,7 +3261,7 @@ function( arg )
             return;
         fi;
 
-        # cnt := HighestSlotOfSLP(slp);
+         cnt := HighestSlotOfSLP(slp);
 
         # Info( InfoBruhat, 2, " and additional:  ",7," memory slots ", "in PermSLP()\n");
         
@@ -2785,9 +3322,11 @@ function( arg )
             elif (n-k+1)^i = n-k+1 then
                 tmpvalue := L2[k];
                 L2[k] := L2[n-k+1];
+                L2[n/2] := -1*L2[n/2];
                 L2[n-k+1] := tmpvalue;
                 tmpvalue := R2{[1..n]}[k];
                 R2{[1..n]}[k] := R2{[1..n]}[n-k+1];
+                R2{[1..n]}[n/2] := -1*R2{[1..n]}[n/2];
                 R2{[1..n]}[n-k+1] := tmpvalue;
                 perm := perm^(k,n-k+1);
                 u1 := (k,n-k+1) * u1;
@@ -2799,6 +3338,7 @@ function( arg )
             else
                 tmpvalue := L2[k];
                 L2[k] := L2[n-k+1];
+                L2[n/2] := -1*L2[n/2];
                 L2[n-k+1] := tmpvalue;
                 perm := (k,n-k+1)*perm;
                 u1 := (k,n-k+1) * u1;
@@ -2831,6 +3371,20 @@ function( arg )
         #Display(perm);
         #Add( slp, [ right ,1 ] );
         
+        #test := slp;
+        #Add(test, [[left,1],p_signpos]);
+        #test := MakeSLP(test,6);
+        #if (ResultOfStraightLineProgram(test,stdgens) <> L2) then
+        #    Error("u1");
+        #fi;
+        
+        #test := slp;
+        #Add(test, [[right,1],p_signpos]);
+        #test := MakeSLP(test,6);
+        #if (ResultOfStraightLineProgram(test,stdgens) <> R2) then
+        #    Error("u2");
+        #fi;
+        
         #Error("Here");
         #return MakeSLP(slp,6);
         
@@ -2846,14 +3400,19 @@ function( arg )
     od;
 
     v := (CycleFromPermutation(PermutationMonomialMatrix(stdgens[5])[2])[1])^(-1);
+    Ev := MonomialMatrixToEasyForm(stdgens[5]^(-1));
     vf := (CycleFromPermutation(PermutationMonomialMatrix(stdgens[5])[2])[1])^(-1);
+    Evf := MonomialMatrixToEasyForm(stdgens[5]^(-1));
+    EvfMinus := MonomialMatrixToEasyForm(stdgens[5]);
     s := CycleFromPermutation(PermutationMonomialMatrix(stdgens[4])[2])[1];
+    Es := MonomialMatrixToEasyForm(stdgens[4]);
 
     Add( slp, [ [5,1], vpos ] );
     Add( slp, [ [5,-1], vipos ] );
     Add( slp, [ [4,1], spos ] );
 
     perm3 := perm;
+    tmpvalue := MonomialMatrixToEasyForm(IdentityMat(n,fld));
 
     for i in [ 1 .. m-1 ] do
 
@@ -2861,6 +3420,9 @@ function( arg )
 
         # Need to update perm since pi_{i-1} may change pos of i
         perm   :=   perm   *  v ^pot;
+        for j in [1..pot] do
+            tmpvalue := MultiplicationOfEasyForm(tmpvalue,Ev);
+        od;
 
         # memory slots 13 and 14 are used for resAEM and tmpAEM
         instr := AEM( vipos, 13, 14, pot );
@@ -2869,26 +3431,43 @@ function( arg )
 
         #Compute v_i+1, save command in slp
         v  :=    s    *  v;
+        Ev := MultiplicationOfEasyForm(Es,Ev);
 
         Add(slp,[ [spos,1, vipos,1 ], vipos ] ); # vipos
         # Don't be confused with notation in Paper
         # There we used v1 (which coincides with v^-1)
 
         s  :=   s ^(  vf ^-1 );
+        Es := MultiplicationOfEasyForm(MultiplicationOfEasyForm(Evf,Es),EvfMinus);
         Add(slp, [ [11, 1, spos,1, 5,1 ], spos ] ); # spos
 
 
     od;
 
     Add(slp,[ [ p_signpos,-1 ], p_signpos ] );
-
-    tmpvalue := PermutationMat(perm2^(-1),n, fld);
-    tmpvalue{[1..n/2]}{[1..n/2]} := PermutationMat(perm3^(-1),n/2, fld);
-
     Add( slp, [ [left,1,p_signpos,1,right,1] , p_signpos ] );
 
-    tmpvalue :=R2*tmpvalue*L2;
+    #tmpvalue := PermutationMat(perm2^(-1),n, fld);
+    #tmpvalue{[1..n/2]}{[1..n/2]} := PermutationMat(perm3^(-1),n/2, fld);
+    
+    #tmpvalue :=R2*tmpvalue*L2;
+    #mat := tmpvalue*mat;
+    #Display(mat);
+    
+    tmpvalue := EasyFormToMonomialMatrix(tmpvalue,n,fld);
+    tmpvalue := R2*tmpvalue*L2;
     mat := tmpvalue*mat;
+    
+    #test := slp;
+    #Add(test, [[p_signpos,1],p_signpos]);
+    #test := MakeSLP(test,6);
+    #if (ResultOfStraightLineProgram(test,stdgens)^(-1) <> tmpvalue) then
+    #    Error("before middle");
+    #fi;
+    #Display("Before Middle correct");
+    #Display(ResultOfStraightLineProgram(test,stdgens)^(-1));
+    #Print("---\n");
+    #Display(tmpvalue);
     
     # The permutation is now (m+1,m+2)
     # Need a better way to find this. This is still unbelievable slow!
@@ -2920,12 +3499,23 @@ function( arg )
             if (A*mat[m+1][m+2]+B*mat[m+2][m+2] = Zero(fld)) then
                 #g := delta^k*g;
                 delta := MutableCopyMat(delta);
+                delta[1,1] := delta[1,1]^k;
+                delta[n,n] := delta[n,n]^k;
                 delta[m+1][m+1] := A;
                 delta[m+1][m+2] := B;
                 delta[m+2][m+1] := C;
                 delta[m+2][m+2] := A;
                 mat := delta*mat;
-                Add( slp, [[ 3 ,k, p_signpos,1], p_signpos ] );
+                tmpvalue := delta*tmpvalue;
+                Add( slp, [[p_signpos,1,3,-k], p_signpos ] );
+                
+                #test := slp;
+                #Add(test, [[p_signpos,1],p_signpos]);
+                #test := MakeSLP(test,6);
+                #if (ResultOfStraightLineProgram(test,stdgens)^(-1) <> tmpvalue) then
+                #    Error("middle");
+                #fi;
+                
                 break;
             fi;
             k := k+1;
@@ -2938,13 +3528,7 @@ function( arg )
         od;
     fi;
     
-    # Fix the last entry
-    if mat[m+1][m+1] <> mat[m+2][m+2] then
-        mat[m+1][m+1] := mat[m+2][m+2];
-    fi;
-    
     Add( slp, [ p_signpos ,1 ] );
-    
 
     return [slp, [ tmpvalue, mat ] ];
 

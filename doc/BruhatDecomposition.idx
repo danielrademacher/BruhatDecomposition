@@ -64,21 +64,25 @@
 \indexentry{UnitriangularDecompositionSUEven@\texttt  {UnitriangularDecompositionSUEven}|hyperpage}{20}
 \indexentry{UnitriangularDecompositionSUEvenAndEvenChar@\texttt  {Unitriangular}\-\texttt  {Decomposition}\-\texttt  {S}\-\texttt  {U}\-\texttt  {Even}\-\texttt  {And}\-\texttt  {Even}\-\texttt  {Char}|hyperpage}{20}
 \indexentry{UnitriangularDecompositionSUOdd@\texttt  {UnitriangularDecompositionSUOdd}|hyperpage}{20}
-\indexentry{UnitriangularDecompositionSU@\texttt  {UnitriangularDecompositionSU}|hyperpage}{20}
+\indexentry{UnitriangularDecompositionSUOddAndEvenChar@\texttt  {Unitriangular}\-\texttt  {Decomposition}\-\texttt  {S}\-\texttt  {U}\-\texttt  {Odd}\-\texttt  {And}\-\texttt  {Even}\-\texttt  {Char}|hyperpage}{20}
+\indexentry{UnitriangularDecompositionSU@\texttt  {UnitriangularDecompositionSU}|hyperpage}{21}
 \indexentry{MonomialSLPSUOdd@\texttt  {MonomialSLPSUOdd}|hyperpage}{21}
+\indexentry{MonomialSLPSUOddAndEvenChar@\texttt  {MonomialSLPSUOddAndEvenChar}|hyperpage}{21}
 \indexentry{MonomialSLPSUEvenAndEvenChar@\texttt  {MonomialSLPSUEvenAndEvenChar}|hyperpage}{21}
-\indexentry{MonomialSLPSUEven@\texttt  {MonomialSLPSUEven}|hyperpage}{21}
+\indexentry{MonomialSLPSUEven@\texttt  {MonomialSLPSUEven}|hyperpage}{22}
 \indexentry{CheckContinue@\texttt  {CheckContinue}|hyperpage}{22}
 \indexentry{CycleFromPermutation@\texttt  {CycleFromPermutation}|hyperpage}{22}
 \indexentry{CycleFromListMine@\texttt  {CycleFromListMine}|hyperpage}{22}
-\indexentry{DiagSLPSUOdd@\texttt  {DiagSLPSUOdd}|hyperpage}{22}
-\indexentry{DiagSLPSU@\texttt  {DiagSLPSU}|hyperpage}{22}
+\indexentry{DiagSLPSUOdd@\texttt  {DiagSLPSUOdd}|hyperpage}{23}
+\indexentry{DiagSLPSUOddAndEvenChar@\texttt  {DiagSLPSUOddAndEvenChar}|hyperpage}{23}
+\indexentry{DiagSLPSU@\texttt  {DiagSLPSU}|hyperpage}{23}
 \indexentry{DiagSLPSUEven@\texttt  {DiagSLPSUEven}|hyperpage}{23}
-\indexentry{DiagSLPSUEvenAndEvenChar@\texttt  {DiagSLPSUEvenAndEvenChar}|hyperpage}{23}
-\indexentry{BruhatDecompositionSU@\texttt  {BruhatDecompositionSU}|hyperpage}{23}
-\indexentry{LGOStandardGensSp@\texttt  {LGOStandardGensSp}|hyperpage}{24}
-\indexentry{LGOStandardGensSpEvenChar@\texttt  {LGOStandardGensSpEvenChar}|hyperpage}{24}
-\indexentry{UnitriangularDecompositionSp@\texttt  {UnitriangularDecompositionSp}|hyperpage}{24}
-\indexentry{MonomialSLPSp@\texttt  {MonomialSLPSp}|hyperpage}{25}
-\indexentry{DiagSLPSp@\texttt  {DiagSLPSp}|hyperpage}{25}
-\indexentry{BruhatDecompositionSp@\texttt  {BruhatDecompositionSp}|hyperpage}{25}
+\indexentry{DiagSLPSUEvenAndEvenChar@\texttt  {DiagSLPSUEvenAndEvenChar}|hyperpage}{24}
+\indexentry{BruhatDecompositionSU@\texttt  {BruhatDecompositionSU}|hyperpage}{24}
+\indexentry{LGOStandardGensSp@\texttt  {LGOStandardGensSp}|hyperpage}{25}
+\indexentry{LGOStandardGensSpEvenChar@\texttt  {LGOStandardGensSpEvenChar}|hyperpage}{25}
+\indexentry{UnitriangularDecompositionSp@\texttt  {UnitriangularDecompositionSp}|hyperpage}{25}
+\indexentry{UnitriangularDecompositionSpEvenChar@\texttt  {Unitriangular}\-\texttt  {Decomposition}\-\texttt  {Sp}\-\texttt  {Even}\-\texttt  {Char}|hyperpage}{26}
+\indexentry{MonomialSLPSp@\texttt  {MonomialSLPSp}|hyperpage}{26}
+\indexentry{DiagSLPSp@\texttt  {DiagSLPSp}|hyperpage}{26}
+\indexentry{BruhatDecompositionSp@\texttt  {BruhatDecompositionSp}|hyperpage}{26}

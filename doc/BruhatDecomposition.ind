@@ -10,8 +10,8 @@
   \item \texttt  {BruhatDecompositionSLWithTi}, \hyperpage{18}
   \item \texttt  {BruhatDecompositionSLWithTiNC}, \hyperpage{18}
   \item \texttt  {BruhatDecompositionSO}, \hyperpage{9}
-  \item \texttt  {BruhatDecompositionSp}, \hyperpage{25}
-  \item \texttt  {BruhatDecompositionSU}, \hyperpage{23}
+  \item \texttt  {BruhatDecompositionSp}, \hyperpage{26}
+  \item \texttt  {BruhatDecompositionSU}, \hyperpage{24}
 
   \indexspace
 
@@ -28,11 +28,12 @@
   \item \texttt  {DiagSLPSOCircle}, \hyperpage{8}
   \item \texttt  {DiagSLPSOMinus}, \hyperpage{8}
   \item \texttt  {DiagSLPSOPlus}, \hyperpage{8}
-  \item \texttt  {DiagSLPSp}, \hyperpage{25}
-  \item \texttt  {DiagSLPSU}, \hyperpage{22}
+  \item \texttt  {DiagSLPSp}, \hyperpage{26}
+  \item \texttt  {DiagSLPSU}, \hyperpage{23}
   \item \texttt  {DiagSLPSUEven}, \hyperpage{23}
-  \item \texttt  {DiagSLPSUEvenAndEvenChar}, \hyperpage{23}
-  \item \texttt  {DiagSLPSUOdd}, \hyperpage{22}
+  \item \texttt  {DiagSLPSUEvenAndEvenChar}, \hyperpage{24}
+  \item \texttt  {DiagSLPSUOdd}, \hyperpage{23}
+  \item \texttt  {DiagSLPSUOddAndEvenChar}, \hyperpage{23}
 
   \indexspace
 
@@ -53,8 +54,8 @@
   \item \texttt  {LGOStandardGensSL}, \hyperpage{15}
   \item \texttt  {LGOStandardGensSLNC}, \hyperpage{15}
   \item \texttt  {LGOStandardGensSO}, \hyperpage{4}
-  \item \texttt  {LGOStandardGensSp}, \hyperpage{24}
-  \item \texttt  {LGOStandardGensSpEvenChar}, \hyperpage{24}
+  \item \texttt  {LGOStandardGensSp}, \hyperpage{25}
+  \item \texttt  {LGOStandardGensSpEvenChar}, \hyperpage{25}
   \item \texttt  {LGOStandardGensSU}, \hyperpage{19}
   \item \texttt  {LGOStandardGensSUEvenChar}, \hyperpage{19}
 
@@ -69,10 +70,11 @@
   \item \texttt  {MonomialSLPSOCircle}, \hyperpage{6}
   \item \texttt  {MonomialSLPSOMinus}, \hyperpage{6}
   \item \texttt  {MonomialSLPSOPlus}, \hyperpage{6}
-  \item \texttt  {MonomialSLPSp}, \hyperpage{25}
-  \item \texttt  {MonomialSLPSUEven}, \hyperpage{21}
+  \item \texttt  {MonomialSLPSp}, \hyperpage{26}
+  \item \texttt  {MonomialSLPSUEven}, \hyperpage{22}
   \item \texttt  {MonomialSLPSUEvenAndEvenChar}, \hyperpage{21}
   \item \texttt  {MonomialSLPSUOdd}, \hyperpage{21}
+  \item \texttt  {MonomialSLPSUOddAndEvenChar}, \hyperpage{21}
   \item \texttt  {MSO}, \hyperpage{5}
   \item \texttt  {MultiplicationOfEasyForm}, \hyperpage{8}
   \item \texttt  {MyPermutationMat}, \hyperpage{15}
@@ -102,12 +104,16 @@
   \item \texttt  {UnitriangularDecompositionSOCircle}, \hyperpage{5}
   \item \texttt  {UnitriangularDecompositionSOMinus}, \hyperpage{5}
   \item \texttt  {UnitriangularDecompositionSOPlus}, \hyperpage{5}
-  \item \texttt  {UnitriangularDecompositionSp}, \hyperpage{24}
-  \item \texttt  {UnitriangularDecompositionSU}, \hyperpage{20}
+  \item \texttt  {UnitriangularDecompositionSp}, \hyperpage{25}
+  \item \texttt  {Unitriangular}\-\texttt  {Decomposition}\-\texttt  {Sp}\-\texttt  {Even}\-\texttt  {Char}, 
+		\hyperpage{26}
+  \item \texttt  {UnitriangularDecompositionSU}, \hyperpage{21}
   \item \texttt  {UnitriangularDecompositionSUEven}, \hyperpage{20}
   \item \texttt  {Unitriangular}\-\texttt  {Decomposition}\-\texttt  {S}\-\texttt  {U}\-\texttt  {Even}\-\texttt  {And}\-\texttt  {Even}\-\texttt  {Char}, 
 		\hyperpage{20}
   \item \texttt  {UnitriangularDecompositionSUOdd}, \hyperpage{20}
+  \item \texttt  {Unitriangular}\-\texttt  {Decomposition}\-\texttt  {S}\-\texttt  {U}\-\texttt  {Odd}\-\texttt  {And}\-\texttt  {Even}\-\texttt  {Char}, 
+		\hyperpage{20}
   \item \texttt  {{\textunderscore }{\textunderscore }}\-\texttt  {L}\-\texttt  {G}\-\texttt  {O}\-\texttt  {Standard}\-\texttt  {Gens}\-\texttt  {Omega}\-\texttt  {Circle}, 
 		\hyperpage{5}
   \item \texttt  {{\textunderscore }{\textunderscore }}\-\texttt  {L}\-\texttt  {G}\-\texttt  {O}\-\texttt  {Standard}\-\texttt  {Gens}\-\texttt  {Omega}\-\texttt  {Circle}\-\texttt  {Even}\-\texttt  {Char}, 

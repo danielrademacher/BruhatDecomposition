@@ -1350,8 +1350,23 @@ slp (A list of instructions yielding $u_1,u_2$ if evaluated as SLP), $[u_1,g,u_2
 
  
 
-\subsection{\textcolor{Chapter }{UnitriangularDecompositionSU}}
+\subsection{\textcolor{Chapter }{UnitriangularDecompositionSUOddAndEvenChar}}
 \logpage{[ 4, 2, 8 ]}\nobreak
+\hyperdef{L}{X824D12B4847B0C2D}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{UnitriangularDecompositionSUOddAndEvenChar({\mdseries\slshape stdgens, g})\index{UnitriangularDecompositionSUOddAndEvenChar@\texttt{Unitriangular}\-\texttt{Decomposition}\-\texttt{S}\-\texttt{U}\-\texttt{Odd}\-\texttt{And}\-\texttt{Even}\-\texttt{Char}}
+\label{UnitriangularDecompositionSUOddAndEvenChar}
+}\hfill{\scriptsize (function)}}\\
+\textbf{\indent Returns:\ }
+slp (A list of instructions yielding $u_1,u_2$ if evaluated as SLP), $[u_1,g,u_2]$ (The matrices of the Bruhat-Decomposition) 
+
+
+
+ stdgens: The LGO standard-generators $\newline$ g: A matrix in SU($d,q$) where d is odd and q is even $\newline$ Computes the Unitriangular decomposition of the matrix $g$. }
+
+ 
+
+\subsection{\textcolor{Chapter }{UnitriangularDecompositionSU}}
+\logpage{[ 4, 2, 9 ]}\nobreak
 \hyperdef{L}{X79E30D6E7DD8291D}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{UnitriangularDecompositionSU({\mdseries\slshape stdgens, g})\index{UnitriangularDecompositionSU@\texttt{UnitriangularDecompositionSU}}
 \label{UnitriangularDecompositionSU}
@@ -1366,7 +1381,7 @@ slp (A list of instructions yielding $u_1,u_2$ if evaluated as SLP), $[u_1,g,u_2
  
 
 \subsection{\textcolor{Chapter }{MonomialSLPSUOdd}}
-\logpage{[ 4, 2, 9 ]}\nobreak
+\logpage{[ 4, 2, 10 ]}\nobreak
 \hyperdef{L}{X7B8E470078522BF4}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{MonomialSLPSUOdd({\mdseries\slshape stdgens, mat, slp})\index{MonomialSLPSUOdd@\texttt{MonomialSLPSUOdd}}
 \label{MonomialSLPSUOdd}
@@ -1378,14 +1393,33 @@ monomial matix such that tmpvalue*mat = diag where diag is a diagonal matrix)
 
 
 
- stdgens: The LGO standard-generators $\newline$ mat: A monomial matrix (ie $w$) in SU$(d,q)$ with $d$ even and $q$ odd $\newline$ slp: An already existing list of instructions *optional $\newline$ In this function we will transform a monomial matrix $mat \in$ SU$(d,q)$ with $d$ even and $q$ odd into a diagonal matrix diag. Using only the standard-generators $s,u,v$ this will lead to a monomial matrix tmpvalue and $tmpvalue^{-1} \cdot diag = mat$ (i.e. diag = tmpvalue*mat ). Furthermore we will return list slp of
+ stdgens: The LGO standard-generators $\newline$ mat: A monomial matrix (ie $w$) in SU$(d,q)$ with $d$ odd and $q$ odd $\newline$ slp: An already existing list of instructions *optional $\newline$ In this function we will transform a monomial matrix $mat \in$ SU$(d,q)$ with $d$ even and $q$ odd into a diagonal matrix diag. Using only the standard-generators $s,u,v$ this will lead to a monomial matrix tmpvalue and $tmpvalue^{-1} \cdot diag = mat$ (i.e. diag = tmpvalue*mat ). Furthermore we will return list slp of
+instructions which will (when evaluated at the LGO standard-generators) yields
+diag. }
+
+ 
+
+\subsection{\textcolor{Chapter }{MonomialSLPSUOddAndEvenChar}}
+\logpage{[ 4, 2, 11 ]}\nobreak
+\hyperdef{L}{X8572518B7A2389C7}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{MonomialSLPSUOddAndEvenChar({\mdseries\slshape stdgens, mat, slp})\index{MonomialSLPSUOddAndEvenChar@\texttt{MonomialSLPSUOddAndEvenChar}}
+\label{MonomialSLPSUOddAndEvenChar}
+}\hfill{\scriptsize (function)}}\\
+\textbf{\indent Returns:\ }
+slp (A list of instructions to evaluate tmpvalue. If slp is also given as
+input then this instructions are added to slp), [tmpvalue,diag] (tmpvalue is a
+monomial matix such that tmpvalue*mat = diag where diag is a diagonal matrix) 
+
+
+
+ stdgens: The LGO standard-generators $\newline$ mat: A monomial matrix (ie $w$) in SU$(d,q)$ with $d$ odd and $q$ even $\newline$ slp: An already existing list of instructions *optional $\newline$ In this function we will transform a monomial matrix $mat \in$ SU$(d,q)$ with $d$ even and $q$ odd into a diagonal matrix diag. Using only the standard-generators $s,u,v$ this will lead to a monomial matrix tmpvalue and $tmpvalue^{-1} \cdot diag = mat$ (i.e. diag = tmpvalue*mat ). Furthermore we will return list slp of
 instructions which will (when evaluated at the LGO standard-generators) yields
 diag. }
 
  
 
 \subsection{\textcolor{Chapter }{MonomialSLPSUEvenAndEvenChar}}
-\logpage{[ 4, 2, 10 ]}\nobreak
+\logpage{[ 4, 2, 12 ]}\nobreak
 \hyperdef{L}{X7B843D9B85F2F6E2}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{MonomialSLPSUEvenAndEvenChar({\mdseries\slshape stdgens, mat, slp})\index{MonomialSLPSUEvenAndEvenChar@\texttt{MonomialSLPSUEvenAndEvenChar}}
 \label{MonomialSLPSUEvenAndEvenChar}
@@ -1404,7 +1438,7 @@ diag. }
  
 
 \subsection{\textcolor{Chapter }{MonomialSLPSUEven}}
-\logpage{[ 4, 2, 11 ]}\nobreak
+\logpage{[ 4, 2, 13 ]}\nobreak
 \hyperdef{L}{X82DB86F379904ADB}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{MonomialSLPSUEven({\mdseries\slshape stdgens, mat, slp})\index{MonomialSLPSUEven@\texttt{MonomialSLPSUEven}}
 \label{MonomialSLPSUEven}
@@ -1416,14 +1450,14 @@ monomial matix such that tmpvalue*mat = diag where diag is a diagonal matrix)
 
 
 
- stdgens: The LGO standard-generators $\newline$ mat: A monomial matrix (ie $w$) in SU$(d,q)$ with $d$ odd and $q$ odd $\newline$ slp: An already existing list of instructions *optional $\newline$ In this function we will transform a monomial matrix $mat \in$ SU$(d,q)$ with $d$ odd and $q$ odd into a diagonal matrix diag. Using only the standard-generators $s,u,v$ this will lead to a monomial matrix tmpvalue and $tmpvalue^{-1} \cdot diag = mat$ (i.e. diag = tmpvalue*mat ). Furthermore we will return list slp of
+ stdgens: The LGO standard-generators $\newline$ mat: A monomial matrix (ie $w$) in SU$(d,q)$ with $d$ even and $q$ odd $\newline$ slp: An already existing list of instructions *optional $\newline$ In this function we will transform a monomial matrix $mat \in$ SU$(d,q)$ with $d$ odd and $q$ odd into a diagonal matrix diag. Using only the standard-generators $s,u,v$ this will lead to a monomial matrix tmpvalue and $tmpvalue^{-1} \cdot diag = mat$ (i.e. diag = tmpvalue*mat ). Furthermore we will return list slp of
 instructions which will (when evaluated at the LGO standard-generators) yields
 diag. }
 
  
 
 \subsection{\textcolor{Chapter }{CheckContinue}}
-\logpage{[ 4, 2, 12 ]}\nobreak
+\logpage{[ 4, 2, 14 ]}\nobreak
 \hyperdef{L}{X7A69AFAE8637E93F}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{CheckContinue({\mdseries\slshape perm, m})\index{CheckContinue@\texttt{CheckContinue}}
 \label{CheckContinue}
@@ -1440,7 +1474,7 @@ for the main loop of \texttt{MonomialSLPSU}. }
  
 
 \subsection{\textcolor{Chapter }{CycleFromPermutation}}
-\logpage{[ 4, 2, 13 ]}\nobreak
+\logpage{[ 4, 2, 15 ]}\nobreak
 \hyperdef{L}{X86D4EC5985EDD4FF}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{CycleFromPermutation({\mdseries\slshape g})\index{CycleFromPermutation@\texttt{CycleFromPermutation}}
 \label{CycleFromPermutation}
@@ -1455,7 +1489,7 @@ List of permutations
  
 
 \subsection{\textcolor{Chapter }{CycleFromListMine}}
-\logpage{[ 4, 2, 14 ]}\nobreak
+\logpage{[ 4, 2, 16 ]}\nobreak
 \hyperdef{L}{X7A03D6777C11BB61}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{CycleFromListMine({\mdseries\slshape nc, h})\index{CycleFromListMine@\texttt{CycleFromListMine}}
 \label{CycleFromListMine}
@@ -1471,7 +1505,7 @@ nc. }
  
 
 \subsection{\textcolor{Chapter }{DiagSLPSUOdd}}
-\logpage{[ 4, 2, 15 ]}\nobreak
+\logpage{[ 4, 2, 17 ]}\nobreak
 \hyperdef{L}{X7D83424581E15CB1}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{DiagSLPSUOdd({\mdseries\slshape stdgens, diag, slp})\index{DiagSLPSUOdd@\texttt{DiagSLPSUOdd}}
 \label{DiagSLPSUOdd}
@@ -1487,8 +1521,25 @@ yield the diagonal matrix of the input. }
 
  
 
+\subsection{\textcolor{Chapter }{DiagSLPSUOddAndEvenChar}}
+\logpage{[ 4, 2, 18 ]}\nobreak
+\hyperdef{L}{X809FE2927E47AD26}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{DiagSLPSUOddAndEvenChar({\mdseries\slshape stdgens, diag, slp})\index{DiagSLPSUOddAndEvenChar@\texttt{DiagSLPSUOddAndEvenChar}}
+\label{DiagSLPSUOddAndEvenChar}
+}\hfill{\scriptsize (function)}}\\
+\textbf{\indent Returns:\ }
+slp (A list of instructions to evaluate diag if slp was Input then this
+instructions are added to slp) 
+
+
+
+ stdgens: The LGO standard-generators $\newline$ diag: A diagonal matrix (eg diag) in SU$(d,q)$ with $d$ odd and $q$ even $\newline$ slp: An already existing list of instructions *optional $\newline$ Writes a list of instructions which evaluated with LGO standard-generators
+yield the diagonal matrix of the input. }
+
+ 
+
 \subsection{\textcolor{Chapter }{DiagSLPSU}}
-\logpage{[ 4, 2, 16 ]}\nobreak
+\logpage{[ 4, 2, 19 ]}\nobreak
 \hyperdef{L}{X78315BFA86EC337A}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{DiagSLPSU({\mdseries\slshape stdgens, diag, slp})\index{DiagSLPSU@\texttt{DiagSLPSU}}
 \label{DiagSLPSU}
@@ -1506,7 +1557,7 @@ function of \texttt{DiagSLPSUEven}, \texttt{DiagSLPSUEvenAndEvenChar} and \textt
  
 
 \subsection{\textcolor{Chapter }{DiagSLPSUEven}}
-\logpage{[ 4, 2, 17 ]}\nobreak
+\logpage{[ 4, 2, 20 ]}\nobreak
 \hyperdef{L}{X7A10BC39849272DC}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{DiagSLPSUEven({\mdseries\slshape stdgens, diag, slp})\index{DiagSLPSUEven@\texttt{DiagSLPSUEven}}
 \label{DiagSLPSUEven}
@@ -1523,7 +1574,7 @@ yield the diagonal matrix of the input. }
  
 
 \subsection{\textcolor{Chapter }{DiagSLPSUEvenAndEvenChar}}
-\logpage{[ 4, 2, 18 ]}\nobreak
+\logpage{[ 4, 2, 21 ]}\nobreak
 \hyperdef{L}{X7A61CF0E7FE601EE}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{DiagSLPSUEvenAndEvenChar({\mdseries\slshape stdgens, diag, slp})\index{DiagSLPSUEvenAndEvenChar@\texttt{DiagSLPSUEvenAndEvenChar}}
 \label{DiagSLPSUEvenAndEvenChar}
@@ -1540,7 +1591,7 @@ yield the diagonal matrix of the input. }
  
 
 \subsection{\textcolor{Chapter }{BruhatDecompositionSU}}
-\logpage{[ 4, 2, 19 ]}\nobreak
+\logpage{[ 4, 2, 22 ]}\nobreak
 \hyperdef{L}{X79AD1007829F87F8}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{BruhatDecompositionSU({\mdseries\slshape stdgens, g})\index{BruhatDecompositionSU@\texttt{BruhatDecompositionSU}}
 \label{BruhatDecompositionSU}
@@ -1625,12 +1676,27 @@ slp (A list of instructions yielding $u_1,u_2$ if evaluated as SLP), $[u_1,g,u_2
 
 
 
- stdgens: The LGO standard-generators $\newline$ g: A matrix in Sp($d,q$) $\newline$ Computes the Unitriangular decomposition of the matrix $g$. }
+ stdgens: The LGO standard-generators $\newline$ g: A matrix in Sp($d,q$) and q odd $\newline$ Computes the Unitriangular decomposition of the matrix $g$. }
+
+ 
+
+\subsection{\textcolor{Chapter }{UnitriangularDecompositionSpEvenChar}}
+\logpage{[ 5, 2, 4 ]}\nobreak
+\hyperdef{L}{X82B6052F786B0B4F}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{UnitriangularDecompositionSpEvenChar({\mdseries\slshape stdgens, g})\index{UnitriangularDecompositionSpEvenChar@\texttt{Unitriangular}\-\texttt{Decomposition}\-\texttt{Sp}\-\texttt{Even}\-\texttt{Char}}
+\label{UnitriangularDecompositionSpEvenChar}
+}\hfill{\scriptsize (function)}}\\
+\textbf{\indent Returns:\ }
+slp (A list of instructions yielding $u_1,u_2$ if evaluated as SLP), $[u_1,g,u_2]$ (The matrices of the Bruhat-Decomposition) 
+
+
+
+ stdgens: The LGO standard-generators $\newline$ g: A matrix in Sp($d,q$) and q even $\newline$ Computes the Unitriangular decomposition of the matrix $g$. }
 
  
 
 \subsection{\textcolor{Chapter }{MonomialSLPSp}}
-\logpage{[ 5, 2, 4 ]}\nobreak
+\logpage{[ 5, 2, 5 ]}\nobreak
 \hyperdef{L}{X84615263789182BE}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{MonomialSLPSp({\mdseries\slshape stdgens, mat, slp})\index{MonomialSLPSp@\texttt{MonomialSLPSp}}
 \label{MonomialSLPSp}
@@ -1649,7 +1715,7 @@ diag. }
  
 
 \subsection{\textcolor{Chapter }{DiagSLPSp}}
-\logpage{[ 5, 2, 5 ]}\nobreak
+\logpage{[ 5, 2, 6 ]}\nobreak
 \hyperdef{L}{X7F37F4B28245472E}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{DiagSLPSp({\mdseries\slshape stdgens, diag, slp})\index{DiagSLPSp@\texttt{DiagSLPSp}}
 \label{DiagSLPSp}
@@ -1666,7 +1732,7 @@ yield the diagonal matrix of the input. }
  
 
 \subsection{\textcolor{Chapter }{BruhatDecompositionSp}}
-\logpage{[ 5, 2, 6 ]}\nobreak
+\logpage{[ 5, 2, 7 ]}\nobreak
 \hyperdef{L}{X7EABBF4F7A4DBF8A}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{BruhatDecompositionSp({\mdseries\slshape stdgens, g})\index{BruhatDecompositionSp@\texttt{BruhatDecompositionSp}}
 \label{BruhatDecompositionSp}

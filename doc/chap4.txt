@@ -82,7 +82,17 @@
   is  odd and q is odd [22Xnewline[122X Computes the Unitriangular decomposition of the
   matrix [22Xg[122X.[133X
   
-  [1X4.2-8 UnitriangularDecompositionSU[101X
+  [1X4.2-8 UnitriangularDecompositionSUOddAndEvenChar[101X
+  
+  [33X[1;0Y[29X[2XUnitriangularDecompositionSUOddAndEvenChar[102X( [3Xstdgens[103X, [3Xg[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Yslp (A list of instructions yielding [22Xu_1,u_2[122X if evaluated as SLP),
+            [22X[u_1,g,u_2][122X (The matrices of the Bruhat-Decomposition)[133X
+  
+  [33X[0;0Ystdgens:  The LGO standard-generators [22Xnewline[122X g: A matrix in SU([22Xd,q[122X) where d
+  is odd and q is even [22Xnewline[122X Computes the Unitriangular decomposition of the
+  matrix [22Xg[122X.[133X
+  
+  [1X4.2-9 UnitriangularDecompositionSU[101X
   
   [33X[1;0Y[29X[2XUnitriangularDecompositionSU[102X( [3Xstdgens[103X, [3Xg[103X ) [32X function[133X
   [6XReturns:[106X  [33X[0;10Yslp (A list of instructions yielding [22Xu_1,u_2[122X if evaluated as SLP),
@@ -94,7 +104,7 @@
   [10XUnitriangularDecompositionSUOdd[110X   and   [10XUnitriangularDecompositionSUOdd[110X   is
   choosen.[133X
   
-  [1X4.2-9 MonomialSLPSUOdd[101X
+  [1X4.2-10 MonomialSLPSUOdd[101X
   
   [33X[1;0Y[29X[2XMonomialSLPSUOdd[102X( [3Xstdgens[103X, [3Xmat[103X, [3Xslp[103X ) [32X function[133X
   [6XReturns:[106X  [33X[0;10Yslp  (A  list of instructions to evaluate tmpvalue. If slp is also
@@ -103,7 +113,7 @@
             tmpvalue*mat = diag where diag is a diagonal matrix)[133X
   
   [33X[0;0Ystdgens:  The  LGO standard-generators [22Xnewline[122X mat: A monomial matrix (ie [22Xw[122X)
-  in  SU[22X(d,q)[122X  with  [22Xd[122X even and [22Xq[122X odd [22Xnewline[122X slp: An already existing list of
+  in  SU[22X(d,q)[122X  with  [22Xd[122X  odd and [22Xq[122X odd [22Xnewline[122X slp: An already existing list of
   instructions *optional [22Xnewline[122X In this function we will transform a monomial
   matrix  [22Xmat  ∈[122X  SU[22X(d,q)[122X  with  [22Xd[122X even and [22Xq[122X odd into a diagonal matrix diag.
   Using only the standard-generators [22Xs,u,v[122X this will lead to a monomial matrix
@@ -111,7 +121,24 @@
   Furthermore  we  will  return  list  slp  of  instructions  which will (when
   evaluated at the LGO standard-generators) yields diag.[133X
   
-  [1X4.2-10 MonomialSLPSUEvenAndEvenChar[101X
+  [1X4.2-11 MonomialSLPSUOddAndEvenChar[101X
+  
+  [33X[1;0Y[29X[2XMonomialSLPSUOddAndEvenChar[102X( [3Xstdgens[103X, [3Xmat[103X, [3Xslp[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Yslp  (A  list of instructions to evaluate tmpvalue. If slp is also
+            given   as  input  then  this  instructions  are  added  to  slp),
+            [tmpvalue,diag]   (tmpvalue   is   a   monomial  matix  such  that
+            tmpvalue*mat = diag where diag is a diagonal matrix)[133X
+  
+  [33X[0;0Ystdgens:  The  LGO standard-generators [22Xnewline[122X mat: A monomial matrix (ie [22Xw[122X)
+  in  SU[22X(d,q)[122X  with  [22Xd[122X odd and [22Xq[122X even [22Xnewline[122X slp: An already existing list of
+  instructions *optional [22Xnewline[122X In this function we will transform a monomial
+  matrix  [22Xmat  ∈[122X  SU[22X(d,q)[122X  with  [22Xd[122X even and [22Xq[122X odd into a diagonal matrix diag.
+  Using only the standard-generators [22Xs,u,v[122X this will lead to a monomial matrix
+  tmpvalue  and  [22Xtmpvalue^-1  ⋅  diag  =  mat[122X  (i.e.  diag  =  tmpvalue*mat ).
+  Furthermore  we  will  return  list  slp  of  instructions  which will (when
+  evaluated at the LGO standard-generators) yields diag.[133X
+  
+  [1X4.2-12 MonomialSLPSUEvenAndEvenChar[101X
   
   [33X[1;0Y[29X[2XMonomialSLPSUEvenAndEvenChar[102X( [3Xstdgens[103X, [3Xmat[103X, [3Xslp[103X ) [32X function[133X
   [6XReturns:[106X  [33X[0;10Yslp  (A  list of instructions to evaluate tmpvalue. If slp is also
@@ -128,7 +155,7 @@
   Furthermore  we  will  return  list  slp  of  instructions  which will (when
   evaluated at the LGO standard-generators) yields diag.[133X
   
-  [1X4.2-11 MonomialSLPSUEven[101X
+  [1X4.2-13 MonomialSLPSUEven[101X
   
   [33X[1;0Y[29X[2XMonomialSLPSUEven[102X( [3Xstdgens[103X, [3Xmat[103X, [3Xslp[103X ) [32X function[133X
   [6XReturns:[106X  [33X[0;10Yslp  (A  list of instructions to evaluate tmpvalue. If slp is also
@@ -137,7 +164,7 @@
             tmpvalue*mat = diag where diag is a diagonal matrix)[133X
   
   [33X[0;0Ystdgens:  The  LGO standard-generators [22Xnewline[122X mat: A monomial matrix (ie [22Xw[122X)
-  in  SU[22X(d,q)[122X  with  [22Xd[122X  odd and [22Xq[122X odd [22Xnewline[122X slp: An already existing list of
+  in  SU[22X(d,q)[122X  with  [22Xd[122X even and [22Xq[122X odd [22Xnewline[122X slp: An already existing list of
   instructions *optional [22Xnewline[122X In this function we will transform a monomial
   matrix [22Xmat ∈[122X SU[22X(d,q)[122X with [22Xd[122X odd and [22Xq[122X odd into a diagonal matrix diag. Using
   only  the  standard-generators  [22Xs,u,v[122X  this  will  lead to a monomial matrix
@@ -145,7 +172,7 @@
   Furthermore  we  will  return  list  slp  of  instructions  which will (when
   evaluated at the LGO standard-generators) yields diag.[133X
   
-  [1X4.2-12 CheckContinue[101X
+  [1X4.2-14 CheckContinue[101X
   
   [33X[1;0Y[29X[2XCheckContinue[102X( [3Xperm[103X, [3Xm[103X ) [32X function[133X
   [6XReturns:[106X  [33X[0;10YTrue or false[133X
@@ -156,7 +183,7 @@
   perm  holds:  LargestMovedPoint(c)  [22X≤[122X m or SmallestMovedPoint(c) > m. Notice
   that this is the condition for the main loop of [10XMonomialSLPSU[110X.[133X
   
-  [1X4.2-13 CycleFromPermutation[101X
+  [1X4.2-15 CycleFromPermutation[101X
   
   [33X[1;0Y[29X[2XCycleFromPermutation[102X( [3Xg[103X ) [32X function[133X
   [6XReturns:[106X  [33X[0;10YList of permutations[133X
@@ -164,7 +191,7 @@
   [33X[0;0Yg:  A permutation [22Xnewline[122X This is a help function for [10XMonomialSLPSUOdd[110X. This
   function computes the cycles of g and stores them in the output list.[133X
   
-  [1X4.2-14 CycleFromListMine[101X
+  [1X4.2-16 CycleFromListMine[101X
   
   [33X[1;0Y[29X[2XCycleFromListMine[102X( [3Xnc[103X, [3Xh[103X ) [32X function[133X
   [6XReturns:[106X  [33X[0;10YTODO[133X
@@ -174,7 +201,7 @@
   [10XCycleFromPermutation[110X.   This  function  computes  a  cycle  in  Sym_h  which
   corresponds to nc.[133X
   
-  [1X4.2-15 DiagSLPSUOdd[101X
+  [1X4.2-17 DiagSLPSUOdd[101X
   
   [33X[1;0Y[29X[2XDiagSLPSUOdd[102X( [3Xstdgens[103X, [3Xdiag[103X, [3Xslp[103X ) [32X function[133X
   [6XReturns:[106X  [33X[0;10Yslp (A list of instructions to evaluate diag if slp was Input then
@@ -186,7 +213,19 @@
   evaluated  with  LGO  standard-generators  yield  the diagonal matrix of the
   input.[133X
   
-  [1X4.2-16 DiagSLPSU[101X
+  [1X4.2-18 DiagSLPSUOddAndEvenChar[101X
+  
+  [33X[1;0Y[29X[2XDiagSLPSUOddAndEvenChar[102X( [3Xstdgens[103X, [3Xdiag[103X, [3Xslp[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Yslp (A list of instructions to evaluate diag if slp was Input then
+            this instructions are added to slp)[133X
+  
+  [33X[0;0Ystdgens:  The  LGO  standard-generators  [22Xnewline[122X diag: A diagonal matrix (eg
+  diag) in SU[22X(d,q)[122X with [22Xd[122X odd and [22Xq[122X even [22Xnewline[122X slp: An already existing list
+  of  instructions  *optional  [22Xnewline[122X  Writes  a  list  of instructions which
+  evaluated  with  LGO  standard-generators  yield  the diagonal matrix of the
+  input.[133X
+  
+  [1X4.2-19 DiagSLPSU[101X
   
   [33X[1;0Y[29X[2XDiagSLPSU[102X( [3Xstdgens[103X, [3Xdiag[103X, [3Xslp[103X ) [32X function[133X
   [6XReturns:[106X  [33X[0;10Yslp (A list of instructions to evaluate diag if slp was Input then
@@ -199,7 +238,7 @@
   and  d  the  correct function of [10XDiagSLPSUEven[110X, [10XDiagSLPSUEvenAndEvenChar[110X and
   [10XDiagSLPSUOdd[110X is choosen.[133X
   
-  [1X4.2-17 DiagSLPSUEven[101X
+  [1X4.2-20 DiagSLPSUEven[101X
   
   [33X[1;0Y[29X[2XDiagSLPSUEven[102X( [3Xstdgens[103X, [3Xdiag[103X, [3Xslp[103X ) [32X function[133X
   [6XReturns:[106X  [33X[0;10Yslp (A list of instructions to evaluate diag if slp was Input then
@@ -211,7 +250,7 @@
   evaluated  with  LGO  standard-generators  yield  the diagonal matrix of the
   input.[133X
   
-  [1X4.2-18 DiagSLPSUEvenAndEvenChar[101X
+  [1X4.2-21 DiagSLPSUEvenAndEvenChar[101X
   
   [33X[1;0Y[29X[2XDiagSLPSUEvenAndEvenChar[102X( [3Xstdgens[103X, [3Xdiag[103X, [3Xslp[103X ) [32X function[133X
   [6XReturns:[106X  [33X[0;10Yslp (A list of instructions to evaluate diag if slp was Input then
@@ -223,7 +262,7 @@
   evaluated  with  LGO  standard-generators  yield  the diagonal matrix of the
   input.[133X
   
-  [1X4.2-19 BruhatDecompositionSU[101X
+  [1X4.2-22 BruhatDecompositionSU[101X
   
   [33X[1;0Y[29X[2XBruhatDecompositionSU[102X( [3Xstdgens[103X, [3Xg[103X ) [32X function[133X
   [6XReturns:[106X  [33X[0;10Ypgr  (A  SLP  to  compute [22Xu_1,u_2,p_sign[122X and [22Xdiag[122X and the matrices
