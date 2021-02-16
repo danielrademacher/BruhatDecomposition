@@ -127,10 +127,11 @@ TestBruhatDecompositionSLPSO := function()
     local counter, g, G, res, d, GG, stdgens, diag, slp, tmpvalue, c, P, u1, u2, mon;
     P := [3,9,27,5,5^2,7,7^2,11,13,11^2,17];
     
+    Display("Plus case.");
     for d in Filtered([6..20], x-> x mod 2 = 0) do
        for c in P do
 	   if c mod 2 = 0 then
-		 stdgens := LGOStandardGensOmegaEvenChar(1,d,c);
+		 stdgens := LGOStandardGensOmega(1,d,c);
 	   else
 		 stdgens := LGOStandardGensSO(1,d,c);
 	   fi;
@@ -143,7 +144,7 @@ TestBruhatDecompositionSLPSO := function()
             counter := 1;
             while counter < 100 do
                 g := PseudoRandom(G);
-                res := BruhatDecompositionSO(stdgens,1,g);
+                res := BruhatDecompositionSO(stdgens,g);
                 slp := res[1];
                 slp := ResultOfStraightLineProgram(slp,stdgens);
                 res := res[2];
@@ -160,10 +161,11 @@ TestBruhatDecompositionSLPSO := function()
         od;
     od;
 
+    Display("Circle case.");
     for d in Filtered([6..20], x-> x mod 2 = 1) do
         for c in P do
 	   if c mod 2 = 0 then
-		 stdgens := LGOStandardGensOmegaEvenChar(0,d,c);
+		 stdgens := LGOStandardGensOmega(0,d,c);
 	   else
 		 stdgens := LGOStandardGensSO(0,d,c);
 	   fi;
@@ -176,7 +178,7 @@ TestBruhatDecompositionSLPSO := function()
             counter := 1;
             while counter < 100 do
                 g := PseudoRandom(G);
-                res := BruhatDecompositionSO(stdgens,0,g);
+                res := BruhatDecompositionSO(stdgens,g);
                 slp := res[1];
                 slp := ResultOfStraightLineProgram(slp,stdgens);
                 res := res[2];
@@ -193,10 +195,11 @@ TestBruhatDecompositionSLPSO := function()
         od;
     od;
 
-    for d in Filtered([6..20], x-> x mod 2 = 0) do
+    Display("Minus case.");
+    for d in Filtered([8..20], x-> x mod 2 = 0) do
         for c in P do
 	   if c mod 2 = 0 then
-		 stdgens := LGOStandardGensOmegaEvenChar(-1,d,c);
+		 stdgens := LGOStandardGensOmega(-1,d,c);
 	   else
 		 stdgens := LGOStandardGensSO(-1,d,c);
 	   fi;
@@ -209,7 +212,7 @@ TestBruhatDecompositionSLPSO := function()
             counter := 1;
             while counter < 100 do
                 g := PseudoRandom(G);
-                res := BruhatDecompositionSO(stdgens,-1,g);
+                res := BruhatDecompositionSOMinus(stdgens,g);
                 slp := res[1];
                 slp := ResultOfStraightLineProgram(slp,stdgens);
                 res := res[2];
@@ -236,11 +239,7 @@ TestBruhatDecompositionSLPOmega := function()
     
     for d in Filtered([6..20], x-> x mod 2 = 0) do
         for c in P do
-	   if c mod 2 = 0 then
-		 stdgens := LGOStandardGensOmegaEvenChar(1,d,c);
-	   else
-		 stdgens := LGOStandardGensOmega(1,d,c);
-	   fi;
+	    stdgens := LGOStandardGensOmega(1,d,c);
             G := GroupByGenerators(stdgens);
             Print("Dimension: ");
             Print(d);
@@ -269,11 +268,7 @@ TestBruhatDecompositionSLPOmega := function()
 
     for d in Filtered([6..20], x-> x mod 2 = 1) do
         for c in P do
-	   if c mod 2 = 0 then
-		 stdgens := LGOStandardGensOmegaEvenChar(0,d,c);
-	   else
-		 stdgens := LGOStandardGensOmega(0,d,c);
-	   fi;
+	   stdgens := LGOStandardGensOmega(0,d,c);
             G := GroupByGenerators(stdgens);
             Print("Dimension: ");
             Print(d);
@@ -302,11 +297,7 @@ TestBruhatDecompositionSLPOmega := function()
 
     for d in Filtered([6..20], x-> x mod 2 = 0) do
         for c in P do
-	   if c mod 2 = 0 then
-		 stdgens := LGOStandardGensOmegaEvenChar(-1,d,c);
-	   else
-		 stdgens := LGOStandardGensOmega(-1,d,c);
-	   fi;
+	   stdgens := LGOStandardGensOmega(-1,d,c);
             G := GroupByGenerators(stdgens);
             Print("Dimension: ");
             Print(d);

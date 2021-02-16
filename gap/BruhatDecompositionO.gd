@@ -395,3 +395,4 @@ DeclareGlobalFunction( "DiagSLPSOMinus" );
 #! It furthermore yields an SLP that returns the above matrices if evaluated
 #! with the LGO standard-generators.
 DeclareGlobalFunction( "BruhatDecompositionSO" );
+DeclareGlobalFunction( "BruhatDecompositionSOMinus" );
