@@ -128,7 +128,7 @@ TestBruhatDecompositionSLPSO := function()
     P := [3,9,27,5,5^2,7,7^2,11,13,11^2,17];
     
     Display("Plus case.");
-    for d in Filtered([6..20], x-> x mod 2 = 0) do
+    for d in Filtered([6..10], x-> x mod 2 = 0) do
        for c in P do
 	   if c mod 2 = 0 then
 		 stdgens := LGOStandardGensOmega(1,d,c);
@@ -162,7 +162,7 @@ TestBruhatDecompositionSLPSO := function()
     od;
 
     Display("Circle case.");
-    for d in Filtered([6..20], x-> x mod 2 = 1) do
+    for d in Filtered([6..10], x-> x mod 2 = 1) do
         for c in P do
 	   if c mod 2 = 0 then
 		 stdgens := LGOStandardGensOmega(0,d,c);
@@ -196,7 +196,7 @@ TestBruhatDecompositionSLPSO := function()
     od;
 
     Display("Minus case.");
-    for d in Filtered([8..20], x-> x mod 2 = 0) do
+    for d in Filtered([8..10], x-> x mod 2 = 0) do
         for c in P do
 	   if c mod 2 = 0 then
 		 stdgens := LGOStandardGensOmega(-1,d,c);
@@ -249,7 +249,7 @@ TestBruhatDecompositionSLPOmega := function()
             counter := 1;
             while counter < 100 do
                 g := PseudoRandom(G);
-                res := BruhatDecompositionOmega(stdgens,1,g);
+                res := BruhatDecompositionOmega(stdgens,g);
                 slp := res[1];
                 slp := ResultOfStraightLineProgram(slp,stdgens);
                 res := res[2];
@@ -278,7 +278,7 @@ TestBruhatDecompositionSLPOmega := function()
             counter := 1;
             while counter < 100 do
                 g := PseudoRandom(G);
-                res := BruhatDecompositionOmega(stdgens,0,g);
+                res := BruhatDecompositionOmega(stdgens,g);
                 slp := res[1];
                 slp := ResultOfStraightLineProgram(slp,stdgens);
                 res := res[2];
@@ -307,7 +307,7 @@ TestBruhatDecompositionSLPOmega := function()
             counter := 1;
             while counter < 100 do
                 g := PseudoRandom(G);
-                res := BruhatDecompositionOmega(stdgens,-1,g);
+                res := BruhatDecompositionOmega(stdgens,g);
                 slp := res[1];
                 slp := ResultOfStraightLineProgram(slp,stdgens);
                 res := res[2];
