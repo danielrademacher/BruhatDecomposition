@@ -10,7 +10,7 @@ TestBruhatDecompositionSLPSL := function()
     local counter, g, G, res, d, GG, stdgens, diag, slp, tmpvalue, c, P, u1, u2, mon;
     P := [2,4,8,16,32,3,9,27,5,5^2,7,7^2];
     
-    for d in [6..20] do
+    for d in [6..0] do
         for c in P do
 	   stdgens := LGOStandardGensSL(d,c);
             G := GroupByGenerators(stdgens);
@@ -45,7 +45,7 @@ TestBruhatDecompositionSLPSp := function()
     local counter, g, G, res, d, GG, stdgens, diag, slp, tmpvalue, c, P, u1, u2, mon;
     P := [2,4,8,16,32,3,9,27,5,5^2,7,7^2];
     
-    for d in Filtered([6..20], x-> x mod 2 = 0) do
+    for d in Filtered([6..0], x-> x mod 2 = 0) do
         for c in P do
 	   if c mod 2 = 0 then
 		 stdgens := LGOStandardGensSpEvenChar(d,c);
@@ -86,7 +86,7 @@ TestBruhatDecompositionSLPSU := function()
     local counter, g, G, res, d, GG, stdgens, diag, slp, tmpvalue, c, P, u1, u2, mon;
     P := [2,4,8,16,32,3,9,27,5,5^2,7,7^2];
     
-    for d in [6..20] do
+    for d in [6..0] do
         for c in P do
 	   if c mod 2 = 0 then
 		 stdgens := LGOStandardGensSUEvenChar(d,c);
