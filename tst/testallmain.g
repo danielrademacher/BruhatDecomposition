@@ -10,7 +10,7 @@ TestBruhatDecompositionSLPSL := function()
     local counter, g, G, res, d, GG, stdgens, diag, slp, tmpvalue, c, P, u1, u2, mon;
     P := [2,4,8,16,32,3,9,27,5,5^2,7,7^2];
     
-    for d in [6..15] do
+    for d in [6..13] do
         for c in P do
 	   stdgens := LGOStandardGensSL(d,c);
             G := GroupByGenerators(stdgens);
@@ -46,7 +46,7 @@ TestBruhatDecompositionSLPSLNC := function()
     local counter, g, G, res, d, GG, stdgens, diag, slp, tmpvalue, c, P, u1, u2, mon;
     P := [2,4,8,16,32,3,9,27,5,5^2,7,7^2];
     
-    for d in [6..15] do
+    for d in [6..13] do
         for c in P do
 	   stdgens := LGOStandardGensSL(d,c);
             G := GroupByGenerators(stdgens);
@@ -82,7 +82,7 @@ TestBruhatDecompositionSLPSp := function()
     local counter, g, G, res, d, GG, stdgens, diag, slp, tmpvalue, c, P, u1, u2, mon;
     P := [2,4,8,16,32,3,9,27,5,5^2,7,7^2];
     
-    for d in Filtered([6..15], x-> x mod 2 = 0) do
+    for d in Filtered([6..13], x-> x mod 2 = 0) do
         for c in P do
 	   if c mod 2 = 0 then
 		 stdgens := LGOStandardGensSpEvenChar(d,c);
@@ -123,7 +123,7 @@ TestBruhatDecompositionSLPSU := function()
     local counter, g, G, res, d, GG, stdgens, diag, slp, tmpvalue, c, P, u1, u2, mon;
     P := [2,4,8,16,32,3,9,27,5,5^2,7,7^2];
     
-    for d in [6..15] do
+    for d in [6..13] do
         for c in P do
 	   if c mod 2 = 0 then
 		 stdgens := LGOStandardGensSUEvenChar(d,c);
@@ -165,7 +165,7 @@ TestBruhatDecompositionSLPSO := function()
     P := [3,9,27,5,5^2,7,7^2,11,13,11^2,17];
     
     Display("Plus case.");
-    for d in Filtered([6..15], x-> x mod 2 = 0) do
+    for d in Filtered([6..13], x-> x mod 2 = 0) do
        for c in P do
 	   if c mod 2 = 0 then
 		 stdgens := LGOStandardGensOmega(1,d,c);
@@ -199,7 +199,7 @@ TestBruhatDecompositionSLPSO := function()
     od;
 
     Display("Circle case.");
-    for d in Filtered([6..15], x-> x mod 2 = 1) do
+    for d in Filtered([6..13], x-> x mod 2 = 1) do
         for c in P do
 	   if c mod 2 = 0 then
 		 stdgens := LGOStandardGensOmega(0,d,c);
@@ -363,11 +363,15 @@ TestBruhatDecompositionSLPOmega := function()
 
 end;
 
-
+Display("Test SL\n");
 TestBruhatDecompositionSLPSL();
+Display("Test SLNC\n");
 TestBruhatDecompositionSLPSLNC();
+Display("Test Sp\n");
 TestBruhatDecompositionSLPSp();
+Display("Test SU\n");
 TestBruhatDecompositionSLPSU();
+Display("Test SO\n");
 TestBruhatDecompositionSLPSO();
 # TestBruhatDecompositionSLPOmega();
 Print("Everything worked! Congrats!\n");
