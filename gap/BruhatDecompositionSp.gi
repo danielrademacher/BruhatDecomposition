@@ -1536,6 +1536,11 @@ function( d, q )
 
     local w,s, t, delta, u, v, x, J, fld;
     
+    if d < 6 then
+        Error("LGOStandardGens: d has to be at least 6\n");
+        return;
+    fi;
+    
     if (q mod 2 = 0) then
         return LGOStandardGensSpEvenChar(d,q);
     fi;

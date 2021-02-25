@@ -41,14 +41,26 @@ InstallGlobalFunction(  LGOStandardGensSO,
 function(e, d, q)
 
     if e = 1 then
+        if d < 6 then
+            Error("LGOStandardGens: d has to be at least 6\n");
+            return;
+        fi;
         return __LGOStandardGensSOPlus(d,q);
     fi;
     
     if e = -1 then
+        if d < 6 then
+            Error("LGOStandardGens: d has to be at least 8\n");
+            return;
+        fi;
         return __LGOStandardGensSOMinus(d,q);
     fi;
     
     if e = 0 then
+        if d < 6 then
+            Error("LGOStandardGens: d has to be at least 7\n");
+            return;
+        fi;
         return __LGOStandardGensSOCircle(d,q);
     fi;
     

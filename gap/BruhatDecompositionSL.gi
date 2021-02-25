@@ -2706,6 +2706,58 @@ end
 );
 
 
+
+#####
+# PermutationMonomialMatrixNC()
+#####
+# Find the permutation (in Sym(d) corresponding to a monomial matrix
+
+# Input:    M: A monomial matrix
+
+# Output:    diag: The vector of non-zero entries, where diag[i] is the non-zero
+#                entry of row i.
+#            perm: The  permutation associated to M
+#                     (ie i^perm = j if M_i,j not 0)
+
+InstallGlobalFunction(  PermutationMonomialMatrixNC,
+function( M )
+
+    local zero, d, found, perm, diag, r, j;
+
+    zero := Zero( M[1][1] );
+    d := DimensionsMat(M);
+
+    d := d[1];
+    found:= BlistList( [1..d], [] );
+    perm := [];
+    diag := [];
+
+    for r  in [ 1..d ] do
+
+        j := PositionNot( M[r], zero );
+
+        if d < j or found[j]  then
+            return false;
+        fi;
+
+        diag[r] := M[r][j];
+
+        if PositionNot( M[r], zero, j ) <= d  then
+            return false;
+        fi;
+
+        found[j] := true;
+        perm[r]  := j;
+
+    od;
+
+    return [ diag, PermList(perm) ];
+
+end
+);
+
+
+
 #####
 # PermSLP()
 #####
