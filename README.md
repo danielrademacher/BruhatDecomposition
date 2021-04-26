@@ -18,7 +18,7 @@ This package can be used to compute the Bruhat decomposition of elements in thei
 ## Contact
 
 If you have a question relating to `BruhatDecomposition`, encounter any problems, or have a suggestion for extending the package in any way, please 
- * email: [mailto](daniel.rademacher@rwth-aachen.de)
+ * email: daniel.rademacher@rwth-aachen.de
  * or report an issue at: [issue tracker](https://github.com/User141/BruhatDecomposition2/issues)
 
 ## License
