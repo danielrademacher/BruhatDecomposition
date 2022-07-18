@@ -1710,6 +1710,7 @@ function( arg )
         # In order to make it coincide with the other possible output.
         # This is ok since it is Id
         Add( slp, [ [p_signpos,-1] , p_signpos ] );
+        Add( slp, [ p_signpos ,1 ] );
         return [ slp, [ stdgens[1]^0, mat ] ];
     fi;
 
