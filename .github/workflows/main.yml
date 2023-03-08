@@ -23,9 +23,15 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-      - uses: gap-actions/setup-gap-for-packages@v1
-      - uses: gap-actions/run-test-for-packages@v1
+      - uses: actions/checkout@v3
+      - uses: gap-actions/setup-gap@v2
+        with:
+          GAPBRANCH: master
+      - uses: gap-actions/build-pkg@v1
+      - uses: gap-actions/run-pkg-tests@v2
+        with:
+          GAP_TESTFILE: tst/testall.g
+      - uses: gap-actions/process-coverage@v2
 
 
   # The documentation job
