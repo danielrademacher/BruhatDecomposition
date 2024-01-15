@@ -431,13 +431,13 @@ function(d,q)
     s := IdentityMat( d, fld );
     s[1][1] := Zero(fld);
     s[d][d] := Zero(fld);
-    s[(d+1)/2][(d+1)/2] := -1 * One(fld);
-    s[1][d] := One(fld);
-    s[d][1] := One(fld);
+    s[(d+1)/2][(d+1)/2] := One(fld);
+    s[1][d] := -1*One(fld);
+    s[d][1] := -1*One(fld);
 
     t := IdentityMat( d, fld );
-    t[1][d] := One(fld);
-    t[1][(d+1)/2] := 2 * One(fld);
+    t[1][d] := -1*One(fld);
+    t[1][(d+1)/2] := -2*One(fld);
     t[(d+1)/2][d] := One(fld);
     
     delta := IdentityMat( d, fld );
@@ -485,14 +485,14 @@ function(d,q)
     s := IdentityMat( d, fld );
     s[1][1] := Zero(fld);
     s[d][d] := Zero(fld);
-    s[1][d] := One(fld);
-    s[d][1] := One(fld);
-    s[d/2][d/2] := -1 * One(fld);
+    s[1][d] := -1 * One(fld);
+    s[d][1] := -1 * One(fld);
+    s[d/2][d/2] := One(fld);
 
     t := IdentityMat( d, fld );
     t[1][d] := One(fld);
-    t[1][(d/2) + 1] := One(fld);
-    t[(d/2) + 1][d] := 2 * One(fld);
+    t[1][(d/2)] := One(fld);
+    t[(d/2)][d] := 2 * One(fld);
     
     A := 1/2 * ((gamma^(q-1))+(gamma^(-q+1)));
     if A <> Zero(fld) then
@@ -518,8 +518,8 @@ function(d,q)
     delta[d][d] := w^(-1);
     delta[(d/2)][(d/2)] := A;
     delta[(d/2)+1][(d/2)+1] := A;
-    delta[(d/2)][(d/2)+1] := B;
-    delta[(d/2)+1][(d/2)] := C;
+    delta[(d/2)][(d/2)+1] := C;
+    delta[(d/2)+1][(d/2)] := B;
     
     u := IdentityMat( d, fld );
     u{[1..2]}{[1..2]} := [[0,1],[-1,0]];
