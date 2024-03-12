@@ -10,7 +10,7 @@ SetPackageInfo( rec(
 PackageName := "BruhatDecomposition",
 Subtitle := "Computes the Bruhat decomposition of matrices in classical groups.",
 Version := "0.1",
-Date := "27/03/2020", # dd/mm/yyyy format
+Date := "12/03/2024", # dd/mm/yyyy format
 License := "GPL-2.0-or-later",
 
 Persons := [
@@ -48,41 +48,11 @@ Persons := [
     Place := "Aachen",
     Institution := "Chair of Algebra and Representation Theory, RWTH Aachen",
   ),
-  rec(
-    FirstNames := "Cheryl",
-    LastName := "Praeger",
-    WWWHome := "https://research-repository.uwa.edu.au/en/persons/cheryl-praeger",
-    Email := "Cheryl.Praeger@emeriti.uwa.edu.au",
-    IsAuthor := true,
-    IsMaintainer := false,
-    PostalAddress := Concatenation(
-               "Cheryl Praeger\n",
-               "The University of Western \n",
-               "Australia (M019), 35 Stirling Highway\n",
-               "6009 Perth\n",
-               "Australia" ),
-    Place := "Perth",
-  ),
-  rec(
-    FirstNames := "Tomasz",
-    LastName := "Popiel",
-    WWWHome := "https://research.monash.edu/en/persons/tomasz-popiel",
-    Email := "Tomasz.Popiel@monash.edu",
-    IsAuthor := true,
-    IsMaintainer := false,
-    PostalAddress := Concatenation(
-               "Tomasz Popiel\n",
-               "Monash University\n",
-               "Wellington Road\n",
-               "Clayton VIC 3800\n",
-               "Australia" ),
-    Place := "Melbourne",
-  ),
 ],
 
-SourceRepository := rec( Type := "git", URL := "https://github.com/User141/BruhatDecomposition2" ),
+SourceRepository := rec( Type := "git", URL := "https://github.com/danielrademacher/BruhatDecomposition" ),
 IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
-PackageWWWHome := "https://github.com/User141/BruhatDecomposition2",
+PackageWWWHome := "https://github.com/danielrademacher/BruhatDecomposition",
 PackageInfoURL := Concatenation( ~.PackageWWWHome, "PackageInfo.g" ),
 README_URL     := Concatenation( ~.PackageWWWHome, "README.md" ),
 ArchiveURL     := Concatenation( ~.PackageWWWHome,
