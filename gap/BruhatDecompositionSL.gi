@@ -112,23 +112,18 @@ end
 
 InstallGlobalFunction(  CoefficientsPrimitiveElement,
 function ( fld, alpha )
-
     if Size( fld ) <= MAXSIZE_GF_INTERNAL then
-
         return Coefficients( CanonicalBasis( fld ), alpha );
-    else
-
-        alpha := FFECONWAY.WriteOverLargerField( alpha, DegreeOverPrimeField( fld ) );
-
-        if IsCoeffsModConwayPolRep( alpha ) then
-            return alpha![1];
-	  elif IsModulusRep(alpha) then
-		return [alpha];
-        else
-            Error( "this should not happen" );
-        fi;
     fi;
 
+    alpha := FFECONWAY.WriteOverLargerField( alpha, DegreeOverPrimeField( fld ) );
+
+    if IsCoeffsModConwayPolRep( alpha ) then
+        return alpha![1];
+    elif IsModulusRep(alpha) then
+        return [alpha];
+    fi;
+    Error( "this should not happen" );
 end
 );
 
