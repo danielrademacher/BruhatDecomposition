@@ -50,9 +50,9 @@ Persons := [
   ),
 ],
 
-SourceRepository := rec( Type := "git", URL := "https://github.com/danielrademacher/BruhatDecomposition" ),
+SourceRepository := rec( Type := "git", URL := "https://github.com/gap-packages/BruhatDecomposition" ),
 IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
-PackageWWWHome := "https://github.com/danielrademacher/BruhatDecomposition",
+PackageWWWHome := "https://github.com/gap-packages/BruhatDecomposition",
 PackageInfoURL := Concatenation( ~.PackageWWWHome, "PackageInfo.g" ),
 README_URL     := Concatenation( ~.PackageWWWHome, "README.md" ),
 ArchiveURL     := Concatenation( ~.PackageWWWHome,
