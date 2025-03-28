@@ -4238,9 +4238,6 @@ function(stdgens, g)
             #    R[1]^-1*R[3]*R[4]*R[2]^-1    and
             #    R[1] = u1, R[2] = u2, R[3] = p_sign, R[4] = diag
             return [pgr, [ u1, u2, p_sign^(-1), diag ]];
-        
-        else
-            Print("g is not an element of the orthogonal group. Abort.");
         fi;
 
     elif (g in MSO(0,Length(g),Size(FieldOfMatrixList( stdgens )))) then
@@ -4300,11 +4297,8 @@ function(stdgens, g)
         #    R[1]^-1*R[3]*R[4]*R[2]^-1    and
         #    R[1] = u1, R[2] = u2, R[3] = p_sign, R[4] = diag
         return [pgr, [ u1, u2, p_sign^(-1), diag ]];
-    
-    else
-        Print("g is not an element of the orthogonal group. Abort.");
     fi;
-
+    Error("g is not an element of the orthogonal group. Abort.");
 end
 );
 
@@ -4374,14 +4368,9 @@ function(stdgens, g)
             #    R[1]^-1*R[3]*R[4]*R[2]^-1    and
             #    R[1] = u1, R[2] = u2, R[3] = p_sign, R[4] = diag
             return [pgr, [ u1, u2, p_sign^(-1), diag ]];
-        
-        else
-            Print("g is not an element of the orthogonal group. Abort.");
         fi;
-        
-    else
-        Print("g is not an element of the orthogonal group. Abort.");
     fi;
+    Error("g is not an element of the orthogonal group. Abort.");
 
 end
 );
