@@ -197,23 +197,23 @@ function( d, q )
 
     # t: The transvection
     t := IdentityMat( d, fld );
-    t[1][2] := One(fld);
+    t[1,2] := One(fld);
 
     # delta: The diagonal matrix
     delta := IdentityMat(d,fld);
-    delta[1][1] := PrimitiveRoot(fld);
-    delta[2][2] := PrimitiveRoot(fld)^-1;
+    delta[1,1] := PrimitiveRoot(fld);
+    delta[2,2] := PrimitiveRoot(fld)^-1;
 
     # s: The transposition
     s := IdentityMat( d, fld );
     s{[1..2]}{[1..2]} :=  MyPermutationMat( (1,2), 2, fld );
-    s[2][1] := - s[2][1];
+    s[2,1] := - s[2,1];
 
 
     # x: The 4-cycle (resp identity if d odd)
     if IsEvenInt(d) then
         x := MyPermutationMat( (1,2,3,4), d, fld );
-        x[4][1] := - x[4][1];
+        x[4,1] := - x[4,1];
     else
         x := IdentityMat(d,fld);
     fi;
@@ -232,7 +232,7 @@ function( d, q )
 
     else
         v :=  0* IdentityMat(d,fld);
-        v[1][d] := One(fld);
+        v[1,d] := One(fld);
         v{[ 2..d ]}{[ 1..d-1 ]} := - IdentityMat( d-1 , fld );
     fi;
 
@@ -252,18 +252,18 @@ function( d, q )
     # s: The transposition
     s := IdentityMat( d, fld );
     s{[ 1..2 ]}{[ 1..2 ]} :=  MyPermutationMatNC( (1,2), 2, fld );
-    s[2][1] := - s[2][1];
+    s[2,1] := - s[2,1];
 
 
     # t: The transvection
     t := IdentityMat( d, fld );
-    t[1][2] := One(fld);
+    t[1,2] := One(fld);
 
 
     # delta: The diagonal matrix
     delta := IdentityMat(d,fld);
-    delta[1][1] := PrimitiveElement(fld);
-    delta[2][2] := PrimitiveElement(fld)^-1;
+    delta[1,1] := PrimitiveElement(fld);
+    delta[2,2] := PrimitiveElement(fld)^-1;
 
 
     # v: The cycle
@@ -280,7 +280,7 @@ function( d, q )
 
     else
         v :=  0* IdentityMat(d,fld);
-        v[1][d] := One(fld);
+        v[1,d] := One(fld);
         v{[ 2..d ]}{[ 1..d-1 ]} := - IdentityMat( d-1 , fld );
     fi;
 
@@ -288,7 +288,7 @@ function( d, q )
     # x: The 4-cycle (resp identity if d odd)
     if IsEvenInt(d) then
         x := MyPermutationMatNC( (1,2,3,4), d, fld );
-        x[4][1] := - x[4][1];
+        x[4,1] := - x[4,1];
     else
         x := IdentityMat(d,fld);
     fi;
@@ -377,9 +377,8 @@ end);
 InstallGlobalFunction(  MatToWreathProd,
 function( M )
 
-    local zero, d, found, perm, perm2, diag, r, j;
+    local d, found, perm, perm2, diag, r, j;
 
-    zero := Zero( M[1][1] );
     d := DimensionsMat(M);
     if d[1] <> d[2] then Error("Matrix must be square"); return; fi;
     d := d[1];
@@ -389,17 +388,17 @@ function( M )
     diag := [];
 
     for r  in [1..d]  do
-        j := PositionNot( M[r], zero );
+        j := PositionNonZero( M[r] );
         if d < j or found[j]  then return false;  fi;
-        diag[r] := M[r][j];
-        if PositionNot( M[r], zero, j ) <= d  then
+        diag[r] := M[r,j];
+        if PositionNonZero( M[r], j ) <= d  then
             return false;
         fi;
         found[j] := true;
-        if M[r][j] = One(M[1][1]) then
+        if M[r,j] = OneOfBaseDomain(M) then
             perm[ r ]  := j;
             perm[ r+d ]  := j+d;
-        elif M[r][j] = -One(M[1][1]) then
+        elif M[r,j] = -OneOfBaseDomain(M) then
             perm[ r ]  := j+d;
             perm[ r+d ]  := j;
         fi;
@@ -414,9 +413,8 @@ end);
 InstallGlobalFunction(  MatToWreathProdNC,
 function( M )
 
-    local zero, d, found, perm, perm2, diag, r, j;
+    local d, found, perm, perm2, diag, r, j;
 
-    zero := Zero( M[1][1] );
     d := Length( M );
 
     found:= BlistList( [1..d], [] );
@@ -424,17 +422,17 @@ function( M )
     diag := [];
 
     for r  in [ 1..d ]  do
-        j := PositionNot( M[r], zero );
+        j := PositionNonZero( M[r] );
         if d < j or found[j]  then return false;  fi;
-        diag[r] := M[r][j];
-        if PositionNot( M[r], zero, j ) <= d  then
+        diag[r] := M[r,j];
+        if PositionNonZero( M[r], j ) <= d  then
             return false;
         fi;
         found[j] := true;
-        if M[r][j] = One(M[1][1]) then
+        if M[r,j] = OneOfBaseDomain(M) then
             perm[ r ]  := j;
             perm[ r+d ]  := j+d;
-        elif M[r][j] = -One(M[1][1]) then
+        elif M[r,j] = -OneOfBaseDomain(M) then
             perm[ r ]  := j+d;
             perm[ r+d ]  := j;
         fi;
@@ -489,7 +487,7 @@ function( perm, dim, fld )
     res := PermutationMat( perm, dim ) * one;
 
     for r in [ 1..dim ] do
-        res[ r ][ r^perm ]:= sign[ r ];
+        res[ r , r^perm ]:= sign[ r ];
     od;
 
     ConvertToMatrixRep( res );
@@ -562,9 +560,8 @@ end);
 InstallGlobalFunction(  TestIfMonomial,
 function( M )
 
-    local zero, d, found, r, j;
+    local d, found, r, j;
 
-    zero := Zero( M[1][1] );
     d := DimensionsMat(M);
 
     if d[1] <> d[2] then
@@ -576,13 +573,13 @@ function( M )
 
     for r  in [ 1..d ] do
 
-        j := PositionNot( M[r], zero );
+        j := PositionNonZero( M[r] );
 
         if d < j or found[j]  then
             return false;
         fi;
 
-        if PositionNot( M[r], zero, j ) <= d  then
+        if PositionNonZero( M[r], j ) <= d  then
             return false;
         fi;
 
@@ -598,22 +595,21 @@ end);
 InstallGlobalFunction(  TestIfMonomialNC,
 function( M )
 
-    local zero, d, found, r, j;
+    local d, found, r, j;
 
-    zero := Zero( M[1][1] );
     d := Length( M );
 
     found:= BlistList( [1..d], [] );
 
     for r  in [ 1..d ] do
 
-        j := PositionNot( M[r], zero );
+        j := PositionNonZero( M[r] );
 
         if d < j or found[j]  then
             return false;
         fi;
 
-        if PositionNot( M[r], zero, j ) <= d  then
+        if PositionNonZero( M[r], j ) <= d  then
             return false;
         fi;
 
@@ -1124,7 +1120,7 @@ function( arg )
 
         while r <= d and j <= d and r = 0 do
 
-            if not IsZero(g[j][c]) then
+            if not IsZero(g[j,c]) then
                 r := j;
             fi;
 
@@ -1136,7 +1132,7 @@ function( arg )
             Error("matrix has 0 column");
         fi;
 
-        # Step One: Clear all entries in column c apart from g[r][c]
+        # Step One: Clear all entries in column c apart from g[r,c]
         # This coincides with multiplying t_{i,r} from left.
 
         # Reinitialize Ti and Ti_1
@@ -1150,7 +1146,7 @@ function( arg )
 
         # If r is not the last row, we clear the rest of colum c:
 
-        # First we clear the entry g[r+1][c]
+        # First we clear the entry g[r+1,c]
         # Thus compute { t_{r,r-1}(\omega^l) }
         if r > 2 then
             FastShiftTransvections( r );
@@ -1159,7 +1155,7 @@ function( arg )
         # Note: If r = d then Tipos= { t_{d,d-1} } and
         # there are no entries to clear below row r in column c.
 
-        a := g[r][c]^-1;
+        a := g[r,c]^-1;
 
         if r <= d-1 then
 
@@ -1167,9 +1163,9 @@ function( arg )
             # Save them in Tipos
             ShiftTransvections( r+1 );
 
-            if not IsZero( g[r+1][c] ) then
+            if not IsZero( g[r+1,c] ) then
 
-                z := - g[r+1][c] * a;
+                z := - g[r+1,c] * a;
 
                 # add z times row r of g  to row r+1
                 # add z times row r of u1  to row r+1
@@ -1186,7 +1182,7 @@ function( arg )
             fi;
 
             Add(slp, [ [Tipos[1],1],tir1pos ] );
-            # we have now cleared the entry in g[r+1][c]
+            # we have now cleared the entry in g[r+1,c]
 
             # Second: Clear the rest of column c
             for i in [ r+2..d ] do
@@ -1195,9 +1191,9 @@ function( arg )
                 # Now Ti contains all the Transvections
                 # \{ t_{i,i-1}(ell) \}
 
-                if not IsZero(g[i][c]) then
+                if not IsZero(g[i,c]) then
 
-                    z := -g[i][c] * a;
+                    z := -g[i,c] * a;
 
                     # add z times row r of g  to row i
                     # add z times row r of u1  to row i
@@ -1227,7 +1223,7 @@ function( arg )
 
         fi; # r <= d-1
 
-        # Step Two: Clear all entries in row r apart from g[r][c]
+        # Step Two: Clear all entries in row r apart from g[r,c]
         # This coincides with multiplying t_{c,j} from right.
         if c >= 2 then
 
@@ -1249,7 +1245,7 @@ function( arg )
                BackShiftTransvections( c );
             fi;
 
-            # First we clear the entry g[r][c-1]
+            # First we clear the entry g[r,c-1]
             # Thus determine SLP-instructions:
             # given t_{d-1,d-2} = Tipos, write Tipos <- t_{c,c-1} (d odd)
             # resp.
@@ -1260,9 +1256,9 @@ function( arg )
             fi;
             # Now Tipos = { t_{c,c-1}(\omega^l) }
 
-            if not IsZero( g[r][c-1] ) then
+            if not IsZero( g[r,c-1] ) then
 
-                z := -g[r][c-1] * a;
+                z := -g[r,c-1] * a;
 
                 # SLP-instructions: Compute t_{c,c-1}(z) (cf Lemma 4.2 p12)
                 # tvpos <- t_{c,c-1}(z)
@@ -1295,9 +1291,9 @@ function( arg )
             # Now clear the rest of row r
             for j in [ c-2, c-3..1 ] do
 
-                if not IsZero( g[r][j] ) then
+                if not IsZero( g[r,j] ) then
 
-                    z := - g[r][j] * a;
+                    z := - g[r,j] * a;
 
                     # SLP-instructions: Compute t_{j+,j}(z) (cf Lemma 4.2 p12)
                     # tvpos <- t_{j+1,j}(z)
@@ -1755,7 +1751,7 @@ function( arg )
 
         while r <= d and j <= d and r = 0 do
 
-            if not IsZero( g[j][c] ) then
+            if not IsZero( g[j,c] ) then
                 r := j;
             fi;
 
@@ -1767,7 +1763,7 @@ function( arg )
             Error("matrix has 0 column");
         fi;
 
-        # Step One: Clear all entries in column c apart from g[r][c]
+        # Step One: Clear all entries in column c apart from g[r,c]
         # This coincides with multiplying t_{i,r} from left.
 
         # Reinitialize Ti and Ti_1
@@ -1781,7 +1777,7 @@ function( arg )
 
         # If r is not the last row, we clear the rest of colum c:
 
-        # First we clear the entry g[r+1][c]
+        # First we clear the entry g[r+1,c]
         # Thus compute { t_{r,r-1}(\omega^l) }
         if r > 2 then
             FastShiftTransvections( r );
@@ -1790,7 +1786,7 @@ function( arg )
         # Note: If r = d then Tipos= { t_{d,d-1} } and
         # there are no entries to clear below row r in column c.
 
-        a := g[r][c]^-1;
+        a := g[r,c]^-1;
 
         if r <= d-1 then
 
@@ -1798,9 +1794,9 @@ function( arg )
             # Save them in Tipos
             ShiftTransvections( r+1 );
 
-            if not IsZero( g[r+1][c] ) then
+            if not IsZero( g[r+1,c] ) then
 
-                z := - g[r+1][c] * a;
+                z := - g[r+1,c] * a;
 
                 # add z times row r of g  to row r+1
                 # add z times row r of u1  to row r+1
@@ -1817,7 +1813,7 @@ function( arg )
             fi;
 
             Add(slp, [ [ Tipos[1],1 ], tir1pos ] );
-            # we have now cleared the entry in g[r+1][c]
+            # we have now cleared the entry in g[r+1,c]
 
             # Second: Clear the rest of column c
             for i in [ r+2..d ] do
@@ -1826,9 +1822,9 @@ function( arg )
                 # Now Ti contains all the Transvections
                 # \{ t_{i,i-1}(ell) \}
 
-                if not IsZero(g[i][c]) then
+                if not IsZero(g[i,c]) then
 
-                    z := -g[i][c] * a;
+                    z := -g[i,c] * a;
 
                     # add z times row r of g  to row i
                     # add z times row r of u1  to row i
@@ -1858,7 +1854,7 @@ function( arg )
 
         fi; # r <= d-1
 
-        # Step Two: Clear all entries in row r apart from g[r][c]
+        # Step Two: Clear all entries in row r apart from g[r,c]
         # This coincides with multiplying t_{c,j} from right.
         if c >= 2 then
 
@@ -1880,7 +1876,7 @@ function( arg )
                BackShiftTransvections( c );
             fi;
 
-            # First we clear the entry g[r][c-1]
+            # First we clear the entry g[r,c-1]
             # Thus determine SLP-instructions:
             # given t_{d-1,d-2} = Tipos, write Tipos <- t_{c,c-1} (d odd)
             # resp.
@@ -1891,9 +1887,9 @@ function( arg )
             fi;
             # Now Tipos = { t_{c,c-1}(\omega^l) }
 
-            if not IsZero( g[r][c-1] ) then
+            if not IsZero( g[r,c-1] ) then
 
-                z := -g[r][c-1] * a;
+                z := -g[r,c-1] * a;
 
                 # SLP-instructions: Compute t_{c,c-1}(z) (cf Lemma 4.2 p12)
                 # tvpos <- t_{c,c-1}(z)
@@ -1926,9 +1922,9 @@ function( arg )
             # Now clear the rest of row r
             for j in [ c-2, c-3..1 ] do
 
-                if not IsZero( g[r][j] ) then
+                if not IsZero( g[r,j] ) then
 
-                    z := - g[r][j] * a;
+                    z := - g[r,j] * a;
 
                     # SLP-instructions: Compute t_{j+,j}(z) (cf Lemma 4.2 p12)
                     # tvpos <- t_{j+1,j}(z)
@@ -2181,24 +2177,24 @@ function(arg)
         j := 1; r := 0;
         while r <= d and r = 0 do
 
-            if not IsZero( g[j][c] ) then
+            if not IsZero( g[j,c] ) then
                 r := j;
             fi;
 
             j := j + 1;
         od;
 
-        # Now we clear all entries in column c apart from g[r][c]
+        # Now we clear all entries in column c apart from g[r,c]
         # if r is not the last row, we clear the rest of colum c
-        # first we clear the entry g[r+1][c]
+        # first we clear the entry g[r+1,c]
 
-        a := g[r][c]^-1;
+        a := g[r,c]^-1;
 
         if r <= d-1 then
 
-            if not IsZero( g[r+1][c] ) then
+            if not IsZero( g[r+1,c] ) then
 
-                z := - g[r+1][c] * a;
+                z := - g[r+1,c] * a;
 
                 TransvectionAtAlpha( r+1, z );
 
@@ -2212,13 +2208,13 @@ function(arg)
             fi;
 
             Add( slp, [ [Tipos[r+1][1],1], tir1pos ] );
-            # we have now cleared the entry in g[r+1][c]
+            # we have now cleared the entry in g[r+1,c]
 
             # Now clear the rest of column c
             for i in [ r+2..d ] do
-                if not IsZero( g[i][c] ) then
+                if not IsZero( g[i,c] ) then
 
-                    z := -g[i][c] * a;
+                    z := -g[i,c] * a;
 
                     TransvectionAtAlpha(i, z );
 
@@ -2245,16 +2241,16 @@ function(arg)
             od;
         fi; # r <= d-1
 
-        # Next we clear row r apart from g[r][c]
+        # Next we clear row r apart from g[r,c]
         if c >= 2 then
             # if c = d then Ti already contains t_d(d-1)
             # if c <= d-1 then we swap Ti and Ti-1 so that
             # initially Ti contains t_(d-1)(d-2) and
             # Ti_1 contains t_d(d-1) and then shift back
             # now Ti contains t_c(c-1)
-            if not IsZero( g[r][c-1] ) then
+            if not IsZero( g[r,c-1] ) then
 
-                z := - g[r][c-1] * a;
+                z := - g[r,c-1] * a;
 
                 TransvectionAtAlpha( c, z );
 
@@ -2275,9 +2271,9 @@ function(arg)
             # Now clear the rest of row r
             for j in [ c-2, c-3..1 ] do
 
-                if not IsZero( g[r][j] ) then
+                if not IsZero( g[r,j] ) then
 
-                    z := - g[r][j] * a;
+                    z := - g[r,j] * a;
 
                     TransvectionAtAlpha( j+1, z );
 
@@ -2491,24 +2487,24 @@ function( arg )
         j := 1; r := 0;
         while r <= d and r = 0 do
 
-            if not IsZero( g[j][c] ) then
+            if not IsZero( g[j,c] ) then
                 r := j;
             fi;
 
             j := j + 1;
         od;
 
-        # Now we clear all entries in column c apart from g[r][c]
+        # Now we clear all entries in column c apart from g[r,c]
         # if r is not the last row, we clear the rest of colum c
-        # first we clear the entry g[r+1][c]
+        # first we clear the entry g[r+1,c]
 
-        a := g[r][c]^-1;
+        a := g[r,c]^-1;
 
         if r <= d-1 then
 
-            if not IsZero( g[r+1][c] ) then
+            if not IsZero( g[r+1,c] ) then
 
-                z := - g[r+1][c] * a;
+                z := - g[r+1,c] * a;
 
                 TransvectionAtAlpha( r+1, z );
 
@@ -2522,13 +2518,13 @@ function( arg )
             fi;
 
             Add( slp, [ [Tipos[r+1][1],1], tir1pos ] );
-            # we have now cleared the entry in g[r+1][c]
+            # we have now cleared the entry in g[r+1,c]
 
             # Now clear the rest of column c
             for i in [ r+2..d ] do
-                if not IsZero( g[i][c] ) then
+                if not IsZero( g[i,c] ) then
 
-                    z := -g[i][c] * a;
+                    z := -g[i,c] * a;
 
                     TransvectionAtAlpha(i, z );
 
@@ -2555,16 +2551,16 @@ function( arg )
             od;
         fi; # r <= d-1
 
-        # Next we clear row r apart from g[r][c]
+        # Next we clear row r apart from g[r,c]
         if c >= 2 then
             # if c = d then Ti already contains t_d(d-1)
             # if c <= d-1 then we swap Ti and Ti-1 so that
             # initially Ti contains t_(d-1)(d-2) and
             # Ti_1 contains t_d(d-1) and then shift back
             # now Ti contains t_c(c-1)
-            if not IsZero( g[r][c-1] ) then
+            if not IsZero( g[r,c-1] ) then
 
-                z := - g[r][c-1] * a;
+                z := - g[r,c-1] * a;
 
                 TransvectionAtAlpha( c, z );
 
@@ -2585,9 +2581,9 @@ function( arg )
             # Now clear the rest of row r
             for j in [ c-2, c-3..1 ] do
 
-                if not IsZero( g[r][j] ) then
+                if not IsZero( g[r,j] ) then
 
-                    z := - g[r][j] * a;
+                    z := - g[r,j] * a;
 
                     TransvectionAtAlpha( j+1, z );
 
@@ -2640,9 +2636,8 @@ end);
 InstallGlobalFunction(  PermutationMonomialMatrix,
 function( M )
 
-    local zero, d, found, perm, diag, r, j;
+    local d, found, perm, diag, r, j;
 
-    zero := Zero( M[1][1] );
     d := DimensionsMat(M);
 
     if d[1] <> d[2] then
@@ -2657,15 +2652,15 @@ function( M )
 
     for r  in [ 1..d ] do
 
-        j := PositionNot( M[r], zero );
+        j := PositionNonZero( M[r] );
 
         if d < j or found[j]  then
             return false;
         fi;
 
-        diag[r] := M[r][j];
+        diag[r] := M[r,j];
 
-        if PositionNot( M[r], zero, j ) <= d  then
+        if PositionNonZero( M[r], j ) <= d  then
             return false;
         fi;
 
@@ -2695,9 +2690,8 @@ end);
 InstallGlobalFunction(  PermutationMonomialMatrixNC,
 function( M )
 
-    local zero, d, found, perm, diag, r, j;
+    local d, found, perm, diag, r, j;
 
-    zero := Zero( M[1][1] );
     d := DimensionsMat(M);
 
     d := d[1];
@@ -2707,15 +2701,15 @@ function( M )
 
     for r  in [ 1..d ] do
 
-        j := PositionNot( M[r], zero );
+        j := PositionNonZero( M[r] );
 
         if d < j or found[j]  then
             return false;
         fi;
 
-        diag[r] := M[r][j];
+        diag[r] := M[r,j];
 
-        if PositionNot( M[r], zero, j ) <= d  then
+        if PositionNonZero( M[r], j ) <= d  then
             return false;
         fi;
 
@@ -3327,7 +3321,7 @@ function(arg)
 
     for i in [ 1..d-1 ] do
 
-        lambdai := lambdai + LogFFE( diag[i][i], omega );
+        lambdai := lambdai + LogFFE( diag[i,i], omega );
 
         if i = 1 then
             # h_1 = delta
@@ -3443,7 +3437,7 @@ function( arg )
 
     for i in [ 1..d-1 ] do
 
-        lambdai := lambdai + LogFFE( diag[i][i], omega );
+        lambdai := lambdai + LogFFE( diag[i,i], omega );
 
         if i = 1 then
             # h_1 = delta
