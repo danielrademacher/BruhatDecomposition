@@ -21,8 +21,7 @@ function(perm, dim, fld)
 
     return res;
 
-end
-);
+end);
 
 
 
@@ -35,8 +34,7 @@ function(fld, alpha, basis)
 
     return Coefficients( basis, alpha );
 
-end
-);
+end);
 
 
 
@@ -690,8 +688,7 @@ function(arg)
     # Now u1^-1 * g * u2^-1 is the input matrix
     return [slp,[g, u1, u2], hs];
 
-end
-);
+end);
 
 
 
@@ -1351,8 +1348,7 @@ function(arg)
     # Now u1^-1 * g * u2^-1 is the input matrix
     return [slp,[g, u1, u2], hs];
 
-end
-);
+end);
 
 
 
@@ -2258,8 +2254,7 @@ function(arg)
     # Now u1^-1 * g * u2^-1 is the input matrix
     return [slp,[g, u1, u2], hs];
 
-end
-);
+end);
 
 
 
@@ -3175,8 +3170,7 @@ function(arg)
     # Now u1^-1 * g * u2^-1 is the input matrix
     return [slp,[g, u1, u2], hs];
 
-end
-);
+end);
 
 
 
@@ -3193,8 +3187,7 @@ function(g)
         return UnitriangularDecompositionSUOdd(g);
     fi;
 
-end
-);
+end);
 
 
 
@@ -3276,8 +3269,7 @@ function( d, q )
 
     return [s,t,delta,v,u,x,y];
 
-end
-);
+end);
 
 
 
@@ -3350,8 +3342,7 @@ function( d, q )
 
     return [s,t,delta,v,u,x,y];
 
-end
-);
+end);
 
 
 
@@ -3614,8 +3605,7 @@ function(stdgens, g)
 
     fi;
 
-end
-);
+end);
 
 
 
@@ -3821,8 +3811,7 @@ function(arg)
 
     return [slp, [tmpvalue , mat ] ];
 
-end
-);
+end);
 
 
 
@@ -4028,8 +4017,7 @@ function(arg)
 
     return [slp, [tmpvalue , mat ] ];
 
-end
-);
+end);
 
 
 
@@ -4242,8 +4230,7 @@ function(arg)
 
     return [slp, [tmpvalue , mat ] ];
 
-end
-);
+end);
 
 
 
@@ -4456,8 +4443,7 @@ function(arg)
 
     return [slp, [tmpvalue , mat ] ];
 
-end
-);
+end);
 
 
 
@@ -4479,8 +4465,7 @@ function(perm,m)
 
     return false;
 
-end
-);
+end);
 
 
 
@@ -4510,8 +4495,7 @@ function(g)
 
     return result;
 
-end
-);
+end);
 
 
 
@@ -4537,8 +4521,7 @@ function(nc,h)
 
     return PermListList([1..h],result);
 
-end
-);
+end);
 
 
 
@@ -4640,8 +4623,7 @@ function(arg)
 
     return [slp];
 
-end
-);
+end);
 
 
 
@@ -4743,8 +4725,7 @@ function(arg)
 
     return [slp];
 
-end
-);
+end);
 
 
 
@@ -4766,8 +4747,7 @@ function(arg)
         return DiagSLPSUOdd(arg);
     fi;
 
-end
-);
+end);
 
 
 
@@ -4878,8 +4858,7 @@ function(arg)
 
     return [slp];
 
-end
-);
+end);
 
 
 
@@ -4990,5 +4969,4 @@ function(arg)
 
     return [slp];
 
-end
-);
+end);

@@ -82,8 +82,7 @@ InstallGlobalFunction(  MakeSLP,
 
     return StraightLineProgram( slp{[ genlen+1 .. Length(slp) ]}, genlen );
 
-end
-);
+end);
 
 
 InstallGlobalFunction(  MakeSLPNC,
@@ -91,8 +90,7 @@ function( slp, genlen )
 
     return StraightLineProgramNC( slp{[ genlen+1 .. Length(slp) ]}, genlen );
 
-end
-);
+end);
 
 
 
@@ -124,8 +122,7 @@ function ( fld, alpha )
         return [alpha];
     fi;
     Error( "this should not happen" );
-end
-);
+end);
 
 
 #####
@@ -153,8 +150,7 @@ function(perm, dim, fld)
 
     return res;
 
-end
-);
+end);
 
 
 InstallGlobalFunction(  MyPermutationMatNC,
@@ -167,8 +163,7 @@ function(perm, dim, fld)
 
     return res;
 
-end
-);
+end);
 
 
 
@@ -243,8 +238,7 @@ function( d, q )
 
     return [ s, t, delta, v, x ];
 
-end
-);
+end);
 
 
 InstallGlobalFunction(  LGOStandardGensSLNC,
@@ -302,8 +296,7 @@ function( d, q )
 
     return [ s, t, delta, v, x ];
 
-end
-);
+end);
 
 
 
@@ -354,8 +347,7 @@ function(slp)
 
     return highestslot;
 
-end
-);
+end);
 
 
 #####
@@ -416,8 +408,7 @@ function( M )
     perm := PermList(perm);
 
     return perm;
-end
-);
+end);
 
 
 InstallGlobalFunction(  MatToWreathProdNC,
@@ -452,8 +443,7 @@ function( M )
     perm := PermList(perm);
 
     return perm;
-end
-);
+end);
 
 
 
@@ -506,8 +496,7 @@ function( perm, dim, fld )
 
     return res;
 
-end
-);
+end);
 
 #####
 # AEM (Ancient Egytian Multiplication)
@@ -557,8 +546,7 @@ function(spos,respos,tmppos,k)
 
     return instr;
 
-end
-);
+end);
 
 #####
 # TestIfMonomial()
@@ -604,8 +592,7 @@ function( M )
 
     return true;
 
-end
-);
+end);
 
 
 InstallGlobalFunction(  TestIfMonomialNC,
@@ -636,8 +623,7 @@ function( M )
 
     return true;
 
-end
-);
+end);
 
 
 
@@ -691,8 +677,7 @@ function( stdgens, omega, slp, pos )
 
     return slp;
 
-end
-);
+end);
 
 #####
 # UnipotentDecomposition()
@@ -1352,8 +1337,7 @@ function( arg )
     # Now u1^-1 * g * u2^-1 is the input matrix
     return [slp, [u1, g,  u2] ];
 
-end
-);
+end);
 
 
 InstallGlobalFunction(  UnipotentDecompositionNC,
@@ -1984,8 +1968,7 @@ function( arg )
     # Now u1^-1 * g * u2^-1 is the input matrix
     return [slp, [u1, g,  u2] ];
 
-end
-);
+end);
 
 
 
@@ -2323,8 +2306,7 @@ function(arg)
 
     return [slp, [u1, g, u2] ];
 
-end
-);
+end);
 
 
 InstallGlobalFunction(  UnipotentDecompositionWithTiNC,
@@ -2634,8 +2616,7 @@ function( arg )
 
     return [slp, [u1, g, u2] ];
 
-end
-);
+end);
 
 
 
@@ -2695,8 +2676,7 @@ function( M )
 
     return [ diag, PermList(perm) ];
 
-end
-);
+end);
 
 
 
@@ -2746,8 +2726,7 @@ function( M )
 
     return [ diag, PermList(perm) ];
 
-end
-);
+end);
 
 
 
@@ -3023,8 +3002,7 @@ function (arg)
         return [slp, [ p_sign, mat ] ];
     fi;
 
-end
-);
+end);
 
 
 InstallGlobalFunction(  PermSLPNC,
@@ -3248,8 +3226,7 @@ function ( arg )
         return [slp, [ p_sign, mat ] ];
     fi;
 
-end
-);
+end);
 
 
 
@@ -3399,8 +3376,7 @@ function(arg)
 
     return [ slp, hres ];
 
-end
-);
+end);
 
 
 InstallGlobalFunction(  DiagonalDecompositionNC,
@@ -3515,8 +3491,7 @@ function( arg )
 
     return [ slp, hres ];
 
-end
-);
+end);
 
 
 
@@ -3604,8 +3579,7 @@ function(stdgens, g)
     #    R[1] = u1, R[2] = u2, R[3] = p_sign, R[4] = diag
     return [pgr, [ u1, u2, p_sign, diag ]];
 
-end
-);
+end);
 
 
 InstallGlobalFunction(  BruhatDecompositionSLNC,
@@ -3671,8 +3645,7 @@ function(stdgens, g)
     #    R[1] = u1, R[2] = u2, R[3] = p_sign, R[4] = diag
     return [pgr, [ u1, u2, p_sign, diag ] ];
 
-end
-);
+end);
 
 
 
@@ -3759,8 +3732,7 @@ function(stdgens, g)
     # Furthermore R[5] ... R[ Length(R) ] are the transvections.
     return [pgr, [ u1, u2, p_sign, diag ]];
 
-end
-);
+end);
 
 
 InstallGlobalFunction(  BruhatDecompositionSLWithTiNC,
@@ -3832,6 +3804,5 @@ function(stdgens, g)
     # Furthermore R[5] ... R[ Length(R) ] are the transvections.
     return [pgr, [ u1, u2, p_sign, diag ]];
 
-end
-);
+end);
 

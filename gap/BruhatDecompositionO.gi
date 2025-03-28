@@ -25,8 +25,7 @@ function(n)
     
     return [a,b];
 
-end
-);
+end);
 
 
 
@@ -63,8 +62,7 @@ function(e, d, q)
     
     Error("e has to be 1, -1 or 0.");
 
-end
-);
+end);
 
 
 
@@ -146,8 +144,7 @@ function(d,q)
 
     return [s, sBar, t, tBar, delta, deltaBar, u, v, sigma];
 
-end
-);
+end);
 
 
 
@@ -210,8 +207,7 @@ function(d,q)
 
     return [s, t, delta, u, v, sigma];
 
-end
-);
+end);
 
 
 
@@ -296,8 +292,7 @@ function(d,q)
 
     return [s, t, delta, u, v, sigma];
 
-end
-);
+end);
 
 
 
@@ -336,8 +331,7 @@ function(e, d, q)
     
     Error("e has to be 1, -1 or 0.");
 
-end
-);
+end);
 
 
 
@@ -408,8 +402,7 @@ function(d,q)
 
     return [s, sBar, t, tBar, delta, deltaBar, u, v];
 
-end
-);
+end);
 
 
 
@@ -460,8 +453,7 @@ function(d,q)
 
     return [s, t, delta, u, v];
 
-end
-);
+end);
 
 
 
@@ -538,8 +530,7 @@ function(d,q)
 
     return [s, t, delta, u, v];
 
-end
-);
+end);
 
 
 
@@ -599,8 +590,7 @@ function(d,q)
 
     return [s, t, tBar, delta, deltaBar, u, v];
 
-end
-);
+end);
 
 
 
@@ -613,8 +603,7 @@ function(d,q)
     
     return LGOStandardGensSpEvenChar(d-1,q);
 
-end
-);
+end);
 
 
 
@@ -692,8 +681,7 @@ function(d,q)
 
     return [s, t, delta, u, v];
 
-end
-);
+end);
 
 
 
@@ -830,8 +818,7 @@ function(e,d,q)
     
     return G;
 
-end
-);
+end);
 
 
 
@@ -1372,8 +1359,7 @@ function(arg)
     return [slp,[g, u1, u2], hs];
 
 
-end
-);
+end);
 
 
 
@@ -1924,8 +1910,7 @@ function(arg)
     # Now u1^-1 * g * u2^-1 is the input matrix
     return [slp,[g, u1, u2], hs];
 
-end
-);
+end);
 
 
 
@@ -2642,8 +2627,7 @@ function(arg)
     # Now u1^-1 * g * u2^-1 is the input matrix
     return [slp,[g, u1, u2], hs];
 
-end
-);
+end);
 
 
 
@@ -3011,8 +2995,7 @@ function( arg )
 
     return [slp, [tmpvalue , mat ] ];
     
-end
-);
+end);
 
 
 
@@ -3220,8 +3203,7 @@ function( arg )
 
     return [slp, [tmpvalue , mat ] ];
 
-end
-);
+end);
 
 
 
@@ -3541,8 +3523,7 @@ function( arg )
 
     return [slp, [ tmpvalue, mat ] ];
 
-end
-);
+end);
 
 
 
@@ -3562,8 +3543,7 @@ function(perm, j)
     
     return ();
     
-end
-);
+end);
 
 
 
@@ -3585,8 +3565,7 @@ function(op, np, l, n)
     
     return true;
     
-end
-);
+end);
 
 
 
@@ -3642,8 +3621,7 @@ function(op, np, tn, l, n)
         return false;
     fi;
     
-end
-);
+end);
 
 
 
@@ -3672,8 +3650,7 @@ function (M)
     
     return [list,perm];
     
-end
-);
+end);
 
 
 
@@ -3695,8 +3672,7 @@ function( tupel, n, fld )
     od;
     
     return M;
-end
-);
+end);
 
 
 
@@ -3722,8 +3698,7 @@ function ( tupel1, tupel2)
     
     return [list,perm];
 
-end
-);
+end);
 
 
 
@@ -3842,8 +3817,7 @@ function( arg )
 
     return [slp];
 
-end
-);
+end);
 
 
 
@@ -3954,8 +3928,7 @@ function(arg)
 
     return [slp];
 
-end
-);
+end);
 
 
 
@@ -4107,8 +4080,7 @@ function( arg )
 
     return [slp];
 
-end
-);
+end);
 
 
 
@@ -4299,8 +4271,7 @@ function(stdgens, g)
         return [pgr, [ u1, u2, p_sign^(-1), diag ]];
     fi;
     Error("g is not an element of the orthogonal group. Abort.");
-end
-);
+end);
 
 
 
@@ -4372,6 +4343,5 @@ function(stdgens, g)
     fi;
     Error("g is not an element of the orthogonal group. Abort.");
 
-end
-);
+end);
 
