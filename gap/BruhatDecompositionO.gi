@@ -8,23 +8,15 @@
 ####################
 
 #####
-# FindPrimePowerDecomposition()
+# FindOddPart()
 #####
 
-InstallGlobalFunction(  FindPrimePowerDecomposition,
+BindGlobal( "FindOddPart",
 function(n)
-    local res, a, b;
-
-    res := n-1;
-    a := 0;
-    while res mod 2 = 0 do
-        a := a + 1;
-        res := Int(res*0.5);
+    while n mod 2 = 0 do
+        n := n / 2;
     od;
-    b := (n-1)/(2^a);
-    
-    return [a,b];
-
+    return n;
 end);
 
 
@@ -131,13 +123,7 @@ function(d,q)
         v[d/2+1,d] := -1 * One(fld);
     fi;
     
-    res := q-1;
-    a := 0;
-    while res mod 2 = 0 do
-        a := a + 1;
-        res := Int(res*0.5);
-    od;
-    b := (q-1)/(2^a);
+    b := FindOddPart(Size(fld)-1);
     sigma := IdentityMat( d, fld );
     sigma[1,1] := w^b;
     sigma[d,d] := w^(-b);
@@ -154,7 +140,7 @@ end);
 
 InstallGlobalFunction(  __LGOStandardGensSOCircle,
 function(d,q)
-    local s, t, delta, u, v, sigma, fld, w, n, S1, a, b, res;
+    local s, t, delta, u, v, sigma, fld, w, n, b;
     
     fld := GF(q);
     w := Z(q);
@@ -193,13 +179,7 @@ function(d,q)
         v[(d+1)/2 + 1,d] := -1 * One(fld);
     fi;
     
-    res := q-1;
-    a := 0;
-    while res mod 2 = 0 do
-        a := a + 1;
-        res := Int(res*0.5);
-    od;
-    b := (q-1)/(2^a);
+    b := FindOddPart(Size(fld)-1);
     sigma := IdentityMat( d, fld );
     sigma[1,1] := w^b;
     sigma[d,d] := w^(-b);
@@ -829,7 +809,7 @@ end);
 
 InstallGlobalFunction(  UnitriangularDecompositionSOPlus,
 function(arg)
-    local g, u1, u2, j, r ,c, z, fld, f, i, a, d, stdgens, TransvecAtAlpha2, TransvecAtAlpha3, TransvecAtAlpha4, ShiftTransvection3ByJ, ShiftTransvection3ByI, ShiftTransvection4, ShiftTransvection2ByJ, ShiftTransvection2ByI, test, CalcXY, XX, YY, DeltaStarNumber, ell, slp, hs, tmppos, tmppos2, AEMrespos, u1pos, u2pos, tvpos, T2pos, T3pos, uipos, deltaStar;
+    local g, u1, u2, j, r ,c, z, fld, f, i, a, d, stdgens, TransvecAtAlpha2, TransvecAtAlpha3, TransvecAtAlpha4, ShiftTransvection3ByJ, ShiftTransvection3ByI, ShiftTransvection4, ShiftTransvection2ByJ, ShiftTransvection2ByI, test, XX, DeltaStarNumber, ell, slp, hs, tmppos, tmppos2, AEMrespos, u1pos, u2pos, tvpos, T2pos, T3pos, uipos, deltaStar;
     
     
     #####
@@ -1034,13 +1014,7 @@ function(arg)
     hs := HighestSlotOfSLP(slp);
     
     # deltaStar
-    CalcXY := Size(fld)-1;
-    YY := 0;
-    while CalcXY mod 2 = 0 do
-        YY := YY + 1;
-        CalcXY := Int(CalcXY*0.5);
-    od;
-    XX := (Size(fld)-1)/(2^YY);
+    XX := FindOddPart(Size(fld)-1);
     if XX = 1 then
         Add( slp, [ [9,1], deltaStar ] );
      else
@@ -1370,7 +1344,7 @@ end);
 
 InstallGlobalFunction(  UnitriangularDecompositionSOCircle,
 function(arg)
-    local g, u1, u2, j, r ,c, z, fld, f, i, a, d, stdgens, TransvecAtAlpha2, TransvecAtAlpha3, TransvecAtAlpha5, ShiftTransvection3ByJ, ShiftTransvection3ByI, ShiftTransvection5, ShiftTransvection2ByJ, ShiftTransvection2ByI, test, CalcXY, XX, YY, DeltaStarNumber, ell, slp, hs, tmppos, tmppos2, AEMrespos, u1pos, u2pos, tvpos, T2pos, T3pos, uipos, deltaStar, T5pos, jjj;
+    local g, u1, u2, j, r ,c, z, fld, f, i, a, d, stdgens, TransvecAtAlpha2, TransvecAtAlpha3, TransvecAtAlpha5, ShiftTransvection3ByJ, ShiftTransvection3ByI, ShiftTransvection5, ShiftTransvection2ByJ, ShiftTransvection2ByI, test, XX, DeltaStarNumber, ell, slp, hs, tmppos, tmppos2, AEMrespos, u1pos, u2pos, tvpos, T2pos, T3pos, uipos, deltaStar, T5pos, jjj;
     
     
     #####
@@ -1626,13 +1600,7 @@ function(arg)
     hs := HighestSlotOfSLP(slp);
     
     # deltaStar
-    CalcXY := Size(fld)-1;
-    YY := 0;
-    while CalcXY mod 2 = 0 do
-        YY := YY + 1;
-        CalcXY := Int(CalcXY*0.5);
-    od;
-    XX := (Size(fld)-1)/(2^YY);
+    XX := FindOddPart(Size(fld)-1);
     if XX = 1 then
         Add( slp, [ [6,1], deltaStar ] );
      else
@@ -3710,7 +3678,7 @@ end);
 InstallGlobalFunction(  DiagSLPSOPlus,
 function( arg )
 
-    local stdgens, diag, fld, slp, a_i, d, omega, delta, u, v, cnt, hiposm, hipos, respos, hres, instr, i, decomp, y, x, startpower;
+    local stdgens, diag, fld, slp, a_i, d, omega, delta, u, v, cnt, hiposm, hipos, respos, hres, instr, i, x, startpower;
 
     if Length(arg) >= 2 and IsList(arg[1]) and IsMatrix(arg[2]) then
 
@@ -3782,9 +3750,7 @@ function( arg )
     fi;
 
     # Find start element
-    decomp := FindPrimePowerDecomposition(Size(fld));
-    y := decomp[1];
-    x := decomp[2];
+    x := FindOddPart(Size(fld)-1);
     
     #for i in [0..(Size(fld)-1)] do
     #    if ((2*i+x-1) mod (Size(fld)-1)) = 0 then
@@ -3828,7 +3794,7 @@ end);
 
 InstallGlobalFunction(  DiagSLPSOCircle,
 function(arg)
-    local stdgens, diag, fld, slp, a_i, d, omega, cnt, hiposm, hipos, respos, hres, instr, i, q, decomp, y, x, startpower;
+    local stdgens, diag, fld, slp, a_i, d, omega, cnt, hiposm, hipos, respos, hres, instr, i, q, x, startpower;
 
     if Length(arg) >= 2 and IsList(arg[1]) and IsMatrix(arg[2]) then
 
@@ -3896,9 +3862,7 @@ function(arg)
     fi;
 
     # Find start element
-    decomp := FindPrimePowerDecomposition(Size(fld));
-    y := decomp[1];
-    x := decomp[2];
+    x := FindOddPart(Size(fld)-1);
     
     #for i in [0..(Size(fld)-1)] do
     #    if ((2*i+x-1) mod (Size(fld)-1)) = 0 then
@@ -3940,7 +3904,7 @@ end);
 InstallGlobalFunction(  DiagSLPSOMinus,
 function( arg )
 
-    local stdgens, diag, fld, slp, a_i, d, omega, delta, u, v, cnt, hiposm, hipos, respos, hres, instr, i, decomp, y, x, startpower, tmpv;
+    local stdgens, diag, fld, slp, a_i, d, omega, delta, u, v, cnt, hiposm, hipos, respos, hres, instr, i, x, startpower, tmpv;
 
     if Length(arg) >= 2 and IsList(arg[1]) and IsMatrix(arg[2]) then
 
