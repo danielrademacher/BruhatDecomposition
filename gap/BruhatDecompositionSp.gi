@@ -202,7 +202,7 @@ function( arg )
             Add(basis,w^(2*ell));
         od;
 
-        VS := VectorSpace(GF(Characteristic(fld)),basis);
+        VS := VectorSpace(PrimeField(fld),basis);
 
         cc := CoefficientsPrimitiveElementS( fld, alpha, Basis(VS,basis));
         instr := [];
@@ -303,7 +303,7 @@ function( arg )
         return [ slp, [u1,g,u2] ];
     fi;
 
-    f := LogInt(Size(fld), Characteristic(fld)); #ie q=p^f
+    f := DegreeOverPrimeField(fld); #ie q=p^f
 
     hs := HighestSlotOfSLP(slp);
 
@@ -946,7 +946,7 @@ function( arg )
             Add(basis,w^(2*ell));
         od;
 
-        VS := VectorSpace(GF(Characteristic(fld)),basis);
+        VS := VectorSpace(PrimeField(fld),basis);
 
         cc := CoefficientsPrimitiveElementS( fld, alpha, Basis(VS,basis));
         instr := [];
@@ -1047,7 +1047,7 @@ function( arg )
         return [ slp, [u1,g,u2] ];
     fi;
 
-    f := LogInt(Size(fld), Characteristic(fld)); #ie q=p^f
+    f := DegreeOverPrimeField(fld); #ie q=p^f
 
     hs := HighestSlotOfSLP(slp);
 
@@ -1556,7 +1556,7 @@ function( d, q )
     delta[1,1] := w;
     delta[d,d] := w^(-1);
 
-    v := 0 * IdentityMat( d, fld );
+    v := NullMat( d, d, fld );
     v[d/2,1] := One(fld);
     v{[1..(d/2)-1]}{[2..d/2]} := IdentityMat((d/2)-1, fld);
     v[d/2+1,d] := One(fld);
@@ -1602,7 +1602,7 @@ function( d, q )
     delta[1,1] := w;
     delta[d,d] := w^(-1);
 
-    v := 0 * IdentityMat( d, fld );
+    v := NullMat( d, d, fld );
     v[d/2,1] := One(fld);
     v{[1..(d/2)-1]}{[2..d/2]} := IdentityMat((d/2)-1, fld);
     v[d/2+1,d] := One(fld);

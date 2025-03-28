@@ -121,7 +121,7 @@ function(d,q)
     
     n := Int(d* 0.5);
     
-    v := 0 * IdentityMat( d, fld );
+    v := NullMat( d, d, fld );
     v[d/2,1] := One(fld);
     v{[1..(d/2)-1]}{[2..d/2]} := IdentityMat((d/2)-1, fld);
     v[d/2+1,d] := One(fld);
@@ -182,7 +182,7 @@ function(d,q)
     u{[d-1,d]}{[d-1,d]} := [[0,-1],[1,0]];
     u := u * One(fld);
     
-    v := 0 * IdentityMat( d, fld );
+    v := NullMat( d, d, fld );
     v[(d+1)/2,(d+1)/2] := One(fld);
     v[(d+1)/2 - 1,1] := One(fld);
     v{[1..((d+1)/2)-2]}{[2..((d+1)/2)-1]} := IdentityMat(((d+1)/2)-2, fld);
@@ -270,7 +270,7 @@ function(d,q)
     u := u * One(fld);
     
     n := Int(d * 0.5)-1;
-    v := 0 * IdentityMat( d, fld );
+    v := NullMat( d, d, fld );
     v[(d/2),(d/2)] := One(fld);
     v[(d/2)+1,(d/2)+1] := One(fld);
     v[(d/2) - 1,1] := One(fld);
@@ -390,7 +390,7 @@ function(d,q)
     
     n := Int(d* 0.5);
     
-    v := 0 * IdentityMat( d, fld );
+    v := NullMat( d, d, fld );
     v[d/2,1] := One(fld);
     v{[1..(d/2)-1]}{[2..d/2]} := IdentityMat((d/2)-1, fld);
     v[d/2+1,d] := One(fld);
@@ -440,7 +440,7 @@ function(d,q)
     u{[d-1,d]}{[d-1,d]} := [[0,-1],[1,0]];
     u := u * One(fld);
     
-    v := 0 * IdentityMat( d, fld );
+    v := NullMat( d, d, fld );
     v[(d+1)/2,(d+1)/2] := One(fld);
     v[(d+1)/2 - 1,1] := One(fld);
     v{[1..((d+1)/2)-2]}{[2..((d+1)/2)-1]} := IdentityMat(((d+1)/2)-2, fld);
@@ -516,7 +516,7 @@ function(d,q)
     u := u * One(fld);
     
     n := Int(d * 0.5)-1;
-    v := 0 * IdentityMat( d, fld );
+    v := NullMat( d, d, fld );
     v[(d/2),(d/2)] := One(fld);
     v[(d/2)+1,(d/2)+1] := One(fld);
     v[(d/2) - 1,1] := One(fld);
@@ -582,7 +582,7 @@ function(d,q)
     
     n := Int(d* 0.5);
     
-    v := 0 * IdentityMat( d, fld );
+    v := NullMat( d, d, fld );
     v[d/2,1] := One(fld);
     v{[1..(d/2)-1]}{[2..d/2]} := IdentityMat((d/2)-1, fld);
     v[d/2+1,d] := One(fld);
@@ -671,7 +671,7 @@ function(d,q)
     u := u * One(fld);
     
     n := Int(d * 0.5)-1;
-    v := 0 * IdentityMat( d, fld );
+    v := NullMat( d, d, fld );
     v[(d/2),(d/2)] := One(fld);
     v[(d/2)+1,(d/2)+1] := One(fld);
     v[(d/2) - 1,1] := One(fld);
@@ -714,7 +714,7 @@ function(e,d,q)
             perm := perm * (k,d-k+1);
             k := k+2;
         od;
-        inv := PermutationMat(perm,d) * One(GF(q));
+        inv := PermutationMat(perm,d,GF(q));
         
         G  := GroupByGenerators(gens);
         SetDimensionOfMatrixGroup( G, d );
@@ -722,7 +722,7 @@ function(e,d,q)
         SetSize( G, q^(m*(m-1)) * (q^m-1) * s );
         SetInvariantBilinearForm( G, rec( matrix:=inv) );
         
-        inv := Zero(GF(q)) * IdentityMat(d);
+        inv := NullMat(d, d, GF(q));
         for k in [1..(d/2)] do
             inv[k,d-k+1] := 1;
         od;
@@ -750,7 +750,7 @@ function(e,d,q)
             perm := perm * (k,d-k+1);
             k := k+2;
         od;
-        inv := PermutationMat(perm,d) * One(GF(q));
+        inv := PermutationMat(perm,d,GF(q));
         inv[m,m+1] := 0;
         inv[m+1,m] := 0;
         inv[m,m] := 2*Z(q);
@@ -763,7 +763,7 @@ function(e,d,q)
         SetSize( G, q^(m*(m-1)) * (q^m+1) * s );
         SetInvariantBilinearForm( G, rec( matrix:=inv) );
         
-        inv := Zero(GF(q)) * IdentityMat(d);
+        inv := NullMat(d, d, GF(q));
         for k in [1..(d/2)-1] do
             inv[k,d-k+1] := 1 * One(GF(q));
         od;
@@ -792,7 +792,7 @@ function(e,d,q)
             perm := perm * (k,d-k+1);
             k := k+1;
         od;
-        inv := PermutationMat(perm,d) * One(GF(q));
+        inv := PermutationMat(perm,d,GF(q));
         inv[(d+1)/2,(d+1)/2] := One(GF(q)) * (- 1/2);
         
         G := GroupByGenerators(gens);
@@ -801,7 +801,7 @@ function(e,d,q)
         SetSize( G, q^(m^2) * s  );
         SetInvariantBilinearForm( G, rec( matrix:=inv) );
         
-        #inv := Zero(GF(q)) * IdentityMat(d);
+        #inv := NullMat(d, d, GF(q));
         #for k in [1..(d/2)-1] do
         #    inv[k,d-k+1] := 1;
         #od;
@@ -1028,7 +1028,7 @@ function(arg)
         return [ slp, [u1,g,u2] ];
     fi;
 
-    f := LogInt(Size(fld), Characteristic(fld)); #ie q=p^f
+    f := DegreeOverPrimeField(fld); #ie q=p^f
 
     hs := HighestSlotOfSLP(slp);
     
@@ -1620,7 +1620,7 @@ function(arg)
         return [ slp, [u1,g,u2] ];
     fi;
 
-    f := LogInt(Size(fld), Characteristic(fld)); #ie q=p^f
+    f := DegreeOverPrimeField(fld); #ie q=p^f
 
     hs := HighestSlotOfSLP(slp);
     
@@ -2243,7 +2243,7 @@ function(arg)
         return [ slp, [u1,g,u2] ];
     fi;
 
-    f := LogInt(Size(fld), Characteristic(fld)); #ie q=p^f
+    f := DegreeOverPrimeField(fld); #ie q=p^f
 
     hs := HighestSlotOfSLP(slp);
             
@@ -3769,7 +3769,7 @@ function( arg )
     # Needed elements for calculations
     d := Length( diag );
     omega := (stdgens[5])[1,1];
-    delta := IdentityMat(d,GF(Size(fld)));
+    delta := IdentityMat(d,fld);
     delta[1,1] := omega;
     delta[d,d] := omega^(-1);
 
