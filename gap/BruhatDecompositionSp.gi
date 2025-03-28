@@ -44,9 +44,6 @@
 #    Originally implemented subfunctions
 ####################
 
-InfoBruhat := NewInfoClass("InfoBruhat");;
-SetInfoLevel( InfoBruhat, 2 );
-
 #####
 # UnitriangularDecompositionSp
 #####
