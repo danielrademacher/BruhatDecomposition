@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!-- This is an automatically generated file. -->
-<#Include SYSTEM "_Chapter_Foreword.xml">
-<#Include SYSTEM "_Chapter_SpecialOrthogonalGroup.xml">
-<#Include SYSTEM "_Chapter_SpecialLinearGroup.xml">
-<#Include SYSTEM "_Chapter_SpecialUnitaryGroup.xml">
-<#Include SYSTEM "_Chapter_SymplecticGroup.xml">
