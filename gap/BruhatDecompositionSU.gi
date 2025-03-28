@@ -3209,7 +3209,7 @@ function( d, q )
         return LGOStandardGensSUEvenChar(d,q);
     fi;
 
-    w := PrimitiveElement(GF(q^2));
+    w := Z(q^2);
     alpha := w^((q+1)/2);
     fld := GF(q^2);
 
@@ -3283,7 +3283,7 @@ function( d, q )
     local w, alpha, s, t, delta, u, v, x, y, J, fld, nu, Galois, phi, i;
 
     fld := GF(q^2);
-    w := PrimitiveElement(fld);
+    w := Z(q^2);
     nu := Trace(GF(q^2),GF(q),w)^(-1) * w;
 
     s := IdentityMat( d, fld );
@@ -3698,7 +3698,7 @@ function(arg)
     result2 := [];
     L2 := IdentityMat(n,fld);
     R2 := IdentityMat(n,fld);
-    w := PrimitiveElement(fld);
+    w := PrimitiveRoot(fld);
     q := RootInt(Size(fld));
     alpha := w^((q+1)/2);
     while (CheckContinue(perm,m)) do
@@ -3904,7 +3904,7 @@ function(arg)
     result2 := [];
     L2 := IdentityMat(n,fld);
     R2 := IdentityMat(n,fld);
-    w := PrimitiveElement(fld);
+    w := PrimitiveRoot(fld);
     q := RootInt(Size(fld));
     # alpha := w^((q+1)/2); # Not needed here
     while (CheckContinue(perm,m)) do
@@ -4111,7 +4111,7 @@ function(arg)
     m := n/2;
     L2 := IdentityMat(n,fld);
     R2 := IdentityMat(n,fld);
-    w := PrimitiveElement(fld);
+    w := PrimitiveRoot(fld);
     q := RootInt(Size(fld));
     alpha := w^((q+1)/2);
     while (CheckContinue(perm,m)) do
@@ -4324,7 +4324,7 @@ function(arg)
     m := n/2;
     L2 := IdentityMat(n,fld);
     R2 := IdentityMat(n,fld);
-    w := PrimitiveElement(fld);
+    w := PrimitiveRoot(fld);
     q := RootInt(Size(fld));
     alpha := One(fld);
     while (CheckContinue(perm,m)) do
