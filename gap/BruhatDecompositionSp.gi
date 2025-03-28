@@ -196,7 +196,7 @@ function( arg )
         local cc, ell, instr, w, delta, specialalpha, VS, basis;
 
         delta := stdgens[3];
-        w := delta[1][1];
+        w := delta[1,1];
         basis := [];
         for ell in [1..f] do
             Add(basis,w^(2*ell));
@@ -407,7 +407,7 @@ function( arg )
 
         while r <= d and j <= d and r = 0 do
 
-            if not IsZero(g[j][c]) then
+            if not IsZero(g[j,c]) then
                 r := j;
             fi;
 
@@ -419,13 +419,13 @@ function( arg )
             Error("matrix has 0 column");
         fi;
 
-        a := g[r][c]^-1;
+        a := g[r,c]^-1;
 
         if r <= d-1 then
 
-            if not IsZero( g[r+1][c] ) then
+            if not IsZero( g[r+1,c] ) then
 
-                z := - g[r+1][c] * a;
+                z := - g[r+1,c] * a;
 
                 # add z times row r of g  to row r+1
                 # add z times row r of u1  to row r+1
@@ -445,11 +445,11 @@ function( arg )
                         ShiftTransvection2ByJ(d-r,d-r+1);
                     fi;
 
-                    #Mul[r+1][r] := z;
+                    #Mul[r+1,r] := z;
                     g[r+1] :=  g[r+1] + z *  g[r];
                     u1[r+1] := u1[r+1] + z * u1[r];
 
-                    #Mul[d-r+1][d-r] := -z;
+                    #Mul[d-r+1,d-r] := -z;
                     g[d-r+1] :=  g[d-r+1] + (-z) *  g[d-r];
                     u1[d-r+1] := u1[d-r+1] + (-z) * u1[d-r];
                 else
@@ -457,7 +457,7 @@ function( arg )
                     TransvecAtAlpha4(z);
                     ShiftTransvection4(r+1);
 
-                    # Mul[r+1][r] := z;
+                    # Mul[r+1,r] := z;
                     g[r+1] :=  g[r+1] + z *  g[r];
                     u1[r+1] := u1[r+1] + z * u1[r];
                 fi;
@@ -473,9 +473,9 @@ function( arg )
             # Second: Clear the rest of column c
             for i in [ r+2..d ] do
 
-                if not IsZero(g[i][c]) then
+                if not IsZero(g[i,c]) then
 
-                    z := -g[i][c] * a;
+                    z := -g[i,c] * a;
 
                     # add z times row r of g  to row i
                     # add z times row r of u1  to row i
@@ -505,11 +505,11 @@ function( arg )
                                     ShiftTransvection3ByI(i);
                                 fi;
 
-                                #Mul[i][r] := z;
+                                #Mul[i,r] := z;
                                 g[i] := g[i] + z*g[r];
                                 u1[i] := u1[i] + z*u1[r];
 
-                                #Mul[d-r+1][d-i+1] := -z;
+                                #Mul[d-r+1,d-i+1] := -z;
                                 g[d-r+1] := g[d-r+1] + (-z)*g[d-i+1];
                                 u1[d-r+1] := u1[d-r+1] + (-z)*u1[d-i+1];
                             else
@@ -532,11 +532,11 @@ function( arg )
                                     ShiftTransvection3ByI(i);
                                 fi;
 
-                                #Mul[i][r] := z;
+                                #Mul[i,r] := z;
                                 g[i] := g[i] + z*g[r];
                                 u1[i] := u1[i] + z*u1[r];
 
-                                #Mul[d-r+1][d-i+1] := z;
+                                #Mul[d-r+1,d-i+1] := z;
                                 g[d-r+1] := g[d-r+1] + z*g[d-i+1];
                                 u1[d-r+1] := u1[d-r+1] + z*u1[d-i+1];
                             fi;
@@ -560,11 +560,11 @@ function( arg )
                                 ShiftTransvection3ByI(i);
                             fi;
 
-                            #Mul[i][r] := z;
+                            #Mul[i,r] := z;
                             g[i] := g[i] + z*g[r];
                             u1[i] := u1[i] + z*u1[r];
 
-                            #Mul[d-r+1][d-i+1] := -z;
+                            #Mul[d-r+1,d-i+1] := -z;
                             g[d-r+1] := g[d-r+1] + (-z)*g[d-i+1];
                             u1[d-r+1] := u1[d-r+1] + (-z)*u1[d-i+1];
 
@@ -579,7 +579,7 @@ function( arg )
                             ShiftTransvection4(r);
                         fi;
 
-                        #Mul[i][r] := z;
+                        #Mul[i,r] := z;
                         g[i] := g[i] + z*g[r];
                         u1[i] := u1[i] + z*u1[r];
                     fi;
@@ -597,13 +597,13 @@ function( arg )
         fi;
 
 
-        # Step Two: Clear all entries in row r apart from g[r][c]
+        # Step Two: Clear all entries in row r apart from g[r,c]
         # This coincides with multiplying t_{c,j} from right.
         if c >= 2 then
 
-            if not IsZero( g[r][c-1] ) then
+            if not IsZero( g[r,c-1] ) then
 
-                z := -g[r][c-1] * a;
+                z := -g[r,c-1] * a;
 
                 # add z times column c of g to column c-1
                 # add z times column c of u2 to column c-1
@@ -614,7 +614,7 @@ function( arg )
 
                 if (c+c-1 <>  d+1) then
                     if (c-1 > d/2) then
-                        #Mul[c][c-1] := z;
+                        #Mul[c,c-1] := z;
                         if c in [1..d/2] and c-1 in [1..d/2] then
                             TransvecAtAlpha2(z);
                             ShiftTransvection2ByI(c);
@@ -628,15 +628,15 @@ function( arg )
                         g{[ 1..d ]}[ c-1 ] := g{[ 1..d ]}[ c-1 ] + z * g{[1..d]}[c];
                         u2{[1..d]}[c-1] := u2{[1..d]}[c-1] + z * u2{[1..d]}[c];
 
-                        #Mul[d-c+2][d-c+1] := -z;
+                        #Mul[d-c+2,d-c+1] := -z;
                         g{[ 1..d ]}[ d-c+1 ] := g{[ 1..d ]}[ d-c+1 ] + (-z) * g{[1..d]}[d-c+2];
                         u2{[1..d]}[d-c+1] := u2{[1..d]}[d-c+1] + (-z) * u2{[1..d]}[d-c+2];
                     else
-                        #Mul[c][c-1] := z;
+                        #Mul[c,c-1] := z;
                         g{[ 1..d ]}[ c-1 ] := g{[ 1..d ]}[ c-1 ] + z * g{[1..d]}[c];
                         u2{[1..d]}[c-1] := u2{[1..d]}[c-1] + z * u2{[1..d]}[c];
 
-                        #Mul[d-c+2][d-c+1] := z;
+                        #Mul[d-c+2,d-c+1] := z;
                         g{[ 1..d ]}[ d-c+1 ] := g{[ 1..d ]}[ d-c+1 ] + z * g{[1..d]}[d-c+2];
                         u2{[1..d]}[d-c+1] := u2{[1..d]}[d-c+1] + z * u2{[1..d]}[d-c+2];
                     fi;
@@ -644,7 +644,7 @@ function( arg )
                     TransvecAtAlpha4(z);
                     ShiftTransvection4(c);
 
-                    #Mul[c][c-1] := z;
+                    #Mul[c,c-1] := z;
                     g{[ 1..d ]}[ c-1 ] := g{[ 1..d ]}[ c-1 ] + z * g{[1..d]}[c];
                     u2{[1..d]}[c-1] := u2{[1..d]}[c-1] + z * u2{[1..d]}[c];
                 fi;
@@ -660,9 +660,9 @@ function( arg )
             # Now clear the rest of row r
             for j in [ c-2, c-3..1 ] do
 
-                if not IsZero( g[r][j] ) then
+                if not IsZero( g[r,j] ) then
 
-                    z := - g[r][j] * a;
+                    z := - g[r,j] * a;
 
                     # add z times column c of g to column j
                     # add z times column c of u2 to column j
@@ -692,11 +692,11 @@ function( arg )
                                 ShiftTransvection3ByI(c);
                             fi;
 
-                            #Mul[c][j] := z;
+                            #Mul[c,j] := z;
                             g{[1..d]}[j] :=  g{[1..d]}[j] + z *  g{[1..d]}[c];
                             u2{[1..d]}[j] := u2{[1..d]}[j] + z * u2{[1..d]}[c];
 
-                            #Mul[d-j+1][d-c+1] := -z;
+                            #Mul[d-j+1,d-c+1] := -z;
                             g{[1..d]}[d-c+1] :=  g{[1..d]}[d-c+1] + (-z) *  g{[1..d]}[d-j+1];
                             u2{[1..d]}[d-c+1] := u2{[1..d]}[d-c+1] + (-z) * u2{[1..d]}[d-j+1];
                         else
@@ -719,11 +719,11 @@ function( arg )
                                 ShiftTransvection3ByI(c);
                             fi;
 
-                            #Mul[c][j] := z;
+                            #Mul[c,j] := z;
                             g{[1..d]}[j] :=  g{[1..d]}[j] + z *  g{[1..d]}[c];
                             u2{[1..d]}[j] := u2{[1..d]}[j] + z * u2{[1..d]}[c];
 
-                            #Mul[d-j+1][d-c+1] := z;
+                            #Mul[d-j+1,d-c+1] := z;
                             g{[1..d]}[d-c+1] :=  g{[1..d]}[d-c+1] + z *  g{[1..d]}[d-j+1];
                             u2{[1..d]}[d-c+1] := u2{[1..d]}[d-c+1] + z * u2{[1..d]}[d-j+1];
                         fi;
@@ -737,7 +737,7 @@ function( arg )
                             ShiftTransvection4(j);
                         fi;
 
-                        #Mul[c][j] := z;
+                        #Mul[c,j] := z;
                         g{[1..d]}[j] :=  g{[1..d]}[j] + z *  g{[1..d]}[c];
                         u2{[1..d]}[j] := u2{[1..d]}[j] + z * u2{[1..d]}[c];
                     fi;
@@ -940,7 +940,7 @@ function( arg )
         local cc, ell, instr, w, delta, specialalpha, VS, basis;
 
         delta := stdgens[3];
-        w := delta[1][1];
+        w := delta[1,1];
         basis := [];
         for ell in [1..f] do
             Add(basis,w^(2*ell));
@@ -1151,7 +1151,7 @@ function( arg )
 
         while r <= d and j <= d and r = 0 do
 
-            if not IsZero(g[j][c]) then
+            if not IsZero(g[j,c]) then
                 r := j;
             fi;
 
@@ -1163,13 +1163,13 @@ function( arg )
             Error("matrix has 0 column");
         fi;
 
-        a := g[r][c]^-1;
+        a := g[r,c]^-1;
 
         if r <= d-1 then
 
-            if not IsZero( g[r+1][c] ) then
+            if not IsZero( g[r+1,c] ) then
 
-                z := - g[r+1][c] * a;
+                z := - g[r+1,c] * a;
 
                 # add z times row r of g  to row r+1
                 # add z times row r of u1  to row r+1
@@ -1189,11 +1189,11 @@ function( arg )
                         ShiftTransvection2ByJ(d-r,d-r+1);
                     fi;
 
-                    #Mul[r+1][r] := z;
+                    #Mul[r+1,r] := z;
                     g[r+1] :=  g[r+1] + z *  g[r];
                     u1[r+1] := u1[r+1] + z * u1[r];
 
-                    #Mul[d-r+1][d-r] := -z;
+                    #Mul[d-r+1,d-r] := -z;
                     g[d-r+1] :=  g[d-r+1] + (-z) *  g[d-r];
                     u1[d-r+1] := u1[d-r+1] + (-z) * u1[d-r];
                 else
@@ -1201,7 +1201,7 @@ function( arg )
                     TransvecAtAlpha4(z);
                     ShiftTransvection4(r+1);
 
-                    # Mul[r+1][r] := z;
+                    # Mul[r+1,r] := z;
                     g[r+1] :=  g[r+1] + z *  g[r];
                     u1[r+1] := u1[r+1] + z * u1[r];
                 fi;
@@ -1217,9 +1217,9 @@ function( arg )
             # Second: Clear the rest of column c
             for i in [ r+2..d ] do
 
-                if not IsZero(g[i][c]) then
+                if not IsZero(g[i,c]) then
 
-                    z := -g[i][c] * a;
+                    z := -g[i,c] * a;
 
                     # add z times row r of g  to row i
                     # add z times row r of u1  to row i
@@ -1249,11 +1249,11 @@ function( arg )
                                     ShiftTransvection3ByI(i);
                                 fi;
 
-                                #Mul[i][r] := z;
+                                #Mul[i,r] := z;
                                 g[i] := g[i] + z*g[r];
                                 u1[i] := u1[i] + z*u1[r];
 
-                                #Mul[d-r+1][d-i+1] := -z;
+                                #Mul[d-r+1,d-i+1] := -z;
                                 g[d-r+1] := g[d-r+1] + (-z)*g[d-i+1];
                                 u1[d-r+1] := u1[d-r+1] + (-z)*u1[d-i+1];
                             else
@@ -1276,11 +1276,11 @@ function( arg )
                                     ShiftTransvection3ByI(i);
                                 fi;
 
-                                #Mul[i][r] := z;
+                                #Mul[i,r] := z;
                                 g[i] := g[i] + z*g[r];
                                 u1[i] := u1[i] + z*u1[r];
 
-                                #Mul[d-r+1][d-i+1] := z;
+                                #Mul[d-r+1,d-i+1] := z;
                                 g[d-r+1] := g[d-r+1] + z*g[d-i+1];
                                 u1[d-r+1] := u1[d-r+1] + z*u1[d-i+1];
                             fi;
@@ -1304,11 +1304,11 @@ function( arg )
                                 ShiftTransvection3ByI(i);
                             fi;
 
-                            #Mul[i][r] := z;
+                            #Mul[i,r] := z;
                             g[i] := g[i] + z*g[r];
                             u1[i] := u1[i] + z*u1[r];
 
-                            #Mul[d-r+1][d-i+1] := -z;
+                            #Mul[d-r+1,d-i+1] := -z;
                             g[d-r+1] := g[d-r+1] + (-z)*g[d-i+1];
                             u1[d-r+1] := u1[d-r+1] + (-z)*u1[d-i+1];
 
@@ -1323,7 +1323,7 @@ function( arg )
                             ShiftTransvection4(r);
                         fi;
 
-                        #Mul[i][r] := z;
+                        #Mul[i,r] := z;
                         g[i] := g[i] + z*g[r];
                         u1[i] := u1[i] + z*u1[r];
                     fi;
@@ -1341,13 +1341,13 @@ function( arg )
         fi;
 
 
-        # Step Two: Clear all entries in row r apart from g[r][c]
+        # Step Two: Clear all entries in row r apart from g[r,c]
         # This coincides with multiplying t_{c,j} from right.
         if c >= 2 then
 
-            if not IsZero( g[r][c-1] ) then
+            if not IsZero( g[r,c-1] ) then
 
-                z := -g[r][c-1] * a;
+                z := -g[r,c-1] * a;
 
                 # add z times column c of g to column c-1
                 # add z times column c of u2 to column c-1
@@ -1358,7 +1358,7 @@ function( arg )
 
                 if (c+c-1 <>  d+1) then
                     if (c-1 > d/2) then
-                        #Mul[c][c-1] := z;
+                        #Mul[c,c-1] := z;
                         if c in [1..d/2] and c-1 in [1..d/2] then
                             TransvecAtAlpha2(z);
                             ShiftTransvection2ByI(c);
@@ -1372,15 +1372,15 @@ function( arg )
                         g{[ 1..d ]}[ c-1 ] := g{[ 1..d ]}[ c-1 ] + z * g{[1..d]}[c];
                         u2{[1..d]}[c-1] := u2{[1..d]}[c-1] + z * u2{[1..d]}[c];
 
-                        #Mul[d-c+2][d-c+1] := -z;
+                        #Mul[d-c+2,d-c+1] := -z;
                         g{[ 1..d ]}[ d-c+1 ] := g{[ 1..d ]}[ d-c+1 ] + (-z) * g{[1..d]}[d-c+2];
                         u2{[1..d]}[d-c+1] := u2{[1..d]}[d-c+1] + (-z) * u2{[1..d]}[d-c+2];
                     else
-                        #Mul[c][c-1] := z;
+                        #Mul[c,c-1] := z;
                         g{[ 1..d ]}[ c-1 ] := g{[ 1..d ]}[ c-1 ] + z * g{[1..d]}[c];
                         u2{[1..d]}[c-1] := u2{[1..d]}[c-1] + z * u2{[1..d]}[c];
 
-                        #Mul[d-c+2][d-c+1] := z;
+                        #Mul[d-c+2,d-c+1] := z;
                         g{[ 1..d ]}[ d-c+1 ] := g{[ 1..d ]}[ d-c+1 ] + z * g{[1..d]}[d-c+2];
                         u2{[1..d]}[d-c+1] := u2{[1..d]}[d-c+1] + z * u2{[1..d]}[d-c+2];
                     fi;
@@ -1388,7 +1388,7 @@ function( arg )
                     TransvecAtAlpha4(z);
                     ShiftTransvection4(c);
 
-                    #Mul[c][c-1] := z;
+                    #Mul[c,c-1] := z;
                     g{[ 1..d ]}[ c-1 ] := g{[ 1..d ]}[ c-1 ] + z * g{[1..d]}[c];
                     u2{[1..d]}[c-1] := u2{[1..d]}[c-1] + z * u2{[1..d]}[c];
                 fi;
@@ -1404,9 +1404,9 @@ function( arg )
             # Now clear the rest of row r
             for j in [ c-2, c-3..1 ] do
 
-                if not IsZero( g[r][j] ) then
+                if not IsZero( g[r,j] ) then
 
-                    z := - g[r][j] * a;
+                    z := - g[r,j] * a;
 
                     # add z times column c of g to column j
                     # add z times column c of u2 to column j
@@ -1436,11 +1436,11 @@ function( arg )
                                 ShiftTransvection3ByI(c);
                             fi;
 
-                            #Mul[c][j] := z;
+                            #Mul[c,j] := z;
                             g{[1..d]}[j] :=  g{[1..d]}[j] + z *  g{[1..d]}[c];
                             u2{[1..d]}[j] := u2{[1..d]}[j] + z * u2{[1..d]}[c];
 
-                            #Mul[d-j+1][d-c+1] := -z;
+                            #Mul[d-j+1,d-c+1] := -z;
                             g{[1..d]}[d-c+1] :=  g{[1..d]}[d-c+1] + (-z) *  g{[1..d]}[d-j+1];
                             u2{[1..d]}[d-c+1] := u2{[1..d]}[d-c+1] + (-z) * u2{[1..d]}[d-j+1];
                         else
@@ -1463,11 +1463,11 @@ function( arg )
                                 ShiftTransvection3ByI(c);
                             fi;
 
-                            #Mul[c][j] := z;
+                            #Mul[c,j] := z;
                             g{[1..d]}[j] :=  g{[1..d]}[j] + z *  g{[1..d]}[c];
                             u2{[1..d]}[j] := u2{[1..d]}[j] + z * u2{[1..d]}[c];
 
-                            #Mul[d-j+1][d-c+1] := z;
+                            #Mul[d-j+1,d-c+1] := z;
                             g{[1..d]}[d-c+1] :=  g{[1..d]}[d-c+1] + z *  g{[1..d]}[d-j+1];
                             u2{[1..d]}[d-c+1] := u2{[1..d]}[d-c+1] + z * u2{[1..d]}[d-j+1];
                         fi;
@@ -1481,7 +1481,7 @@ function( arg )
                             ShiftTransvection4(j);
                         fi;
 
-                        #Mul[c][j] := z;
+                        #Mul[c,j] := z;
                         g{[1..d]}[j] :=  g{[1..d]}[j] + z *  g{[1..d]}[c];
                         u2{[1..d]}[j] := u2{[1..d]}[j] + z * u2{[1..d]}[c];
                     fi;
@@ -1544,22 +1544,22 @@ function( d, q )
     w := PrimitiveElement(fld);
 
     s := IdentityMat( d, fld );
-    s[1][1] := Zero(fld);
-    s[d][d] := Zero(fld);
-    s[1][d] := One(fld);
-    s[d][1] := -One(fld);
+    s[1,1] := Zero(fld);
+    s[d,d] := Zero(fld);
+    s[1,d] := One(fld);
+    s[d,1] := -One(fld);
 
     t := IdentityMat( d, fld );
-    t[1][d] := One(fld);
+    t[1,d] := One(fld);
 
     delta := IdentityMat( d, fld );
-    delta[1][1] := w;
-    delta[d][d] := w^(-1);
+    delta[1,1] := w;
+    delta[d,d] := w^(-1);
 
     v := 0 * IdentityMat( d, fld );
-    v[d/2][1] := One(fld);
+    v[d/2,1] := One(fld);
     v{[1..(d/2)-1]}{[2..d/2]} := IdentityMat((d/2)-1, fld);
-    v[d/2+1][d] := One(fld);
+    v[d/2+1,d] := One(fld);
     v{[(d/2)+2..d]}{[(d/2)+1..d-1]} := IdentityMat((d/2)-1, fld);
 
     u := IdentityMat( d, fld );
@@ -1568,8 +1568,8 @@ function( d, q )
     u{[d-1,d]}{[d-1,d]} := J;
 
     x := IdentityMat( d, fld );
-    x[d-1][1] := One(fld);
-    x[d][2] := One(fld);
+    x[d-1,1] := One(fld);
+    x[d,2] := One(fld);
 
     return [s,t,delta,v,u,x];
 
@@ -1590,22 +1590,22 @@ function( d, q )
     w := PrimitiveElement(fld);
 
     s := IdentityMat( d, fld );
-    s[1][1] := Zero(fld);
-    s[d][d] := Zero(fld);
-    s[1][d] := One(fld);
-    s[d][1] := One(fld);
+    s[1,1] := Zero(fld);
+    s[d,d] := Zero(fld);
+    s[1,d] := One(fld);
+    s[d,1] := One(fld);
 
     t := IdentityMat( d, fld );
-    t[1][d] := One(fld);
+    t[1,d] := One(fld);
 
     delta := IdentityMat( d, fld );
-    delta[1][1] := w;
-    delta[d][d] := w^(-1);
+    delta[1,1] := w;
+    delta[d,d] := w^(-1);
 
     v := 0 * IdentityMat( d, fld );
-    v[d/2][1] := One(fld);
+    v[d/2,1] := One(fld);
     v{[1..(d/2)-1]}{[2..d/2]} := IdentityMat((d/2)-1, fld);
-    v[d/2+1][d] := One(fld);
+    v[d/2+1,d] := One(fld);
     v{[(d/2)+2..d]}{[(d/2)+1..d-1]} := IdentityMat((d/2)-1, fld);
 
     u := IdentityMat( d, fld );
@@ -1614,8 +1614,8 @@ function( d, q )
     u{[d-1,d]}{[d-1,d]} := J;
 
     x := IdentityMat( d, fld );
-    x[d-1][1] := One(fld);
-    x[d][2] := One(fld);
+    x[d-1,1] := One(fld);
+    x[d,2] := One(fld);
 
     return [s,t,delta,v,u,x];
     
@@ -1906,7 +1906,7 @@ function( arg )
     Add(slp, [ [1,0], cnt + 3 ] );    respos := cnt + 3;     #17 or 29+3f
 
     d := Length( diag );
-    omega := delta[1][1];
+    omega := delta[1,1];
 
     if diag = One(diag) then
         Add( slp, [ [1,0], respos ] );
@@ -1920,7 +1920,7 @@ function( arg )
 
     for i in [ 1..(d/2) ] do
 
-        a_i := LogFFE( diag[i][i], omega );
+        a_i := LogFFE( diag[i,i], omega );
         # The memory slots 13 and 14 are res and tmp-slot for AEM
         instr := AEM( hipos, 13, 14, a_i );
         Append( slp, instr );

@@ -78,57 +78,57 @@ function(d,q)
     w := PrimitiveElement(fld);
 
     s := IdentityMat( d, fld );
-    s[1][1] := Zero(fld);
-    s[2][2] := Zero(fld);
-    s[d-1][d-1] := Zero(fld);
-    s[d][d] := Zero(fld);
-    s[1][d-1] := -1 * One(fld);
-    s[d][2] := -1 * One(fld);
-    s[2][d] := One(fld);
-    s[d-1][1] := One(fld);
+    s[1,1] := Zero(fld);
+    s[2,2] := Zero(fld);
+    s[d-1,d-1] := Zero(fld);
+    s[d,d] := Zero(fld);
+    s[1,d-1] := -1 * One(fld);
+    s[d,2] := -1 * One(fld);
+    s[2,d] := One(fld);
+    s[d-1,1] := One(fld);
     
     sBar := IdentityMat( d, fld );
-    sBar[1][1] := Zero(fld);
-    sBar[2][2] := Zero(fld);
-    sBar[d-1][d-1] := Zero(fld);
-    sBar[d][d] := Zero(fld);
-    sBar[1][2] := One(fld);
-    sBar[d][d-1] := One(fld);
-    sBar[2][1] := -1 * One(fld);
-    sBar[d-1][d] := -1 * One(fld);
+    sBar[1,1] := Zero(fld);
+    sBar[2,2] := Zero(fld);
+    sBar[d-1,d-1] := Zero(fld);
+    sBar[d,d] := Zero(fld);
+    sBar[1,2] := One(fld);
+    sBar[d,d-1] := One(fld);
+    sBar[2,1] := -1 * One(fld);
+    sBar[d-1,d] := -1 * One(fld);
 
     t := IdentityMat( d, fld );
-    t[1][d-1] := -1 * One(fld);
-    t[2][d] := One(fld);
+    t[1,d-1] := -1 * One(fld);
+    t[2,d] := One(fld);
     
     tBar := IdentityMat( d, fld );
-    tBar[1][2] := One(fld);
-    tBar[d-1][d] := -1 * One(fld);
+    tBar[1,2] := One(fld);
+    tBar[d-1,d] := -1 * One(fld);
 
     delta := IdentityMat( d, fld );
-    delta[1][1] := w;
-    delta[d][d] := w^(-1);
-    delta[2][2] := w;
-    delta[d-1][d-1] := w^(-1);
+    delta[1,1] := w;
+    delta[d,d] := w^(-1);
+    delta[2,2] := w;
+    delta[d-1,d-1] := w^(-1);
 
     deltaBar := IdentityMat( d, fld );
-    deltaBar[1][1] := w;
-    deltaBar[d][d] := w^(-1);
-    deltaBar[2][2] := w^(-1);
-    deltaBar[d-1][d-1] := w;
+    deltaBar[1,1] := w;
+    deltaBar[d,d] := w^(-1);
+    deltaBar[2,2] := w^(-1);
+    deltaBar[d-1,d-1] := w;
     
     u := IdentityMat( d, fld );
     
     n := Int(d* 0.5);
     
     v := 0 * IdentityMat( d, fld );
-    v[d/2][1] := One(fld);
+    v[d/2,1] := One(fld);
     v{[1..(d/2)-1]}{[2..d/2]} := IdentityMat((d/2)-1, fld);
-    v[d/2+1][d] := One(fld);
+    v[d/2+1,d] := One(fld);
     v{[(d/2)+2..d]}{[(d/2)+1..d-1]} := IdentityMat((d/2)-1, fld);
     if n mod 2 = 0 then
-        v[d/2][1] := -1 * One(fld);
-        v[d/2+1][d] := -1 * One(fld);
+        v[d/2,1] := -1 * One(fld);
+        v[d/2+1,d] := -1 * One(fld);
     fi;
     
     res := q-1;
@@ -139,8 +139,8 @@ function(d,q)
     od;
     b := (q-1)/(2^a);
     sigma := IdentityMat( d, fld );
-    sigma[1][1] := w^b;
-    sigma[d][d] := w^(-b);
+    sigma[1,1] := w^b;
+    sigma[d,d] := w^(-b);
 
     return [s, sBar, t, tBar, delta, deltaBar, u, v, sigma];
 
@@ -161,21 +161,21 @@ function(d,q)
     n := Int((d-1)*1/2);
 
     s := IdentityMat( d, fld );
-    s[1][1] := Zero(fld);
-    s[d][d] := Zero(fld);
-    s[(d+1)/2][(d+1)/2] := -1 * One(fld);
-    s[1][d] := One(fld);
-    s[d][1] := One(fld);
+    s[1,1] := Zero(fld);
+    s[d,d] := Zero(fld);
+    s[(d+1)/2,(d+1)/2] := -1 * One(fld);
+    s[1,d] := One(fld);
+    s[d,1] := One(fld);
 
     t := IdentityMat( d, fld );
-    t[1][d] := One(fld);
-    t[1][(d+1)/2] := 2 * One(fld);
-    t[(d+1)/2][d] := One(fld);
+    t[1,d] := One(fld);
+    t[1,(d+1)/2] := 2 * One(fld);
+    t[(d+1)/2,d] := One(fld);
     
     delta := IdentityMat( d, fld );
-    delta[1][1] := w^2;
-    delta[d][d] := w^(-2);
-    delta[3][3] := One(fld);
+    delta[1,1] := w^2;
+    delta[d,d] := w^(-2);
+    delta[3,3] := One(fld);
     
     u := IdentityMat( d, fld );
     u{[1..2]}{[1..2]} := [[0,1],[-1,0]];
@@ -183,14 +183,14 @@ function(d,q)
     u := u * One(fld);
     
     v := 0 * IdentityMat( d, fld );
-    v[(d+1)/2][(d+1)/2] := One(fld);
-    v[(d+1)/2 - 1][1] := One(fld);
+    v[(d+1)/2,(d+1)/2] := One(fld);
+    v[(d+1)/2 - 1,1] := One(fld);
     v{[1..((d+1)/2)-2]}{[2..((d+1)/2)-1]} := IdentityMat(((d+1)/2)-2, fld);
-    v[(d+1)/2 + 1][d] := One(fld);
+    v[(d+1)/2 + 1,d] := One(fld);
     v{[((d+1)/2)+2..d]}{[((d+1)/2)+1..d-1]} := IdentityMat(((d+1)/2)-2, fld);
     if n mod 2 = 0 then
-        v[(d+1)/2 - 1][1] := -1 * One(fld);
-        v[(d+1)/2 + 1][d] := -1 * One(fld);
+        v[(d+1)/2 - 1,1] := -1 * One(fld);
+        v[(d+1)/2 + 1,d] := -1 * One(fld);
     fi;
     
     res := q-1;
@@ -201,9 +201,9 @@ function(d,q)
     od;
     b := (q-1)/(2^a);
     sigma := IdentityMat( d, fld );
-    sigma[1][1] := w^b;
-    sigma[d][d] := w^(-b);
-    sigma[3][3] := One(fld);
+    sigma[1,1] := w^b;
+    sigma[d,d] := w^(-b);
+    sigma[3,3] := One(fld);
 
     return [s, t, delta, u, v, sigma];
 
@@ -226,16 +226,16 @@ function(d,q)
     w := alpha^2;
 
     s := IdentityMat( d, fld );
-    s[1][1] := Zero(fld);
-    s[d][d] := Zero(fld);
-    s[1][d] := One(fld);
-    s[d][1] := One(fld);
-    s[d/2][d/2] := -1 * One(fld);
+    s[1,1] := Zero(fld);
+    s[d,d] := Zero(fld);
+    s[1,d] := One(fld);
+    s[d,1] := One(fld);
+    s[d/2,d/2] := -1 * One(fld);
 
     t := IdentityMat( d, fld );
-    t[1][d] := One(fld);
-    t[1][(d/2) + 1] := One(fld);
-    t[(d/2) + 1][d] := 2 * One(fld);
+    t[1,d] := One(fld);
+    t[1,(d/2) + 1] := One(fld);
+    t[(d/2) + 1,d] := 2 * One(fld);
     
     A := 1/2 * ((gamma^(q-1))+(gamma^(-q+1)));
     if A <> Zero(fld) then
@@ -257,12 +257,12 @@ function(d,q)
     fi;
     w := gamma2^LogFFE(w,gamma2);
     delta := IdentityMat( d, fld );
-    delta[1][1] := w;
-    delta[d][d] := w^(-1);
-    delta[(d/2)][(d/2)] := A;
-    delta[(d/2)+1][(d/2)+1] := A;
-    delta[(d/2)][(d/2)+1] := B;
-    delta[(d/2)+1][(d/2)] := C;
+    delta[1,1] := w;
+    delta[d,d] := w^(-1);
+    delta[(d/2),(d/2)] := A;
+    delta[(d/2)+1,(d/2)+1] := A;
+    delta[(d/2),(d/2)+1] := B;
+    delta[(d/2)+1,(d/2)] := C;
     
     u := IdentityMat( d, fld );
     u{[1..2]}{[1..2]} := [[0,1],[-1,0]];
@@ -271,24 +271,24 @@ function(d,q)
     
     n := Int(d * 0.5)-1;
     v := 0 * IdentityMat( d, fld );
-    v[(d/2)][(d/2)] := One(fld);
-    v[(d/2)+1][(d/2)+1] := One(fld);
-    v[(d/2) - 1][1] := One(fld);
+    v[(d/2),(d/2)] := One(fld);
+    v[(d/2)+1,(d/2)+1] := One(fld);
+    v[(d/2) - 1,1] := One(fld);
     v{[1..(d/2)-2]}{[2..((d/2)-1)]} := IdentityMat((d/2)-2, fld);
-    v[(d/2) + 2][d] := One(fld);
+    v[(d/2) + 2,d] := One(fld);
     v{[(d/2)+3..d]}{[(d/2)+2..d-1]} := IdentityMat((d/2)-2, fld);
     if n mod 2 = 0 then
-        v[(d/2) - 1][1] := -1 * One(fld);
-        v[(d/2) + 2][d] := -1 * One(fld);
+        v[(d/2) - 1,1] := -1 * One(fld);
+        v[(d/2) + 2,d] := -1 * One(fld);
     fi;
     
     sigma := IdentityMat( d, fld );
     n := Int(d * 0.5);
     lambda := (-1)^((q-1)/2);
-    sigma[1][1] := lambda * One(fld);
-    sigma[d][d] := lambda * One(fld);
-    sigma[d/2][d/2] := -lambda * One(fld);
-    sigma[(d/2)+1][(d/2)+1] := -lambda * One(fld);
+    sigma[1,1] := lambda * One(fld);
+    sigma[d,d] := lambda * One(fld);
+    sigma[d/2,d/2] := -lambda * One(fld);
+    sigma[(d/2)+1,(d/2)+1] := -lambda * One(fld);
 
     return [s, t, delta, u, v, sigma];
 
@@ -347,57 +347,57 @@ function(d,q)
     w := PrimitiveElement(fld);
 
     s := IdentityMat( d, fld );
-    s[1][1] := Zero(fld);
-    s[2][2] := Zero(fld);
-    s[d-1][d-1] := Zero(fld);
-    s[d][d] := Zero(fld);
-    s[1][d-1] := -1 * One(fld);
-    s[d][2] := -1 * One(fld);
-    s[2][d] := One(fld);
-    s[d-1][1] := One(fld);
+    s[1,1] := Zero(fld);
+    s[2,2] := Zero(fld);
+    s[d-1,d-1] := Zero(fld);
+    s[d,d] := Zero(fld);
+    s[1,d-1] := -1 * One(fld);
+    s[d,2] := -1 * One(fld);
+    s[2,d] := One(fld);
+    s[d-1,1] := One(fld);
     
     sBar := IdentityMat( d, fld );
-    sBar[1][1] := Zero(fld);
-    sBar[2][2] := Zero(fld);
-    sBar[d-1][d-1] := Zero(fld);
-    sBar[d][d] := Zero(fld);
-    sBar[1][2] := One(fld);
-    sBar[d][d-1] := One(fld);
-    sBar[2][1] := -1 * One(fld);
-    sBar[d-1][d] := -1 * One(fld);
+    sBar[1,1] := Zero(fld);
+    sBar[2,2] := Zero(fld);
+    sBar[d-1,d-1] := Zero(fld);
+    sBar[d,d] := Zero(fld);
+    sBar[1,2] := One(fld);
+    sBar[d,d-1] := One(fld);
+    sBar[2,1] := -1 * One(fld);
+    sBar[d-1,d] := -1 * One(fld);
 
     t := IdentityMat( d, fld );
-    t[1][d-1] := -1 * One(fld);
-    t[2][d] := One(fld);
+    t[1,d-1] := -1 * One(fld);
+    t[2,d] := One(fld);
     
     tBar := IdentityMat( d, fld );
-    tBar[1][2] := One(fld);
-    tBar[d-1][d] := -1 * One(fld);
+    tBar[1,2] := One(fld);
+    tBar[d-1,d] := -1 * One(fld);
 
     delta := IdentityMat( d, fld );
-    delta[1][1] := w;
-    delta[d][d] := w^(-1);
-    delta[2][2] := w;
-    delta[d-1][d-1] := w^(-1);
+    delta[1,1] := w;
+    delta[d,d] := w^(-1);
+    delta[2,2] := w;
+    delta[d-1,d-1] := w^(-1);
 
     deltaBar := IdentityMat( d, fld );
-    deltaBar[1][1] := w;
-    deltaBar[d][d] := w^(-1);
-    deltaBar[2][2] := w^(-1);
-    deltaBar[d-1][d-1] := w;
+    deltaBar[1,1] := w;
+    deltaBar[d,d] := w^(-1);
+    deltaBar[2,2] := w^(-1);
+    deltaBar[d-1,d-1] := w;
     
     u := IdentityMat( d, fld );
     
     n := Int(d* 0.5);
     
     v := 0 * IdentityMat( d, fld );
-    v[d/2][1] := One(fld);
+    v[d/2,1] := One(fld);
     v{[1..(d/2)-1]}{[2..d/2]} := IdentityMat((d/2)-1, fld);
-    v[d/2+1][d] := One(fld);
+    v[d/2+1,d] := One(fld);
     v{[(d/2)+2..d]}{[(d/2)+1..d-1]} := IdentityMat((d/2)-1, fld);
     if n mod 2 = 0 then
-        v[d/2][1] := -1 * One(fld);
-        v[d/2+1][d] := -1 * One(fld);
+        v[d/2,1] := -1 * One(fld);
+        v[d/2+1,d] := -1 * One(fld);
     fi;
 
     return [s, sBar, t, tBar, delta, deltaBar, u, v];
@@ -419,21 +419,21 @@ function(d,q)
     n := Int((d-1)*1/2);
 
     s := IdentityMat( d, fld );
-    s[1][1] := Zero(fld);
-    s[d][d] := Zero(fld);
-    s[(d+1)/2][(d+1)/2] := One(fld);
-    s[1][d] := -1*One(fld);
-    s[d][1] := -1*One(fld);
+    s[1,1] := Zero(fld);
+    s[d,d] := Zero(fld);
+    s[(d+1)/2,(d+1)/2] := One(fld);
+    s[1,d] := -1*One(fld);
+    s[d,1] := -1*One(fld);
 
     t := IdentityMat( d, fld );
-    t[1][d] := -1*One(fld);
-    t[1][(d+1)/2] := -2*One(fld);
-    t[(d+1)/2][d] := One(fld);
+    t[1,d] := -1*One(fld);
+    t[1,(d+1)/2] := -2*One(fld);
+    t[(d+1)/2,d] := One(fld);
     
     delta := IdentityMat( d, fld );
-    delta[1][1] := w^2;
-    delta[d][d] := w^(-2);
-    delta[3][3] := One(fld);
+    delta[1,1] := w^2;
+    delta[d,d] := w^(-2);
+    delta[3,3] := One(fld);
     
     u := IdentityMat( d, fld );
     u{[1..2]}{[1..2]} := [[0,1],[-1,0]];
@@ -441,14 +441,14 @@ function(d,q)
     u := u * One(fld);
     
     v := 0 * IdentityMat( d, fld );
-    v[(d+1)/2][(d+1)/2] := One(fld);
-    v[(d+1)/2 - 1][1] := One(fld);
+    v[(d+1)/2,(d+1)/2] := One(fld);
+    v[(d+1)/2 - 1,1] := One(fld);
     v{[1..((d+1)/2)-2]}{[2..((d+1)/2)-1]} := IdentityMat(((d+1)/2)-2, fld);
-    v[(d+1)/2 + 1][d] := One(fld);
+    v[(d+1)/2 + 1,d] := One(fld);
     v{[((d+1)/2)+2..d]}{[((d+1)/2)+1..d-1]} := IdentityMat(((d+1)/2)-2, fld);
     if n mod 2 = 0 then
-        v[(d+1)/2 - 1][1] := -1 * One(fld);
-        v[(d+1)/2 + 1][d] := -1 * One(fld);
+        v[(d+1)/2 - 1,1] := -1 * One(fld);
+        v[(d+1)/2 + 1,d] := -1 * One(fld);
     fi;
 
     return [s, t, delta, u, v];
@@ -472,16 +472,16 @@ function(d,q)
     w := alpha^2;
 
     s := IdentityMat( d, fld );
-    s[1][1] := Zero(fld);
-    s[d][d] := Zero(fld);
-    s[1][d] := -1 * One(fld);
-    s[d][1] := -1 * One(fld);
-    s[d/2][d/2] := One(fld);
+    s[1,1] := Zero(fld);
+    s[d,d] := Zero(fld);
+    s[1,d] := -1 * One(fld);
+    s[d,1] := -1 * One(fld);
+    s[d/2,d/2] := One(fld);
 
     t := IdentityMat( d, fld );
-    t[1][d] := One(fld);
-    t[1][(d/2)] := One(fld);
-    t[(d/2)][d] := 2 * One(fld);
+    t[1,d] := One(fld);
+    t[1,(d/2)] := One(fld);
+    t[(d/2),d] := 2 * One(fld);
     
     A := 1/2 * ((gamma^(q-1))+(gamma^(-q+1)));
     if A <> Zero(fld) then
@@ -503,12 +503,12 @@ function(d,q)
     fi;
     w := gamma2^LogFFE(w,gamma2);
     delta := IdentityMat( d, fld );
-    delta[1][1] := w;
-    delta[d][d] := w^(-1);
-    delta[(d/2)][(d/2)] := A;
-    delta[(d/2)+1][(d/2)+1] := A;
-    delta[(d/2)][(d/2)+1] := C;
-    delta[(d/2)+1][(d/2)] := B;
+    delta[1,1] := w;
+    delta[d,d] := w^(-1);
+    delta[(d/2),(d/2)] := A;
+    delta[(d/2)+1,(d/2)+1] := A;
+    delta[(d/2),(d/2)+1] := C;
+    delta[(d/2)+1,(d/2)] := B;
     
     u := IdentityMat( d, fld );
     u{[1..2]}{[1..2]} := [[0,1],[-1,0]];
@@ -517,15 +517,15 @@ function(d,q)
     
     n := Int(d * 0.5)-1;
     v := 0 * IdentityMat( d, fld );
-    v[(d/2)][(d/2)] := One(fld);
-    v[(d/2)+1][(d/2)+1] := One(fld);
-    v[(d/2) - 1][1] := One(fld);
+    v[(d/2),(d/2)] := One(fld);
+    v[(d/2)+1,(d/2)+1] := One(fld);
+    v[(d/2) - 1,1] := One(fld);
     v{[1..(d/2)-2]}{[2..((d/2)-1)]} := IdentityMat((d/2)-2, fld);
-    v[(d/2) + 2][d] := One(fld);
+    v[(d/2) + 2,d] := One(fld);
     v{[(d/2)+3..d]}{[(d/2)+2..d-1]} := IdentityMat((d/2)-2, fld);
     if n mod 2 = 0 then
-        v[(d/2) - 1][1] := -1 * One(fld);
-        v[(d/2) + 2][d] := -1 * One(fld);
+        v[(d/2) - 1,1] := -1 * One(fld);
+        v[(d/2) + 2,d] := -1 * One(fld);
     fi;
 
     return [s, t, delta, u, v];
@@ -546,34 +546,34 @@ function(d,q)
     w := PrimitiveElement(fld);
 
     s := IdentityMat( d, fld );
-    s[1][1] := Zero(fld);
-    s[2][2] := Zero(fld);
-    s[d-1][d-1] := Zero(fld);
-    s[d][d] := Zero(fld);
-    s[1][d-1] := One(fld);
-    s[d][2] := One(fld);
-    s[2][d] := One(fld);
-    s[d-1][1] := One(fld);
+    s[1,1] := Zero(fld);
+    s[2,2] := Zero(fld);
+    s[d-1,d-1] := Zero(fld);
+    s[d,d] := Zero(fld);
+    s[1,d-1] := One(fld);
+    s[d,2] := One(fld);
+    s[2,d] := One(fld);
+    s[d-1,1] := One(fld);
 
     t := IdentityMat( d, fld );
-    t[1][d-1] := One(fld);
-    t[2][d] := One(fld);
+    t[1,d-1] := One(fld);
+    t[2,d] := One(fld);
     
     tBar := IdentityMat( d, fld );
-    tBar[1][2] := One(fld);
-    tBar[d-1][d] := One(fld);
+    tBar[1,2] := One(fld);
+    tBar[d-1,d] := One(fld);
 
     delta := IdentityMat( d, fld );
-    delta[1][1] := w;
-    delta[d][d] := w^(-1);
-    delta[2][2] := w;
-    delta[d-1][d-1] := w^(-1);
+    delta[1,1] := w;
+    delta[d,d] := w^(-1);
+    delta[2,2] := w;
+    delta[d-1,d-1] := w^(-1);
     
     deltaBar := IdentityMat( d, fld );
-    deltaBar[1][1] := w;
-    deltaBar[d][d] := w^(-1);
-    deltaBar[2][2] := w^(-1);
-    deltaBar[d-1][d-1] := w;
+    deltaBar[1,1] := w;
+    deltaBar[d,d] := w^(-1);
+    deltaBar[2,2] := w^(-1);
+    deltaBar[d-1,d-1] := w;
     
     u := IdentityMat( d, fld );
     J := [[Zero(fld),One(fld)],[One(fld),Zero(fld)]];
@@ -583,9 +583,9 @@ function(d,q)
     n := Int(d* 0.5);
     
     v := 0 * IdentityMat( d, fld );
-    v[d/2][1] := One(fld);
+    v[d/2,1] := One(fld);
     v{[1..(d/2)-1]}{[2..d/2]} := IdentityMat((d/2)-1, fld);
-    v[d/2+1][d] := One(fld);
+    v[d/2+1,d] := One(fld);
     v{[(d/2)+2..d]}{[(d/2)+1..d-1]} := IdentityMat((d/2)-1, fld);
 
     return [s, t, tBar, delta, deltaBar, u, v];
@@ -627,16 +627,16 @@ function(d,q)
         nu := Zero(fld);
     fi;
     s := IdentityMat( d, fld );
-    s[1][1] := Zero(fld);
-    s[d][d] := Zero(fld);
-    s[1][d] := One(fld);
-    s[d][1] := One(fld);
-    s[(d/2)+1][d/2] := nu * One(fld);
+    s[1,1] := Zero(fld);
+    s[d,d] := Zero(fld);
+    s[1,d] := One(fld);
+    s[d,1] := One(fld);
+    s[(d/2)+1,d/2] := nu * One(fld);
 
     t := IdentityMat( d, fld );
-    t[1][d] := One(fld);
-    t[1][(d/2) ] := One(fld);
-    t[(d/2) + 1][d] := nu;
+    t[1,d] := One(fld);
+    t[1,(d/2) ] := One(fld);
+    t[(d/2) + 1,d] := nu;
     
     A :=((gamma^(-1))+(gamma^(-q)));
     if A <> Zero(fld) then
@@ -658,12 +658,12 @@ function(d,q)
     fi;
     w := gamma2^LogFFE(w,gamma2);
     delta := IdentityMat( d, fld );
-    delta[1][1] := w;
-    delta[d][d] := w^(-1);
-    delta[(d/2)][(d/2)] := One(fld);
-    delta[(d/2)+1][(d/2)+1] := C;
-    delta[(d/2)][(d/2)+1] := A;
-    delta[(d/2)+1][(d/2)] := B;
+    delta[1,1] := w;
+    delta[d,d] := w^(-1);
+    delta[(d/2),(d/2)] := One(fld);
+    delta[(d/2)+1,(d/2)+1] := C;
+    delta[(d/2),(d/2)+1] := A;
+    delta[(d/2)+1,(d/2)] := B;
     
     u := IdentityMat( d, fld );
     u{[1..2]}{[1..2]} := [[0,1],[1,0]];
@@ -672,11 +672,11 @@ function(d,q)
     
     n := Int(d * 0.5)-1;
     v := 0 * IdentityMat( d, fld );
-    v[(d/2)][(d/2)] := One(fld);
-    v[(d/2)+1][(d/2)+1] := One(fld);
-    v[(d/2) - 1][1] := One(fld);
+    v[(d/2),(d/2)] := One(fld);
+    v[(d/2)+1,(d/2)+1] := One(fld);
+    v[(d/2) - 1,1] := One(fld);
     v{[1..(d/2)-2]}{[2..((d/2)-1)]} := IdentityMat((d/2)-2, fld);
-    v[(d/2) + 2][d] := One(fld);
+    v[(d/2) + 2,d] := One(fld);
     v{[(d/2)+3..d]}{[(d/2)+2..d-1]} := IdentityMat((d/2)-2, fld);
 
     return [s, t, delta, u, v];
@@ -724,7 +724,7 @@ function(e,d,q)
         
         inv := Zero(GF(q)) * IdentityMat(d);
         for k in [1..(d/2)] do
-            inv[k][d-k+1] := 1;
+            inv[k,d-k+1] := 1;
         od;
         
         SetInvariantQuadraticForm( G, rec( matrix:=inv) );
@@ -751,10 +751,10 @@ function(e,d,q)
             k := k+2;
         od;
         inv := PermutationMat(perm,d) * One(GF(q));
-        inv[m][m+1] := 0;
-        inv[m+1][m] := 0;
-        inv[m][m] := 2*PrimitiveElement(GF(q));
-        inv[m+1][m+1] := -2;
+        inv[m,m+1] := 0;
+        inv[m+1,m] := 0;
+        inv[m,m] := 2*PrimitiveElement(GF(q));
+        inv[m+1,m+1] := -2;
         inv := inv * One(GF(q));
         
         G := GroupWithGenerators(gens);
@@ -765,10 +765,10 @@ function(e,d,q)
         
         inv := Zero(GF(q)) * IdentityMat(d);
         for k in [1..(d/2)-1] do
-            inv[k][d-k+1] := 1 * One(GF(q));
+            inv[k,d-k+1] := 1 * One(GF(q));
         od;
-        inv[d/2][d/2] := PrimitiveElement(GF(q));
-        inv[(d/2)+1][(d/2)+1] := -1 * One(GF(q));
+        inv[d/2,d/2] := PrimitiveElement(GF(q));
+        inv[(d/2)+1,(d/2)+1] := -1 * One(GF(q));
         
         SetInvariantQuadraticForm( G, rec( matrix:=inv) );
         SetIsFullSubgroupGLorSLRespectingBilinearForm( G, true );
@@ -793,7 +793,7 @@ function(e,d,q)
             k := k+1;
         od;
         inv := PermutationMat(perm,d) * One(GF(q));
-        inv[(d+1)/2][(d+1)/2] := One(GF(q)) * (- 1/2);
+        inv[(d+1)/2,(d+1)/2] := One(GF(q)) * (- 1/2);
         
         G := GroupByGenerators(gens);
         SetDimensionOfMatrixGroup( G, d );
@@ -803,10 +803,10 @@ function(e,d,q)
         
         #inv := Zero(GF(q)) * IdentityMat(d);
         #for k in [1..(d/2)-1] do
-        #    inv[k][d-k+1] := 1;
+        #    inv[k,d-k+1] := 1;
         #od;
-        #inv[d/2][d/2] := PrimitiveElement(GF(q));
-        #inv[(d/2)+1][(d/2)+1] := -1 * One(GF(q));
+        #inv[d/2,d/2] := PrimitiveElement(GF(q));
+        #inv[(d/2)+1,(d/2)+1] := -1 * One(GF(q));
         
         #SetInvariantQuadraticForm( G, rec( matrix:=inv) );
         # Quadratic Form of Circle Typ??? TODO
@@ -1134,7 +1134,7 @@ function(arg)
 
         while r <= d and j <= d and r = 0 do
 
-            if not IsZero(g[j][c]) then
+            if not IsZero(g[j,c]) then
                 r := j;
             fi;
 
@@ -1146,16 +1146,16 @@ function(arg)
             Error("matrix has 0 column");
         fi;
 
-        a := g[r][c]^-1;
+        a := g[r,c]^-1;
 
         if r <= d-1 then
 
             # Clear the rest of column c
             for i in [ r+1..d ] do
 
-                if not IsZero(g[i][c]) then
+                if not IsZero(g[i,c]) then
 
-                    z := -g[i][c] * a;
+                    z := -g[i,c] * a;
 
                     # add z times row r of g  to row i
                     # add z times row r of u1  to row i
@@ -1185,11 +1185,11 @@ function(arg)
                                     ShiftTransvection3ByI(i);
                                 fi;
 
-                                #Mul[i][r] := z;
+                                #Mul[i,r] := z;
                                 g[i] := g[i] + z*g[r];
                                 u1[i] := u1[i] + z*u1[r];
 
-                                #Mul[d-r+1][d-i+1] := -z;
+                                #Mul[d-r+1,d-i+1] := -z;
                                 g[d-r+1] := g[d-r+1] + (-z)*g[d-i+1];
                                 u1[d-r+1] := u1[d-r+1] + (-z)*u1[d-i+1];
                             else
@@ -1212,11 +1212,11 @@ function(arg)
                                     ShiftTransvection3ByI(i);
                                 fi;
 
-                                #Mul[i][r] := z;
+                                #Mul[i,r] := z;
                                 g[i] := g[i] + z*g[r];
                                 u1[i] := u1[i] + z*u1[r];
 
-                                #Mul[d-r+1][d-i+1] := z;
+                                #Mul[d-r+1,d-i+1] := z;
                                 g[d-r+1] := g[d-r+1] + (-z)*g[d-i+1];
                                 u1[d-r+1] := u1[d-r+1] + (-z)*u1[d-i+1];
                             fi;
@@ -1240,21 +1240,21 @@ function(arg)
                                 ShiftTransvection3ByI(i);
                             fi;
 
-                            #Mul[i][r] := z;
+                            #Mul[i,r] := z;
                             g[i] := g[i] + z*g[r];
                             u1[i] := u1[i] + z*u1[r];
 
-                            #Mul[d-r+1][d-i+1] := -z;
+                            #Mul[d-r+1,d-i+1] := -z;
                             g[d-r+1] := g[d-r+1] + (-z)*g[d-i+1];
                             u1[d-r+1] := u1[d-r+1] + (-z)*u1[d-i+1];
 
                         fi;
 
-                        #Mul[i][r] := z;
+                        #Mul[i,r] := z;
                         #g[i] := g[i] + z*g[r];
                         #u1[i] := u1[i] + z*u1[r];
 
-                        #Mul[d-r+1][d-i+1] := -z;
+                        #Mul[d-r+1,d-i+1] := -z;
                         #g[d-r+1] := g[d-r+1] + (-z)*g[d-i+1];
                         #u1[d-r+1] := u1[d-r+1] + (-z)*u1[d-i+1];
                         
@@ -1266,16 +1266,16 @@ function(arg)
         fi;
 
 
-        # Step Two: Clear all entries in row r apart from g[r][c]
+        # Step Two: Clear all entries in row r apart from g[r,c]
         # This coincides with multiplying t_{c,j} from right.
         if c >= 2 then
 
             # Now clear the rest of row r
             for j in [ c-1, c-2..1 ] do
 
-                if not IsZero( g[r][j] ) then
+                if not IsZero( g[r,j] ) then
 
-                    z := - g[r][j] * a;
+                    z := - g[r,j] * a;
 
                     if (c+j <>  d+1) then
                         if (j > d/2) then
@@ -1298,11 +1298,11 @@ function(arg)
                                 ShiftTransvection3ByI(c);
                             fi;
 
-                            #Mul[c][j] := z;
+                            #Mul[c,j] := z;
                             g{[1..d]}[j] :=  g{[1..d]}[j] + z *  g{[1..d]}[c];
                             u2{[1..d]}[j] := u2{[1..d]}[j] + z * u2{[1..d]}[c];
 
-                            #Mul[d-j+1][d-c+1] := -z;
+                            #Mul[d-j+1,d-c+1] := -z;
                             g{[1..d]}[d-c+1] :=  g{[1..d]}[d-c+1] + (-z) *  g{[1..d]}[d-j+1];
                             u2{[1..d]}[d-c+1] := u2{[1..d]}[d-c+1] + (-z) * u2{[1..d]}[d-j+1];
                         else
@@ -1325,20 +1325,20 @@ function(arg)
                                 ShiftTransvection3ByI(c);
                             fi;
 
-                            #Mul[c][j] := z;
+                            #Mul[c,j] := z;
                             g{[1..d]}[j] :=  g{[1..d]}[j] + z *  g{[1..d]}[c];
                             u2{[1..d]}[j] := u2{[1..d]}[j] + z * u2{[1..d]}[c];
 
-                            #Mul[d-j+1][d-c+1] := z;
+                            #Mul[d-j+1,d-c+1] := z;
                             g{[1..d]}[d-c+1] :=  g{[1..d]}[d-c+1] + (-z) *  g{[1..d]}[d-j+1];
                             u2{[1..d]}[d-c+1] := u2{[1..d]}[d-c+1] + (-z) * u2{[1..d]}[d-j+1];
                         fi;
 
-                        #Mul[c][j] := z;
+                        #Mul[c,j] := z;
                         #g{[1..d]}[j] :=  g{[1..d]}[j] + z *  g{[1..d]}[c];
                         #u2{[1..d]}[j] := u2{[1..d]}[j] + z * u2{[1..d]}[c];
 
-                        #Mul[d-j+1][d-c+1] := -z;
+                        #Mul[d-j+1,d-c+1] := -z;
                         #g{[1..d]}[d-c+1] :=  g{[1..d]}[d-c+1] + (-z) *  g{[1..d]}[d-j+1];
                         #u2{[1..d]}[d-c+1] := u2{[1..d]}[d-c+1] + (-z) * u2{[1..d]}[d-j+1];
                         
@@ -1746,7 +1746,7 @@ function(arg)
 
         while r <= d and j <= d and r = 0 do
 
-            if not IsZero(g[j][c]) then
+            if not IsZero(g[j,c]) then
                 r := j;
             fi;
 
@@ -1758,13 +1758,13 @@ function(arg)
             Error("matrix has 0 column");
         fi;
 
-        a := g[r][c]^-1;
+        a := g[r,c]^-1;
 
         if r <= d-1 then
 
-            if (not(IsZero(g[(d+1)/2][c])) and (c <> ((d+1)/2))) then
+            if (not(IsZero(g[(d+1)/2,c])) and (c <> ((d+1)/2))) then
                 i := (d+1)/2;
-                z := -g[i][c] * a;
+                z := -g[i,c] * a;
 
                 if (i+r <> d+1) then
                 
@@ -1775,7 +1775,7 @@ function(arg)
                     g[d-r+1] := g[d-r+1] + z^2 * g[r];
                     u1[d-r+1] := u1[d-r+1] + z^2 * u1[r];
 
-                    #Mul[d-r+1][d-i+1] := -z^phi;
+                    #Mul[d-r+1,d-i+1] := -z^phi;
                     g[d-r+1] := g[d-r+1] + 2*z * g[d-i+1];
                     u1[d-r+1] := u1[d-r+1] + 2*z * u1[d-i+1];
 
@@ -1788,9 +1788,9 @@ function(arg)
             # Second: Clear the rest of column c
             for i in [ r+1..d ] do
 
-                if not IsZero(g[i][c]) and (i <> (d+1)/2) then
+                if not IsZero(g[i,c]) and (i <> (d+1)/2) then
 
-                    z := -g[i][c] * a;
+                    z := -g[i,c] * a;
 
                     # add z times row r of g  to row i
                     # add z times row r of u1  to row i
@@ -1818,11 +1818,11 @@ function(arg)
                             ShiftTransvection3ByI(i);
                         fi;
 
-                        #Mul[i][r] := z;
+                        #Mul[i,r] := z;
                         g[i] := g[i] + z*g[r];
                         u1[i] := u1[i] + z*u1[r];
 
-                        #Mul[d-r+1][d-i+1] := -z^phi;
+                        #Mul[d-r+1,d-i+1] := -z^phi;
                         g[d-r+1] := g[d-r+1] + (-z) * g[d-i+1];
                         u1[d-r+1] := u1[d-r+1] + (-z) * u1[d-i+1];
                         
@@ -1835,14 +1835,14 @@ function(arg)
 
 
 
-        # Step Two: Clear all entries in row r apart from g[r][c]
+        # Step Two: Clear all entries in row r apart from g[r,c]
         # This coincides with multiplying t_{c,j} from right.
         if c >= 2 then
 
 
-            if not IsZero(g[r][(d+1)/2]) and (r <> ((d+1)/2)) then
+            if not IsZero(g[r,(d+1)/2]) and (r <> ((d+1)/2)) then
                 j := (d+1)/2;
-                z := -g[r][j] * a;
+                z := -g[r,j] * a;
 
                 if (c+j <> d+1) then
                 
@@ -1865,9 +1865,9 @@ function(arg)
             # Now clear the rest of row r
             for j in [ c-1, c-2..1 ] do
 
-                if not IsZero( g[r][j] ) and (j <> (d+1)/2) then
+                if not IsZero( g[r,j] ) and (j <> (d+1)/2) then
 
-                    z := - g[r][j] * a;
+                    z := - g[r,j] * a;
 
                     if (c+j <> d+1) then
                     
@@ -1889,11 +1889,11 @@ function(arg)
                             ShiftTransvection3ByI(c);
                         fi;
 
-                        #Mul[c][j] := z;
+                        #Mul[c,j] := z;
                         g{[1..d]}[j] :=  g{[1..d]}[j] + z *  g{[1..d]}[c];
                         u2{[1..d]}[j] := u2{[1..d]}[j] + z * u2{[1..d]}[c];
 
-                        #Mul[d-j+1][d-c+1] := -z^phi;
+                        #Mul[d-j+1,d-c+1] := -z^phi;
                         g{[1..d]}[d-c+1] :=  g{[1..d]}[d-c+1] + (-z) *  g{[1..d]}[d-j+1];
                         u2{[1..d]}[d-c+1] := u2{[1..d]}[d-c+1] + (-z) * u2{[1..d]}[d-j+1];
                         
@@ -2221,10 +2221,10 @@ function(arg)
     fld := FieldOfMatrixList( stdgens );
     
     mat := GeneratorsOfGroup(MSO(-1,d,Size(fld)))[3];
-    w := mat[1][1];   #TODO Choose primitiveElement from LGO Standard generator, such that the generator are the same
-    A := mat[d/2][d/2];
-    B := mat[d/2][(d/2)+1];
-    C := mat[(d/2)+1][d/2];
+    w := mat[1,1];   #TODO Choose primitiveElement from LGO Standard generator, such that the generator are the same
+    A := mat[d/2,d/2];
+    B := mat[d/2,(d/2)+1];
+    C := mat[(d/2)+1,d/2];
 
     # To create an MSLP, we allocate all the memory needed at the beginning.
     Add( slp, [1,0] );        tmppos       := Length(slp);    #13
@@ -2379,7 +2379,7 @@ function(arg)
 
         while r <= d and j <= d and r = 0 do
 
-            if not IsZero(g[j][c]) then
+            if not IsZero(g[j,c]) then
                 r := j;
             fi;
 
@@ -2391,13 +2391,13 @@ function(arg)
             Error("matrix has 0 column");
         fi;
 
-        a := g[r][c]^-1;
+        a := g[r,c]^-1;
 
         if r <= d-1 then
 
-            if (not(IsZero(g[d/2][c]))) then
+            if (not(IsZero(g[d/2,c]))) then
                 i := (d/2);
-                z := -g[i][c] * a;
+                z := -g[i,c] * a;
 
                 if (i+r <> d+1) then
                 
@@ -2408,7 +2408,7 @@ function(arg)
                     g[d-r+1] := g[d-r+1] + -(z^2)/(4*w) * g[r];
                     u1[d-r+1] := u1[d-r+1] + -(z^2)/(4*w) * u1[r];
 
-                    #Mul[d-r+1][d-i+1] := -z^phi;
+                    #Mul[d-r+1,d-i+1] := -z^phi;
                     g[d-r+1] := g[d-r+1] + -z/(2*w) * g[d-i];
                     u1[d-r+1] := u1[d-r+1] + -z/(2*w) * u1[d-i];
 
@@ -2418,9 +2418,9 @@ function(arg)
             fi;
             
             
-            if (not(IsZero(g[(d/2)+1][c]))) then
+            if (not(IsZero(g[(d/2)+1,c]))) then
                 i := (d/2)+1;
-                z := -g[i][c] * a;
+                z := -g[i,c] * a;
 
                 if (i+r <> d+1) then
                 
@@ -2431,7 +2431,7 @@ function(arg)
                     g[d-r+1] := g[d-r+1] + z^2/4 * g[r];
                     u1[d-r+1] := u1[d-r+1] + z^2/4 * u1[r];
 
-                    #Mul[d-r+1][d-i+1] := -z^phi;
+                    #Mul[d-r+1,d-i+1] := -z^phi;
                     g[d-r+1] := g[d-r+1] + z/2 * g[d-i+2];
                     u1[d-r+1] := u1[d-r+1] + z/2 * u1[d-i+2];
 
@@ -2444,9 +2444,9 @@ function(arg)
             # Clear the rest of column c
             for i in [ r+1..d ] do
 
-                if not IsZero(g[i][c]) then
+                if not IsZero(g[i,c]) then
 
-                    z := -g[i][c] * a;
+                    z := -g[i,c] * a;
 
                     # add z times row r of g  to row i
                     # add z times row r of u1  to row i
@@ -2474,11 +2474,11 @@ function(arg)
                             ShiftTransvection3ByI(i);
                         fi;
 
-                        #Mul[i][r] := z;
+                        #Mul[i,r] := z;
                         g[i] := g[i] + z*g[r];
                         u1[i] := u1[i] + z*u1[r];
 
-                        #Mul[d-r+1][d-i+1] := -z;
+                        #Mul[d-r+1,d-i+1] := -z;
                         g[d-r+1] := g[d-r+1] + (-z)*g[d-i+1];
                         u1[d-r+1] := u1[d-r+1] + (-z)*u1[d-i+1];
                         
@@ -2490,13 +2490,13 @@ function(arg)
         fi;
 
 
-        # Step Two: Clear all entries in row r apart from g[r][c]
+        # Step Two: Clear all entries in row r apart from g[r,c]
         # This coincides with multiplying t_{c,j} from right.
         if c >= 2 then
             
-            if not IsZero(g[r][(d/2)+1]) then
+            if not IsZero(g[r,(d/2)+1]) then
                 j := (d/2)+1;
-                z := -g[r][j] * a;
+                z := -g[r,j] * a;
 
                 if (c+j <> d+1) then
                 
@@ -2516,9 +2516,9 @@ function(arg)
             fi;
             
                     
-            if not IsZero(g[r][d/2]) then
+            if not IsZero(g[r,d/2]) then
                 j := (d/2);
-                z := -g[r][j] * a;
+                z := -g[r,j] * a;
 
                 if (c+j <> d+1) then
             
@@ -2541,9 +2541,9 @@ function(arg)
             # Now clear the rest of row r
             for j in [ c-1, c-2..1 ] do
 
-                if not IsZero( g[r][j] ) then
+                if not IsZero( g[r,j] ) then
 
-                    z := - g[r][j] * a;
+                    z := - g[r,j] * a;
 
                     if (c+j <>  d+1) then
                     
@@ -2565,11 +2565,11 @@ function(arg)
                             ShiftTransvection3ByI(c);
                         fi;
 
-                        #Mul[c][j] := z;
+                        #Mul[c,j] := z;
                         g{[1..d]}[j] :=  g{[1..d]}[j] + z *  g{[1..d]}[c];
                         u2{[1..d]}[j] := u2{[1..d]}[j] + z * u2{[1..d]}[c];
 
-                        #Mul[d-j+1][d-c+1] := -z;
+                        #Mul[d-j+1,d-c+1] := -z;
                         g{[1..d]}[d-c+1] :=  g{[1..d]}[d-c+1] + (-z) *  g{[1..d]}[d-j+1];
                         u2{[1..d]}[d-c+1] := u2{[1..d]}[d-c+1] + (-z) * u2{[1..d]}[d-j+1];
                         
@@ -2582,20 +2582,20 @@ function(arg)
     od;
     
     # Is there a way to improve this here?
-    if (g[d/2][(d/2)+1] <> Zero(fld)) and (g[(d/2)+1][(d/2)+1] <> Zero(fld)) then
+    if (g[d/2,(d/2)+1] <> Zero(fld)) and (g[(d/2)+1,(d/2)+1] <> Zero(fld)) then
         k := 1;
         A2 := A;
         B2 := B;
         C2 := C;
         while true do
-            if (A*g[d/2][(d/2)+1]+B*g[(d/2)+1][(d/2)+1] = Zero(fld)) or (A*g[d/2][(d/2)]+B*g[(d/2)+1][(d/2)] = Zero(fld)) then
+            if (A*g[d/2,(d/2)+1]+B*g[(d/2)+1,(d/2)+1] = Zero(fld)) or (A*g[d/2,(d/2)]+B*g[(d/2)+1,(d/2)] = Zero(fld)) then
                 mat := MutableCopyMat(mat);
-                mat[1][1] := w^k;
-                mat[d][d] := w^(-k);
-                mat[d/2][d/2] := A;
-                mat[d/2][(d/2)+1] := B;
-                mat[(d/2)+1][d/2] := C;
-                mat[(d/2)+1][(d/2)+1] := A;
+                mat[1,1] := w^k;
+                mat[d,d] := w^(-k);
+                mat[d/2,d/2] := A;
+                mat[d/2,(d/2)+1] := B;
+                mat[(d/2)+1,d/2] := C;
+                mat[(d/2)+1,(d/2)+1] := A;
                 g := mat*g;
                 u1 := mat*u1;
                 Add(slp,[[3,k,u1pos,1],u1pos]);
@@ -3199,7 +3199,7 @@ function( arg )
     tmpvalue := EasyFormToMonomialMatrix(tmpvalue,n,fld);
     tmpvalue := R2*tmpvalue*L2;
     mat := tmpvalue*mat;
-    mat[m][m] := One(fld);
+    mat[m,m] := One(fld);
 
     return [slp, [tmpvalue , mat ] ];
 
@@ -3477,25 +3477,25 @@ function( arg )
     
     # This is still not fast enough. Is there a better way to find the monomial matrix (m+1,m+2) in SOMinus ??
     # This is independent from the matrix size but needs more time for a larger field.
-    if (mat[n/2][(n/2)+1] <> Zero(fld)) then
+    if (mat[n/2,(n/2)+1] <> Zero(fld)) then
         k := 1;
         delta := stdgens[3];
-        A := delta[m+1][m+1];
-        B := delta[m+1][m+2];
-        C := delta[m+2][m+1];
+        A := delta[m+1,m+1];
+        B := delta[m+1,m+2];
+        C := delta[m+2,m+1];
         A2 := A;
         B2 := B;
         C2 := C;
         while true do
-            if (A*mat[m+1][m+2]+B*mat[m+2][m+2] = Zero(fld)) then
+            if (A*mat[m+1,m+2]+B*mat[m+2,m+2] = Zero(fld)) then
                 #g := delta^k*g;
                 delta := MutableCopyMat(delta);
                 delta[1,1] := delta[1,1]^k;
                 delta[n,n] := delta[n,n]^k;
-                delta[m+1][m+1] := A;
-                delta[m+1][m+2] := B;
-                delta[m+2][m+1] := C;
-                delta[m+2][m+2] := A;
+                delta[m+1,m+1] := A;
+                delta[m+1,m+2] := B;
+                delta[m+2,m+1] := C;
+                delta[m+2,m+2] := A;
                 mat := delta*mat;
                 tmpvalue := delta*tmpvalue;
                 Add( slp, [[p_signpos,1,3,-k], p_signpos ] );
@@ -3639,8 +3639,8 @@ function (M)
     
     for i in [1..n] do
         for j in [1..n] do
-            if M[j][i] <> Zero(fld) then
-                Add(list,M[j][i]);
+            if M[j,i] <> Zero(fld) then
+                Add(list,M[j,i]);
                 break;
             fi;
         od;
@@ -3665,8 +3665,8 @@ function( tupel, n, fld )
     M := PermutationMat(tupel[2],n,fld);
     for i in [1..n] do
         for j in [1..n] do
-            if M[j][i] <> Zero(fld) then
-                M[j][i] := tupel[1][i];
+            if M[j,i] <> Zero(fld) then
+                M[j,i] := tupel[1][i];
             fi;
         od;
     od;
@@ -3768,10 +3768,10 @@ function( arg )
 
     # Needed elements for calculations
     d := Length( diag );
-    omega := (stdgens[5])[1][1];
+    omega := (stdgens[5])[1,1];
     delta := IdentityMat(d,GF(Size(fld)));
-    delta[1][1] := omega;
-    delta[d][d] := omega^(-1);
+    delta[1,1] := omega;
+    delta[d,d] := omega^(-1);
 
     # Easy case
     if diag = One(diag) then
@@ -3804,7 +3804,7 @@ function( arg )
 
     for i in [ 1..(d/2) ] do
 
-        a_i := LogFFE( diag[i][i], omega );
+        a_i := LogFFE( diag[i,i], omega );
         # The memory slots 13 and 14 are res and tmp-slot for AEM
         instr := AEM( hipos, 19, 20, a_i );
         Append( slp, instr );
@@ -3914,7 +3914,7 @@ function(arg)
     
     for i in [ 1..((d-1)/2) ] do
 
-        a_i := LogFFE( diag[i][i], omega );
+        a_i := LogFFE( diag[i,i], omega );
 
         # The memory slots 15 and 16 are res and tmp-slot for AEM
         instr := AEM( hipos, 13, 14, a_i );
@@ -3998,7 +3998,7 @@ function( arg )
 
     # Needed elements for calculations
     d := Length( diag );
-    omega := (stdgens[3])[1][1];
+    omega := (stdgens[3])[1,1];
 
     # Easy case
     if diag = One(diag) then
@@ -4013,7 +4013,7 @@ function( arg )
         
         for i in [ 1..(d/2)-1 ] do
 
-            a_i := LogFFE( diag[i][i], omega );
+            a_i := LogFFE( diag[i,i], omega );
             # The memory slots 13 and 14 are res and tmp-slot for AEM
             instr := AEM( hipos, 13, 14, a_i );
             Append( slp, instr );
@@ -4022,24 +4022,24 @@ function( arg )
 
         od;
         
-        if diag[d/2][d/2] <> One(fld) then
+        if diag[d/2,d/2] <> One(fld) then
             Add( slp, [ [3, 2, respos, 1 ], respos ] );
         fi;
     
     else
-        if diag[d/2][d/2] <> One(fld) then
+        if diag[d/2,d/2] <> One(fld) then
             instr := AEM( 3, 13, 14, (Size(fld)+1)/2 );
             Append( slp, instr );
             Add(slp, [[13,1], hipos]);
             Add(slp, [[13,1], respos]);
-            tmpv := ((stdgens[3])[1][1])^((Size(fld)+1)/2);
+            tmpv := ((stdgens[3])[1,1])^((Size(fld)+1)/2);
             instr := AEM( hipos, 13, 14, (Size(fld)+1)/2 );
             Append( slp, instr );
             Add(slp, [[13,1], hipos]);
             Add(slp, [[hipos,1,6,1], hipos]);
             Add(slp, [[5,1], hiposm]);
             
-            a_i := LogFFE( diag[1][1]*tmpv^(-1), omega );
+            a_i := LogFFE( diag[1,1]*tmpv^(-1), omega );
             instr := AEM( hipos, 13, 14, a_i );
             Append( slp, instr );
             Add( slp, [ [respos, 1, 13, 1 ], respos ] );
@@ -4047,7 +4047,7 @@ function( arg )
             
             for i in [ 2..(d/2)-1 ] do
 
-                a_i := LogFFE( diag[i][i], omega );
+                a_i := LogFFE( diag[i,i], omega );
                 # The memory slots 13 and 14 are res and tmp-slot for AEM
                 instr := AEM( hipos, 13, 14, a_i );
                 Append( slp, instr );
@@ -4065,7 +4065,7 @@ function( arg )
             
             for i in [ 1..(d/2)-1 ] do
 
-                a_i := LogFFE( diag[i][i], omega );
+                a_i := LogFFE( diag[i,i], omega );
                 # The memory slots 13 and 14 are res and tmp-slot for AEM
                 instr := AEM( hipos, 13, 14, a_i );
                 Append( slp, instr );
