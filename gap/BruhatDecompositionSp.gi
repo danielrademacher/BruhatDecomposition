@@ -1541,7 +1541,7 @@ function( d, q )
     fi;
 
     fld := GF(q);
-    w := PrimitiveElement(fld);
+    w := Z(q);
 
     s := IdentityMat( d, fld );
     s[1,1] := Zero(fld);
@@ -1587,7 +1587,7 @@ function( d, q )
     local w,s, t, delta, u, v, x, J, fld;
 
     fld := GF(q);
-    w := PrimitiveElement(fld);
+    w := Z(q);
 
     s := IdentityMat( d, fld );
     s[1,1] := Zero(fld);
@@ -1715,7 +1715,7 @@ function( arg )
     m := n/2;
     L2 := IdentityMat(n,fld);
     R2 := IdentityMat(n,fld);
-    w := PrimitiveElement(fld);
+    w := PrimitiveRoot(fld);
     # set alpha in SU
     while (CheckContinue(perm,m)) do
         c := CycleFromPermutation(perm);

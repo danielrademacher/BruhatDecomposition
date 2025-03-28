@@ -75,7 +75,7 @@ function(d,q)
     local s, sBar, t, tBar, delta, deltaBar, u, v, sigma, fld, w, n, S1, S2, a, b, res;
     
     fld := GF(q);
-    w := PrimitiveElement(fld);
+    w := Z(q);
 
     s := IdentityMat( d, fld );
     s[1,1] := Zero(fld);
@@ -157,7 +157,7 @@ function(d,q)
     local s, t, delta, u, v, sigma, fld, w, n, S1, a, b, res;
     
     fld := GF(q);
-    w := PrimitiveElement(fld);
+    w := Z(q);
     n := Int((d-1)*1/2);
 
     s := IdentityMat( d, fld );
@@ -220,8 +220,8 @@ function(d,q)
     local s, t, delta, u, v, sigma, fld, w, n, S1, lambda, A, B, C, gamma, alpha,perm, inv, gamma2;
     
     fld := GF(q);
-    gamma := PrimitiveElement(GF(q^2));
-    gamma2 := PrimitiveElement(GF(q));
+    gamma := Z(q^2);
+    gamma2 := Z(q);
     alpha := gamma^((q+1)/2);
     w := alpha^2;
 
@@ -344,7 +344,7 @@ function(d,q)
     local s, sBar, t, tBar, delta, deltaBar, u, v, sigma, fld, w, n, S1, S2, a, b, res;
     
     fld := GF(q);
-    w := PrimitiveElement(fld);
+    w := Z(q);
 
     s := IdentityMat( d, fld );
     s[1,1] := Zero(fld);
@@ -415,7 +415,7 @@ function(d,q)
     local s, t, delta, u, v, sigma, fld, w, n, S1, a, b, res;
     
     fld := GF(q);
-    w := PrimitiveElement(fld);
+    w := Z(q);
     n := Int((d-1)*1/2);
 
     s := IdentityMat( d, fld );
@@ -466,8 +466,8 @@ function(d,q)
     local s, t, delta, u, v, sigma, fld, w, n, S1, lambda, A, B, C, gamma, alpha,perm, inv, gamma2;
     
     fld := GF(q);
-    gamma := PrimitiveElement(GF(q^2));
-    gamma2 := PrimitiveElement(GF(q));
+    gamma := Z(q^2);
+    gamma2 := Z(q);
     alpha := gamma^((q+1)/2);
     w := alpha^2;
 
@@ -543,7 +543,7 @@ function(d,q)
     local s, t, tBar, delta, deltaBar, u, v, sigma, fld, w, n, S1, S2, a, b, res, J;
     
     fld := GF(q);
-    w := PrimitiveElement(fld);
+    w := Z(q);
 
     s := IdentityMat( d, fld );
     s[1,1] := Zero(fld);
@@ -616,8 +616,8 @@ function(d,q)
     local s, t, delta, u, v, sigma, fld, w, n, S1, lambda, A, B, C, gamma,perm, inv, gamma2, nu;
     
     fld := GF(q);
-    gamma := PrimitiveElement(GF(q^2));
-    gamma2 := PrimitiveElement(GF(q));
+    gamma := Z(q^2);
+    gamma2 := Z(q);
     w := gamma^(q+1);
 
     nu := gamma + gamma^q;
@@ -753,7 +753,7 @@ function(e,d,q)
         inv := PermutationMat(perm,d) * One(GF(q));
         inv[m,m+1] := 0;
         inv[m+1,m] := 0;
-        inv[m,m] := 2*PrimitiveElement(GF(q));
+        inv[m,m] := 2*Z(q);
         inv[m+1,m+1] := -2;
         inv := inv * One(GF(q));
         
@@ -767,7 +767,7 @@ function(e,d,q)
         for k in [1..(d/2)-1] do
             inv[k,d-k+1] := 1 * One(GF(q));
         od;
-        inv[d/2,d/2] := PrimitiveElement(GF(q));
+        inv[d/2,d/2] := Z(q);
         inv[(d/2)+1,(d/2)+1] := -1 * One(GF(q));
         
         SetInvariantQuadraticForm( G, rec( matrix:=inv) );
@@ -805,7 +805,7 @@ function(e,d,q)
         #for k in [1..(d/2)-1] do
         #    inv[k,d-k+1] := 1;
         #od;
-        #inv[d/2,d/2] := PrimitiveElement(GF(q));
+        #inv[d/2,d/2] := Z(q);
         #inv[(d/2)+1,(d/2)+1] := -1 * One(GF(q));
         
         #SetInvariantQuadraticForm( G, rec( matrix:=inv) );
@@ -2164,8 +2164,8 @@ function(arg)
     StartValueForFirstCentreRow := function(q)
         local i, j, gamma, omega, alpha, delta, t, gens;
     
-        w := PrimitiveElement(GF(q));
-        gamma := PrimitiveElement(GF(q^2));
+        w := Z(q);
+        gamma := Z(q^2);
         alpha := gamma^((q+1)/2);
         
         for j in [1..q] do
@@ -2726,7 +2726,7 @@ function( arg )
     m := n/2;
     L2 := IdentityMat(n,fld);
     R2 := IdentityMat(n,fld);
-    w := PrimitiveElement(fld);
+    w := PrimitiveRoot(fld);
     v := PermutationMonomialMatrix(stdgens[8])[2];
     # set alpha in SU
     while (CheckContinue(perm,m)) do
@@ -3298,7 +3298,7 @@ function( arg )
     m := (n/2)-1;
     L2 := IdentityMat(n,fld);
     R2 := IdentityMat(n,fld);
-    w := PrimitiveElement(fld);
+    w := PrimitiveRoot(fld);
     # set alpha in SU
     while (CheckContinue(perm,m)) do
         c := CycleFromPermutation(perm);
@@ -3885,7 +3885,7 @@ function(arg)
     Add(slp, [ [1,0], cnt + 2 ] );    respos := cnt + 2;     #18 or 29+3f
 
     d := Length( diag );
-    omega := PrimitiveElement(GF(Size(fld)));
+    omega := PrimitiveRoot(fld);
 
     # Easy case
     if diag = One(diag) then

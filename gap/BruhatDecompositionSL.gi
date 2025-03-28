@@ -262,8 +262,8 @@ function( d, q )
 
     # delta: The diagonal matrix
     delta := IdentityMat(d,fld);
-    delta[1,1] := PrimitiveElement(fld);
-    delta[2,2] := PrimitiveElement(fld)^-1;
+    delta[1,1] := Z(q);
+    delta[2,2] := Z(q)^-1;
 
 
     # v: The cycle
@@ -1704,7 +1704,7 @@ function( arg )
         Add(slp, [1,0] );
     od;
 
-    slp := Transvections2( stdgens, PrimitiveElement(fld), slp, T2pos );
+    slp := Transvections2( stdgens, PrimitiveRoot(fld), slp, T2pos );
     # The positions of the transvections of T2 in slp are now
     # in the list T2pos.
     # In part. t_{2,1}(w^i) is in position T2pos[i].
@@ -2137,7 +2137,7 @@ function(arg)
         Add(slp, [1,0] );
     od;
 
-    slp := Transvections2( stdgens, PrimitiveElement(fld), slp, T2pos );
+    slp := Transvections2( stdgens, PrimitiveRoot(fld), slp, T2pos );
     # Now slp computes T2 and the positions of the transvections
     # of T2 in the slp are in the list T2pos
     # now we create the space for all of the other Ti
@@ -2443,7 +2443,7 @@ function( arg )
         Add(slp, [1,0] );
     od;
 
-    slp := Transvections2( stdgens, PrimitiveElement(fld), slp, T2pos );
+    slp := Transvections2( stdgens, PrimitiveRoot(fld), slp, T2pos );
     # Now slp computes T2 and the positions of the transvections
     # of T2 in the slp are in the list T2pos
     # now we create the space for all of the other Ti
@@ -3424,7 +3424,7 @@ function( arg )
     Add(slp, [ [1,0], cnt + 3 ] );    respos := cnt + 3;     #15 or 29+3f
 
     d := Length( diag );
-    omega := PrimitiveElement( fld );
+    omega := PrimitiveRoot( fld );
 
     if diag = One( diag ) then
         Add( slp, [ [1,0], respos ] );
