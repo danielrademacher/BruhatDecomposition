@@ -58,5 +58,4 @@ function(g)
         fi;
     fi;
 
-end
-);
+end);
