@@ -690,10 +690,11 @@ end);
 #####
 
 InstallGlobalFunction(  MSO,
-function(e,d,q)
-    local gens, G, inv, i, s, q2, q2i, perm, k, m;
+function(e,d,fld)
+    local q, gens, G, inv, i, s, q2, q2i, perm, k, m;
     
     #Test Input TODO
+    q := Size(fld);
 
     if e = 1 then
         gens := __LGOStandardGensSOPlus(d,q);
@@ -714,15 +715,15 @@ function(e,d,q)
             perm := perm * (k,d-k+1);
             k := k+2;
         od;
-        inv := PermutationMat(perm,d,GF(q));
+        inv := PermutationMat(perm,d,fld);
         
         G  := GroupByGenerators(gens);
         SetDimensionOfMatrixGroup( G, d );
-        SetFieldOfMatrixGroup( G, GF(q) );
+        SetFieldOfMatrixGroup( G, fld );
         SetSize( G, q^(m*(m-1)) * (q^m-1) * s );
         SetInvariantBilinearForm( G, rec( matrix:=inv) );
         
-        inv := NullMat(d, d, GF(q));
+        inv := NullMat(d, d, fld);
         for k in [1..(d/2)] do
             inv[k,d-k+1] := 1;
         od;
@@ -750,25 +751,25 @@ function(e,d,q)
             perm := perm * (k,d-k+1);
             k := k+2;
         od;
-        inv := PermutationMat(perm,d,GF(q));
+        inv := PermutationMat(perm,d,fld);
         inv[m,m+1] := 0;
         inv[m+1,m] := 0;
         inv[m,m] := 2*Z(q);
         inv[m+1,m+1] := -2;
-        inv := inv * One(GF(q));
+        inv := inv * One(fld);
         
         G := GroupWithGenerators(gens);
         SetDimensionOfMatrixGroup( G, d );
-        SetFieldOfMatrixGroup( G, GF(q) );
+        SetFieldOfMatrixGroup( G, fld );
         SetSize( G, q^(m*(m-1)) * (q^m+1) * s );
         SetInvariantBilinearForm( G, rec( matrix:=inv) );
         
-        inv := NullMat(d, d, GF(q));
+        inv := NullMat(d, d, fld);
         for k in [1..(d/2)-1] do
-            inv[k,d-k+1] := 1 * One(GF(q));
+            inv[k,d-k+1] := 1 * One(fld);
         od;
         inv[d/2,d/2] := Z(q);
-        inv[(d/2)+1,(d/2)+1] := -1 * One(GF(q));
+        inv[(d/2)+1,(d/2)+1] := -1 * One(fld);
         
         SetInvariantQuadraticForm( G, rec( matrix:=inv) );
         SetIsFullSubgroupGLorSLRespectingBilinearForm( G, true );
@@ -792,21 +793,21 @@ function(e,d,q)
             perm := perm * (k,d-k+1);
             k := k+1;
         od;
-        inv := PermutationMat(perm,d,GF(q));
-        inv[(d+1)/2,(d+1)/2] := One(GF(q)) * (- 1/2);
+        inv := PermutationMat(perm,d,fld);
+        inv[(d+1)/2,(d+1)/2] := One(fld) * (- 1/2);
         
         G := GroupByGenerators(gens);
         SetDimensionOfMatrixGroup( G, d );
-        SetFieldOfMatrixGroup( G, GF(q) );
+        SetFieldOfMatrixGroup( G, fld );
         SetSize( G, q^(m^2) * s  );
         SetInvariantBilinearForm( G, rec( matrix:=inv) );
         
-        #inv := NullMat(d, d, GF(q));
+        #inv := NullMat(d, d, fld);
         #for k in [1..(d/2)-1] do
         #    inv[k,d-k+1] := 1;
         #od;
         #inv[d/2,d/2] := Z(q);
-        #inv[(d/2)+1,(d/2)+1] := -1 * One(GF(q));
+        #inv[(d/2)+1,(d/2)+1] := -1 * One(fld);
         
         #SetInvariantQuadraticForm( G, rec( matrix:=inv) );
         # Quadratic Form of Circle Typ??? TODO
@@ -2220,7 +2221,7 @@ function(arg)
     d := Length( g );
     fld := FieldOfMatrixList( stdgens );
     
-    mat := GeneratorsOfGroup(MSO(-1,d,Size(fld)))[3];
+    mat := GeneratorsOfGroup(MSO(-1,d,fld))[3];
     w := mat[1,1];   #TODO Choose primitiveElement from LGO Standard generator, such that the generator are the same
     A := mat[d/2,d/2];
     B := mat[d/2,(d/2)+1];
@@ -4095,7 +4096,7 @@ function(stdgens, g)
 
     if (Length(g) mod 2) = 0 then
     
-        if (g in MSO(1,Length(g),Size(FieldOfMatrixList( stdgens )))) then
+        if (g in MSO(1,Length(g),FieldOfMatrixList( stdgens ))) then
 
             # We write an SLP into the variable slp
             # The first 12 entries are the stdgens and their inverses
@@ -4153,7 +4154,7 @@ function(stdgens, g)
             #    R[1] = u1, R[2] = u2, R[3] = p_sign, R[4] = diag
             return [pgr, [ u1, u2, p_sign^(-1), diag ]];
         
-        elif (g in MSO(-1,Length(g),Size(FieldOfMatrixList( stdgens )))) then
+        elif (g in MSO(-1,Length(g),FieldOfMatrixList( stdgens ))) then
     
             # We write an SLP into the variable slp
             # The first 12 entries are the stdgens and their inverses
@@ -4212,7 +4213,7 @@ function(stdgens, g)
             return [pgr, [ u1, u2, p_sign^(-1), diag ]];
         fi;
 
-    elif (g in MSO(0,Length(g),Size(FieldOfMatrixList( stdgens )))) then
+    elif (g in MSO(0,Length(g),FieldOfMatrixList( stdgens ))) then
 
         # We write an SLP into the variable slp
         # The first 12 entries are the stdgens and their inverses
@@ -4282,7 +4283,7 @@ function(stdgens, g)
 
     if (Length(g) mod 2) = 0 then
     
-        if (g in MSO(-1,Length(g),Size(FieldOfMatrixList( stdgens )))) then
+        if (g in MSO(-1,Length(g),FieldOfMatrixList( stdgens ))) then
     
             # We write an SLP into the variable slp
             # The first 12 entries are the stdgens and their inverses
