@@ -774,8 +774,7 @@ function( arg )
     # Now u1^-1 * g * u2^-1 is the input matrix
     return [slp,[g, u1, u2], hs];
     
-end
-);
+end);
 
 
 
@@ -1519,8 +1518,7 @@ function( arg )
     # Now u1^-1 * g * u2^-1 is the input matrix
     return [slp,[g, u1, u2], hs];
     
-end
-);
+end);
 
 
 
@@ -1575,8 +1573,7 @@ function( d, q )
 
     return [s,t,delta,v,u,x];
 
-end
-);
+end);
 
 
 
@@ -1622,8 +1619,7 @@ function( d, q )
 
     return [s,t,delta,v,u,x];
     
-end
-);
+end);
 
 
 
@@ -1833,8 +1829,7 @@ function( arg )
 
     return [slp, [ tmpvalue, mat ] ];
     
-end
-);
+end);
 
 
 
@@ -1939,8 +1934,7 @@ function( arg )
 
     return [slp];
 
-end
-);
+end);
 
 
 
@@ -2018,5 +2012,4 @@ function( stdgens, g )
     #    R[1] = u1, R[2] = u2, R[3] = p_sign, R[4] = diag
     return [pgr, [ u1, u2, p_sign^(-1), diag ]];
 
-end
-);
+end);
