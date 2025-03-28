@@ -198,7 +198,7 @@ function(arg)
             Add(basis,specialalpha^(-q)*(w^(q+1))^ell);
         od;
 
-        VS := VectorSpace(GF(Characteristic(fld)),basis);
+        VS := VectorSpace(PrimeField(fld),basis);
 
         cc := CoefficientsPrimitiveElementS( fld, alpha, Basis(VS,basis));
         instr := [];
@@ -302,7 +302,7 @@ function(arg)
         return [ slp, [u1,g,u2] ];
     fi;
 
-    f := LogInt(Size(fld), Characteristic(fld)); #ie q=p^f
+    f := DegreeOverPrimeField(fld); #ie q=p^f
     q := RootInt(Characteristic(fld)^f);
 
     hs := HighestSlotOfSLP(slp);
@@ -391,7 +391,7 @@ function(arg)
     #    Add(basis,specialalpha^(-q)*(w^(q+1))^ell);
     #od;
 
-    #VS := VectorSpace(GF(Characteristic(fld)),basis);
+    #VS := VectorSpace(PrimeField(fld),basis);
     #test := PseudoRandom(VS);
 
     #Display(test);
@@ -851,7 +851,7 @@ function(arg)
             Add(basis,(w^(q+1))^ell);
         od;
 
-        VS := VectorSpace(GF(Characteristic(fld)),basis);
+        VS := VectorSpace(PrimeField(fld),basis);
 
         cc := CoefficientsPrimitiveElementS( fld, alpha, Basis(VS,basis));
         instr := [];
@@ -955,7 +955,7 @@ function(arg)
         return [ slp, [u1,g,u2] ];
     fi;
 
-    f := LogInt(Size(fld), Characteristic(fld)); #ie q=p^f
+    f := DegreeOverPrimeField(fld); #ie q=p^f
     q := RootInt(Characteristic(fld)^f);
 
     hs := HighestSlotOfSLP(slp);
@@ -1044,7 +1044,7 @@ function(arg)
     #    Add(basis,specialalpha^(-q)*(w^(q+1))^ell);
     #od;
 
-    #VS := VectorSpace(GF(Characteristic(fld)),basis);
+    #VS := VectorSpace(PrimeField(fld),basis);
     #test := PseudoRandom(VS);
 
     #Display(test);
@@ -1515,7 +1515,7 @@ function(arg)
             Add(basis,specialalpha^(-q)*(w^(q+1))^ell);
         od;
 
-        VS := VectorSpace(GF(Characteristic(fld)),basis);
+        VS := VectorSpace(PrimeField(fld),basis);
 
         cc := CoefficientsPrimitiveElementS( fld, alpha, Basis(VS,basis));
         instr := [];
@@ -1697,7 +1697,7 @@ function(arg)
         return [ slp, [u1,g,u2] ];
     fi;
 
-    f := LogInt(Size(fld), Characteristic(fld)); #ie q=p^f
+    f := DegreeOverPrimeField(fld); #ie q=p^f
     q := RootInt(Characteristic(fld)^f);
 
     hs := HighestSlotOfSLP(slp);
@@ -1810,7 +1810,7 @@ function(arg)
     #    Add(basis,specialalpha^(-q)*(w^(q+1))^ell);
     #od;
 
-    #VS := VectorSpace(GF(Characteristic(fld)),basis);
+    #VS := VectorSpace(PrimeField(fld),basis);
     #test := PseudoRandom(VS);
 
     #Display(test);
@@ -2420,7 +2420,7 @@ function(arg)
             Add(basis,(w^(q+1))^ell);
         od;
 
-        VS := VectorSpace(GF(Characteristic(fld)),basis);
+        VS := VectorSpace(PrimeField(fld),basis);
 
         cc := CoefficientsPrimitiveElementS( fld, alpha, Basis(VS,basis));
         instr := [];
@@ -2608,7 +2608,7 @@ function(arg)
         return [ slp, [u1,g,u2] ];
     fi;
 
-    f := LogInt(Size(fld), Characteristic(fld)); #ie q=p^f
+    f := DegreeOverPrimeField(fld); #ie q=p^f
     q := RootInt(Characteristic(fld)^f);
 
     hs := HighestSlotOfSLP(slp);
@@ -2721,7 +2721,7 @@ function(arg)
     #    Add(basis,specialalpha^(-q)*(w^(q+1))^ell);
     #od;
 
-    #VS := VectorSpace(GF(Characteristic(fld)),basis);
+    #VS := VectorSpace(PrimeField(fld),basis);
     #test := PseudoRandom(VS);
 
     #Display(test);
@@ -3226,7 +3226,7 @@ function( d, q )
     delta[1,1] := w^(q+1);
     delta[d,d] := w^((-(q+1)));
 
-    v := 0 * IdentityMat( d, fld );
+    v := NullMat( d, d, fld );
     if (IsEvenInt(d)) then
         v[d/2,1] := One(fld);
         v{[1..(d/2)-1]}{[2..d/2]} := IdentityMat((d/2)-1,fld);
@@ -3299,7 +3299,7 @@ function( d, q )
     delta[1,1] := w^(q+1);
     delta[d,d] := w^((-(q+1)));
 
-    v := 0 * IdentityMat( d, fld );
+    v := NullMat( d, d, fld );
     if (IsEvenInt(d)) then
         v[d/2,1] := One(fld);
         v{[1..(d/2)-1]}{[2..d/2]} := IdentityMat((d/2)-1,fld);
