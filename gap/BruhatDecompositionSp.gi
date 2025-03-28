@@ -35,7 +35,7 @@
 #    in a list to evaluate in a StraightLineProgram. (Section 2)
 #    Although described differently in the paper, we sometimes will allow
 #    instructions to multiply more than two elements (eg during conjugating).
-#    This doesn't affect the optimality of an slp much, but higly increases
+#    This doesn't affect the optimality of an slp much, but highly increases
 #    the readability of our implementation.
 ######################################
 

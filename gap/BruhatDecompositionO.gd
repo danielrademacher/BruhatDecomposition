@@ -60,7 +60,7 @@ DeclareGlobalFunction( "FindPrimePowerDecomposition" );
 #! @Returns stdgens (the LGO standard-generators of SO<M>(e,d,q)</M>)
 #! @Description
 #! <M>d</M>: the dimension of our matrices, <M>\newline</M>
-#! <M>q</M>: A prime power <M>q = p^f</M>, where <M>\mathbb{F}_q</M> ist the field whereover the matrices are defined. <M>q</M> has to be odd <M>\newline</M>
+#! <M>q</M>: A prime power <M>q = p^f</M>, where <M>\mathbb{F}_q</M> ist the field wherever the matrices are defined. <M>q</M> has to be odd <M>\newline</M>
 #! <M>e</M>: 1 for plus type, 0 for zero type, -1 for minus type
 #! This function computes the standard generators of SO
 #! as given by C. R. Leedham-Green and E. A. O'Brien in
@@ -83,7 +83,7 @@ DeclareGlobalFunction( "__LGOStandardGensSOMinus" );
 #! @Returns stdgens (the LGO standard-generators of <M>\Omega(e,d,q)</M>)
 #! @Description
 #! <M>d</M>: the dimension of our matrices, <M>\newline</M>
-#! <M>q</M>: A prime power <M>q = p^f</M>, where <M>\mathbb{F}_q</M> ist the field whereover the matrices are defined. <M>\newline</M>
+#! <M>q</M>: A prime power <M>q = p^f</M>, where <M>\mathbb{F}_q</M> ist the field wherever the matrices are defined. <M>\newline</M>
 #! <M>e</M>: 1 for plus type, 0 for zero type, -1 for minus type
 #! This function computes the standard generators of <M>\Omega</M>
 #! as given by C. R. Leedham-Green and E. A. O'Brien in
@@ -109,7 +109,7 @@ DeclareGlobalFunction( "__LGOStandardGensOmegaMinusEvenChar" );
 #! @Returns <M>G</M> (where <M>G =</M> SO<M>(e,d,q)</M>)
 #! @Description
 #! <M>d</M>: the dimension of our matrices, <M>\newline</M>
-#! <M>q</M>: A prime power <M>q = p^f</M>, where <M>\mathbb{F}_q</M> ist the field whereover the matrices are defined. <M>q</M> has to be odd <M>\newline</M>
+#! <M>q</M>: A prime power <M>q = p^f</M>, where <M>\mathbb{F}_q</M> ist the field wherever the matrices are defined. <M>q</M> has to be odd <M>\newline</M>
 #! <M>e</M>: 1 for plus type, 0 for zero type, -1 for minus type <M>\newline</M>
 #! This function returns the special orthogonal group of type e. The generators of the group are the LGO standard generators and the size of the group is already stored as an attribute.
 DeclareGlobalFunction( "MSO" );
@@ -255,7 +255,7 @@ DeclareGlobalFunction( "FindCorrectCycel" );
 #! <M>np</M>: A list of cycle <M>\newline</M>
 #! <M>l</M>: A list of natural numbers <M>\newline</M>
 #! <M>n</M>: A natural number <M>\newline</M>
-#! This is a help function for <C>MonomialSLPSOPlus</C>. This function checks whether the new permutation <M>np</M> destorys an already considered element of <M>op</M>. The already considered elements are stored in <M>l</M>.
+#! This is a help function for <C>MonomialSLPSOPlus</C>. This function checks whether the new permutation <M>np</M> destroys an already considered element of <M>op</M>. The already considered elements are stored in <M>l</M>.
 DeclareGlobalFunction( "TestPermutationProd" );
 
 
@@ -287,7 +287,7 @@ DeclareGlobalFunction( "TestPermutationProd2" );
 #! @Returns [list,perm] (list is a list of the non-zero elements of each column of <M>M</M>, perm is the permutation corresponding to <M>M</M>)
 #! @Description
 #! <M>M</M>: A monomial matrix <M>\newline</M>
-#! This is a help function for <C>MonomialSLPSOPlus</C> and <C>MonomialSLPSOCircle</C>. This function calcultes a list of size 2. The first entry is a list of the non-zero elements of each column of <M>M</M>. The second entry is a permutation which corresponds to <M>M</M> as a permutation matrix.
+#! This is a help function for <C>MonomialSLPSOPlus</C> and <C>MonomialSLPSOCircle</C>. This function calculates a list of size 2. The first entry is a list of the non-zero elements of each column of <M>M</M>. The second entry is a permutation which corresponds to <M>M</M> as a permutation matrix.
 DeclareGlobalFunction( "MonomialMatrixToEasyForm" );
 
 

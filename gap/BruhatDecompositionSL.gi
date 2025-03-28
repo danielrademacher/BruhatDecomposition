@@ -25,7 +25,7 @@
 #    - For 1 <= j < i <= d: t_{i,j}(\alpha) is the matrix T with
 #        1-entries on diagonal, T_i,j = \alpha, 0 elsewhere
 #    Each t_{i,j}(\alpha) can be computed from t_{2,1}(\alpha) via recursion,
-#    where we have to distinguish the odd and even dimensons (p12 Lemma 4.2).
+#    where we have to distinguish the odd and even dimensions (p12 Lemma 4.2).
 #    This again can be expressed as a product of t_{2,1}(omega^\ell)
 #    (where omega is a primitive element and 0 <= ell < f).
 #    The transvections as words in the standard generators are described in
@@ -44,7 +44,7 @@
 #    in a list to evaluate in a StraightLineProgram. (Section 2)
 #    Although described differently in the paper, we sometimes will allow
 #    instructions to multiply more than two elements (eg during conjugating).
-#    This doesn't affect the optimality of an slp much, but higly increases
+#    This doesn't affect the optimality of an slp much, but highly increases
 #    the readability of our implementation.
 ######################################
 
@@ -190,7 +190,7 @@ end
 
 # Input:
 #    d: the dimension of our matrix
-#    q: A prime power q = p^f, where F_q ist the field whereover the matrices
+#    q: A prime power q = p^f, where F_q ist the field wherever the matrices
 #        are defined
 
 # Output: stdgens the LGO standard-generators of SL(d,q)
@@ -473,7 +473,7 @@ end
 
 # Input:    perm: A permutation in Sym(2d) sth. {{i,i+d}}_1<=i<=d are blocks
 #            dim: The dimension of the matrix we want perm send to
-#            fld: The field whereover the matrix is defined.
+#            fld: The field wherever the matrix is defined.
 
 # Output:    res: The Matrix M satisfying the above properties
 

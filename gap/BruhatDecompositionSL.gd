@@ -338,7 +338,7 @@ DeclareGlobalFunction( "MyPermutationMatNC" );
 #! @Returns stdgens (the LGO standard-generators of SL<M>(d,q)</M>)
 #! @Description
 #! <M>d</M>: the dimension of our matrix, <M>\newline</M>
-#! <M>q</M>: A prime power <M>q = p^f</M>, where <M>F_q</M> ist the field whereover the matrices are defined <M>\newline</M>
+#! <M>q</M>: A prime power <M>q = p^f</M>, where <M>F_q</M> ist the field wherever the matrices are defined <M>\newline</M>
 #! This function computes the standard generators of SL
 #! as given by C. R. Leedham-Green and E. A. O'Brien in
 #! "Constructive Recognition of Classical Groups in odd characteristic"
@@ -364,7 +364,7 @@ DeclareGlobalFunction( "LGOStandardGensSLNC" );
 #    j+1,j+2,.. if no slot is explicitly given.)
 
 #! @Arguments slp
-#! @Returns highestslot (The number of slots this SLP will need if evaluated)
+#! @Returns highest slot (The number of slots this SLP will need if evaluated)
 #! @Description
 #! slp: A list of instructions satisfying the properties for an SLP <M>\newline</M>
 #! The following function determines the highest slot a SLP
@@ -405,7 +405,7 @@ DeclareGlobalFunction( "MatToWreathProdNC" );
 #! @Description
 #! perm: A permutation in Sym(<M>2d</M>) sth. <M>{{i,i+d}}_1: 1 \leq i \leq d </M> are blocks, <M>\newline</M>
 #! dim: The dimension of the matrix we want perm send to, <M>\newline</M>
-#! fld: The field whereover the matrix is defined. <M>\newline</M>
+#! fld: The field wherever the matrix is defined. <M>\newline</M>
 #! In fact the association above is an isomorphism and we can associate to each
 #! permutation we compute during PermSLP a unique monomial matrix whose non-zero
 #! entries are +1 or -1.
@@ -422,13 +422,13 @@ DeclareGlobalFunction( "WreathProdToMat" );
 #! @Arguments spos respos tmppos k
 #! @Returns instr (Lines of an SLP that will (when evaluated) take the value b saved in spos and write b^k in respos)
 #! @Description
-#! AEM (Ancient Egytian Multiplication) <M>\newline</M>
+#! AEM (Ancient Egyptian Multiplication) <M>\newline</M>
 #! spos: The memory slot, where a value b is saved in, <M>\newline</M>
 #! respos: The memory slot we want the exponentation to be written in, <M>\newline</M>
 #! tmppos: A memory slot for temporary results, <M>\newline</M>
 #! k: An integer <M>\newline</M>
 #! At several occasions we will need to compute a high power of some value
-#! saved in a memory slot. For this purpose there is a variaton of AEM
+#! saved in a memory slot. For this purpose there is a variation of AEM
 #! implemented below.
 #! Remarks:     tmpos and respos must differ.
 #! If spos = respos or spos =  tmpos it will be overwritten.
