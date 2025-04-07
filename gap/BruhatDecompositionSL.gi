@@ -145,7 +145,7 @@ function(perm, dim, fld)
 
     local res;
 
-    res := PermutationMat(perm, dim) * One(fld);
+    res := PermutationMat(perm, dim, fld);
     ConvertToMatrixRep(res);
 
     return res;
@@ -158,7 +158,7 @@ function(perm, dim, fld)
 
     local res;
 
-    res := PermutationMat( perm, dim ) * One( fld );
+    res := PermutationMat( perm, dim, fld );
     ConvertToMatrixRepNC(res);
 
     return res;
@@ -231,7 +231,7 @@ function( d, q )
         v := MyPermutationMat( v, d, fld );
 
     else
-        v :=  0* IdentityMat(d,fld);
+        v :=  NullMat(d, d, fld);
         v[1,d] := One(fld);
         v{[ 2..d ]}{[ 1..d-1 ]} := - IdentityMat( d-1 , fld );
     fi;
@@ -279,7 +279,7 @@ function( d, q )
         v := MyPermutationMatNC( v, d, fld );
 
     else
-        v :=  0* IdentityMat(d,fld);
+        v :=  NullMat(d, d, fld);
         v[1,d] := One(fld);
         v{[ 2..d ]}{[ 1..d-1 ]} := - IdentityMat( d-1 , fld );
     fi;
@@ -484,7 +484,7 @@ function( perm, dim, fld )
     od;
 
     perm := PermList(tmp);
-    res := PermutationMat( perm, dim ) * one;
+    res := PermutationMat( perm, dim, fld );
 
     for r in [ 1..dim ] do
         res[ r , r^perm ]:= sign[ r ];
@@ -654,7 +654,7 @@ function( stdgens, omega, slp, pos )
     local ell, f, fld;
 
     fld := DefaultField( omega );
-    f := LogInt( Size(fld), Characteristic(fld) );
+    f := DegreeOverPrimeField( fld );
 
     for ell in [0..f-1] do
 
@@ -1063,7 +1063,7 @@ function( arg )
         return [ slp, [u1,g,u2] ];
     fi;
 
-    f := LogInt(Size(fld), Characteristic(fld)); #ie q=p^f
+    f := DegreeOverPrimeField(fld); #ie q=p^f
 
     # We create the space for the T2 := { t_{2,1}(omega^ell)}
     # A Call of Transvections2 adds T2 to slp.
@@ -1694,7 +1694,7 @@ function( arg )
         return [ slp, [u1,g,u2] ];
     fi;
 
-    f := LogInt(Size(fld), Characteristic(fld)); #ie q=p^f
+    f := DegreeOverPrimeField(fld); #ie q=p^f
 
     # We create the space for the T2 := { t_{2,1}(omega^ell)}
     # A Call of Transvections2 adds T2 to slp.
@@ -2128,7 +2128,7 @@ function(arg)
     # add lastline to the slp to display the memory contents u1,u2
     lastline := [ [u1pos,1], [u2pos,1] ];
 
-    f := LogInt( Size(fld), Characteristic(fld) );
+    f := DegreeOverPrimeField(fld);
 
     # now we create the space for the T2 \{ t_{2,1}(w^l) \}
     T2pos := [ HighestSlotOfSLP(slp)+1 .. HighestSlotOfSLP(slp)+f ];
@@ -2434,7 +2434,7 @@ function( arg )
     # add lastline to the slp to display the memory contents u1,u2
     lastline := [ [u1pos,1], [u2pos,1] ];
 
-    f := LogInt( Size(fld), Characteristic(fld) );
+    f := DegreeOverPrimeField(fld);
 
     # now we create the space for the T2 \{ t_{2,1}(w^l) \}
     T2pos := [ HighestSlotOfSLP(slp)+1 .. HighestSlotOfSLP(slp)+f ];
