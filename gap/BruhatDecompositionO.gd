@@ -35,18 +35,6 @@
 #    Originally implemented subfunctions
 ####################
 
-#####
-# FindPrimePowerDecomposition
-#####
-
-#! @Arguments n
-#! @Returns <M>[a,b]</M> (<M>a</M> and <M>b</M> are natural numbers such that <M>n-1= 2^a \cdot b</M>)
-#! @Description
-#! <M>n</M>: Natural number
-#! Computes two natural numbers <M>a</M> and <M>b</M> such that <M>n-1= 2^a \cdot b</M>.
-DeclareGlobalFunction( "FindPrimePowerDecomposition" );
-
-
 
 #####
 # LGOStandardGensSO
