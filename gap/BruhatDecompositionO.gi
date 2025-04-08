@@ -218,24 +218,8 @@ function(d,q)
     t[(d/2) + 1,d] := 2 * One(fld);
 
     A := 1/2 * ((gamma^(q-1))+(gamma^(-q+1)));
-    if A <> Zero(fld) then
-        A := gamma2^LogFFE(A,gamma2);
-    else
-        A := Zero(fld);
-    fi;
     B := 1/2 * alpha * ((gamma^(q-1)) - (gamma^(-q+1)));
-    if B <> Zero(fld) then
-        B := gamma2^LogFFE(B,gamma2);
-    else
-        B := Zero(fld);
-    fi;
     C := 1/2 * alpha^(-1) * ((gamma^(q-1)) - (gamma^(-q+1)));
-    if C <> Zero(fld) then
-        C := gamma2^LogFFE(C,gamma2);
-    else
-        C := Zero(fld);
-    fi;
-    w := gamma2^LogFFE(w,gamma2);
     delta := IdentityMat( d, fld );
     delta[1,1] := w;
     delta[d,d] := w^(-1);
@@ -464,24 +448,8 @@ function(d,q)
     t[(d/2),d] := 2 * One(fld);
 
     A := 1/2 * ((gamma^(q-1))+(gamma^(-q+1)));
-    if A <> Zero(fld) then
-        A := gamma2^LogFFE(A,gamma2);
-    else
-        A := Zero(fld);
-    fi;
     B := 1/2 * alpha * ((gamma^(q-1)) - (gamma^(-q+1)));
-    if B <> Zero(fld) then
-        B := gamma2^LogFFE(B,gamma2);
-    else
-        B := Zero(fld);
-    fi;
     C := 1/2 * alpha^(-1) * ((gamma^(q-1)) - (gamma^(-q+1)));
-    if C <> Zero(fld) then
-        C := gamma2^LogFFE(C,gamma2);
-    else
-        C := Zero(fld);
-    fi;
-    w := gamma2^LogFFE(w,gamma2);
     delta := IdentityMat( d, fld );
     delta[1,1] := w;
     delta[d,d] := w^(-1);
@@ -601,11 +569,6 @@ function(d,q)
     w := gamma^(q+1);
 
     nu := gamma + gamma^q;
-    if nu <> Zero(fld) then
-        nu := gamma2^LogFFE(nu,gamma2);
-    else
-        nu := Zero(fld);
-    fi;
     s := IdentityMat( d, fld );
     s[1,1] := Zero(fld);
     s[d,d] := Zero(fld);
@@ -619,24 +582,8 @@ function(d,q)
     t[(d/2) + 1,d] := nu;
 
     A :=((gamma^(-1))+(gamma^(-q)));
-    if A <> Zero(fld) then
-        A := gamma2^LogFFE(A,gamma2);
-    else
-        A := Zero(fld);
-    fi;
     B := ((gamma^(1)) + (gamma^(q)));
-    if B <> Zero(fld) then
-        B := gamma2^LogFFE(B,gamma2);
-    else
-        B := Zero(fld);
-    fi;
     C := ((gamma^(-q+1)) + (gamma^(q-1))+1);
-    if C <> Zero(fld) then
-        C := gamma2^LogFFE(C,gamma2);
-    else
-        C := Zero(fld);
-    fi;
-    w := gamma2^LogFFE(w,gamma2);
     delta := IdentityMat( d, fld );
     delta[1,1] := w;
     delta[d,d] := w^(-1);
