@@ -123,7 +123,7 @@
 #!    <C>TransvecAtAlpha()</C>,
 #!    <C>ShiftTransvections()</C>, <C>FastShiftTransvections()</C>, <C>BackShiftTransvections()</C> and
 #!    <C>FastBackShiftTransvections()</C>. <P/>
-    
+
 #!    The difference to <C>UnipotentDecompositionWithTi()</C> [<Ref Sect="Section_LabelUnipotentDecomposition2b"/>] is that this
 #!    version won't store all the transvections <M>t_{i,i-1}(\omega^l)</M>.
 #!    This will increase the runtime but reduce the memory usage by <M>(d-3) \cdot f</M> compared to

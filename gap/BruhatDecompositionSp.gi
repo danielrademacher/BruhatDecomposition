@@ -773,7 +773,7 @@ function( arg )
 
     # Now u1^-1 * g * u2^-1 is the input matrix
     return [slp,[g, u1, u2], hs];
-    
+
 end);
 
 
@@ -782,7 +782,7 @@ InstallGlobalFunction(  UnitriangularDecompositionSpEvenChar,
 function( arg )
 
     local u1, u2, d, fld, f, alpha, c, r, j, a, z, i, Mul, g, ell, slp, hs, tmppos, AEMrespos, u1pos, u2pos, tvpos, T2pos, T3pos, T4pos, tmppos2, uipos, q, f2, TransvecAtAlpha2, TransvecAtAlpha3, TransvecAtAlpha4, test, ShiftTransvection3ByJ, ShiftTransvection3ByI, ShiftTransvection4, ShiftTransvection2ByJ, ShiftTransvection2ByI, stdgens;
-    
+
     #    ###############
     #    Local Functions
     #    ###############
@@ -796,7 +796,7 @@ function( arg )
     # are saved. This function computes
     # t_{i,j}(alpha) = product t_{i,j}(omega^ell)^{a_ell}  (see Theorem 5.22)
     # where the exponents a_ell are given by CoefficientsPrimitiveElement.
-    
+
     #####
     # TransvectionAtAlpha2()
     #####
@@ -1517,7 +1517,7 @@ function( arg )
 
     # Now u1^-1 * g * u2^-1 is the input matrix
     return [slp,[g, u1, u2], hs];
-    
+
 end);
 
 
@@ -1530,12 +1530,12 @@ InstallGlobalFunction(  LGOStandardGensSp,
 function( d, q )
 
     local w,s, t, delta, u, v, x, J, fld;
-    
+
     if d < 6 then
         Error("LGOStandardGens: d has to be at least 6\n");
         return;
     fi;
-    
+
     if (q mod 2 = 0) then
         return LGOStandardGensSpEvenChar(d,q);
     fi;
@@ -1618,7 +1618,7 @@ function( d, q )
     x[d,2] := One(fld);
 
     return [s,t,delta,v,u,x];
-    
+
 end);
 
 
@@ -1828,7 +1828,7 @@ function( arg )
     mat := tmpvalue*mat;
 
     return [slp, [ tmpvalue, mat ] ];
-    
+
 end);
 
 
@@ -1953,7 +1953,7 @@ function( stdgens, g )
 
     Info( InfoBruhat, 1,
             "returns an SLP to generate u1, u2, p_sign, diag\n"    );
-            
+
     fld := FieldOfMatrixList( [g] );
     q := Size(fld);
 

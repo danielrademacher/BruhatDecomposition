@@ -8,20 +8,20 @@
 
 InstallGlobalFunction(  BruhatDecomposition,
 function(g)
-    
+
     local d, fld, q;
-    
+
     d := Length( g );
     fld := FieldOfMatrixList( [g] );
     q := Size(fld);
-    
+
     if d <= 6 then
         Print("This code tries to predict to which classical group g belongs. \n ");
         Print("Since d is smaller or equal than 6, \n some classical groups are isomorphic to each other and \n the wrong subfunction may be called. \n ");
         Print("To make sure that the correct subfunction is used, \n please call it directly. \n");
         Print("\n");
     fi;
-   
+
     if IsEvenInt(d) then
         if g in Sp(d,q) then
             Print("Element g in contained in Sp(", d, ", ", q, ") \n");

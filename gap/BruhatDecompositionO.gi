@@ -35,7 +35,7 @@ function(e, d, q)
         fi;
         return __LGOStandardGensSOPlus(d,q);
     fi;
-    
+
     if e = -1 then
         if d < 6 then
             Error("LGOStandardGens: d has to be at least 8\n");
@@ -43,7 +43,7 @@ function(e, d, q)
         fi;
         return __LGOStandardGensSOMinus(d,q);
     fi;
-    
+
     if e = 0 then
         if d < 6 then
             Error("LGOStandardGens: d has to be at least 7\n");
@@ -51,7 +51,7 @@ function(e, d, q)
         fi;
         return __LGOStandardGensSOCircle(d,q);
     fi;
-    
+
     Error("e has to be 1, -1 or 0.");
 
 end);
@@ -65,7 +65,7 @@ end);
 InstallGlobalFunction(  __LGOStandardGensSOPlus,
 function(d,q)
     local s, sBar, t, tBar, delta, deltaBar, u, v, sigma, fld, w, n, S1, S2, a, b, res;
-    
+
     fld := GF(q);
     w := Z(q);
 
@@ -78,7 +78,7 @@ function(d,q)
     s[d,2] := -1 * One(fld);
     s[2,d] := One(fld);
     s[d-1,1] := One(fld);
-    
+
     sBar := IdentityMat( d, fld );
     sBar[1,1] := Zero(fld);
     sBar[2,2] := Zero(fld);
@@ -92,7 +92,7 @@ function(d,q)
     t := IdentityMat( d, fld );
     t[1,d-1] := -1 * One(fld);
     t[2,d] := One(fld);
-    
+
     tBar := IdentityMat( d, fld );
     tBar[1,2] := One(fld);
     tBar[d-1,d] := -1 * One(fld);
@@ -108,11 +108,11 @@ function(d,q)
     deltaBar[d,d] := w^(-1);
     deltaBar[2,2] := w^(-1);
     deltaBar[d-1,d-1] := w;
-    
+
     u := IdentityMat( d, fld );
-    
+
     n := Int(d* 0.5);
-    
+
     v := NullMat( d, d, fld );
     v[d/2,1] := One(fld);
     v{[1..(d/2)-1]}{[2..d/2]} := IdentityMat((d/2)-1, fld);
@@ -122,7 +122,7 @@ function(d,q)
         v[d/2,1] := -1 * One(fld);
         v[d/2+1,d] := -1 * One(fld);
     fi;
-    
+
     b := FindOddPart(Size(fld)-1);
     sigma := IdentityMat( d, fld );
     sigma[1,1] := w^b;
@@ -141,7 +141,7 @@ end);
 InstallGlobalFunction(  __LGOStandardGensSOCircle,
 function(d,q)
     local s, t, delta, u, v, sigma, fld, w, n, b;
-    
+
     fld := GF(q);
     w := Z(q);
     n := Int((d-1)*1/2);
@@ -157,17 +157,17 @@ function(d,q)
     t[1,d] := One(fld);
     t[1,(d+1)/2] := 2 * One(fld);
     t[(d+1)/2,d] := One(fld);
-    
+
     delta := IdentityMat( d, fld );
     delta[1,1] := w^2;
     delta[d,d] := w^(-2);
     delta[3,3] := One(fld);
-    
+
     u := IdentityMat( d, fld );
     u{[1..2]}{[1..2]} := [[0,1],[-1,0]];
     u{[d-1,d]}{[d-1,d]} := [[0,-1],[1,0]];
     u := u * One(fld);
-    
+
     v := NullMat( d, d, fld );
     v[(d+1)/2,(d+1)/2] := One(fld);
     v[(d+1)/2 - 1,1] := One(fld);
@@ -178,7 +178,7 @@ function(d,q)
         v[(d+1)/2 - 1,1] := -1 * One(fld);
         v[(d+1)/2 + 1,d] := -1 * One(fld);
     fi;
-    
+
     b := FindOddPart(Size(fld)-1);
     sigma := IdentityMat( d, fld );
     sigma[1,1] := w^b;
@@ -198,7 +198,7 @@ end);
 InstallGlobalFunction(  __LGOStandardGensSOMinus,
 function(d,q)
     local s, t, delta, u, v, sigma, fld, w, n, S1, lambda, A, B, C, gamma, alpha,perm, inv, gamma2;
-    
+
     fld := GF(q);
     gamma := Z(q^2);
     gamma2 := Z(q);
@@ -216,7 +216,7 @@ function(d,q)
     t[1,d] := One(fld);
     t[1,(d/2) + 1] := One(fld);
     t[(d/2) + 1,d] := 2 * One(fld);
-    
+
     A := 1/2 * ((gamma^(q-1))+(gamma^(-q+1)));
     if A <> Zero(fld) then
         A := gamma2^LogFFE(A,gamma2);
@@ -243,12 +243,12 @@ function(d,q)
     delta[(d/2)+1,(d/2)+1] := A;
     delta[(d/2),(d/2)+1] := B;
     delta[(d/2)+1,(d/2)] := C;
-    
+
     u := IdentityMat( d, fld );
     u{[1..2]}{[1..2]} := [[0,1],[-1,0]];
     u{[d-1,d]}{[d-1,d]} := [[0,-1],[1,0]];
     u := u * One(fld);
-    
+
     n := Int(d * 0.5)-1;
     v := NullMat( d, d, fld );
     v[(d/2),(d/2)] := One(fld);
@@ -261,7 +261,7 @@ function(d,q)
         v[(d/2) - 1,1] := -1 * One(fld);
         v[(d/2) + 2,d] := -1 * One(fld);
     fi;
-    
+
     sigma := IdentityMat( d, fld );
     n := Int(d * 0.5);
     lambda := (-1)^((q-1)/2);
@@ -287,11 +287,11 @@ function(e, d, q)
         if e = 1 then
             return __LGOStandardGensOmegaPlusEvenChar(d,q);
         fi;
-        
+
         if e = -1 then
             return __LGOStandardGensOmegaMinusEvenChar(d,q);
         fi;
-        
+
         if e = 0 then
             return __LGOStandardGensOmegaCircleEvenChar(d,q);
         fi;
@@ -299,16 +299,16 @@ function(e, d, q)
         if e = 1 then
             return __LGOStandardGensOmegaPlus(d,q);
         fi;
-        
+
         if e = -1 then
             return __LGOStandardGensOmegaMinus(d,q);
         fi;
-        
+
         if e = 0 then
             return __LGOStandardGensOmegaCircle(d,q);
         fi;
     fi;
-    
+
     Error("e has to be 1, -1 or 0.");
 
 end);
@@ -322,7 +322,7 @@ end);
 InstallGlobalFunction(  __LGOStandardGensOmegaPlus,
 function(d,q)
     local s, sBar, t, tBar, delta, deltaBar, u, v, sigma, fld, w, n, S1, S2, a, b, res;
-    
+
     fld := GF(q);
     w := Z(q);
 
@@ -335,7 +335,7 @@ function(d,q)
     s[d,2] := -1 * One(fld);
     s[2,d] := One(fld);
     s[d-1,1] := One(fld);
-    
+
     sBar := IdentityMat( d, fld );
     sBar[1,1] := Zero(fld);
     sBar[2,2] := Zero(fld);
@@ -349,7 +349,7 @@ function(d,q)
     t := IdentityMat( d, fld );
     t[1,d-1] := -1 * One(fld);
     t[2,d] := One(fld);
-    
+
     tBar := IdentityMat( d, fld );
     tBar[1,2] := One(fld);
     tBar[d-1,d] := -1 * One(fld);
@@ -365,11 +365,11 @@ function(d,q)
     deltaBar[d,d] := w^(-1);
     deltaBar[2,2] := w^(-1);
     deltaBar[d-1,d-1] := w;
-    
+
     u := IdentityMat( d, fld );
-    
+
     n := Int(d* 0.5);
-    
+
     v := NullMat( d, d, fld );
     v[d/2,1] := One(fld);
     v{[1..(d/2)-1]}{[2..d/2]} := IdentityMat((d/2)-1, fld);
@@ -393,7 +393,7 @@ end);
 InstallGlobalFunction(  __LGOStandardGensOmegaCircle,
 function(d,q)
     local s, t, delta, u, v, sigma, fld, w, n, S1, a, b, res;
-    
+
     fld := GF(q);
     w := Z(q);
     n := Int((d-1)*1/2);
@@ -409,17 +409,17 @@ function(d,q)
     t[1,d] := -1*One(fld);
     t[1,(d+1)/2] := -2*One(fld);
     t[(d+1)/2,d] := One(fld);
-    
+
     delta := IdentityMat( d, fld );
     delta[1,1] := w^2;
     delta[d,d] := w^(-2);
     delta[3,3] := One(fld);
-    
+
     u := IdentityMat( d, fld );
     u{[1..2]}{[1..2]} := [[0,1],[-1,0]];
     u{[d-1,d]}{[d-1,d]} := [[0,-1],[1,0]];
     u := u * One(fld);
-    
+
     v := NullMat( d, d, fld );
     v[(d+1)/2,(d+1)/2] := One(fld);
     v[(d+1)/2 - 1,1] := One(fld);
@@ -444,7 +444,7 @@ end);
 InstallGlobalFunction(  __LGOStandardGensOmegaMinus,
 function(d,q)
     local s, t, delta, u, v, sigma, fld, w, n, S1, lambda, A, B, C, gamma, alpha,perm, inv, gamma2;
-    
+
     fld := GF(q);
     gamma := Z(q^2);
     gamma2 := Z(q);
@@ -462,7 +462,7 @@ function(d,q)
     t[1,d] := One(fld);
     t[1,(d/2)] := One(fld);
     t[(d/2),d] := 2 * One(fld);
-    
+
     A := 1/2 * ((gamma^(q-1))+(gamma^(-q+1)));
     if A <> Zero(fld) then
         A := gamma2^LogFFE(A,gamma2);
@@ -489,12 +489,12 @@ function(d,q)
     delta[(d/2)+1,(d/2)+1] := A;
     delta[(d/2),(d/2)+1] := C;
     delta[(d/2)+1,(d/2)] := B;
-    
+
     u := IdentityMat( d, fld );
     u{[1..2]}{[1..2]} := [[0,1],[-1,0]];
     u{[d-1,d]}{[d-1,d]} := [[0,-1],[1,0]];
     u := u * One(fld);
-    
+
     n := Int(d * 0.5)-1;
     v := NullMat( d, d, fld );
     v[(d/2),(d/2)] := One(fld);
@@ -521,7 +521,7 @@ end);
 InstallGlobalFunction(  __LGOStandardGensOmegaPlusEvenChar,
 function(d,q)
     local s, t, tBar, delta, deltaBar, u, v, sigma, fld, w, n, S1, S2, a, b, res, J;
-    
+
     fld := GF(q);
     w := Z(q);
 
@@ -538,7 +538,7 @@ function(d,q)
     t := IdentityMat( d, fld );
     t[1,d-1] := One(fld);
     t[2,d] := One(fld);
-    
+
     tBar := IdentityMat( d, fld );
     tBar[1,2] := One(fld);
     tBar[d-1,d] := One(fld);
@@ -548,20 +548,20 @@ function(d,q)
     delta[d,d] := w^(-1);
     delta[2,2] := w;
     delta[d-1,d-1] := w^(-1);
-    
+
     deltaBar := IdentityMat( d, fld );
     deltaBar[1,1] := w;
     deltaBar[d,d] := w^(-1);
     deltaBar[2,2] := w^(-1);
     deltaBar[d-1,d-1] := w;
-    
+
     u := IdentityMat( d, fld );
     J := [[Zero(fld),One(fld)],[One(fld),Zero(fld)]];
     u{[1,2]}{[1,2]} := J;
     u{[d-1,d]}{[d-1,d]} := J;
-    
+
     n := Int(d* 0.5);
-    
+
     v := NullMat( d, d, fld );
     v[d/2,1] := One(fld);
     v{[1..(d/2)-1]}{[2..d/2]} := IdentityMat((d/2)-1, fld);
@@ -580,7 +580,7 @@ end);
 
 InstallGlobalFunction(  __LGOStandardGensOmegaCircleEvenChar,
 function(d,q)
-    
+
     return LGOStandardGensSpEvenChar(d-1,q);
 
 end);
@@ -594,7 +594,7 @@ end);
 InstallGlobalFunction(  __LGOStandardGensOmegaMinusEvenChar,
 function(d,q)
     local s, t, delta, u, v, sigma, fld, w, n, S1, lambda, A, B, C, gamma,perm, inv, gamma2, nu;
-    
+
     fld := GF(q);
     gamma := Z(q^2);
     gamma2 := Z(q);
@@ -617,7 +617,7 @@ function(d,q)
     t[1,d] := One(fld);
     t[1,(d/2) ] := One(fld);
     t[(d/2) + 1,d] := nu;
-    
+
     A :=((gamma^(-1))+(gamma^(-q)));
     if A <> Zero(fld) then
         A := gamma2^LogFFE(A,gamma2);
@@ -644,12 +644,12 @@ function(d,q)
     delta[(d/2)+1,(d/2)+1] := C;
     delta[(d/2),(d/2)+1] := A;
     delta[(d/2)+1,(d/2)] := B;
-    
+
     u := IdentityMat( d, fld );
     u{[1..2]}{[1..2]} := [[0,1],[1,0]];
     u{[d-1,d]}{[d-1,d]} := [[0,1],[1,0]];
     u := u * One(fld);
-    
+
     n := Int(d * 0.5)-1;
     v := NullMat( d, d, fld );
     v[(d/2),(d/2)] := One(fld);
@@ -672,15 +672,15 @@ end);
 InstallGlobalFunction(  MSO,
 function(e,d,fld)
     local q, gens, G, inv, i, s, q2, q2i, perm, k, m;
-    
+
     #Test Input TODO
     q := Size(fld);
 
     if e = 1 then
         gens := __LGOStandardGensSOPlus(d,q);
-        
+
         m:= d / 2;
-        
+
         s  := 1;
         q2 := q^2;
         q2i:= 1;
@@ -688,7 +688,7 @@ function(e,d,fld)
           q2i:= q2 * q2i;
           s  := s * (q2i-1);
         od;
-        
+
         perm := ();
         k := 1;
         while k < d do
@@ -696,27 +696,27 @@ function(e,d,fld)
             k := k+2;
         od;
         inv := PermutationMat(perm,d,fld);
-        
+
         G  := GroupByGenerators(gens);
         SetDimensionOfMatrixGroup( G, d );
         SetFieldOfMatrixGroup( G, fld );
         SetSize( G, q^(m*(m-1)) * (q^m-1) * s );
         SetInvariantBilinearForm( G, rec( matrix:=inv) );
-        
+
         inv := NullMat(d, d, fld);
         for k in [1..(d/2)] do
             inv[k,d-k+1] := 1;
         od;
-        
+
         SetInvariantQuadraticForm( G, rec( matrix:=inv) );
         SetIsFullSubgroupGLorSLRespectingBilinearForm( G, true );
-        
+
     elif e = -1 then
         #gens := __LGOStandardGensChangeSOMinus(d,q);
         gens := __LGOStandardGensSOMinus(d,q);
-        
+
         m:= d/2;
-        
+
         s  := 1;
         q2 := q^2;
         q2i:= 1;
@@ -724,7 +724,7 @@ function(e,d,fld)
           q2i:= q2 * q2i;
           s  := s * (q2i-1);
         od;
-        
+
         perm := ();
         k := 1;
         while k < d do
@@ -737,28 +737,28 @@ function(e,d,fld)
         inv[m,m] := 2*Z(q);
         inv[m+1,m+1] := -2;
         inv := inv * One(fld);
-        
+
         G := GroupWithGenerators(gens);
         SetDimensionOfMatrixGroup( G, d );
         SetFieldOfMatrixGroup( G, fld );
         SetSize( G, q^(m*(m-1)) * (q^m+1) * s );
         SetInvariantBilinearForm( G, rec( matrix:=inv) );
-        
+
         inv := NullMat(d, d, fld);
         for k in [1..(d/2)-1] do
             inv[k,d-k+1] := 1 * One(fld);
         od;
         inv[d/2,d/2] := Z(q);
         inv[(d/2)+1,(d/2)+1] := -1 * One(fld);
-        
+
         SetInvariantQuadraticForm( G, rec( matrix:=inv) );
         SetIsFullSubgroupGLorSLRespectingBilinearForm( G, true );
-        
+
     elif e = 0 then
         gens := __LGOStandardGensSOCircle(d,q);
-        
+
         m:= ( d-1 ) / 2;
-        
+
         s  := 1;
         q2 := q^2;
         q2i:= 1;
@@ -766,7 +766,7 @@ function(e,d,fld)
           q2i:= q2 * q2i;
           s  := s * (q2i-1);
         od;
-        
+
         perm := ();
         k := 1;
         while k < (d+1)/2 do
@@ -775,28 +775,28 @@ function(e,d,fld)
         od;
         inv := PermutationMat(perm,d,fld);
         inv[(d+1)/2,(d+1)/2] := One(fld) * (- 1/2);
-        
+
         G := GroupByGenerators(gens);
         SetDimensionOfMatrixGroup( G, d );
         SetFieldOfMatrixGroup( G, fld );
         SetSize( G, q^(m^2) * s  );
         SetInvariantBilinearForm( G, rec( matrix:=inv) );
-        
+
         #inv := NullMat(d, d, fld);
         #for k in [1..(d/2)-1] do
         #    inv[k,d-k+1] := 1;
         #od;
         #inv[d/2,d/2] := Z(q);
         #inv[(d/2)+1,(d/2)+1] := -1 * One(fld);
-        
+
         #SetInvariantQuadraticForm( G, rec( matrix:=inv) );
         # Quadratic Form of Circle Typ??? TODO
         SetIsFullSubgroupGLorSLRespectingBilinearForm( G, true );
-        
+
     else
         Error("e has to be 1, -1 or 0.");
     fi;
-    
+
     return G;
 
 end);
@@ -810,8 +810,8 @@ end);
 InstallGlobalFunction(  UnitriangularDecompositionSOPlus,
 function(arg)
     local g, u1, u2, j, r ,c, z, fld, f, i, a, d, stdgens, TransvecAtAlpha2, TransvecAtAlpha3, TransvecAtAlpha4, ShiftTransvection3ByJ, ShiftTransvection3ByI, ShiftTransvection4, ShiftTransvection2ByJ, ShiftTransvection2ByI, test, XX, DeltaStarNumber, ell, slp, hs, tmppos, tmppos2, AEMrespos, u1pos, u2pos, tvpos, T2pos, T3pos, uipos, deltaStar;
-    
-    
+
+
     #####
     # TransvectionAtAlpha2()
     #####
@@ -950,7 +950,7 @@ function(arg)
     #    ############
     #    Back to Function
     #    ############
-    
+
     if Length( arg ) >= 2 and IsList( arg[1] ) and IsMatrix( arg[2] ) then
 
         stdgens := arg[1];  # the LGO standard generators
@@ -1012,7 +1012,7 @@ function(arg)
     f := DegreeOverPrimeField(fld); #ie q=p^f
 
     hs := HighestSlotOfSLP(slp);
-    
+
     # deltaStar
     XX := FindOddPart(Size(fld)-1);
     if XX = 1 then
@@ -1077,7 +1077,7 @@ function(arg)
     #test :=PseudoRandom(fld);
 
     #Display(test);
-    
+
     #Add(slp, [[T3pos[2],1], T3pos[2]]);
 
     #TransvecAtAlpha2(test);
@@ -1232,9 +1232,9 @@ function(arg)
                         #Mul[d-r+1,d-i+1] := -z;
                         #g[d-r+1] := g[d-r+1] + (-z)*g[d-i+1];
                         #u1[d-r+1] := u1[d-r+1] + (-z)*u1[d-i+1];
-                        
+
                         Add(slp,[[tvpos,1,u1pos,1],u1pos]);
-                    
+
                     fi;
                 fi;
             od;
@@ -1316,9 +1316,9 @@ function(arg)
                         #Mul[d-j+1,d-c+1] := -z;
                         #g{[1..d]}[d-c+1] :=  g{[1..d]}[d-c+1] + (-z) *  g{[1..d]}[d-j+1];
                         #u2{[1..d]}[d-c+1] := u2{[1..d]}[d-c+1] + (-z) * u2{[1..d]}[d-j+1];
-                        
+
                         Add(slp,[[u2pos,1,tvpos,1],u2pos]);
-                      
+
                     fi;
                 fi;
             od;
@@ -1327,7 +1327,7 @@ function(arg)
 
     # Now u1^-1 * g * u2^-1 is the input matrix
     #return [g,u1,u2];
-    
+
     Add( slp, [ [u1pos,1], [u2pos,1] ]);
 
     # Now u1^-1 * g * u2^-1 is the input matrix
@@ -1345,8 +1345,8 @@ end);
 InstallGlobalFunction(  UnitriangularDecompositionSOCircle,
 function(arg)
     local g, u1, u2, j, r ,c, z, fld, f, i, a, d, stdgens, TransvecAtAlpha2, TransvecAtAlpha3, TransvecAtAlpha5, ShiftTransvection3ByJ, ShiftTransvection3ByI, ShiftTransvection5, ShiftTransvection2ByJ, ShiftTransvection2ByI, test, XX, DeltaStarNumber, ell, slp, hs, tmppos, tmppos2, AEMrespos, u1pos, u2pos, tvpos, T2pos, T3pos, uipos, deltaStar, T5pos, jjj;
-    
-    
+
+
     #####
     # TransvectionAtAlpha2()
     #####
@@ -1482,7 +1482,7 @@ function(arg)
         Add( slp, [ [ AEMrespos, -1, tvpos , 1, AEMrespos, 1 ], tvpos ] );
 
     end;
-    
+
     #####
     # TransvectionAtAlpha5()
     #####
@@ -1536,7 +1536,7 @@ function(arg)
     #    ############
     #    Back to Function
     #    ############
-    
+
     if Length( arg ) >= 2 and IsList( arg[1] ) and IsMatrix( arg[2] ) then
 
         stdgens := arg[1];  # the LGO standard generators
@@ -1598,7 +1598,7 @@ function(arg)
     f := DegreeOverPrimeField(fld); #ie q=p^f
 
     hs := HighestSlotOfSLP(slp);
-    
+
     # deltaStar
     XX := FindOddPart(Size(fld)-1);
     if XX = 1 then
@@ -1607,7 +1607,7 @@ function(arg)
         DeltaStarNumber := (1-XX)/2 mod (Size(fld)-1);
         Add( slp, [ [3,DeltaStarNumber,6,1], deltaStar ] );
     fi;
-            
+
     jjj := Int(2^(-1) * One(fld));
     Add(slp, [ [5, -1, 2, -1, 5, 1, 2 , jjj, 5, -1, 2, 1, 5, 1, 2, -jjj ], tmppos2 ] );
 
@@ -1642,7 +1642,7 @@ function(arg)
         Add(slp, [ [tmppos, 1, 1, -1, 4, -1, 1, -1, 4, -1, tmppos2, 1, 4, 1, 1, 1, 4, 1, 1, 1, tmppos, -1], T3pos[ell+1] ] );
 
     od;
-    
+
     # We create the help variables for the centre row and column
     T5pos := [ hs + 1 .. hs + f ];
 
@@ -1683,7 +1683,7 @@ function(arg)
     #test :=PseudoRandom(fld);
     #test := 2 * One(GF(3));
     #Display(test);
-    
+
     #Add(slp, [[T5pos[2],1],tvpos]);
 
     #TransvecAtAlpha2(test);
@@ -1693,7 +1693,7 @@ function(arg)
     #TransvecAtAlpha3(test);
     #ShiftTransvection3ByJ(5);
     #ShiftTransvection3ByI(8);
-    
+
     #TransvecAtAlpha5(test);
     #ShiftTransvection5(9);
 
@@ -1736,7 +1736,7 @@ function(arg)
                 z := -g[i,c] * a;
 
                 if (i+r <> d+1) then
-                
+
                     TransvecAtAlpha5(2*z);
                     ShiftTransvection5(d-r+1);
                     Add(slp,[[tvpos,1,u1pos,1],u1pos]);
@@ -1768,7 +1768,7 @@ function(arg)
                     #Mul := List( One(G), ShallowCopy );
 
                     if (i+r <> d+1) then
-                    
+
                         if i in [1..(d+1)/2] and r in [1..(d+1)/2] then
                             TransvecAtAlpha2(z);
                             ShiftTransvection2ByI(i);
@@ -1794,7 +1794,7 @@ function(arg)
                         #Mul[d-r+1,d-i+1] := -z^phi;
                         g[d-r+1] := g[d-r+1] + (-z) * g[d-i+1];
                         u1[d-r+1] := u1[d-r+1] + (-z) * u1[d-i+1];
-                        
+
                         Add(slp,[[tvpos,1,u1pos,1],u1pos]);
 
                     fi;
@@ -1814,7 +1814,7 @@ function(arg)
                 z := -g[r,j] * a;
 
                 if (c+j <> d+1) then
-                
+
                     TransvecAtAlpha5(z);
                     ShiftTransvection5(c);
                     Add(slp,[[u2pos,1,tvpos,1],u2pos]);
@@ -1827,7 +1827,7 @@ function(arg)
 
                     g{[1..d]}[j] :=  g{[1..d]}[j] + z *  g{[1..d]}[c];
                     u2{[1..d]}[j] := u2{[1..d]}[j] + z * u2{[1..d]}[c];
-                    
+
                 fi;
             fi;
 
@@ -1839,7 +1839,7 @@ function(arg)
                     z := - g[r,j] * a;
 
                     if (c+j <> d+1) then
-                    
+
                         if c in [1..(d+1)/2] and j in [1..(d+1)/2] then
                             TransvecAtAlpha2(z);
                             ShiftTransvection2ByI(c);
@@ -1865,17 +1865,17 @@ function(arg)
                         #Mul[d-j+1,d-c+1] := -z^phi;
                         g{[1..d]}[d-c+1] :=  g{[1..d]}[d-c+1] + (-z) *  g{[1..d]}[d-j+1];
                         u2{[1..d]}[d-c+1] := u2{[1..d]}[d-c+1] + (-z) * u2{[1..d]}[d-j+1];
-                        
+
                         Add(slp,[[u2pos,1,tvpos,1],u2pos]);
-                        
+
                     fi;
                 fi;
             od;
         fi;
     od;
-    
+
     Add( slp, [ [u1pos,1], [u2pos,1] ]);
-        
+
     # Now u1^-1 * g * u2^-1 is the input matrix
     return [slp,[g, u1, u2], hs];
 
@@ -1891,7 +1891,7 @@ InstallGlobalFunction(  UnitriangularDecompositionSOMinus,
 function(arg)
 
     local g, u1, u2, j, r ,c, z, fld, f, i, a, d, w, A, B, C, k, mat, A2, B2, C2, A3, B3, C3, StartValue, slp, TransvecAtAlpha2, TransvecAtAlpha3, TransvecAtAlpha5, TransvecAtAlpha6, ShiftTransvection2ByI, ShiftTransvection3ByI, ShiftTransvection2ByJ, ShiftTransvection3ByJ, ShiftTransvection5, ShiftTransvection6, tvpos, T2pos, T3pos, T5pos, T6pos, uipos, tmppos, tmppos2, hs, ell, StartValueForFirstCentreRow, stdgens, AEMrespos, u1pos, u2pos, jjj, MakeEntry1, test;
-    
+
     #####
     # TransvectionAtAlpha2()
     #####
@@ -2027,7 +2027,7 @@ function(arg)
         Add( slp, [ [ AEMrespos, -1, tvpos , 1, AEMrespos, 1 ], tvpos ] );
 
     end;
-    
+
     #####
     # TransvectionAtAlpha5()
     #####
@@ -2076,7 +2076,7 @@ function(arg)
         fi;
 
     end;
-    
+
     #####
     # TransvectionAtAlpha6()
     #####
@@ -2125,31 +2125,31 @@ function(arg)
         fi;
 
     end;
-    
+
     #####
     # StartValueForFirstCentreRow()
     #####
-    
+
     StartValueForFirstCentreRow := function(q)
         local i, j, gamma, omega, alpha, delta, t, gens;
-    
+
         w := Z(q);
         gamma := Z(q^2);
         alpha := gamma^((q+1)/2);
-        
+
         for j in [1..q] do
             if ( (2^(-1)*alpha^(-1)*(gamma^(-2*j)-gamma^(-2*j*q))) in GF(Characteristic(GF(q)))) and ((2^(-1)*alpha^(-1)*(gamma^(-2*j)-gamma^(-2*j*q))) <> Zero(GF(q))) then
                 return [j,Int((2^(-1)*alpha^(-1)*(gamma^(-2*j)-gamma^(-2*j*q)))), (gamma^(2*-j)+gamma^(2*-j*q)-2^(-1)*(gamma^(-2*j)+gamma^(-2*j*q)) + 2)];
             fi;
         od;
-        
+
     end;
 
 
     #    ############
     #    Back to Function
     #    ############
-    
+
     if Length( arg ) >= 2 and IsList( arg[1] ) and IsMatrix( arg[2] ) then
 
         stdgens := arg[1];  # the LGO standard generators
@@ -2188,7 +2188,7 @@ function(arg)
 
     d := Length( g );
     fld := FieldOfMatrixList( stdgens );
-    
+
     mat := GeneratorsOfGroup(MSO(-1,d,fld))[3];
     w := mat[1,1];   #TODO Choose primitiveElement from LGO Standard generator, such that the generator are the same
     A := mat[d/2,d/2];
@@ -2215,7 +2215,7 @@ function(arg)
     f := DegreeOverPrimeField(fld); #ie q=p^f
 
     hs := HighestSlotOfSLP(slp);
-            
+
     jjj := Int(2^(-1) * One(fld));
     Add(slp, [ [5, -1, 2, -1, 5, 1, 2 , jjj, 5, -1, 2, 1, 5, 1, 2, -jjj ], tmppos2 ] );
 
@@ -2250,7 +2250,7 @@ function(arg)
         Add(slp, [ [tmppos, 1, 1, -1, 4, -1, 1, -1, 4, -1, tmppos2, 1, 4, 1, 1, 1, 4, 1, 1, 1, tmppos, -1], T3pos[ell+1] ] );
 
     od;
-    
+
     # We create the help variables for the sencond centre row and column
     T5pos := [ hs + 1 .. hs + f ];
 
@@ -2266,7 +2266,7 @@ function(arg)
         Add(slp, [ [tmppos, 1, 1, -1, 2, 1, 1, 1, tmppos, -1], T5pos[ell+1] ] );
 
     od;
-    
+
     # We create the help variables for the first centre row and column
     T6pos := [ hs + 1 .. hs + f ];
 
@@ -2275,7 +2275,7 @@ function(arg)
     for ell in [ 1..f ] do
         Add(slp, [1,0] );
     od;
-    
+
     StartValue := StartValueForFirstCentreRow(Size(fld));
     MakeEntry1 := StartValue[2];
     z := -StartValue[3];
@@ -2316,7 +2316,7 @@ function(arg)
 
     #test :=PseudoRandom(fld);
     #Display(test);
-    
+
     #Add(slp, [[T5pos[2],1],tvpos]);
 
     #TransvecAtAlpha2(test);
@@ -2326,7 +2326,7 @@ function(arg)
     #TransvecAtAlpha3(test);
     #ShiftTransvection3ByJ(5);
     #ShiftTransvection3ByI(8);
-    
+
     #TransvecAtAlpha5(test);
     #ShiftTransvection5(9);
 
@@ -2369,7 +2369,7 @@ function(arg)
                 z := -g[i,c] * a;
 
                 if (i+r <> d+1) then
-                
+
                     TransvecAtAlpha6(-z/(2*w));
                     ShiftTransvection6(d-r+1);
                     Add(slp,[[tvpos,1,u1pos,1],u1pos]);
@@ -2385,14 +2385,14 @@ function(arg)
                     u1[i] := u1[i] + z*u1[r];
                 fi;
             fi;
-            
-            
+
+
             if (not(IsZero(g[(d/2)+1,c]))) then
                 i := (d/2)+1;
                 z := -g[i,c] * a;
 
                 if (i+r <> d+1) then
-                
+
                     TransvecAtAlpha5(2^(-1)*z);
                     ShiftTransvection5(d-r+1);
                     Add(slp,[[tvpos,1,u1pos,1],u1pos]);
@@ -2424,7 +2424,7 @@ function(arg)
                     #Mul := List( One(SU(d,Size(fld))), ShallowCopy );
 
                     if (i+r <> d+1) then
-                        
+
                         if i in [1..d/2] and r in [1..d/2] then
                             TransvecAtAlpha2(z);
                             ShiftTransvection2ByI(i);
@@ -2450,9 +2450,9 @@ function(arg)
                         #Mul[d-r+1,d-i+1] := -z;
                         g[d-r+1] := g[d-r+1] + (-z)*g[d-i+1];
                         u1[d-r+1] := u1[d-r+1] + (-z)*u1[d-i+1];
-                        
+
                         Add(slp,[[tvpos,1,u1pos,1],u1pos]);
-                    
+
                     fi;
                 fi;
             od;
@@ -2462,13 +2462,13 @@ function(arg)
         # Step Two: Clear all entries in row r apart from g[r,c]
         # This coincides with multiplying t_{c,j} from right.
         if c >= 2 then
-            
+
             if not IsZero(g[r,(d/2)+1]) then
                 j := (d/2)+1;
                 z := -g[r,j] * a;
 
                 if (c+j <> d+1) then
-                
+
                     TransvecAtAlpha5(z);
                     ShiftTransvection5(c);
                     Add(slp,[[u2pos,1,tvpos,1],u2pos]);
@@ -2483,14 +2483,14 @@ function(arg)
                     u2{[1..d]}[j] := u2{[1..d]}[j] + z * u2{[1..d]}[c];
                 fi;
             fi;
-            
-                    
+
+
             if not IsZero(g[r,d/2]) then
                 j := (d/2);
                 z := -g[r,j] * a;
 
                 if (c+j <> d+1) then
-            
+
                     TransvecAtAlpha6(z);
                     ShiftTransvection6(c);
                     Add(slp,[[u2pos,1,tvpos,1],u2pos]);
@@ -2505,7 +2505,7 @@ function(arg)
                     u2{[1..d]}[j] := u2{[1..d]}[j] + z * u2{[1..d]}[c];
                 fi;
             fi;
-            
+
 
             # Now clear the rest of row r
             for j in [ c-1, c-2..1 ] do
@@ -2515,7 +2515,7 @@ function(arg)
                     z := - g[r,j] * a;
 
                     if (c+j <>  d+1) then
-                    
+
                         if c in [1..d/2] and j in [1..d/2] then
                             TransvecAtAlpha2(z);
                             ShiftTransvection2ByI(c);
@@ -2541,15 +2541,15 @@ function(arg)
                         #Mul[d-j+1,d-c+1] := -z;
                         g{[1..d]}[d-c+1] :=  g{[1..d]}[d-c+1] + (-z) *  g{[1..d]}[d-j+1];
                         u2{[1..d]}[d-c+1] := u2{[1..d]}[d-c+1] + (-z) * u2{[1..d]}[d-j+1];
-                        
+
                         Add(slp,[[u2pos,1,tvpos,1],u2pos]);
-                      
+
                     fi;
                 fi;
             od;
         fi;
     od;
-    
+
     # Is there a way to improve this here?
     if (g[d/2,(d/2)+1] <> Zero(fld)) and (g[(d/2)+1,(d/2)+1] <> Zero(fld)) then
         k := 1;
@@ -2579,7 +2579,7 @@ function(arg)
             C := C3;
         od;
     fi;
-    
+
     #test := MakeSLP(slp,6);
     #if (ResultOfStraightLineProgram(test,stdgens) <> u1) then
     #    Error("u1");
@@ -2590,7 +2590,7 @@ function(arg)
     #if (ResultOfStraightLineProgram(test,stdgens) <> u2) then
     #    Error("u2");
     #fi;
-    
+
     Add( slp, [ [u1pos,1], [u2pos,1] ]);
 
     # Now u1^-1 * g * u2^-1 is the input matrix
@@ -2608,8 +2608,8 @@ InstallGlobalFunction(  MonomialSLPSOPlus,
 function( arg )
 
     local slp, c, n, m, result, i, k, u1, u2, result2, test, g, stdgens, mat, perm, fld, mb, v, list, j, tp, tc, nu, random, diag, p_signwr, p_signpos, vpos, vipos, spos, upos, unpos, tpos, left, right, tmpvalue, perm2, L2, R2, cnt, pot, perm3, w, vf, instr, s, slpnu, Ev, Evf, EvfMinus, Es;
-    
-    
+
+
     # Check for correct Input
     if Length(arg) >= 2 and IsList(arg[1]) and IsMatrix(arg[2]) then
 
@@ -2649,7 +2649,7 @@ function( arg )
         cnt := HighestSlotOfSLP(slp);
 
         # Info( InfoBruhat, 2, " and additional:  ",7," memory slots ", "in PermSLP()\n");
-        
+
     else
 
         # we write an SLP into the variable slp
@@ -2663,7 +2663,7 @@ function( arg )
         cnt := 20;
 
         # Info( InfoBruhat, 2, "Memory Usage is: ",19,"  memory slots ", "in PermSLP()\n");
-        
+
     fi;
 
     # Initialize the additional memory quota
@@ -2683,7 +2683,7 @@ function( arg )
         Add( slp, [ [p_signpos,-1] , p_signpos ] );
         return [ slp, [ stdgens[1]^0, mat ] ];
     fi;
-    
+
     Add(slp, [[2,1,1,1], upos]);
     Add(slp, [[2,1,1,1], spos]);
 
@@ -2717,7 +2717,7 @@ function( arg )
                     mb := true;
                 else
                     if k <= m then
-                        
+
                     elif SmallestMovedPoint(i) > m then
                         for nu in Orbit(GroupByGenerators([i]),j) do
                             list[nu] := true;
@@ -2732,18 +2732,18 @@ function( arg )
                                 tmpvalue := R2{[1..n]}[k];
                                 R2{[1..n]}[k] := R2{[1..n]}[n-k+1];
                                 R2{[1..n]}[n-k+1] := tmpvalue;
-                                
+
                                 tmpvalue := L2[k-nu];
                                 L2[k-nu] := L2[n-k+1+nu];
                                 L2[n-k+1+nu] := tmpvalue;
                                 tmpvalue := R2{[1..n]}[k-nu];
                                 R2{[1..n]}[k-nu] := R2{[1..n]}[n-k+1+nu];
                                 R2{[1..n]}[n-k+1+nu] := tmpvalue;
-                                
+
                                 perm := perm^(k,n-k+1)(k-nu,n-k+1+nu);
                                 u1 := (k,n-k+1)(k-nu,n-k+1+nu) * u1;
                                 u2 := u2 * (k,n-k+1)(k-nu,n-k+1+nu);
-                                
+
                                 Add( slp, [ [vpos,(n-k),spos,1,vpos,-(n-k)] , tpos ] );
                                 for slpnu in [1..nu-1] do
                                     Add( slp, [ [vpos,(n-k+slpnu),2,1,vpos,-(n-k+slpnu)], upos] );
@@ -2752,10 +2752,10 @@ function( arg )
                                 od;
                                 Add( slp, [ [tpos,1,left,1] , left ] );
                                 Add( slp, [ [right,1,tpos,1] , right] );
-                                
+
                                 mb := true;
                                 break;
-                                
+
                             elif perm^(k,n-k+1)(k-nu,n-k+1+nu) = perm then
                                 # Dieser Case wird manchmal ausgeführt.
                                 tmpvalue := L2[k];
@@ -2764,10 +2764,10 @@ function( arg )
                                 tmpvalue := L2[k-nu];
                                 L2[k-nu] := L2[n-k+1+nu];
                                 L2[n-k+1+nu] := tmpvalue;
-                            
+
                                 perm := (k,n-k+1)(k-nu,n-k+1+nu) * perm;
                                 u1 := (k,n-k+1)(k-nu,n-k+1+nu) * u1;
-                                
+
                                 Add( slp, [ [vpos,(n-k),spos,1,vpos,-(n-k)] , tpos ] );
                                 for slpnu in [1..nu-1] do
                                     Add( slp, [ [vpos,(n-k+slpnu),2,1,vpos,-(n-k+slpnu)], upos] );
@@ -2775,7 +2775,7 @@ function( arg )
                                     Add( slp, [ [upos,-1,tpos,1,upos,1] , tpos ] );
                                 od;
                                 Add( slp, [ [tpos,-1,left,1] , left ] );
-                                
+
                                 mb := true;
                                 break;
                             fi;
@@ -2788,10 +2788,10 @@ function( arg )
                                 tmpvalue := L2[k-nu];
                                 L2[k-nu] := L2[n-k+1+nu];
                                 L2[n-k+1+nu] := tmpvalue;
-                            
+
                                 perm := (k,n-k+1)(k-nu,n-k+1+nu) * perm;
                                 u1 := (k,n-k+1)(k-nu,n-k+1+nu) * u1;
-                                
+
                                 Add( slp, [ [vpos,(n-k),spos,1,vpos,-(n-k)] , tpos ] );
                                 for slpnu in [1..nu-1] do
                                     Add( slp, [ [vpos,(n-k+slpnu),2,1,vpos,-(n-k+slpnu)], upos] );
@@ -2799,7 +2799,7 @@ function( arg )
                                     Add( slp, [ [upos,-1,tpos,1,upos,1] , tpos ] );
                                 od;
                                 Add( slp, [ [tpos,-1,left,1] , left ] );
-                                
+
                                 mb := true;
                                 break;
                             fi;
@@ -2813,17 +2813,17 @@ function( arg )
                         for nu in [1..(n/2)-(n-j+1)] do
                             if ((n-k+1)^(FindCorrectCycel(CycleFromPermutation((k,n-k+1)(k-nu,n-k+1+nu)*perm),j)) = (n-k+1)) and TestPermutationProd(c, CycleFromPermutation((k,n-k+1)(k-nu,n-k+1+nu)*perm), list, n) then
                                 # Dieser Case wird manchmal ausgeführt
-                            
+
                                 tmpvalue := L2[k];
                                 L2[k] := L2[n-k+1];
                                 L2[n-k+1] := tmpvalue;
                                 tmpvalue := L2[k-nu];
                                 L2[k-nu] := L2[n-k+1+nu];
                                 L2[n-k+1+nu] := tmpvalue;
-                                
+
                                 perm := (k,n-k+1)(k-nu,n-k+1+nu)*perm;
                                 u1 := (k,n-k+1)(k-nu,n-k+1+nu) * u1;
-                                
+
                                 Add( slp, [ [vpos,(n-k),spos,1,vpos,-(n-k)] , tpos ] );
                                 for slpnu in [1..nu-1] do
                                     Add( slp, [ [vpos,(n-k+slpnu),2,1,vpos,-(n-k+slpnu)], upos] );
@@ -2831,7 +2831,7 @@ function( arg )
                                     Add( slp, [ [upos,-1,tpos,1,upos,1] , tpos ] );
                                 od;
                                 Add( slp, [ [tpos,-1,left,1] , left ] );
-                                
+
                                 mb := true;
                                 break;
                             fi;
@@ -2846,9 +2846,9 @@ function( arg )
             fi;
         od;
     od;
-    
+
     Add(slp, [[2,1], upos]);
-        
+
     ################
     # Some Tests
 
@@ -2858,21 +2858,21 @@ function( arg )
     #if PermutationMonomialMatrix(R2)[2] <> u2 then
     #    Error("R2");
     #fi;
-    
+
     #Add( slp, [ [left,1,p_signpos,1,right,1] , p_signpos ] );
     #Add( slp, [ right ,1 ] );
     #slp := MakeSLP(slp,9);
     #if PermutationMonomialMatrix(ResultOfStraightLineProgram(slp,stdgens))[2] <> u2 then
     #    Error("Here");
     #fi;
-    
+
     #Error("Here");
-    
+
     #return slp;
     #return MakeSLP(slp,9);
-    
+
     # return [perm,u1,u2];
-    
+
     #Print(nu);
     #Print(n-k+nu-1);
     #if k = 8 then
@@ -2880,9 +2880,9 @@ function( arg )
     #Add( slp, [ tpos ,1 ] );
     #return MakeSLP(slp,9);
     #fi;
-    
+
     ################
-    
+
     c := CycleFromPermutation(perm);
     for i in c do
         k := LargestMovedPoint(i);
@@ -2895,7 +2895,7 @@ function( arg )
 
     Add( slp, [ [left,-1] , left ] );
     Add( slp, [ [right,-1] , right ] );
-    
+
     result := Set(result);
     result2 := Set(result2);
 
@@ -2957,13 +2957,13 @@ function( arg )
     Add(slp,[ [ p_signpos,-1 ], p_signpos ] );
     Add( slp, [ [left,1,p_signpos,1,right,1] , p_signpos ] );
     Add( slp, [ p_signpos ,1 ] );
-    
+
     tmpvalue := EasyFormToMonomialMatrix(tmpvalue,n,fld);
     tmpvalue := R2*tmpvalue*L2;
     mat := tmpvalue*mat;
 
     return [slp, [tmpvalue , mat ] ];
-    
+
 end);
 
 
@@ -3014,7 +3014,7 @@ function( arg )
         cnt := HighestSlotOfSLP(slp);
 
         # Info( InfoBruhat, 2, " and additional:  ",7," memory slots ", "in PermSLP()\n");
-        
+
     else
 
         # we write an SLP into the variable slp
@@ -3028,7 +3028,7 @@ function( arg )
         cnt := 14;
 
         # Info( InfoBruhat, 2, "Memory Usage is: ",14,"  memory slots ", "in PermSLP()\n");
-        
+
     fi;
 
     # Initialize the additional memory quota
@@ -3104,7 +3104,7 @@ function( arg )
 
     Add( slp, [ [left,-1] , left ] );
     Add( slp, [ [right,-1] , right ] );
-    
+
     result := Set(result);
     result2 := Set(result2);
 
@@ -3224,7 +3224,7 @@ function( arg )
          cnt := HighestSlotOfSLP(slp);
 
         # Info( InfoBruhat, 2, " and additional:  ",7," memory slots ", "in PermSLP()\n");
-        
+
     else
 
         # we write an SLP into the variable slp
@@ -3238,7 +3238,7 @@ function( arg )
         cnt := 14;
 
         # Info( InfoBruhat, 2, "Memory Usage is: ",19,"  memory slots ", "in PermSLP()\n");
-        
+
     fi;
 
     # Initialize the additional memory quota
@@ -3276,7 +3276,7 @@ function( arg )
             if k <= m then
                 Add(result, i);
             elif SmallestMovedPoint(i) > m+2 then
-            
+
             elif SmallestMovedPoint(i) in [m+1,m+2] then
 
             elif (n-k+1)^i = n-k+1 then
@@ -3324,30 +3324,30 @@ function( arg )
 
     Add( slp, [ [left,-1] , left ] );
     Add( slp, [ [right,-1] , right ] );
-    
+
         #Add( slp, [ [left,1,p_signpos,1,right,1] , p_signpos ] );
         #Display(u1);
         #Display(u2);
         #Display(perm);
         #Add( slp, [ right ,1 ] );
-        
+
         #test := slp;
         #Add(test, [[left,1],p_signpos]);
         #test := MakeSLP(test,6);
         #if (ResultOfStraightLineProgram(test,stdgens) <> L2) then
         #    Error("u1");
         #fi;
-        
+
         #test := slp;
         #Add(test, [[right,1],p_signpos]);
         #test := MakeSLP(test,6);
         #if (ResultOfStraightLineProgram(test,stdgens) <> R2) then
         #    Error("u2");
         #fi;
-        
+
         #Error("Here");
         #return MakeSLP(slp,6);
-        
+
 
     perm := One(SymmetricGroup(n));
     for i in [1..Size(result)] do
@@ -3409,15 +3409,15 @@ function( arg )
 
     #tmpvalue := PermutationMat(perm2^(-1),n, fld);
     #tmpvalue{[1..n/2]}{[1..n/2]} := PermutationMat(perm3^(-1),n/2, fld);
-    
+
     #tmpvalue :=R2*tmpvalue*L2;
     #mat := tmpvalue*mat;
     #Display(mat);
-    
+
     tmpvalue := EasyFormToMonomialMatrix(tmpvalue,n,fld);
     tmpvalue := R2*tmpvalue*L2;
     mat := tmpvalue*mat;
-    
+
     #test := slp;
     #Add(test, [[p_signpos,1],p_signpos]);
     #test := MakeSLP(test,6);
@@ -3428,7 +3428,7 @@ function( arg )
     #Display(ResultOfStraightLineProgram(test,stdgens)^(-1));
     #Print("---\n");
     #Display(tmpvalue);
-    
+
     # The permutation is now (m+1,m+2)
     # Need a better way to find this. This is still unbelievable slow!
     #if not(IsDiagonalMat(mat)) then
@@ -3443,7 +3443,7 @@ function( arg )
     #        delta := delta*stdgens[3];
     #    od;
     #fi;
-    
+
     # This is still not fast enough. Is there a better way to find the monomial matrix (m+1,m+2) in SOMinus ??
     # This is independent from the matrix size but needs more time for a larger field.
     if (mat[n/2,(n/2)+1] <> Zero(fld)) then
@@ -3468,14 +3468,14 @@ function( arg )
                 mat := delta*mat;
                 tmpvalue := delta*tmpvalue;
                 Add( slp, [[p_signpos,1,3,-k], p_signpos ] );
-                
+
                 #test := slp;
                 #Add(test, [[p_signpos,1],p_signpos]);
                 #test := MakeSLP(test,6);
                 #if (ResultOfStraightLineProgram(test,stdgens)^(-1) <> tmpvalue) then
                 #    Error("middle");
                 #fi;
-                
+
                 break;
             fi;
             k := k+1;
@@ -3487,7 +3487,7 @@ function( arg )
             C := C3;
         od;
     fi;
-    
+
     Add( slp, [ p_signpos ,1 ] );
 
     return [slp, [ tmpvalue, mat ] ];
@@ -3503,15 +3503,15 @@ end);
 InstallGlobalFunction(  FindCorrectCycel,
 function(perm, j)
     local i;
-    
+
     for i in perm do
         if j^i <> j then
             return i;
         fi;
     od;
-    
+
     return ();
-    
+
 end);
 
 
@@ -3531,9 +3531,9 @@ function(op, np, l, n)
             fi;
         fi;
     od;
-    
+
     return true;
-    
+
 end);
 
 
@@ -3545,10 +3545,10 @@ end);
 InstallGlobalFunction(  TestPermutationProd2,
 function(op, np, tn, l, n)
     local gno, gnn, oc, nc, i, ii;
-    
+
     oc := FindCorrectCycel(op,tn);
     nc := FindCorrectCycel(np,tn);
-    
+
     gno := 0;
     gnn := 0;
 
@@ -3560,7 +3560,7 @@ function(op, np, tn, l, n)
             gnn := gnn + 1;
         fi;
     od;
-    
+
     if gnn/Order(nc) > gno/Order(oc) then
         for i in [(n/2)+1..n] do
             if l[i] then
@@ -3569,7 +3569,7 @@ function(op, np, tn, l, n)
                 oc := FindCorrectCycel(op,n-i+1);
                 nc := FindCorrectCycel(np,n-i+1);
                 if nc = () then
-                
+
                 else
                     for ii in [1..(n/2)] do
                         if ii^oc <> ii then
@@ -3589,7 +3589,7 @@ function(op, np, tn, l, n)
     else
         return false;
     fi;
-    
+
 end);
 
 
@@ -3601,11 +3601,11 @@ end);
 InstallGlobalFunction(  MonomialMatrixToEasyForm,
 function (M)
     local list, perm, i, j, n, fld;
-    
+
     n := Length(M);
     fld := FieldOfMatrixList( [M] );
     list := [];
-    
+
     for i in [1..n] do
         for j in [1..n] do
             if M[j,i] <> Zero(fld) then
@@ -3614,11 +3614,11 @@ function (M)
             fi;
         od;
     od;
-    
+
     perm := PermutationMonomialMatrix( M )[2];
-    
+
     return [list,perm];
-    
+
 end);
 
 
@@ -3630,7 +3630,7 @@ end);
 InstallGlobalFunction(  EasyFormToMonomialMatrix,
 function( tupel, n, fld )
     local M, i, j;
-    
+
     M := PermutationMat(tupel[2],n,fld);
     for i in [1..n] do
         for j in [1..n] do
@@ -3639,7 +3639,7 @@ function( tupel, n, fld )
             fi;
         od;
     od;
-    
+
     return M;
 end);
 
@@ -3652,19 +3652,19 @@ end);
 InstallGlobalFunction(  MultiplicationOfEasyForm,
 function ( tupel1, tupel2)
     local perm1, perm2, list1, list2, perm, list, i;
-    
+
     list1 := tupel1[1];
     perm1 := tupel1[2];
     list2 := tupel2[1];
     perm2 := tupel2[2];
-    
+
     perm := perm1*perm2;
     list := ShallowCopy(list1);
-    
+
     for i in [1..Length(list1)] do
         list[i^(perm2)] := list1[i] * list2[i^(perm2)];
     od;
-    
+
     return [list,perm];
 
 end);
@@ -3751,16 +3751,16 @@ function( arg )
 
     # Find start element
     x := FindOddPart(Size(fld)-1);
-    
+
     #for i in [0..(Size(fld)-1)] do
     #    if ((2*i+x-1) mod (Size(fld)-1)) = 0 then
     #        startpower := i;
     #        break;
     #    fi;
     #od;
-    
+
     startpower := (Size(fld)-x)/2;
-    
+
     instr := AEM( 5, 19, 20, startpower );
     Append( slp, instr );
     Add(slp, [[19,1,9,1], hipos]);
@@ -3863,20 +3863,20 @@ function(arg)
 
     # Find start element
     x := FindOddPart(Size(fld)-1);
-    
+
     #for i in [0..(Size(fld)-1)] do
     #    if ((2*i+x-1) mod (Size(fld)-1)) = 0 then
     #        startpower := i;
     #        break;
     #    fi;
     #od;
-    
+
     startpower := (Size(fld)-x)/2;
-    
+
     instr := AEM( 3, 13, 14, startpower );
     Append( slp, instr );
     Add(slp, [[13,1,6,1], hipos]);
-    
+
     for i in [ 1..((d-1)/2) ] do
 
         a_i := LogFFE( diag[i,i], omega );
@@ -3971,11 +3971,11 @@ function( arg )
         Add( slp, [ respos, 1]);
         return [ slp];
     fi;
-    
+
     if (Size(fld)= 3) then
         Add(slp, [[6,1], hipos]);
         Add(slp, [[5,1], hiposm]);
-        
+
         for i in [ 1..(d/2)-1 ] do
 
             a_i := LogFFE( diag[i,i], omega );
@@ -3986,11 +3986,11 @@ function( arg )
             Add( slp, [ [hiposm, -1 , hipos, 1, hiposm,1 ], hipos ] );
 
         od;
-        
+
         if diag[d/2,d/2] <> One(fld) then
             Add( slp, [ [3, 2, respos, 1 ], respos ] );
         fi;
-    
+
     else
         if diag[d/2,d/2] <> One(fld) then
             instr := AEM( 3, 13, 14, (Size(fld)+1)/2 );
@@ -4003,13 +4003,13 @@ function( arg )
             Add(slp, [[13,1], hipos]);
             Add(slp, [[hipos,1,6,1], hipos]);
             Add(slp, [[5,1], hiposm]);
-            
+
             a_i := LogFFE( diag[1,1]*tmpv^(-1), omega );
             instr := AEM( hipos, 13, 14, a_i );
             Append( slp, instr );
             Add( slp, [ [respos, 1, 13, 1 ], respos ] );
             Add( slp, [ [hiposm, -1 , hipos, 1, hiposm,1 ], hipos ] );
-            
+
             for i in [ 2..(d/2)-1 ] do
 
                 a_i := LogFFE( diag[i,i], omega );
@@ -4020,14 +4020,14 @@ function( arg )
                 Add( slp, [ [hiposm, -1 , hipos, 1, hiposm,1 ], hipos ] );
 
             od;
-        
+
         else
             instr := AEM( 3, 13, 14, ((Size(fld)+1)/2)^2 );
             Append( slp, instr );
             Add(slp, [[13,1], hipos]);
             Add(slp, [[hipos,1,6,1], hipos]);
             Add(slp, [[5,1], hiposm]);
-            
+
             for i in [ 1..(d/2)-1 ] do
 
                 a_i := LogFFE( diag[i,i], omega );
@@ -4059,7 +4059,7 @@ function(stdgens, g)
     local slp, u1, pm, u2, p_sign, diag, res1, res2, res3, lastline, line, pgr;
 
     if (Length(g) mod 2) = 0 then
-    
+
         if (g in MSO(1,Length(g),FieldOfMatrixList( stdgens ))) then
 
             # We write an SLP into the variable slp
@@ -4117,9 +4117,9 @@ function(stdgens, g)
             #    R[1]^-1*R[3]*R[4]*R[2]^-1    and
             #    R[1] = u1, R[2] = u2, R[3] = p_sign, R[4] = diag
             return [pgr, [ u1, u2, p_sign^(-1), diag ]];
-        
+
         elif (g in MSO(-1,Length(g),FieldOfMatrixList( stdgens ))) then
-    
+
             # We write an SLP into the variable slp
             # The first 12 entries are the stdgens and their inverses
             # s, t, del, v, u, x, s^-1, t^-1, del^-1, v^-1, u^-1, x^-1
@@ -4227,7 +4227,7 @@ function(stdgens, g)
         Append( slp, [lastline] );
 
         # Info( InfoBruhat, 2, "The Total Memory Usage is: " , res1[3]+9+14, " memory slots\n" );
-        
+
         pgr := MakeSLP(slp,6);
 
         # The result R of pgr satisfies:
@@ -4246,9 +4246,9 @@ function(stdgens, g)
     local slp, u1, pm, u2, p_sign, diag, res1, res2, res3, lastline, line, pgr;
 
     if (Length(g) mod 2) = 0 then
-    
+
         if (g in MSO(-1,Length(g),FieldOfMatrixList( stdgens ))) then
-    
+
             # We write an SLP into the variable slp
             # The first 12 entries are the stdgens and their inverses
             # s, t, del, v, u, x, s^-1, t^-1, del^-1, v^-1, u^-1, x^-1

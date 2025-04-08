@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This package can be used to compute the Bruhat decomposition of elements in their natural representation in classical groups. Moreover, the elements can also be expressed as words in specific generators, namely the Leedham-Green and O'Brien generators, as MSLPs. 
+This package can be used to compute the Bruhat decomposition of elements in their natural representation in classical groups. Moreover, the elements can also be expressed as words in specific generators, namely the Leedham-Green and O'Brien generators, as MSLPs.
 
 ## Installation
 
@@ -11,12 +11,12 @@ This package can be used to compute the Bruhat decomposition of elements in thei
 
         gap> LoadPackage("BruhatDecomposition");
         true
- 
+
  * The file manual.pdf is in the `doc` subdirectory.
 
 ## Contact
 
-If you have a question relating to `BruhatDecomposition`, encounter any problems, or have a suggestion for extending the package in any way, please 
+If you have a question relating to `BruhatDecomposition`, encounter any problems, or have a suggestion for extending the package in any way, please
  * email: <daniel.rademacher@rwth-aachen.de>
  * or report an issue at: [issue tracker](https://github.com/gap-packages/BruhatDecomposition/issues)
 

@@ -2576,7 +2576,7 @@ function(arg)
         # s, t, del, v, x, s^-1, t^-1, del^-1, v^-1, x^-1
         slp := [    [1,1], [2,1], [3,1], [4,1], [5,1], [6,1], [7,1],
                     [1,-1],[2,-1],[3,-1],[4,-1],[5,-1], [6,-1], [7,-1]    ];
-                   
+
         # Change generators to match the one of odd characteristic
         Add(slp, [[1,-1,4,-1,6,1,4,1,1,1],6]);
         Add(slp, [[6,-1],13]);
@@ -2628,7 +2628,7 @@ function(arg)
 
         Add(slp, [ [7, ell, 4, -2, 7, -(ell), 4 ,2 ], tmppos ] );
         Add(slp, [ [5,-1,1,-1,tmppos, 1, tmppos2, -1, tmppos, -1, 1, 1, 5, 1], T2pos[ell+1] ] );
-        
+
     od;
 
     # We create the help variables for the block in the bottom left
@@ -2818,7 +2818,7 @@ function(arg)
                     fi;
 
                     Add(slp,[[tvpos,1,u1pos,1],u1pos]);
-                    
+
                     #g := Mul * g;
                     #u1 := Mul * u1;
 
@@ -2897,7 +2897,7 @@ function(arg)
 
                     #g := Mul * g;
                     #u1 := Mul * u1;
-                    
+
                 fi;
             fi;
 
@@ -3025,7 +3025,7 @@ function(arg)
 
                 #g := g * Mul;
                 #u2 := u2 * Mul;
-                
+
             fi;
 
 
@@ -3073,7 +3073,7 @@ function(arg)
 
                 #g := g * Mul;
                 #u2 := u2 * Mul;
-                
+
             fi;
 
 
@@ -3199,12 +3199,12 @@ InstallGlobalFunction(  LGOStandardGensSU,
 function( d, q )
 
     local w, alpha, s, t, delta, u, v, x, y, J, fld;
-    
+
     if d < 6 then
         Error("LGOStandardGens: d has to be at least 6\n");
         return;
     fi;
-    
+
     if (q mod 2 = 0) then
         return LGOStandardGensSUEvenChar(d,q);
     fi;
@@ -3354,7 +3354,7 @@ InstallGlobalFunction(  BruhatDecompositionSU,
 function(stdgens, g)
 
     local slp, u1, pm, u2, p_sign, diag, res1, res2, res3, lastline, line, pgr, fld;
-    
+
     fld := FieldOfMatrixList( [g] );
 
     if Size(fld) mod 2 = 0 then
@@ -3366,7 +3366,7 @@ function(stdgens, g)
 
             Info( InfoBruhat, 1,
                     "returns an SLP to generate u1, u2, p_sign, diag\n"    );
-                    
+
             fld := FieldOfMatrixList( [g] );
 
             # Compute the matrices u1,u2 of Bruhat-Decomposition and the instructions
@@ -3482,7 +3482,7 @@ function(stdgens, g)
 
         fi;
     fi;
-    
+
     if (Length(g) mod 2) = 0 then
 
         # We write an SLP into the variable slp
